@@ -8,7 +8,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://ufodeclassified.com',
+  site: 'https://ufo-declassified.com',
   output: 'static',
   
   integrations: [
