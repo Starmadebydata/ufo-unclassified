@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { documents } from '../../data/documents';
+import { AGENCY_INFO } from '../../data/types';
+import type { Agency } from '../../data/types';
+
+const agencies = (Object.keys(AGENCY_INFO) as Agency[]).map(key => ({
+  ...AGENCY_INFO[key],
+  key,
+  count: documents.filter(d => d.agency === key).length,
+})).filter(a => a.count > 0);
+---
+<BaseLayout title="Agencies" description="Browse declassified UAP documents by source agency: FBI, Department of War, NASA, State Department, and National Archives.">
+  <section class="container-narrow py-12">
+    <h1 class="font-display text-3xl md:text-4xl font-bold text-white mb-2">Source Agencies</h1>
+    <p class="text-space-300 mb-10">Documents organized by the U.S. government agency that released them.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {agencies.map(agency => (
+        <a href={`/agencies/${agency.key.toLowerCase()}`} class="doc-card p-6 group" id={`agency-card-${agency.key}`}>
+          <div class="flex items-start justify-between mb-4">
+            <span class={`badge ${agency.badgeClass} text-sm`}>{agency.name}</span>
+            <span class="text-3xl font-display font-bold text-white">{agency.count}</span>
+          </div>
+          <h2 class="text-lg font-semibold text-white group-hover:text-cyan-bright transition-colors mb-2">{agency.fullName}</h2>
+          <p class="text-sm text-space-300">{agency.count} declassified documents available.</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,121 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+}
+
+const { 
+  title, 
+  description = 'The most comprehensive database of declassified UAP/UFO documents from the U.S. government. Browse 162+ files from FBI, DOW, NASA, and more.',
+  ogImage = '/og-default.png',
+  canonical,
+} = Astro.props;
+
+const siteTitle = title === 'Home' ? 'UFO Declassified — Explore Government UAP Files' : `${title} | UFO Declassified`;
+const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{siteTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={siteTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:site_name" content="UFO Declassified" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={siteTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 border-b border-space-700/50 bg-space-950/80 backdrop-blur-xl">
+    <div class="container-narrow flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-3 group" id="nav-logo">
+        <span class="text-2xl">🛸</span>
+        <div class="flex flex-col leading-tight">
+          <span class="font-display font-bold text-white text-lg tracking-tight group-hover:text-cyan-bright transition-colors">UFO Declassified</span>
+          <span class="text-[10px] text-space-300 font-mono tracking-widest uppercase">PURSUE Document Archive</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="/documents" class="text-space-200 hover:text-white transition-colors" id="nav-documents">Documents</a>
+        <a href="/agencies" class="text-space-200 hover:text-white transition-colors" id="nav-agencies">Agencies</a>
+        <a href="/timeline" class="text-space-200 hover:text-white transition-colors" id="nav-timeline">Timeline</a>
+        <a href="/about" class="text-space-200 hover:text-white transition-colors" id="nav-about">About</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <div class="pulse-dot"></div>
+        <span class="text-xs font-mono text-cyan-glow hidden sm:inline">LIVE — May 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-space-700/50 bg-space-950 mt-20">
+    <div class="container-narrow py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-xl">🛸</span>
+            <span class="font-display font-bold text-white">UFO Declassified</span>
+          </div>
+          <p class="text-sm text-space-300 leading-relaxed">
+            The most comprehensive public archive of U.S. government declassified UAP/UFO documents, released under the PURSUE initiative.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-3 text-sm uppercase tracking-wider">Navigate</h4>
+          <ul class="space-y-2 text-sm text-space-300">
+            <li><a href="/documents" class="hover:text-white transition-colors">Document Database</a></li>
+            <li><a href="/agencies" class="hover:text-white transition-colors">By Agency</a></li>
+            <li><a href="/timeline" class="hover:text-white transition-colors">Timeline</a></li>
+            <li><a href="/about" class="hover:text-white transition-colors">About This Project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-3 text-sm uppercase tracking-wider">Sources</h4>
+          <ul class="space-y-2 text-sm text-space-300">
+            <li><a href="https://war.gov/UFO" target="_blank" rel="noopener" class="hover:text-white transition-colors">war.gov/UFO ↗</a></li>
+            <li><a href="https://www.archives.gov" target="_blank" rel="noopener" class="hover:text-white transition-colors">National Archives ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="divider-glow my-8"></div>
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-space-400">
+        <p>All documents are public domain, released by the U.S. Government under PURSUE.</p>
+        <p class="font-mono">© 2026 UFO Declassified</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

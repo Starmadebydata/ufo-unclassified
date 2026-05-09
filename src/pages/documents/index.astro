@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { documents } from '../../data/documents';
+import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
+
+const allAgencies = [...new Set(documents.map(d => d.agency))];
+const allCategories = [...new Set(documents.map(d => d.category))];
+---
+<BaseLayout title="Document Database" description="Browse all declassified UAP/UFO documents from the PURSUE initiative. Filter by agency, category, and year.">
+  <section class="container-narrow py-12">
+    <div class="mb-8">
+      <span class="stamp-declassified mb-4">PURSUE ARCHIVE</span>
+      <h1 class="font-display text-3xl md:text-4xl font-bold text-white mt-4 mb-2">Document Database</h1>
+      <p class="text-space-300">{documents.length} declassified documents from {allAgencies.length} agencies.</p>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="glass-panel p-4 mb-8 flex flex-wrap gap-3 items-center" id="filter-bar">
+      <span class="text-xs font-mono text-space-400 uppercase">Filter:</span>
+      {allAgencies.map(a => (
+        <a href={`/agencies/${a.toLowerCase()}`} class={`badge ${AGENCY_INFO[a].badgeClass} hover:opacity-80 transition-opacity`}>
+          {a} ({documents.filter(d => d.agency === a).length})
+        </a>
+      ))}
+    </div>
+
+    <!-- Document grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {documents.map((doc, i) => (
+        <a href={`/documents/${doc.slug}`} class="doc-card group fade-up" style={`animation-delay: ${Math.min(i * 30, 500)}ms`} id={`doc-${doc.slug}`}>
+          {doc.files.find(f => f.type === 'image') && (
+            <div class="relative overflow-hidden rounded-t-xl aspect-video bg-space-800 scanlines">
+              <img 
+                src={`/source-files/image/${doc.files.find(f => f.type === 'image')!.filename}`}
+                alt={doc.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div class="absolute top-3 left-3">
+                <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[10px]`}>{doc.agency}</span>
+              </div>
+              {doc.files.some(f => f.type === 'video') && (
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-12 h-12 rounded-full bg-black/60 flex items-center justify-center backdrop-blur-sm">
+                    <span class="text-white text-lg ml-1">▶</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+          <div class="p-4">
+            <h3 class="font-semibold text-white text-sm leading-snug mb-2 group-hover:text-cyan-bright transition-colors line-clamp-2">
+              {doc.title}
+            </h3>
+            <div class="flex items-center gap-2 text-xs text-space-400">
+              <span>{CATEGORY_INFO[doc.category]?.icon} {CATEGORY_INFO[doc.category]?.label}</span>
+            </div>
+            <div class="flex items-center justify-between mt-3">
+              <div class="flex gap-1">
+                {doc.files.some(f => f.type === 'video') && <span class="file-icon file-icon-video text-[9px]">▶</span>}
+                {doc.files.some(f => f.type === 'pdf') && <span class="file-icon file-icon-pdf text-[9px]">PDF</span>}
+                {doc.files.some(f => f.type === 'image') && <span class="file-icon file-icon-image text-[9px]">IMG</span>}
+              </div>
+              <span class="text-[11px] font-mono text-space-400">{doc.year}</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

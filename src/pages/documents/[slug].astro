@@ -1,0 +1,197 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { documents, getDocumentBySlug } from '../../data/documents';
+import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
+
+export function getStaticPaths() {
+  return documents.map(doc => ({
+    params: { slug: doc.slug },
+    props: { doc },
+  }));
+}
+
+const { doc } = Astro.props;
+const imageFiles = doc.files.filter((f: any) => f.type === 'image');
+const videoFiles = doc.files.filter((f: any) => f.type === 'video');
+const pdfFiles = doc.files.filter((f: any) => f.type === 'pdf');
+const agencyInfo = AGENCY_INFO[doc.agency];
+const categoryInfo = CATEGORY_INFO[doc.category];
+
+// Find related docs by same agency
+const relatedDocs = documents
+  .filter(d => d.agency === doc.agency && d.id !== doc.id)
+  .slice(0, 4);
+
+function formatBytes(bytes: number): string {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+}
+---
+<BaseLayout 
+  title={doc.title} 
+  description={`Declassified ${categoryInfo?.label || 'document'} from ${agencyInfo.fullName}. Released May 8, 2026 under PURSUE.${doc.location ? ` Location: ${doc.location.name}.` : ''}`}
+>
+  <article class="container-narrow py-12">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-space-400 mb-6">
+      <a href="/" class="hover:text-white">Home</a>
+      <span>/</span>
+      <a href="/documents" class="hover:text-white">Documents</a>
+      <span>/</span>
+      <span class="text-space-200 truncate max-w-[200px]">{doc.title}</span>
+    </nav>
+
+    <!-- Header -->
+    <div class="mb-8">
+      <div class="flex flex-wrap items-center gap-3 mb-4">
+        <span class={`badge ${agencyInfo.badgeClass}`}>{agencyInfo.name}</span>
+        <span class="badge" style="background: rgba(100,100,100,0.15); color: #9ca3af; border: 1px solid rgba(100,100,100,0.3);">
+          {categoryInfo?.icon} {categoryInfo?.label}
+        </span>
+        <span class="stamp-declassified text-[10px]">DECLASSIFIED</span>
+      </div>
+
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">{doc.title}</h1>
+      
+      <div class="flex flex-wrap gap-4 text-sm text-space-300">
+        {doc.location && (
+          <span>📍 {doc.location.name}{doc.location.region !== doc.location.name ? `, ${doc.location.region}` : ''}</span>
+        )}
+        <span>📅 {doc.year}</span>
+        <span>📁 {doc.files.length} file{doc.files.length > 1 ? 's' : ''}</span>
+        <span>🏛️ {agencyInfo.fullName}</span>
+      </div>
+
+      {doc.summary && (
+        <div class="glass-panel p-5 mt-4">
+          <p class="text-space-200 text-sm leading-relaxed">{doc.summary}</p>
+        </div>
+      )}
+    </div>
+
+    <div class="divider-glow mb-8"></div>
+
+    <!-- Image viewer -->
+    {imageFiles.length > 0 && (
+      <section class="mb-10">
+        <h2 class="font-display text-xl font-bold text-white mb-4">
+          📸 Images ({imageFiles.length})
+        </h2>
+        <div class={`grid gap-4 ${imageFiles.length === 1 ? 'grid-cols-1 max-w-2xl' : 'grid-cols-1 md:grid-cols-2'}`}>
+          {imageFiles.map((file: any, i: number) => (
+            <div class="doc-card overflow-hidden" id={`img-${i}`}>
+              <div class="scanlines">
+                <img 
+                  src={`/source-files/image/${file.filename}`}
+                  alt={`${doc.title} - Image ${i + 1}`}
+                  class="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-3 flex items-center justify-between text-xs text-space-400">
+                <span class="font-mono truncate">{file.filename}</span>
+                <span>{formatBytes(file.size)}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Video player -->
+    {videoFiles.length > 0 && (
+      <section class="mb-10">
+        <h2 class="font-display text-xl font-bold text-white mb-4">
+          🎬 Videos ({videoFiles.length})
+        </h2>
+        {videoFiles.map((file: any, i: number) => (
+          <div class="doc-card overflow-hidden mb-4" id={`video-${i}`}>
+            <video 
+              controls 
+              preload="metadata"
+              class="w-full"
+              poster={imageFiles[0] ? `/source-files/image/${imageFiles[0].filename}` : undefined}
+            >
+              <source src={`/source-files/video/${file.filename}`} type="video/mp4" />
+            </video>
+            <div class="p-3 flex items-center justify-between text-xs text-space-400">
+              <span class="font-mono truncate">{file.filename}</span>
+              <span>{formatBytes(file.size)}</span>
+            </div>
+          </div>
+        ))}
+      </section>
+    )}
+
+    <!-- PDF links -->
+    {pdfFiles.length > 0 && (
+      <section class="mb-10">
+        <h2 class="font-display text-xl font-bold text-white mb-4">
+          📄 PDF Documents ({pdfFiles.length})
+        </h2>
+        {pdfFiles.map((file: any, i: number) => (
+          <a href={`/source-files/pdf/${file.filename}`} target="_blank" rel="noopener" class="doc-card flex items-center gap-4 p-4 mb-3 group" id={`pdf-${i}`}>
+            <span class="file-icon file-icon-pdf text-lg">PDF</span>
+            <div class="flex-1 min-w-0">
+              <span class="text-white group-hover:text-cyan-bright transition-colors font-medium text-sm truncate block">{file.filename}</span>
+              <span class="text-xs text-space-400">{formatBytes(file.size)}</span>
+            </div>
+            <span class="text-sm text-space-400">Open ↗</span>
+          </a>
+        ))}
+      </section>
+    )}
+
+    <!-- Document metadata -->
+    <section class="mb-10">
+      <h2 class="font-display text-xl font-bold text-white mb-4">Document Details</h2>
+      <div class="glass-panel p-6">
+        <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          <div>
+            <dt class="text-space-400 font-mono text-xs uppercase mb-1">Source Agency</dt>
+            <dd class="text-white">{agencyInfo.fullName}</dd>
+          </div>
+          <div>
+            <dt class="text-space-400 font-mono text-xs uppercase mb-1">Category</dt>
+            <dd class="text-white">{categoryInfo?.label}</dd>
+          </div>
+          <div>
+            <dt class="text-space-400 font-mono text-xs uppercase mb-1">Document Year</dt>
+            <dd class="text-white">{doc.year}</dd>
+          </div>
+          <div>
+            <dt class="text-space-400 font-mono text-xs uppercase mb-1">Released</dt>
+            <dd class="text-white">{doc.dateReleased}</dd>
+          </div>
+          {doc.location && (
+            <div>
+              <dt class="text-space-400 font-mono text-xs uppercase mb-1">Location</dt>
+              <dd class="text-white">{doc.location.name}, {doc.location.region}</dd>
+            </div>
+          )}
+          <div>
+            <dt class="text-space-400 font-mono text-xs uppercase mb-1">Classification</dt>
+            <dd class="text-red-stamp font-mono font-bold">{doc.classification}</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Related Documents -->
+    {relatedDocs.length > 0 && (
+      <section>
+        <h2 class="font-display text-xl font-bold text-white mb-4">Related Documents</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {relatedDocs.map(rd => (
+            <a href={`/documents/${rd.slug}`} class="doc-card p-4 group">
+              <span class={`badge ${AGENCY_INFO[rd.agency].badgeClass} text-[9px] mb-2`}>{rd.agency}</span>
+              <h3 class="text-sm text-white group-hover:text-cyan-bright transition-colors line-clamp-2 font-medium">{rd.title}</h3>
+              <p class="text-xs text-space-400 mt-1">{rd.year}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>

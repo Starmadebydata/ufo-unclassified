@@ -1,0 +1,245 @@
+@import "tailwindcss";
+
+/* ===== UFO Declassified Design System ===== */
+
+@theme {
+  /* Core palette - Deep space with amber/cyan accents */
+  --color-space-950: #050810;
+  --color-space-900: #0a0e1a;
+  --color-space-800: #0f1629;
+  --color-space-700: #161f3a;
+  --color-space-600: #1e2a4d;
+  --color-space-500: #2a3a66;
+  --color-space-400: #3d5291;
+  --color-space-300: #5a73b5;
+  --color-space-200: #8a9dd4;
+  --color-space-100: #bcc7e8;
+  --color-space-50: #e5e9f5;
+
+  --color-amber-glow: #f59e0b;
+  --color-amber-bright: #fbbf24;
+  --color-amber-dim: #b45309;
+  
+  --color-cyan-glow: #06b6d4;
+  --color-cyan-bright: #22d3ee;
+  --color-cyan-dim: #0e7490;
+
+  --color-red-stamp: #dc2626;
+  --color-red-stamp-dark: #991b1b;
+  
+  --color-green-verified: #16a34a;
+  --color-classified-bg: #1a0a0a;
+
+  /* Typography */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-display: 'Outfit', 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ===== Base Styles ===== */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-space-950);
+  color: var(--color-space-100);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-space-900);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-space-600);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-space-500);
+}
+
+/* ===== Selection ===== */
+::selection {
+  background-color: rgba(6, 182, 212, 0.3);
+  color: white;
+}
+
+/* ===== Document Card ===== */
+.doc-card {
+  background: linear-gradient(135deg, rgba(15, 22, 41, 0.8), rgba(10, 14, 26, 0.9));
+  border: 1px solid rgba(42, 58, 102, 0.4);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.doc-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.4), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.doc-card:hover {
+  border-color: rgba(6, 182, 212, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(6, 182, 212, 0.1), 0 0 0 1px rgba(6, 182, 212, 0.1);
+}
+.doc-card:hover::before {
+  opacity: 1;
+}
+
+/* ===== Glass Panel ===== */
+.glass-panel {
+  background: rgba(15, 22, 41, 0.6);
+  border: 1px solid rgba(42, 58, 102, 0.3);
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+}
+
+/* ===== Declassified Stamp Effect ===== */
+.stamp-declassified {
+  display: inline-block;
+  padding: 4px 16px;
+  border: 3px solid var(--color-red-stamp);
+  color: var(--color-red-stamp);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transform: rotate(-3deg);
+  opacity: 0.9;
+}
+
+/* ===== Agency Badge ===== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.badge-dow { background: rgba(245, 158, 11, 0.15); color: var(--color-amber-bright); border: 1px solid rgba(245, 158, 11, 0.3); }
+.badge-fbi { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+.badge-nasa { background: rgba(6, 182, 212, 0.15); color: var(--color-cyan-bright); border: 1px solid rgba(6, 182, 212, 0.3); }
+.badge-dos { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+.badge-nara { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+
+/* ===== Scanline Effect ===== */
+.scanlines {
+  position: relative;
+}
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+/* ===== Glow text ===== */
+.glow-cyan {
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5), 0 0 30px rgba(6, 182, 212, 0.2);
+}
+.glow-amber {
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.5), 0 0 30px rgba(245, 158, 11, 0.2);
+}
+
+/* ===== Divider ===== */
+.divider-glow {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.4), transparent);
+}
+
+/* ===== Pulse dot ===== */
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-cyan-glow);
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(6, 182, 212, 0); }
+}
+
+/* ===== Hero background grid ===== */
+.hero-grid {
+  background-image: 
+    linear-gradient(rgba(42, 58, 102, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42, 58, 102, 0.1) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ===== Fade-in animation ===== */
+.fade-up {
+  animation: fadeUp 0.6s ease-out both;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== File type icons ===== */
+.file-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+.file-icon-pdf { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+.file-icon-video { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+.file-icon-image { background: rgba(34, 211, 238, 0.15); color: #22d3ee; }
+
+/* ===== Responsive container ===== */
+.container-narrow {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ===== Link style ===== */
+a {
+  color: var(--color-cyan-bright);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: white;
+}
