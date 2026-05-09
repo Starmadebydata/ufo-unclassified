@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { documents } from '../../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
+import { mediaUrl } from '../../config';
 
 const allAgencies = [...new Set(documents.map(d => d.agency))];
 const allCategories = [...new Set(documents.map(d => d.category))];
@@ -31,7 +32,7 @@ const allCategories = [...new Set(documents.map(d => d.category))];
           {doc.files.find(f => f.type === 'image') && (
             <div class="relative overflow-hidden rounded-t-xl aspect-video bg-space-800 scanlines">
               <img 
-                src={`/source-files/image/${doc.files.find(f => f.type === 'image')!.filename}`}
+                src={mediaUrl('image', doc.files.find(f => f.type === 'image')!.filename)}
                 alt={doc.title}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"

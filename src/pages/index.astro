@@ -4,6 +4,7 @@ import SearchBar from '../components/SearchBar.tsx';
 import { documents, getFeaturedDocuments, getAllYears } from '../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../data/types';
 import type { Agency } from '../data/types';
+import { mediaUrl } from '../config';
 
 // Prepare lightweight search data (avoid shipping full file info to client)
 const searchDocs = documents.map(d => ({
@@ -122,7 +123,7 @@ const imageDocs = documents.filter(d => d.files.some(f => f.type === 'image'));
           {doc.files.find(f => f.type === 'image') && (
             <div class="relative overflow-hidden rounded-t-xl aspect-video bg-space-800 scanlines">
               <img 
-                src={`/source-files/image/${doc.files.find(f => f.type === 'image')!.filename}`}
+                src={mediaUrl('image', doc.files.find(f => f.type === 'image')!.filename)}
                 alt={doc.title}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"

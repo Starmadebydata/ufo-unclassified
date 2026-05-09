@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { documents, getDocumentBySlug } from '../../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
+import { mediaUrl } from '../../config';
 
 export function getStaticPaths() {
   return documents.map(doc => ({
@@ -83,7 +84,7 @@ function formatBytes(bytes: number): string {
             <div class="doc-card overflow-hidden" id={`img-${i}`}>
               <div class="scanlines">
                 <img 
-                  src={`/source-files/image/${file.filename}`}
+                  src={mediaUrl('image', file.filename)}
                   alt={`${doc.title} - Image ${i + 1}`}
                   class="w-full h-auto"
                   loading="lazy"
@@ -111,9 +112,9 @@ function formatBytes(bytes: number): string {
               controls 
               preload="metadata"
               class="w-full"
-              poster={imageFiles[0] ? `/source-files/image/${imageFiles[0].filename}` : undefined}
+              poster={imageFiles[0] ? mediaUrl('image', imageFiles[0].filename) : undefined}
             >
-              <source src={`/source-files/video/${file.filename}`} type="video/mp4" />
+              <source src={mediaUrl('video', file.filename)} type="video/mp4" />
             </video>
             <div class="p-3 flex items-center justify-between text-xs text-space-400">
               <span class="font-mono truncate">{file.filename}</span>
@@ -131,7 +132,7 @@ function formatBytes(bytes: number): string {
           📄 PDF Documents ({pdfFiles.length})
         </h2>
         {pdfFiles.map((file: any, i: number) => (
-          <a href={`/source-files/pdf/${file.filename}`} target="_blank" rel="noopener" class="doc-card flex items-center gap-4 p-4 mb-3 group" id={`pdf-${i}`}>
+          <a href={mediaUrl('pdf', file.filename)} target="_blank" rel="noopener" class="doc-card flex items-center gap-4 p-4 mb-3 group" id={`pdf-${i}`}>
             <span class="file-icon file-icon-pdf text-lg">PDF</span>
             <div class="flex-1 min-w-0">
               <span class="text-white group-hover:text-cyan-bright transition-colors font-medium text-sm truncate block">{file.filename}</span>

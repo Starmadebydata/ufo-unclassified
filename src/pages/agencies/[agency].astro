@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { documents } from '../../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
 import type { Agency } from '../../data/types';
+import { mediaUrl } from '../../config';
 
 export function getStaticPaths() {
   return (Object.keys(AGENCY_INFO) as Agency[])
@@ -38,7 +39,7 @@ const agencyDocs = documents.filter(d => d.agency === agencyKey);
         <a href={`/documents/${doc.slug}`} class="doc-card group">
           {doc.files.find(f => f.type === 'image') && (
             <div class="relative overflow-hidden rounded-t-xl aspect-video bg-space-800 scanlines">
-              <img src={`/source-files/image/${doc.files.find(f => f.type === 'image')!.filename}`} alt={doc.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"/>
+              <img src={mediaUrl('image', doc.files.find(f => f.type === 'image')!.filename)} alt={doc.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"/>
               <div class="absolute top-3 left-3">
                 <span class={`badge ${agency.badgeClass} text-[10px]`}>{agency.name}</span>
               </div>

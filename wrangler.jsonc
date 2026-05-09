@@ -1,13 +1,18 @@
 {
 	"compatibility_date": "2026-05-09",
 	"compatibility_flags": ["global_fetch_strictly_public"],
-	"name": "growing-graham",
-	"main": "@astrojs/cloudflare/entrypoints/server",
+	"name": "ufo-declassified",
 	"assets": {
 		"directory": "./dist",
 		"binding": "ASSETS"
 	},
 	"observability": {
 		"enabled": true
-	}
+	},
+	"r2_buckets": [
+		{
+			"binding": "MEDIA_BUCKET",
+			"bucket_name": "ufo-declassified-media"
+		}
+	]
 }
