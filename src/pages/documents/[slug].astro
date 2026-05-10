@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 import { documents, getDocumentBySlug } from '../../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
 import { mediaUrl } from '../../config';
@@ -69,6 +70,10 @@ function formatBytes(bytes: number): string {
           <p class="text-space-200 text-sm leading-relaxed">{doc.summary}</p>
         </div>
       )}
+
+      <div class="mt-5">
+        <ShareButtons url={`/documents/${doc.slug}`} title={doc.title} description={doc.summary || `Declassified ${categoryInfo?.label || 'document'} from ${agencyInfo.fullName}`} />
+      </div>
     </div>
 
     <div class="divider-glow mb-8"></div>

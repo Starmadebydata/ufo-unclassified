@@ -5,6 +5,7 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  ogType?: 'website' | 'article';
   canonical?: string;
 }
 
@@ -12,11 +13,13 @@ const {
   title, 
   description = 'The most comprehensive database of declassified UAP/UFO documents from the U.S. government. Browse 162+ files from FBI, DOW, NASA, and more.',
   ogImage = '/og-default.png',
+  ogType = 'website',
   canonical,
 } = Astro.props;
 
 const siteTitle = title === 'Home' ? 'UFO Declassified — Explore Government UAP Files' : `${title} | UFO Declassified`;
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
+const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro.site).href;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -41,19 +44,23 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content={ogType} />
   <meta property="og:title" content={siteTitle} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={ogImage} />
+  <meta property="og:image" content={ogImageAbsolute} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:site_name" content="UFO Declassified" />
+  <meta property="og:locale" content="en_US" />
 
-  <!-- Twitter -->
+  <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={siteTitle} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={ogImage} />
+  <meta name="twitter:image" content={ogImageAbsolute} />
+  <meta name="twitter:image:alt" content={siteTitle} />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

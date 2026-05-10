@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -40,6 +41,7 @@ const jsonLd = {
 <BaseLayout 
   title={post.data.title} 
   description={post.data.description}
+  ogType="article"
 >
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
 
@@ -70,6 +72,9 @@ const jsonLd = {
         {post.data.tags.map(tag => (
           <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-space-800 text-space-300 border border-space-700">{tag}</span>
         ))}
+      </div>
+      <div class="mt-5">
+        <ShareButtons url={`/blog/${post.id}`} title={post.data.title} description={post.data.description} />
       </div>
       <div class="divider-glow my-6"></div>
     </header>
@@ -110,8 +115,17 @@ const jsonLd = {
       </div>
     )}
 
+    {/* Bottom Share Bar */}
+    <div class="mt-12 mb-8">
+      <div class="divider-glow mb-6"></div>
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <p class="text-space-400 text-sm">Found this useful? Share it with others.</p>
+        <ShareButtons url={`/blog/${post.id}`} title={post.data.title} description={post.data.description} variant="inline" />
+      </div>
+    </div>
+
     {/* CTA */}
-    <div class="mt-12 glass-panel p-6 text-center">
+    <div class="glass-panel p-6 text-center">
       <p class="text-space-300 text-sm mb-4">Explore the full archive of declassified UAP documents</p>
       <a href="/documents" class="btn-primary text-sm px-6 py-2">Browse All Documents →</a>
     </div>
