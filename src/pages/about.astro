@@ -3,25 +3,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="About" description="About UFO Declassified — the most comprehensive public archive of U.S. government declassified UAP documents.">
   <section class="container-narrow py-12 max-w-3xl mx-auto">
-    <h1 class="font-display text-3xl md:text-4xl font-bold text-white mb-6">About UFO Declassified</h1>
+    <div class="section-header">
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">About UFO Declassified</h1>
+    </div>
     
-    <div class="prose prose-invert max-w-none space-y-6 text-space-200">
-      <p class="text-lg">
+    <div class="prose prose-invert max-w-none space-y-6 text-space-200 text-sm">
+      <p class="text-base">
         <strong class="text-white">UFO Declassified</strong> is an independent, public-interest project that organizes and makes accessible the declassified UAP (Unidentified Anomalous Phenomena) documents released by the U.S. government.
       </p>
 
-      <div class="glass-panel p-6 my-8">
-        <h2 class="font-display text-xl font-bold text-white mb-3">Our Mission</h2>
-        <p>To make government-released UAP documents <strong class="text-white">searchable, browsable, and understandable</strong> by the general public. The official portal at war.gov/UFO provides raw file downloads; we provide context, organization, and analysis.</p>
+      <div class="glass-panel p-6 my-8 radar-sweep">
+        <h2 class="font-display text-lg font-bold text-white mb-3 uppercase tracking-wider">Our Mission</h2>
+        <p>To make government-released UAP documents <strong class="text-cyan-bright">searchable, browsable, and understandable</strong> by the general public. The official portal at war.gov/UFO provides raw file downloads; we provide context, organization, and analysis.</p>
       </div>
 
-      <h2 class="font-display text-xl font-bold text-white">What is PURSUE?</h2>
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">What is PURSUE?</h2>
       <p>
         The <strong class="text-white">Presidential Unsealing and Reporting System for UAP Encounters (PURSUE)</strong> was launched on May 8, 2026. Under this initiative, federal agencies are required to identify, review, and declassify records related to UAP encounters. The first batch included 162 files from the FBI, Department of War, NASA, State Department, and National Archives.
       </p>
 
-      <h2 class="font-display text-xl font-bold text-white">What Documents Are Here?</h2>
-      <ul class="space-y-2">
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">What Documents Are Here?</h2>
+      <ul class="space-y-3">
         <li><strong class="text-amber-bright">Department of War (DOW)</strong> — Military mission reports, Range Fouler debriefs, and UAP encounter videos from global operations</li>
         <li><strong class="text-blue-400">FBI</strong> — Case files, FLIR/sensor imagery, and physical evidence photographs from ongoing investigations</li>
         <li><strong class="text-cyan-bright">NASA</strong> — Apollo mission transcripts, crew debriefings, and visual media showing anomalous observations</li>
@@ -29,8 +31,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <li><strong class="text-green-400">National Archives (NARA)</strong> — Historical records dating back to the 1940s including flying disc investigations</li>
       </ul>
 
-      <h2 class="font-display text-xl font-bold text-white">Disclaimer</h2>
-      <p class="text-sm text-space-300">
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">Disclaimer</h2>
+      <p class="text-xs text-space-400 font-mono leading-relaxed">
         All documents on this site are public domain materials released by the U.S. government. This website is not affiliated with or endorsed by any government agency. We present these documents for public interest and educational purposes. Our analysis and commentary represent independent interpretation and should not be taken as official government positions.
       </p>
     </div>

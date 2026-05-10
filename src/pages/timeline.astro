@@ -11,31 +11,33 @@ const docsByYear = years.map(year => ({
 ---
 <BaseLayout title="Timeline" description="Chronological timeline of all declassified UAP/UFO documents from 1940s to 2026.">
   <section class="container-narrow py-12">
-    <h1 class="font-display text-3xl md:text-4xl font-bold text-white mb-2">Document Timeline</h1>
-    <p class="text-space-300 mb-10">All declassified documents arranged chronologically from {years[years.length - 1]} to {years[0]}.</p>
+    <div class="section-header">
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">Document Timeline</h1>
+    </div>
+    <p class="text-space-400 mb-10 text-sm font-mono">All declassified documents arranged chronologically from {years[years.length - 1]} to {years[0]}.</p>
 
     <div class="relative">
-      <!-- Timeline line -->
-      <div class="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-space-600"></div>
+      <!-- Timeline line with glow -->
+      <div class="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-glow/40 via-space-600/30 to-cyan-glow/40"></div>
 
       {docsByYear.map(({ year, docs }) => (
         <div class="mb-12 relative" id={`year-${year}`}>
           <!-- Year marker -->
           <div class="flex items-center gap-4 mb-4">
             <div class="w-8 md:w-16 flex items-center justify-center relative z-10">
-              <div class="w-4 h-4 rounded-full bg-cyan-glow shadow-lg shadow-cyan-glow/30"></div>
+              <div class="w-3 h-3 rounded-full bg-cyan-glow shadow-lg shadow-cyan-glow/40 border border-cyan-bright/30"></div>
             </div>
-            <h2 class="font-display text-2xl font-bold text-white">{year}</h2>
-            <span class="text-sm text-space-400">({docs.length} document{docs.length > 1 ? 's' : ''})</span>
+            <h2 class="font-display text-xl font-bold text-white tracking-wider">{year}</h2>
+            <span class="text-[10px] text-space-500 font-mono tracking-wider">({docs.length} document{docs.length > 1 ? 's' : ''})</span>
           </div>
 
           <!-- Documents in this year -->
-          <div class="ml-12 md:ml-20 space-y-3">
+          <div class="ml-12 md:ml-20 space-y-2">
             {docs.map(doc => (
-              <a href={`/documents/${doc.slug}`} class="doc-card flex items-center gap-3 p-3 group">
-                <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[9px] shrink-0`}>{doc.agency}</span>
-                <span class="text-sm text-white group-hover:text-cyan-bright transition-colors truncate">{doc.title}</span>
-                {doc.location && <span class="text-xs text-space-400 shrink-0 hidden sm:inline">📍 {doc.location.name}</span>}
+              <a href={`/documents/${doc.slug}`} class="doc-card flex items-center gap-3 p-3 group cursor-pointer">
+                <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[8px] shrink-0`}>{doc.agency}</span>
+                <span class="text-xs text-white group-hover:text-cyan-bright transition-colors truncate">{doc.title}</span>
+                {doc.location && <span class="text-[10px] text-space-500 shrink-0 hidden sm:inline font-mono">// {doc.location.name}</span>}
               </a>
             ))}
           </div>

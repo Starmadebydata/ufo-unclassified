@@ -31,59 +31,74 @@ const imageDocs = documents.filter(d => d.files.some(f => f.type === 'image'));
 ---
 <BaseLayout title="Home">
   <!-- Hero Section -->
-  <section class="relative overflow-hidden">
-    <!-- Background effects -->
-    <div class="absolute inset-0 hero-grid opacity-30"></div>
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-radial from-cyan-glow/8 via-transparent to-transparent rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-radial from-amber-glow/5 via-transparent to-transparent rounded-full blur-3xl"></div>
-    
-    <div class="container-narrow relative py-20 md:py-32">
+  <section class="relative overflow-hidden min-h-[85vh] flex items-center">
+    <!-- Background image — mysterious UFO landscape -->
+    <div class="absolute inset-0 z-0" aria-hidden="true">
+      <img 
+        src="/hero-bg.png" 
+        alt="" 
+        class="w-full h-full object-cover object-center scale-110 blur-[2px]"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <!-- Dark overlay gradient — ensures text readability -->
+      <div class="absolute inset-0 bg-gradient-to-b from-space-950/80 via-space-950/60 to-space-950/95"></div>
+      <!-- Side vignette -->
+      <div class="absolute inset-0 bg-gradient-to-r from-space-950/70 via-transparent to-space-950/70"></div>
+      <!-- Cyan atmospheric glow -->
+      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-radial from-cyan-glow/8 via-transparent to-transparent rounded-full blur-3xl"></div>
+    </div>
+    <!-- Circuit grid overlay -->
+    <div class="absolute inset-0 hero-grid opacity-20 z-[1]"></div>
+    <!-- Scanlines on hero -->
+    <div class="absolute inset-0 z-[1] pointer-events-none" style="background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.02) 3px, rgba(0,0,0,0.02) 6px);"></div>
+    <!-- Horizontal scanning line -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none z-[2]" aria-hidden="true">
+      <div class="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-glow/40 to-transparent" style="animation: scanDown 8s linear infinite;"></div>
+    </div>
+
+    <div class="container-narrow relative z-10 py-24 md:py-36">
       <div class="max-w-3xl mx-auto text-center fade-up">
         <!-- Stamp -->
-        <div class="mb-6 inline-block">
+        <div class="mb-8 inline-block">
           <span class="stamp-declassified">DECLASSIFIED — MAY 8, 2026</span>
         </div>
-        
-        <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-6 tracking-tight">
+
+        <h1 class="font-display text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.15] mb-6 tracking-wide uppercase glitch-text">
           Every UFO File the <br class="hidden sm:block"/>
           <span class="glow-cyan">Government Just Released</span>
         </h1>
-        
-        <p class="text-lg md:text-xl text-space-200 leading-relaxed mb-8 max-w-2xl mx-auto">
-          Browse, search, and analyze <strong class="text-white">{totalFiles} declassified files</strong> from the FBI, Department of War, NASA, and State Department — released under the PURSUE initiative.
+
+        <p class="text-base md:text-lg text-space-200 leading-relaxed mb-10 max-w-2xl mx-auto font-light">
+          Browse, search, and analyze <strong class="text-white font-semibold">{totalFiles} declassified files</strong> from the FBI, Department of War, NASA, and State Department — released under the PURSUE initiative.
         </p>
 
         <!-- Stats row -->
-        <div class="flex flex-wrap justify-center gap-6 md:gap-10 mb-10">
-          <div class="text-center">
-            <div class="text-3xl md:text-4xl font-display font-black text-white">{totalDocs}</div>
-            <div class="text-xs font-mono text-space-300 uppercase tracking-wider">Documents</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl md:text-4xl font-display font-black text-white">{videoDocs.length}</div>
-            <div class="text-xs font-mono text-space-300 uppercase tracking-wider">Videos</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl md:text-4xl font-display font-black text-white">5</div>
-            <div class="text-xs font-mono text-space-300 uppercase tracking-wider">Agencies</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl md:text-4xl font-display font-black text-white">80+</div>
-            <div class="text-xs font-mono text-space-300 uppercase tracking-wider">Years Span</div>
-          </div>
+        <div class="flex flex-wrap justify-center gap-8 md:gap-12 mb-12">
+          {[
+            { val: totalDocs, label: 'Documents' },
+            { val: videoDocs.length, label: 'Videos' },
+            { val: '5', label: 'Agencies' },
+            { val: '80+', label: 'Years Span' },
+          ].map((stat, i) => (
+            <div class="text-center group" style={`animation: fadeUp 0.5s ease-out ${i * 0.1}s both;`}>
+              <div class="text-2xl md:text-3xl font-display font-black text-white tracking-wider group-hover:text-cyan-bright transition-colors">{stat.val}</div>
+              <div class="text-[9px] font-mono text-space-400 uppercase tracking-[0.2em] mt-1">{stat.label}</div>
+            </div>
+          ))}
         </div>
 
         <!-- Search -->
-        <div class="mb-8">
+        <div class="mb-10">
           <SearchBar client:load documents={searchDocs} />
         </div>
 
         <!-- CTA -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/documents" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-cyan-glow hover:bg-cyan-bright text-space-950 font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-cyan-glow/25" id="cta-browse">
-            Browse All Documents →
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="/documents" class="inline-flex items-center justify-center gap-2 px-8 py-3 bg-cyan-glow/90 hover:bg-cyan-bright text-space-950 font-mono font-bold text-xs tracking-wider uppercase rounded transition-all hover:shadow-lg hover:shadow-cyan-glow/25" id="cta-browse">
+            Access All Documents →
           </a>
-          <a href="/agencies" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-space-500 text-white hover:border-cyan-glow/50 hover:bg-space-800 font-semibold rounded-xl transition-all" id="cta-agencies">
+          <a href="/agencies" class="inline-flex items-center justify-center gap-2 px-8 py-3 border border-space-500/50 text-space-200 hover:text-white hover:border-cyan-glow/40 hover:bg-space-800/30 font-mono font-semibold text-xs tracking-wider uppercase rounded transition-all" id="cta-agencies">
             By Agency
           </a>
         </div>
@@ -95,17 +110,19 @@ const imageDocs = documents.filter(d => d.files.some(f => f.type === 'image'));
 
   <!-- Agency Cards -->
   <section class="container-narrow py-16">
-    <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-2">By Source Agency</h2>
-    <p class="text-space-300 mb-8">Documents organized by the releasing government agency.</p>
-    
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+    <div class="section-header">
+      <h2 class="font-display text-lg md:text-xl font-bold text-white uppercase tracking-wider">Source Agencies</h2>
+    </div>
+    <p class="text-space-400 mb-8 text-sm font-mono">Documents organized by releasing government agency.</p>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
       {agencies.filter(a => agencyCounts[a] > 0).map(agency => (
-        <a href={`/agencies/${agency.toLowerCase()}`} class="doc-card p-5 text-center group" id={`agency-${agency.toLowerCase()}`}>
+        <a href={`/agencies/${agency.toLowerCase()}`} class="doc-card p-5 text-center group radar-sweep cursor-pointer" id={`agency-${agency.toLowerCase()}`}>
           <div class={`badge ${AGENCY_INFO[agency].badgeClass} mb-3 mx-auto`}>
             {AGENCY_INFO[agency].name}
           </div>
-          <div class="text-2xl font-display font-bold text-white mb-1">{agencyCounts[agency]}</div>
-          <div class="text-xs text-space-300">{AGENCY_INFO[agency].fullName}</div>
+          <div class="text-xl font-display font-bold text-white mb-1 group-hover:text-cyan-bright transition-colors">{agencyCounts[agency]}</div>
+          <div class="text-[10px] text-space-400 font-mono">{AGENCY_INFO[agency].fullName}</div>
         </a>
       ))}
     </div>
@@ -113,23 +130,26 @@ const imageDocs = documents.filter(d => d.files.some(f => f.type === 'image'));
 
   <!-- Featured Documents -->
   <section class="container-narrow py-16">
-    <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-2">Featured Documents</h2>
-    <p class="text-space-300 mb-8">Highlighted files from the first PURSUE release.</p>
+    <div class="section-header">
+      <h2 class="font-display text-lg md:text-xl font-bold text-white uppercase tracking-wider">Featured Documents</h2>
+    </div>
+    <p class="text-space-400 mb-8 text-sm font-mono">Highlighted files from the first PURSUE release.</p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {featured.slice(0, 6).map(doc => (
-        <a href={`/documents/${doc.slug}`} class="doc-card group" id={`featured-${doc.id}`}>
-          <!-- Thumbnail -->
+        <a href={`/documents/${doc.slug}`} class="doc-card group cursor-pointer" id={`featured-${doc.id}`}>
           {doc.files.find(f => f.type === 'image') && (
-            <div class="relative overflow-hidden rounded-t-xl aspect-video bg-space-800 scanlines">
+            <div class="relative overflow-hidden rounded-t aspect-video bg-space-900 scanlines">
               <img 
                 src={mediaUrl('image', doc.files.find(f => f.type === 'image')!.filename)}
                 alt={doc.title}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 loading="lazy"
               />
+              <!-- Overlay gradient -->
+              <div class="absolute inset-0 bg-gradient-to-t from-space-950/60 via-transparent to-transparent"></div>
               <div class="absolute top-3 left-3">
-                <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[10px]`}>
+                <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[9px]`}>
                   {doc.agency}
                 </span>
               </div>
@@ -139,14 +159,14 @@ const imageDocs = documents.filter(d => d.files.some(f => f.type === 'image'));
             <h3 class="font-semibold text-white text-sm leading-snug mb-2 group-hover:text-cyan-bright transition-colors line-clamp-2">
               {doc.title}
             </h3>
-            <div class="flex items-center gap-2 text-xs text-space-300">
-              <span>{CATEGORY_INFO[doc.category]?.icon} {CATEGORY_INFO[doc.category]?.label}</span>
+            <div class="flex items-center gap-2 text-[10px] text-space-400 font-mono">
+              <span>{CATEGORY_INFO[doc.category]?.label}</span>
               {doc.location && <span>· {doc.location.name}</span>}
             </div>
             <div class="flex items-center gap-2 mt-2">
-              {doc.files.some(f => f.type === 'video') && <span class="file-icon file-icon-video">MP4</span>}
-              {doc.files.some(f => f.type === 'pdf') && <span class="file-icon file-icon-pdf">PDF</span>}
-              {doc.files.some(f => f.type === 'image') && <span class="file-icon file-icon-image">IMG</span>}
+              {doc.files.some(f => f.type === 'video') && <span class="file-icon file-icon-video text-[9px]">MP4</span>}
+              {doc.files.some(f => f.type === 'pdf') && <span class="file-icon file-icon-pdf text-[9px]">PDF</span>}
+              {doc.files.some(f => f.type === 'image') && <span class="file-icon file-icon-image text-[9px]">IMG</span>}
             </div>
           </div>
         </a>
@@ -157,53 +177,43 @@ const imageDocs = documents.filter(d => d.files.some(f => f.type === 'image'));
   <!-- Recent Documents -->
   <section class="container-narrow py-16">
     <div class="flex items-center justify-between mb-8">
-      <div>
-        <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-2">All Documents</h2>
-        <p class="text-space-300">Latest additions from the PURSUE declassification.</p>
+      <div class="section-header flex-1">
+        <h2 class="font-display text-lg md:text-xl font-bold text-white uppercase tracking-wider">All Documents</h2>
       </div>
-      <a href="/documents" class="text-sm text-cyan-bright hover:text-white transition-colors font-medium">
+      <a href="/documents" class="text-xs text-cyan-bright hover:text-white transition-colors font-mono tracking-wider uppercase">
         View All →
       </a>
     </div>
 
-    <div class="space-y-3">
+    <div class="space-y-2">
       {documents.slice(0, 20).map((doc, i) => (
-        <a href={`/documents/${doc.slug}`} class="doc-card flex items-center gap-4 p-4 group" id={`doc-row-${i}`} style={`animation-delay: ${i * 50}ms`}>
-          <!-- File type indicator -->
+        <a href={`/documents/${doc.slug}`} class="doc-card flex items-center gap-4 p-3.5 group cursor-pointer" id={`doc-row-${i}`} style={`animation-delay: ${i * 40}ms`}>
           <div class="flex gap-1 shrink-0">
-            {doc.files.some(f => f.type === 'video') && <span class="file-icon file-icon-video text-[10px]">▶</span>}
-            {doc.files.some(f => f.type === 'pdf') && <span class="file-icon file-icon-pdf text-[10px]">PDF</span>}
-            {!doc.files.some(f => f.type === 'video') && !doc.files.some(f => f.type === 'pdf') && <span class="file-icon file-icon-image text-[10px]">IMG</span>}
+            {doc.files.some(f => f.type === 'video') && <span class="file-icon file-icon-video text-[9px]">▶</span>}
+            {doc.files.some(f => f.type === 'pdf') && <span class="file-icon file-icon-pdf text-[9px]">PDF</span>}
+            {!doc.files.some(f => f.type === 'video') && !doc.files.some(f => f.type === 'pdf') && <span class="file-icon file-icon-image text-[9px]">IMG</span>}
           </div>
 
-          <!-- Content -->
           <div class="flex-1 min-w-0">
             <h3 class="font-medium text-white text-sm group-hover:text-cyan-bright transition-colors truncate">
               {doc.title}
             </h3>
-            <div class="flex items-center gap-2 text-xs text-space-400 mt-0.5">
-              <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[9px] py-0 px-1.5`}>{doc.agency}</span>
+            <div class="flex items-center gap-2 text-[10px] text-space-400 mt-0.5 font-mono">
+              <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[8px] py-0 px-1.5`}>{doc.agency}</span>
               <span>{CATEGORY_INFO[doc.category]?.label}</span>
               {doc.location && <span>· {doc.location.name}</span>}
             </div>
           </div>
 
-          <!-- Year -->
-          <div class="text-xs font-mono text-space-400 shrink-0">
-            {doc.year}
-          </div>
-
-          <!-- Files count -->
-          <div class="text-xs text-space-400 shrink-0">
-            {doc.files.length} file{doc.files.length > 1 ? 's' : ''}
-          </div>
+          <div class="text-[10px] font-mono text-space-500 shrink-0">{doc.year}</div>
+          <div class="text-[10px] text-space-500 shrink-0 font-mono">{doc.files.length} file{doc.files.length > 1 ? 's' : ''}</div>
         </a>
       ))}
     </div>
 
     {documents.length > 20 && (
       <div class="text-center mt-8">
-        <a href="/documents" class="inline-flex items-center gap-2 px-6 py-3 border border-space-500 text-white hover:border-cyan-glow/50 hover:bg-space-800 font-medium rounded-xl transition-all text-sm">
+        <a href="/documents" class="inline-flex items-center gap-2 px-6 py-2.5 border border-space-500/50 text-space-200 hover:text-white hover:border-cyan-glow/40 font-mono font-medium text-xs tracking-wider uppercase rounded transition-all">
           View All {totalDocs} Documents →
         </a>
       </div>
@@ -212,9 +222,11 @@ const imageDocs = documents.filter(d => d.files.some(f => f.type === 'image'));
 
   <!-- What is PURSUE -->
   <section class="container-narrow py-16">
-    <div class="glass-panel p-8 md:p-12">
-      <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-4">What is PURSUE?</h2>
-      <div class="prose prose-invert max-w-none text-space-200 space-y-4">
+    <div class="glass-panel p-8 md:p-12 radar-sweep">
+      <div class="section-header">
+        <h2 class="font-display text-lg md:text-xl font-bold text-white uppercase tracking-wider">What is PURSUE?</h2>
+      </div>
+      <div class="prose prose-invert max-w-none text-space-200 space-y-4 text-sm">
         <p>
           The <strong class="text-white">Presidential Unsealing and Reporting System for UAP Encounters (PURSUE)</strong> is a historic U.S. government initiative launched on May 8, 2026, following a directive from President Trump in February 2026.
         </p>
@@ -222,9 +234,16 @@ const imageDocs = documents.filter(d => d.files.some(f => f.type === 'image'));
           Under PURSUE, federal agencies including the Department of War, FBI, NASA, State Department, and National Archives are required to identify, review, and declassify records related to <strong class="text-white">Unidentified Anomalous Phenomena (UAP)</strong>.
         </p>
         <p>
-          The first batch of <strong class="text-white">{totalFiles} files</strong> was released on <strong class="text-white">war.gov/UFO</strong>, with additional releases planned on a rolling basis. This website makes those documents searchable, browsable, and analyzable by the public.
+          The first batch of <strong class="text-cyan-bright">{totalFiles} files</strong> was released on <strong class="text-white">war.gov/UFO</strong>, with additional releases planned on a rolling basis. This website makes those documents searchable, browsable, and analyzable by the public.
         </p>
       </div>
     </div>
   </section>
+
+  <style>
+    @keyframes scanDown {
+      from { top: -1px; }
+      to { top: 100%; }
+    }
+  </style>
 </BaseLayout>

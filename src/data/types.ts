@@ -69,16 +69,16 @@ export const AGENCY_INFO: Record<Agency, { name: string; fullName: string; color
 };
 
 export const CATEGORY_INFO: Record<DocumentCategory, { label: string; icon: string }> = {
-  'mission-report': { label: 'Mission Report', icon: '📋' },
-  'range-fouler': { label: 'Range Fouler Debrief', icon: '🎯' },
-  'cable': { label: 'Diplomatic Cable', icon: '📡' },
-  'transcript': { label: 'Transcript', icon: '📝' },
-  'photo-evidence': { label: 'Photo Evidence', icon: '📸' },
-  'video-evidence': { label: 'Video Evidence', icon: '🎬' },
-  'case-file': { label: 'Case File', icon: '📁' },
-  'email': { label: 'Email Correspondence', icon: '✉️' },
-  'archival': { label: 'Archival Record', icon: '🏛️' },
-  'crew-debriefing': { label: 'Crew Debriefing', icon: '🧑‍🚀' },
-  'launch-summary': { label: 'Launch Summary', icon: '🚀' },
-  'presentation': { label: 'Presentation', icon: '📊' },
+  'mission-report': { label: 'Mission Report', icon: '[MR]' },
+  'range-fouler': { label: 'Range Fouler Debrief', icon: '[RF]' },
+  'cable': { label: 'Diplomatic Cable', icon: '[DC]' },
+  'transcript': { label: 'Transcript', icon: '[TX]' },
+  'photo-evidence': { label: 'Photo Evidence', icon: '[PH]' },
+  'video-evidence': { label: 'Video Evidence', icon: '[VD]' },
+  'case-file': { label: 'Case File', icon: '[CF]' },
+  'email': { label: 'Email Correspondence', icon: '[EM]' },
+  'archival': { label: 'Archival Record', icon: '[AR]' },
+  'crew-debriefing': { label: 'Crew Debriefing', icon: '[CD]' },
+  'launch-summary': { label: 'Launch Summary', icon: '[LS]' },
+  'presentation': { label: 'Presentation', icon: '[PR]' },
 };

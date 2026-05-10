@@ -20,6 +20,8 @@ const {
 const siteTitle = title === 'Home' ? 'UFO Declassified — Explore Government UAP Files' : `${title} | UFO Declassified`;
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
 const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro.site).href;
+
+const currentPath = Astro.url.pathname;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -39,10 +41,10 @@ const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : new URL(ogImage, 
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
 
-  <!-- Fonts -->
+  <!-- Fonts: Orbitron (sci-fi display) + Inter + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content={ogType} />
@@ -66,73 +68,139 @@ const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : new URL(ogImage, 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
 <body class="min-h-screen flex flex-col">
+  <!-- Atmospheric layers -->
+  <div class="starfield" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="scanlines-global" aria-hidden="true"></div>
+
   <!-- Header -->
-  <header class="sticky top-0 z-50 border-b border-space-700/50 bg-space-950/80 backdrop-blur-xl">
-    <div class="container-narrow flex items-center justify-between h-16">
+  <header class="sticky top-0 z-50 border-b border-cyan-glow/10 bg-space-950/90 backdrop-blur-2xl" id="site-header">
+    <!-- Top micro-bar -->
+    <div class="border-b border-space-700/30">
+      <div class="container-narrow flex items-center justify-between h-7 text-[9px] font-mono text-space-400 tracking-widest uppercase">
+        <span>sys.ufo-declassified.gov // classified terminal</span>
+        <div class="signal-active">
+          signal active
+        </div>
+      </div>
+    </div>
+
+    <!-- Main nav -->
+    <div class="container-narrow flex items-center justify-between h-14">
       <a href="/" class="flex items-center gap-3 group" id="nav-logo">
-        <span class="text-2xl">🛸</span>
-        <div class="flex flex-col leading-tight">
-          <span class="font-display font-bold text-white text-lg tracking-tight group-hover:text-cyan-bright transition-colors">UFO Declassified</span>
-          <span class="text-[10px] text-space-300 font-mono tracking-widest uppercase">PURSUE Document Archive</span>
+        <!-- SVG UFO icon instead of emoji -->
+        <svg class="w-7 h-7 text-cyan-glow group-hover:text-cyan-bright transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="14" rx="9" ry="3" />
+          <path d="M5 14c0-3 3.13-7 7-7s7 4 7 7" />
+          <circle cx="12" cy="10" r="2" fill="currentColor" opacity="0.3" />
+          <line x1="12" y1="3" x2="12" y2="5" opacity="0.5" />
+          <line x1="8" y1="4" x2="9" y2="6" opacity="0.3" />
+          <line x1="16" y1="4" x2="15" y2="6" opacity="0.3" />
+        </svg>
+        <div class="flex flex-col leading-none">
+          <span class="font-display font-bold text-white text-sm tracking-[0.2em] uppercase group-hover:text-cyan-bright transition-colors">UFO Declassified</span>
+          <span class="text-[8px] text-space-400 font-mono tracking-[0.3em] uppercase mt-0.5">PURSUE Document Archive</span>
         </div>
       </a>
 
-      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
-        <a href="/documents" class="text-space-200 hover:text-white transition-colors" id="nav-documents">Documents</a>
-        <a href="/agencies" class="text-space-200 hover:text-white transition-colors" id="nav-agencies">Agencies</a>
-        <a href="/timeline" class="text-space-200 hover:text-white transition-colors" id="nav-timeline">Timeline</a>
-        <a href="/blog" class="text-space-200 hover:text-white transition-colors" id="nav-blog">Blog</a>
-        <a href="/about" class="text-space-200 hover:text-white transition-colors" id="nav-about">About</a>
+      <nav class="hidden md:flex items-center gap-1 text-xs font-mono tracking-wider uppercase" id="main-nav">
+        {[
+          { href: '/documents', label: 'Documents' },
+          { href: '/agencies', label: 'Agencies' },
+          { href: '/timeline', label: 'Timeline' },
+          { href: '/blog', label: 'Intel' },
+          { href: '/about', label: 'About' },
+        ].map(item => (
+          <a 
+            href={item.href} 
+            class:list={[
+              'px-3 py-1.5 rounded transition-all',
+              currentPath.startsWith(item.href) 
+                ? 'text-cyan-bright bg-cyan-glow/10 border border-cyan-glow/20' 
+                : 'text-space-300 hover:text-white hover:bg-space-800/50'
+            ]}
+            id={`nav-${item.label.toLowerCase()}`}
+          >
+            {item.label}
+          </a>
+        ))}
       </nav>
 
-      <div class="flex items-center gap-3">
-        <div class="pulse-dot"></div>
-        <span class="text-xs font-mono text-cyan-glow hidden sm:inline">LIVE — May 2026</span>
-      </div>
+      <!-- Mobile menu button -->
+      <button class="md:hidden flex flex-col gap-1 p-2 group" id="mobile-menu-btn" aria-label="Toggle menu">
+        <span class="w-5 h-px bg-space-300 group-hover:bg-cyan-bright transition-colors"></span>
+        <span class="w-4 h-px bg-space-300 group-hover:bg-cyan-bright transition-colors"></span>
+        <span class="w-3 h-px bg-space-300 group-hover:bg-cyan-bright transition-colors"></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="md:hidden hidden border-t border-space-700/30 bg-space-950/95 backdrop-blur-2xl" id="mobile-menu">
+      <nav class="container-narrow py-4 flex flex-col gap-2 text-sm font-mono tracking-wider uppercase">
+        <a href="/documents" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Documents</a>
+        <a href="/agencies" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Agencies</a>
+        <a href="/timeline" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Timeline</a>
+        <a href="/blog" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Intel</a>
+        <a href="/about" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">About</a>
+      </nav>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="flex-1">
+  <main class="flex-1 relative z-10">
     <slot />
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-space-700/50 bg-space-950 mt-20">
+  <footer class="relative z-10 border-t border-cyan-glow/10 bg-space-950/95 mt-20">
+    <!-- Data stream decoration -->
+    <div class="h-px bg-gradient-to-r from-transparent via-cyan-glow/20 to-transparent"></div>
+    
     <div class="container-narrow py-12">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
           <div class="flex items-center gap-2 mb-3">
-            <span class="text-xl">🛸</span>
-            <span class="font-display font-bold text-white">UFO Declassified</span>
+            <svg class="w-5 h-5 text-cyan-glow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="14" rx="9" ry="3" /><path d="M5 14c0-3 3.13-7 7-7s7 4 7 7" /></svg>
+            <span class="font-display font-bold text-white text-xs tracking-[0.15em] uppercase">UFO Declassified</span>
           </div>
-          <p class="text-sm text-space-300 leading-relaxed">
+          <p class="text-xs text-space-400 leading-relaxed font-mono">
             The most comprehensive public archive of U.S. government declassified UAP/UFO documents, released under the PURSUE initiative.
           </p>
         </div>
         <div>
-          <h4 class="font-semibold text-white mb-3 text-sm uppercase tracking-wider">Navigate</h4>
-          <ul class="space-y-2 text-sm text-space-300">
-            <li><a href="/documents" class="hover:text-white transition-colors">Document Database</a></li>
-            <li><a href="/agencies" class="hover:text-white transition-colors">By Agency</a></li>
-            <li><a href="/timeline" class="hover:text-white transition-colors">Timeline</a></li>
-            <li><a href="/about" class="hover:text-white transition-colors">About This Project</a></li>
+          <h4 class="font-mono text-[10px] text-cyan-glow/60 mb-3 uppercase tracking-[0.2em]">// Navigate</h4>
+          <ul class="space-y-1.5 text-xs">
+            <li><a href="/documents" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Document Database</a></li>
+            <li><a href="/agencies" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">By Agency</a></li>
+            <li><a href="/timeline" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Timeline</a></li>
+            <li><a href="/about" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">About This Project</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="font-semibold text-white mb-3 text-sm uppercase tracking-wider">Sources</h4>
-          <ul class="space-y-2 text-sm text-space-300">
-            <li><a href="https://war.gov/UFO" target="_blank" rel="noopener" class="hover:text-white transition-colors">war.gov/UFO ↗</a></li>
-            <li><a href="https://www.archives.gov" target="_blank" rel="noopener" class="hover:text-white transition-colors">National Archives ↗</a></li>
+          <h4 class="font-mono text-[10px] text-cyan-glow/60 mb-3 uppercase tracking-[0.2em]">// Sources</h4>
+          <ul class="space-y-1.5 text-xs">
+            <li><a href="https://war.gov/UFO" target="_blank" rel="noopener" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">war.gov/UFO ↗</a></li>
+            <li><a href="https://www.archives.gov" target="_blank" rel="noopener" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">National Archives ↗</a></li>
           </ul>
         </div>
       </div>
       <div class="divider-glow my-8"></div>
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-space-400">
-        <p>All documents are public domain, released by the U.S. Government under PURSUE.</p>
-        <p class="font-mono">© 2026 UFO Declassified</p>
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-space-500 font-mono tracking-wider">
+        <p>All documents are public domain // released by the U.S. Government under PURSUE</p>
+        <p>© 2026 UFO DECLASSIFIED</p>
       </div>
     </div>
   </footer>
+
+  <!-- Mobile menu toggle script -->
+  <script>
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    if (btn && menu) {
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    }
+  </script>
 </body>
 </html>

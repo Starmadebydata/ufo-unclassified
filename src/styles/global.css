@@ -1,43 +1,50 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* ===== UFO Declassified Design System ===== */
+/* ========================================================
+   UFO DECLASSIFIED — Sci-Fi Mystery Design System
+   Concept: "Classified Intelligence Terminal"
+   ======================================================== */
 
 @theme {
-  /* Core palette - Deep space with amber/cyan accents */
-  --color-space-950: #050810;
-  --color-space-900: #0a0e1a;
-  --color-space-800: #0f1629;
-  --color-space-700: #161f3a;
-  --color-space-600: #1e2a4d;
-  --color-space-500: #2a3a66;
-  --color-space-400: #3d5291;
-  --color-space-300: #5a73b5;
-  --color-space-200: #8a9dd4;
-  --color-space-100: #bcc7e8;
-  --color-space-50: #e5e9f5;
+  /* Core palette — Abyss space with neon accents */
+  --color-space-950: #020408;
+  --color-space-900: #060b14;
+  --color-space-800: #0b1221;
+  --color-space-700: #111b33;
+  --color-space-600: #182545;
+  --color-space-500: #223460;
+  --color-space-400: #334d8a;
+  --color-space-300: #5070b0;
+  --color-space-200: #8099cc;
+  --color-space-100: #b0c0e0;
+  --color-space-50: #dde5f2;
 
   --color-amber-glow: #f59e0b;
   --color-amber-bright: #fbbf24;
   --color-amber-dim: #b45309;
-  
+
   --color-cyan-glow: #06b6d4;
   --color-cyan-bright: #22d3ee;
   --color-cyan-dim: #0e7490;
 
   --color-red-stamp: #dc2626;
   --color-red-stamp-dark: #991b1b;
-  
   --color-green-verified: #16a34a;
   --color-classified-bg: #1a0a0a;
+
+  /* Sci-fi accent extras */
+  --color-neon-green: #00ff88;
+  --color-hologram: #00d4ff;
+  --color-warning: #ff6b35;
 
   /* Typography */
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --font-display: 'Outfit', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Orbitron', 'Outfit', ui-sans-serif, system-ui, sans-serif;
 }
 
-/* ===== Base Styles ===== */
+/* ===== Base ===== */
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
@@ -50,103 +57,200 @@ body {
   font-family: var(--font-sans);
   line-height: 1.7;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* ===== Scrollbar ===== */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-space-900);
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-space-950); }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-space-600);
-  border-radius: 4px;
+  background: linear-gradient(180deg, var(--color-cyan-dim), var(--color-space-600));
+  border-radius: 3px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-space-500);
-}
+::-webkit-scrollbar-thumb:hover { background: var(--color-cyan-glow); }
 
-/* ===== Selection ===== */
 ::selection {
   background-color: rgba(6, 182, 212, 0.3);
   color: white;
 }
 
-/* ===== Document Card ===== */
+/* ===== Star Field Background ===== */
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.starfield::before,
+.starfield::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.starfield::before {
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 40%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 15% 75%, rgba(6,182,212,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 25%, rgba(245,158,11,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 65% 35%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 90%, rgba(255,255,255,0.3) 0%, transparent 100%);
+  animation: starDrift 120s linear infinite;
+}
+.starfield::after {
+  background-image:
+    radial-gradient(1px 1px at 5% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 15%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 50%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 85%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(2px 2px at 40% 30%, rgba(6,182,212,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 20% 95%, rgba(255,255,255,0.4) 0%, transparent 100%);
+  animation: starDrift 180s linear infinite reverse;
+}
+@keyframes starDrift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-20px); }
+}
+
+/* ===== Noise Overlay ===== */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* ===== Scanlines Overlay ===== */
+.scanlines-global {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.015) 2px,
+    rgba(0, 0, 0, 0.015) 4px
+  );
+}
+
+/* ===== Document Card — HUD Style ===== */
 .doc-card {
-  background: linear-gradient(135deg, rgba(15, 22, 41, 0.8), rgba(10, 14, 26, 0.9));
-  border: 1px solid rgba(42, 58, 102, 0.4);
-  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(11, 18, 33, 0.85), rgba(6, 11, 20, 0.95));
+  border: 1px solid rgba(6, 182, 212, 0.12);
+  border-radius: 4px;
   backdrop-filter: blur(12px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
-.doc-card::before {
+/* HUD corner brackets */
+.doc-card::before,
+.doc-card::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.4), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
+  width: 16px;
+  height: 16px;
+  transition: all 0.35s;
+  pointer-events: none;
+}
+.doc-card::before {
+  top: 0; left: 0;
+  border-top: 1px solid rgba(6, 182, 212, 0.3);
+  border-left: 1px solid rgba(6, 182, 212, 0.3);
+}
+.doc-card::after {
+  bottom: 0; right: 0;
+  border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+  border-right: 1px solid rgba(6, 182, 212, 0.3);
 }
 .doc-card:hover {
-  border-color: rgba(6, 182, 212, 0.5);
+  border-color: rgba(6, 182, 212, 0.4);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(6, 182, 212, 0.1), 0 0 0 1px rgba(6, 182, 212, 0.1);
+  box-shadow:
+    0 0 20px rgba(6, 182, 212, 0.08),
+    0 0 60px rgba(6, 182, 212, 0.04),
+    inset 0 1px 0 rgba(6, 182, 212, 0.1);
 }
-.doc-card:hover::before {
-  opacity: 1;
+.doc-card:hover::before,
+.doc-card:hover::after {
+  width: 24px;
+  height: 24px;
+  border-color: rgba(6, 182, 212, 0.6);
 }
 
 /* ===== Glass Panel ===== */
 .glass-panel {
-  background: rgba(15, 22, 41, 0.6);
-  border: 1px solid rgba(42, 58, 102, 0.3);
-  border-radius: 16px;
+  background: rgba(11, 18, 33, 0.6);
+  border: 1px solid rgba(6, 182, 212, 0.1);
+  border-radius: 4px;
   backdrop-filter: blur(16px);
+  position: relative;
+}
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.3), transparent);
 }
 
-/* ===== Declassified Stamp Effect ===== */
+/* ===== Declassified Stamp ===== */
 .stamp-declassified {
   display: inline-block;
   padding: 4px 16px;
-  border: 3px solid var(--color-red-stamp);
+  border: 2px solid var(--color-red-stamp);
   color: var(--color-red-stamp);
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  transform: rotate(-3deg);
-  opacity: 0.9;
+  transform: rotate(-2deg);
+  opacity: 0.85;
+  position: relative;
+  animation: stampFlicker 4s ease-in-out infinite;
+}
+@keyframes stampFlicker {
+  0%, 95%, 100% { opacity: 0.85; }
+  96% { opacity: 0.4; }
+  97% { opacity: 0.9; }
 }
 
-/* ===== Agency Badge ===== */
+/* ===== Badges ===== */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 12px;
-  border-radius: 9999px;
-  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  font-family: var(--font-mono);
 }
-.badge-dow { background: rgba(245, 158, 11, 0.15); color: var(--color-amber-bright); border: 1px solid rgba(245, 158, 11, 0.3); }
-.badge-fbi { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
-.badge-nasa { background: rgba(6, 182, 212, 0.15); color: var(--color-cyan-bright); border: 1px solid rgba(6, 182, 212, 0.3); }
-.badge-dos { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
-.badge-nara { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-.badge-amber { background: rgba(245, 158, 11, 0.15); color: var(--color-amber-bright); border: 1px solid rgba(245, 158, 11, 0.3); }
-.badge-cyan { background: rgba(6, 182, 212, 0.15); color: var(--color-cyan-bright); border: 1px solid rgba(6, 182, 212, 0.3); }
+.badge-dow { background: rgba(245, 158, 11, 0.1); color: var(--color-amber-bright); border: 1px solid rgba(245, 158, 11, 0.25); }
+.badge-fbi { background: rgba(59, 130, 246, 0.1); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.25); }
+.badge-nasa { background: rgba(6, 182, 212, 0.1); color: var(--color-cyan-bright); border: 1px solid rgba(6, 182, 212, 0.25); }
+.badge-dos { background: rgba(168, 85, 247, 0.1); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.25); }
+.badge-nara { background: rgba(16, 185, 129, 0.1); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.25); }
+.badge-amber { background: rgba(245, 158, 11, 0.1); color: var(--color-amber-bright); border: 1px solid rgba(245, 158, 11, 0.25); }
+.badge-cyan { background: rgba(6, 182, 212, 0.1); color: var(--color-cyan-bright); border: 1px solid rgba(6, 182, 212, 0.25); }
 
-/* ===== Scanline Effect ===== */
+/* ===== Scanline on element ===== */
 .scanlines {
   position: relative;
 }
@@ -155,63 +259,124 @@ body {
   position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 4px
+    0deg, transparent, transparent 2px,
+    rgba(0, 0, 0, 0.04) 2px, rgba(0, 0, 0, 0.04) 4px
   );
   pointer-events: none;
 }
 
-/* ===== Glow text ===== */
+/* ===== Glitch Text ===== */
+.glitch-text {
+  position: relative;
+  animation: glitchShift 8s ease-in-out infinite;
+}
+@keyframes glitchShift {
+  0%, 90%, 100% { text-shadow: none; transform: none; }
+  91% { text-shadow: -2px 0 rgba(255,0,0,0.4), 2px 0 rgba(0,255,255,0.4); transform: skewX(-0.5deg); }
+  92% { text-shadow: 2px 0 rgba(255,0,0,0.4), -2px 0 rgba(0,255,255,0.4); transform: skewX(0.5deg); }
+  93% { text-shadow: none; transform: none; }
+  95% { text-shadow: -1px 0 rgba(255,0,0,0.3), 1px 0 rgba(0,255,255,0.3); }
+  96% { text-shadow: none; transform: none; }
+}
+
+/* ===== Glow Effects ===== */
 .glow-cyan {
-  text-shadow: 0 0 10px rgba(6, 182, 212, 0.5), 0 0 30px rgba(6, 182, 212, 0.2);
+  text-shadow: 0 0 8px rgba(6, 182, 212, 0.6), 0 0 25px rgba(6, 182, 212, 0.3), 0 0 50px rgba(6, 182, 212, 0.1);
 }
 .glow-amber {
-  text-shadow: 0 0 10px rgba(245, 158, 11, 0.5), 0 0 30px rgba(245, 158, 11, 0.2);
+  text-shadow: 0 0 8px rgba(245, 158, 11, 0.6), 0 0 25px rgba(245, 158, 11, 0.3);
 }
 
 /* ===== Divider ===== */
 .divider-glow {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.4), transparent);
+  position: relative;
+}
+.divider-glow::after {
+  content: '';
+  position: absolute;
+  inset: -2px 20% 0 20%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.15), transparent);
+  filter: blur(4px);
 }
 
-/* ===== Pulse dot ===== */
+/* ===== Pulse Dot ===== */
 .pulse-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--color-cyan-glow);
-  animation: pulse-ring 2s ease-in-out infinite;
+  box-shadow: 0 0 6px var(--color-cyan-glow);
+  animation: pulseRing 2s ease-in-out infinite;
 }
-@keyframes pulse-ring {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
-  50% { box-shadow: 0 0 0 8px rgba(6, 182, 212, 0); }
+@keyframes pulseRing {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.5), 0 0 6px var(--color-cyan-glow); }
+  50% { box-shadow: 0 0 0 8px rgba(6, 182, 212, 0), 0 0 12px var(--color-cyan-glow); }
 }
 
-/* ===== Hero background grid ===== */
+/* ===== Hero Grid — Circuit Board ===== */
 .hero-grid {
-  background-image: 
-    linear-gradient(rgba(42, 58, 102, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(42, 58, 102, 0.1) 1px, transparent 1px);
-  background-size: 60px 60px;
+  background-image:
+    linear-gradient(rgba(6, 182, 212, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
 }
 
-/* ===== Fade-in animation ===== */
+/* ===== Fade Animations ===== */
 .fade-up {
   animation: fadeUp 0.6s ease-out both;
 }
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+  animation: fadeIn 0.8s ease-out both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===== Typewriter ===== */
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid var(--color-cyan-glow);
+  white-space: nowrap;
+  animation:
+    typing 3s steps(40, end),
+    blinkCaret 0.8s step-end infinite;
+  width: fit-content;
+  max-width: 100%;
+}
+@keyframes typing {
+  from { max-width: 0; }
+  to { max-width: 100%; }
+}
+@keyframes blinkCaret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--color-cyan-glow); }
+}
+
+/* ===== Radar Sweep ===== */
+.radar-sweep {
+  position: relative;
+  overflow: hidden;
+}
+.radar-sweep::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.06), transparent);
+  animation: radarSweep 6s linear infinite;
+}
+@keyframes radarSweep {
+  from { left: -50%; }
+  to { left: 150%; }
 }
 
 /* ===== File type icons ===== */
@@ -221,28 +386,117 @@ body {
   justify-content: center;
   width: 32px;
   height: 32px;
-  border-radius: 8px;
-  font-size: 0.7rem;
+  border-radius: 3px;
+  font-size: 0.65rem;
   font-weight: 700;
   font-family: var(--font-mono);
+  letter-spacing: 0.05em;
 }
-.file-icon-pdf { background: rgba(239, 68, 68, 0.15); color: #f87171; }
-.file-icon-video { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
-.file-icon-image { background: rgba(34, 211, 238, 0.15); color: #22d3ee; }
+.file-icon-pdf { background: rgba(239, 68, 68, 0.12); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.2); }
+.file-icon-video { background: rgba(168, 85, 247, 0.12); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.2); }
+.file-icon-image { background: rgba(34, 211, 238, 0.12); color: #22d3ee; border: 1px solid rgba(34, 211, 238, 0.2); }
 
-/* ===== Responsive container ===== */
+/* ===== Container ===== */
 .container-narrow {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-/* ===== Link style ===== */
+/* ===== Section Header — HUD Style ===== */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+.section-header::before {
+  content: '//';
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-cyan-glow);
+  opacity: 0.6;
+}
+.section-header::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(6, 182, 212, 0.3), transparent);
+}
+
+/* ===== Signal Indicator ===== */
+.signal-active {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-neon-green);
+}
+.signal-active::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-neon-green);
+  box-shadow: 0 0 8px var(--color-neon-green);
+  animation: signalPulse 1.5s ease-in-out infinite;
+}
+@keyframes signalPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ===== Redacted Text ===== */
+.redacted {
+  background: var(--color-space-950);
+  color: transparent;
+  user-select: none;
+  padding: 0 4px;
+  border-radius: 2px;
+  position: relative;
+}
+.redacted:hover {
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--color-cyan-bright);
+}
+
+/* ===== Data Stream Background ===== */
+.data-stream {
+  position: relative;
+}
+.data-stream::before {
+  content: '01001010 11010010 00101101 10110100 01101001 11001010';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: rgba(6, 182, 212, 0.06);
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
+  line-height: 1;
+}
+
+/* ===== Links ===== */
 a {
   color: var(--color-cyan-bright);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.2s, text-shadow 0.2s;
 }
 a:hover {
   color: white;
+  text-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
+}
+
+/* ===== Respect reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
