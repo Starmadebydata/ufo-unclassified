@@ -159,7 +159,7 @@ const currentPath = Astro.url.pathname;
     <div class="h-px bg-gradient-to-r from-transparent via-cyan-glow/20 to-transparent"></div>
     
     <div class="container-narrow py-12">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         <div>
           <div class="flex items-center gap-2 mb-3">
             <svg class="w-5 h-5 text-cyan-glow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="14" rx="9" ry="3" /><path d="M5 14c0-3 3.13-7 7-7s7 4 7 7" /></svg>
@@ -174,8 +174,17 @@ const currentPath = Astro.url.pathname;
           <ul class="space-y-1.5 text-xs">
             <li><a href="/documents" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Document Database</a></li>
             <li><a href="/agencies" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">By Agency</a></li>
+            <li><a href="/coverage" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Media Coverage</a></li>
             <li><a href="/timeline" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Timeline</a></li>
             <li><a href="/about" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">About This Project</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-mono text-[10px] text-cyan-glow/60 mb-3 uppercase tracking-[0.2em]">// Legal</h4>
+          <ul class="space-y-1.5 text-xs">
+            <li><a href="/privacy" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Privacy Policy</a></li>
+            <li><a href="/terms" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Terms of Service</a></li>
+            <li><a href="mailto:jason@ufo-declassified.com" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Contact Us</a></li>
           </ul>
         </div>
         <div>
