@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { coverage, COVERAGE_CATEGORIES, getFeaturedCoverage } from '../data/coverage';
+import type { CoverageCategory } from '../data/coverage';
+
+const featured = getFeaturedCoverage();
+const allCategories = Object.keys(COVERAGE_CATEGORIES) as CoverageCategory[];
+const categoryCounts = allCategories.reduce((acc, cat) => {
+  acc[cat] = coverage.filter(c => c.category === cat).length;
+  return acc;
+}, {} as Record<string, number>);
+
+// Group by date
+const dates = [...new Set(coverage.map(c => c.date))].sort((a, b) => b.localeCompare(a));
+const coverageByDate = dates.map(date => ({
+  date,
+  items: coverage.filter(c => c.date === date),
+}));
+---
+<BaseLayout title="Media Coverage" description="Comprehensive media coverage, expert analysis, and reactions to the PURSUE UAP document release. News from CBS, The Guardian, Washington Post, PBS, and more.">
+  <section class="container-narrow py-12">
+    <!-- Header -->
+    <div class="mb-10">
+      <span class="stamp-declassified mb-4">SIGNAL INTERCEPT</span>
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white mt-4 mb-2 uppercase tracking-wider">Media Coverage & Analysis</h1>
+      <p class="text-space-400 max-w-3xl text-sm font-mono leading-relaxed">
+        Tracking global media coverage, expert analysis, congressional reactions, and public discourse following the historic PURSUE document release on May 8, 2026. {coverage.length} reports from {new Set(coverage.map(c => c.source)).size} sources.
+      </p>
+    </div>
+
+    <!-- Category filter chips -->
+    <div class="glass-panel p-4 mb-8" id="category-filter">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="text-[9px] font-mono text-space-500 uppercase tracking-[0.2em] shrink-0">// FILTER:</span>
+        {allCategories.filter(c => categoryCounts[c] > 0).map(cat => (
+          <a href={`#cat-${cat}`} class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-[10px] font-mono tracking-wider transition-all hover:brightness-125 border"
+            style={`background: ${COVERAGE_CATEGORIES[cat].color}10; color: ${COVERAGE_CATEGORIES[cat].color}; border-color: ${COVERAGE_CATEGORIES[cat].color}25;`}
+          >
+            <span class="font-bold">{COVERAGE_CATEGORIES[cat].code}</span>
+            <span>{COVERAGE_CATEGORIES[cat].label}</span>
+            <span class="opacity-50">({categoryCounts[cat]})</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Featured Coverage -->
+    {featured.length > 0 && (
+      <div class="mb-12">
+        <div class="section-header">
+          <h2 class="font-display text-base font-bold text-white uppercase tracking-wider">Top Stories</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {featured.map(item => (
+            <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="doc-card p-5 group radar-sweep cursor-pointer" id={`featured-${item.id}`}>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[9px] font-mono font-bold tracking-wider border"
+                  style={`background: ${COVERAGE_CATEGORIES[item.category].color}12; color: ${COVERAGE_CATEGORIES[item.category].color}; border-color: ${COVERAGE_CATEGORIES[item.category].color}30;`}
+                >
+                  {COVERAGE_CATEGORIES[item.category].code}
+                </span>
+                <span class="text-[10px] font-mono text-space-400">{item.source}</span>
+                <span class="text-[10px] font-mono text-space-600">·</span>
+                <span class="text-[10px] font-mono text-space-500">{new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+              </div>
+              <h3 class="text-sm font-semibold text-white group-hover:text-cyan-bright transition-colors mb-2 leading-snug">{item.title}</h3>
+              <p class="text-xs text-space-400 leading-relaxed mb-3 line-clamp-3">{item.summary}</p>
+              {item.keyQuote && (
+                <blockquote class="border-l-2 border-cyan-glow/30 pl-3 mt-3">
+                  <p class="text-[11px] text-space-300 italic leading-relaxed">"{item.keyQuote}"</p>
+                  {item.quoteAttribution && (
+                    <cite class="text-[9px] text-space-500 font-mono not-italic mt-1 block">— {item.quoteAttribution}</cite>
+                  )}
+                </blockquote>
+              )}
+              <div class="flex items-center gap-2 mt-3">
+                {item.tags.slice(0, 3).map(tag => (
+                  <span class="text-[8px] font-mono px-1.5 py-0.5 rounded bg-space-900/80 text-space-500 border border-space-700/40">{tag}</span>
+                ))}
+                <span class="text-[10px] text-cyan-bright/60 ml-auto font-mono group-hover:text-cyan-bright transition-colors">↗ {item.source}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- All Coverage by Date -->
+    {coverageByDate.map(({ date, items }) => (
+      <div class="mb-10" id={`date-${date}`}>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-2 h-2 rounded-full bg-cyan-glow shadow-lg shadow-cyan-glow/40"></div>
+          <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">
+            {new Date(date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+          </h2>
+          <span class="text-[10px] text-space-500 font-mono">({items.length} report{items.length > 1 ? 's' : ''})</span>
+          <div class="flex-1 h-px bg-gradient-to-r from-space-700/50 to-transparent"></div>
+        </div>
+
+        <div class="space-y-3 ml-5">
+          {items.map(item => (
+            <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="doc-card flex gap-4 p-4 group cursor-pointer" id={`coverage-${item.id}`}>
+              <!-- Left: Category + Source -->
+              <div class="shrink-0 flex flex-col items-center gap-1.5 w-16">
+                <span class="inline-flex items-center justify-center w-full px-1.5 py-0.5 rounded text-[8px] font-mono font-bold tracking-wider border text-center"
+                  style={`background: ${COVERAGE_CATEGORIES[item.category].color}12; color: ${COVERAGE_CATEGORIES[item.category].color}; border-color: ${COVERAGE_CATEGORIES[item.category].color}30;`}
+                >
+                  {COVERAGE_CATEGORIES[item.category].code}
+                </span>
+                <span class="text-[8px] font-mono text-space-500 text-center leading-tight">{item.source}</span>
+              </div>
+
+              <!-- Right: Content -->
+              <div class="flex-1 min-w-0">
+                <h3 class="text-sm font-medium text-white group-hover:text-cyan-bright transition-colors mb-1.5 leading-snug">{item.title}</h3>
+                <p class="text-xs text-space-400 leading-relaxed mb-2 line-clamp-2">{item.summary}</p>
+                {item.keyQuote && (
+                  <blockquote class="border-l border-cyan-glow/20 pl-2 mb-2">
+                    <p class="text-[10px] text-space-300/80 italic line-clamp-1">"{item.keyQuote}"</p>
+                  </blockquote>
+                )}
+                <div class="flex items-center gap-2 flex-wrap">
+                  {item.tags.slice(0, 4).map(tag => (
+                    <span class="text-[8px] font-mono px-1.5 py-0.5 rounded bg-space-900/60 text-space-500 border border-space-700/30">{tag}</span>
+                  ))}
+                  <span class="text-[9px] text-cyan-bright/50 ml-auto font-mono group-hover:text-cyan-bright transition-colors shrink-0">Open ↗</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <!-- Summary stats -->
+    <div class="glass-panel p-6 mt-8 radar-sweep">
+      <div class="section-header">
+        <h2 class="font-display text-base font-bold text-white uppercase tracking-wider">Coverage Summary</h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-4">
+        <div class="text-center">
+          <div class="text-xl font-display font-bold text-white">{coverage.length}</div>
+          <div class="text-[9px] font-mono text-space-400 uppercase tracking-wider mt-1">Reports Tracked</div>
+        </div>
+        <div class="text-center">
+          <div class="text-xl font-display font-bold text-white">{new Set(coverage.map(c => c.source)).size}</div>
+          <div class="text-[9px] font-mono text-space-400 uppercase tracking-wider mt-1">News Sources</div>
+        </div>
+        <div class="text-center">
+          <div class="text-xl font-display font-bold text-white">{allCategories.filter(c => categoryCounts[c] > 0).length}</div>
+          <div class="text-[9px] font-mono text-space-400 uppercase tracking-wider mt-1">Categories</div>
+        </div>
+        <div class="text-center">
+          <div class="text-xl font-display font-bold text-white">180+</div>
+          <div class="text-[9px] font-mono text-space-400 uppercase tracking-wider mt-1">Countries Engaged</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-10">
+      <p class="text-space-400 text-xs font-mono mb-4">This page is updated as new coverage emerges. Browse the original documents below.</p>
+      <a href="/documents" class="inline-flex items-center gap-2 px-8 py-3 bg-cyan-glow/90 hover:bg-cyan-bright text-space-950 font-mono font-bold text-xs tracking-wider uppercase rounded transition-all hover:shadow-lg hover:shadow-cyan-glow/25">
+        Access Source Documents →
+      </a>
+    </div>
+  </section>
+</BaseLayout>
