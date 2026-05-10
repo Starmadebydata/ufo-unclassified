@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(p => p.id !== post.id)
+  .filter(p => p.data.tags.some(t => post.data.tags.includes(t)))
+  .slice(0, 3);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date,
+  dateModified: post.data.updated || post.data.date,
+  author: {
+    '@type': 'Organization',
+    name: post.data.author,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'UFO Declassified',
+    url: 'https://ufo-declassified.com',
+  },
+};
+---
+<BaseLayout 
+  title={post.data.title} 
+  description={post.data.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+
+  <article class="container-narrow py-12 max-w-3xl mx-auto">
+    {/* Header */}
+    <header class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <a href="/blog" class="text-xs font-mono text-space-400 hover:text-cyan-bright transition-colors">← All Articles</a>
+      </div>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="badge badge-cyan text-[10px]">{post.data.category}</span>
+        {post.data.featured && <span class="badge badge-amber text-[10px]">FEATURED</span>}
+        {post.data.readingTime && (
+          <span class="text-[11px] font-mono text-space-400">⏱ {post.data.readingTime}</span>
+        )}
+      </div>
+      <h1 class="font-display text-2xl md:text-4xl font-bold text-white leading-tight mb-4">
+        {post.data.title}
+      </h1>
+      <p class="text-space-300 text-base leading-relaxed mb-5">
+        {post.data.description}
+      </p>
+      <div class="flex items-center gap-4 text-xs text-space-400 mb-4">
+        <span class="font-mono">{new Date(post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+        <span>by {post.data.author}</span>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        {post.data.tags.map(tag => (
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-space-800 text-space-300 border border-space-700">{tag}</span>
+        ))}
+      </div>
+      <div class="divider-glow my-6"></div>
+    </header>
+
+    {/* Article Body */}
+    <div class="prose prose-invert prose-lg max-w-none
+      prose-headings:font-display prose-headings:text-white prose-headings:font-bold
+      prose-h2:text-xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-space-700 prose-h2:pb-2
+      prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-3
+      prose-h4:text-base prose-h4:mt-6 prose-h4:mb-2
+      prose-p:text-space-200 prose-p:leading-relaxed prose-p:text-[15px]
+      prose-a:text-cyan-bright prose-a:no-underline hover:prose-a:underline
+      prose-strong:text-white
+      prose-li:text-space-200 prose-li:text-[15px]
+      prose-table:text-sm
+      prose-th:text-space-300 prose-th:font-semibold prose-th:text-left prose-th:px-3 prose-th:py-2 prose-th:bg-space-800 prose-th:border-space-700
+      prose-td:text-space-200 prose-td:px-3 prose-td:py-2 prose-td:border-space-700/50
+      prose-hr:border-space-700
+      prose-blockquote:border-cyan-500/50 prose-blockquote:bg-space-800/30 prose-blockquote:rounded-r-lg prose-blockquote:py-1 prose-blockquote:text-space-300
+      prose-code:text-cyan-bright prose-code:bg-space-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono
+    ">
+      <Content />
+    </div>
+
+    {/* Related Posts */}
+    {relatedPosts.length > 0 && (
+      <div class="mt-16">
+        <div class="divider-glow mb-8"></div>
+        <h2 class="font-display text-lg font-bold text-white mb-5">Related Articles</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {relatedPosts.map(rp => (
+            <a href={`/blog/${rp.id}`} class="doc-card p-4 group">
+              <span class="badge badge-cyan text-[9px] mb-2">{rp.data.category}</span>
+              <h3 class="text-sm font-semibold text-white group-hover:text-cyan-bright transition-colors line-clamp-2">{rp.data.title}</h3>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* CTA */}
+    <div class="mt-12 glass-panel p-6 text-center">
+      <p class="text-space-300 text-sm mb-4">Explore the full archive of declassified UAP documents</p>
+      <a href="/documents" class="btn-primary text-sm px-6 py-2">Browse All Documents →</a>
+    </div>
+  </article>
+</BaseLayout>

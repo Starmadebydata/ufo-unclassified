@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const featured = posts.filter(p => p.data.featured);
+const regular = posts.filter(p => !p.data.featured);
+---
+<BaseLayout title="Blog & Analysis" description="In-depth analysis, guides, and commentary on declassified UAP/UFO documents from the PURSUE initiative.">
+  <section class="container-narrow py-12">
+    <div class="mb-10">
+      <span class="stamp-declassified mb-4">INTELLIGENCE BRIEFING</span>
+      <h1 class="font-display text-3xl md:text-4xl font-bold text-white mt-4 mb-2">Analysis & Guides</h1>
+      <p class="text-space-300 max-w-2xl">In-depth research, expert analysis, and comprehensive guides to help you understand the declassified UAP documents released under the PURSUE initiative.</p>
+    </div>
+
+    {/* Featured Posts */}
+    {featured.length > 0 && (
+      <div class="mb-12">
+        {featured.map(post => (
+          <a href={`/blog/${post.id}`} class="block doc-card group p-0 overflow-hidden" id={`featured-${post.id}`}>
+            <div class="p-6 md:p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="badge badge-amber text-[10px]">FEATURED</span>
+                <span class="badge badge-cyan text-[10px]">{post.data.category}</span>
+                {post.data.readingTime && (
+                  <span class="text-[11px] font-mono text-space-400">⏱ {post.data.readingTime}</span>
+                )}
+              </div>
+              <h2 class="font-display text-xl md:text-2xl font-bold text-white group-hover:text-cyan-bright transition-colors mb-3 leading-tight">
+                {post.data.title}
+              </h2>
+              <p class="text-space-300 text-sm leading-relaxed mb-4 max-w-3xl">
+                {post.data.description}
+              </p>
+              <div class="flex items-center gap-4 text-xs text-space-400">
+                <span class="font-mono">{new Date(post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                <span>by {post.data.author}</span>
+              </div>
+              <div class="flex gap-2 mt-4">
+                {post.data.tags.slice(0, 5).map(tag => (
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-space-800 text-space-300 border border-space-700">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+
+    {/* All Posts Grid */}
+    {regular.length > 0 && (
+      <div>
+        <h2 class="font-display text-xl font-bold text-white mb-6">All Articles</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {regular.map(post => (
+            <a href={`/blog/${post.id}`} class="doc-card group p-5" id={`post-${post.id}`}>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="badge badge-cyan text-[10px]">{post.data.category}</span>
+                {post.data.readingTime && (
+                  <span class="text-[11px] font-mono text-space-400">⏱ {post.data.readingTime}</span>
+                )}
+              </div>
+              <h3 class="font-semibold text-white text-sm leading-snug mb-2 group-hover:text-cyan-bright transition-colors">
+                {post.data.title}
+              </h3>
+              <p class="text-space-400 text-xs leading-relaxed mb-3 line-clamp-2">
+                {post.data.description}
+              </p>
+              <span class="text-[11px] font-mono text-space-500">
+                {new Date(post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {posts.length === 0 && (
+      <div class="glass-panel p-8 text-center">
+        <p class="text-space-300">No articles published yet. Check back soon.</p>
+      </div>
+    )}
+  </section>
+</BaseLayout>
