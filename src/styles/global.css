@@ -13,11 +13,11 @@
   --color-space-800: #0b1221;
   --color-space-700: #111b33;
   --color-space-600: #182545;
-  --color-space-500: #3d5a8a;
-  --color-space-400: #5a7ab5;
-  --color-space-300: #7a9fd4;
-  --color-space-200: #8099cc;
-  --color-space-100: #b0c0e0;
+  --color-space-500: #5270a8;
+  --color-space-400: #6f8dcc;
+  --color-space-300: #8fb0e0;
+  --color-space-200: #a7bceb;
+  --color-space-100: #c3d1f2;
   --color-space-50: #dde5f2;
 
   --color-amber-glow: #f59e0b;
@@ -58,6 +58,10 @@ body {
   line-height: 1.7;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+.landing-hero {
+  min-height: 76vh;
 }
 
 /* ===== Scrollbar ===== */
@@ -207,6 +211,12 @@ body {
   background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.3), transparent);
 }
 
+.status-strip {
+  box-shadow:
+    0 0 28px rgba(6, 182, 212, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
 /* ===== Declassified Stamp ===== */
 .stamp-declassified {
   display: inline-block;
@@ -263,6 +273,26 @@ body {
     rgba(0, 0, 0, 0.04) 2px, rgba(0, 0, 0, 0.04) 4px
   );
   pointer-events: none;
+}
+
+.featured-thumb {
+  filter: brightness(1.22) contrast(1.08) saturate(1.05);
+  opacity: 0.92;
+}
+
+.primary-action,
+.primary-action:hover {
+  color: var(--color-space-950);
+  text-shadow: none;
+}
+
+.secondary-action {
+  color: var(--color-space-100);
+}
+
+.secondary-action:hover {
+  color: white;
+  text-shadow: none;
 }
 
 /* ===== Glitch Text ===== */
@@ -498,5 +528,21 @@ a:hover {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .landing-hero {
+    min-height: calc(100vh - 130px);
+  }
+
+  .container-narrow {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .stamp-declassified {
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
   }
 }

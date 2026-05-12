@@ -76,7 +76,7 @@ const currentPath = Astro.url.pathname;
   <!-- Header -->
   <header class="sticky top-0 z-50 border-b border-cyan-glow/10 bg-space-950/90 backdrop-blur-2xl" id="site-header">
     <!-- Top micro-bar -->
-    <div class="border-b border-space-700/30">
+    <div class="top-micro-bar hidden md:block border-b border-space-700/30">
       <div class="container-narrow flex items-center justify-between h-7 text-[9px] font-mono text-space-400 tracking-widest uppercase">
         <span>sys.ufo-declassified.gov // classified terminal</span>
         <div class="signal-active">
@@ -99,13 +99,14 @@ const currentPath = Astro.url.pathname;
         </svg>
         <div class="flex flex-col leading-none">
           <span class="font-display font-bold text-white text-sm tracking-[0.2em] uppercase group-hover:text-cyan-bright transition-colors">UFO Declassified</span>
-          <span class="text-[8px] text-space-400 font-mono tracking-[0.3em] uppercase mt-0.5">PURSUE Document Archive</span>
+          <span class="text-[8px] text-space-300 font-mono tracking-[0.3em] uppercase mt-0.5">PURSUE Document Archive</span>
         </div>
       </a>
 
       <nav class="hidden md:flex items-center gap-1 text-xs font-mono tracking-wider uppercase" id="main-nav">
         {[
           { href: '/documents', label: 'Documents' },
+          { href: '/topics', label: 'Topics' },
           { href: '/agencies', label: 'Agencies' },
           { href: '/coverage', label: 'Coverage' },
           { href: '/timeline', label: 'Timeline' },
@@ -139,6 +140,7 @@ const currentPath = Astro.url.pathname;
     <div class="md:hidden hidden border-t border-space-700/30 bg-space-950/95 backdrop-blur-2xl" id="mobile-menu">
       <nav class="container-narrow py-4 flex flex-col gap-2 text-sm font-mono tracking-wider uppercase">
         <a href="/documents" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Documents</a>
+        <a href="/topics" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Topics</a>
         <a href="/agencies" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Agencies</a>
         <a href="/coverage" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Coverage</a>
         <a href="/timeline" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Timeline</a>
@@ -165,7 +167,7 @@ const currentPath = Astro.url.pathname;
             <svg class="w-5 h-5 text-cyan-glow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="14" rx="9" ry="3" /><path d="M5 14c0-3 3.13-7 7-7s7 4 7 7" /></svg>
             <span class="font-display font-bold text-white text-xs tracking-[0.15em] uppercase">UFO Declassified</span>
           </div>
-          <p class="text-xs text-space-400 leading-relaxed font-mono">
+          <p class="text-xs text-space-300 leading-relaxed font-mono">
             The most comprehensive public archive of U.S. government declassified UAP/UFO documents, released under the PURSUE initiative.
           </p>
         </div>
@@ -173,6 +175,7 @@ const currentPath = Astro.url.pathname;
           <h4 class="font-mono text-[10px] text-cyan-glow/60 mb-3 uppercase tracking-[0.2em]">// Navigate</h4>
           <ul class="space-y-1.5 text-xs">
             <li><a href="/documents" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Document Database</a></li>
+            <li><a href="/topics" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Research Topics</a></li>
             <li><a href="/agencies" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">By Agency</a></li>
             <li><a href="/coverage" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Media Coverage</a></li>
             <li><a href="/timeline" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Timeline</a></li>
@@ -196,7 +199,7 @@ const currentPath = Astro.url.pathname;
         </div>
       </div>
       <div class="divider-glow my-8"></div>
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-space-500 font-mono tracking-wider">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-space-300 font-mono tracking-wider">
         <p>All documents are public domain // released by the U.S. Government under PURSUE</p>
         <p>© 2026 UFO DECLASSIFIED</p>
       </div>

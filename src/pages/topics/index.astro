@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { documents } from '../../data/documents';
+import { archiveTopics } from '../../data/topics';
+
+const totalFiles = documents.reduce((sum, doc) => sum + doc.files.length, 0);
+const sourceAgencies = new Set(documents.map(doc => doc.agency)).size;
+---
+<BaseLayout title="Research Topics" description="Topic guides for the UFO Declassified archive: FBI files, NASA Apollo records, Pentagon UAP videos, historical flying-disc records, and the 2026 PURSUE release.">
+  <section class="container-narrow py-12">
+    <div class="section-header">
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">Research Topics</h1>
+    </div>
+    <p class="max-w-3xl text-space-100 text-sm leading-relaxed">
+      Research topics are curated entry points into the UFO Declassified archive. Each topic opens with a direct answer, explains the selection rule, and links to the underlying records so claims can be checked against source files.
+    </p>
+
+    <div class="status-strip mt-8 grid grid-cols-1 sm:grid-cols-3 gap-px overflow-hidden rounded border border-cyan-glow/18 bg-cyan-glow/10">
+      <div class="bg-space-900/95 p-5">
+        <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">Records</div>
+        <div class="mt-2 font-display text-lg font-bold text-white">{documents.length}</div>
+      </div>
+      <div class="bg-space-900/95 p-5">
+        <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">Files</div>
+        <div class="mt-2 font-display text-lg font-bold text-white">{totalFiles}</div>
+      </div>
+      <div class="bg-space-900/95 p-5">
+        <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">Source Groups</div>
+        <div class="mt-2 font-display text-lg font-bold text-white">{sourceAgencies}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-narrow pb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {archiveTopics.map(topic => (
+        <a href={`/topics/${topic.slug}`} class="doc-card p-6 group cursor-pointer">
+          <div class="text-[10px] font-mono uppercase tracking-[0.2em] text-cyan-bright">{topic.criteriaLabel}</div>
+          <h2 class="mt-4 font-display text-lg font-bold text-white group-hover:text-cyan-bright transition-colors">{topic.title}</h2>
+          <p class="mt-3 text-sm leading-relaxed text-space-100">{topic.answer}</p>
+          <p class="mt-4 text-[10px] font-mono uppercase tracking-[0.16em] text-space-300">Search hint: {topic.searchHint}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

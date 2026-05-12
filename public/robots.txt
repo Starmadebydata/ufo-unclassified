@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ufodeclassified.com/sitemap-index.xml
+Sitemap: https://ufo-declassified.com/sitemap-index.xml

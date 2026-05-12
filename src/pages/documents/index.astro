@@ -1,73 +1,240 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { documents } from '../../data/documents';
+import { documents, getAllYears } from '../../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
+import { archiveTopics } from '../../data/topics';
 import { mediaUrl } from '../../config';
 
 const allAgencies = [...new Set(documents.map(d => d.agency))];
 const allCategories = [...new Set(documents.map(d => d.category))];
+const allYears = getAllYears();
+const totalFiles = documents.reduce((sum, doc) => sum + doc.files.length, 0);
+const videoCount = documents.filter(doc => doc.files.some(file => file.type === 'video')).length;
+const pdfCount = documents.filter(doc => doc.files.some(file => file.type === 'pdf')).length;
+const imageCount = documents.filter(doc => doc.files.some(file => file.type === 'image')).length;
 ---
-<BaseLayout title="Document Database" description="Browse all declassified UAP/UFO documents from the PURSUE initiative. Filter by agency, category, and year.">
+<BaseLayout title="Document Database" description="Search and filter all declassified UAP/UFO records in the PURSUE archive by agency, category, file type, year, title, location, and summary.">
   <section class="container-narrow py-12">
     <div class="mb-8">
       <span class="stamp-declassified mb-4">PURSUE ARCHIVE</span>
-      <h1 class="font-display text-2xl md:text-3xl font-bold text-white mt-4 mb-2 uppercase tracking-wider">Document Database</h1>
-      <p class="text-space-400 text-sm font-mono">{documents.length} declassified documents from {allAgencies.length} agencies.</p>
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white mt-4 mb-3 uppercase tracking-wider">Document Database</h1>
+      <p class="max-w-3xl text-space-100 text-sm leading-relaxed">
+        The Document Database contains {documents.length} searchable records and {totalFiles} files from the first PURSUE release. Use the controls below to narrow the archive by source agency, category, file type, year, title, location, or summary text.
+      </p>
     </div>
 
-    <!-- Filter bar -->
-    <div class="glass-panel p-4 mb-8 flex flex-wrap gap-2 items-center" id="filter-bar">
-      <span class="text-[9px] font-mono text-space-500 uppercase tracking-[0.2em]">// filter:</span>
-      {allAgencies.map(a => (
-        <a href={`/agencies/${a.toLowerCase()}`} class={`badge ${AGENCY_INFO[a].badgeClass} hover:opacity-80 transition-opacity cursor-pointer`}>
-          {a} ({documents.filter(d => d.agency === a).length})
-        </a>
-      ))}
+    <div class="status-strip grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded border border-cyan-glow/18 bg-cyan-glow/10 mb-8">
+      <div class="bg-space-900/95 p-5">
+        <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">Records</div>
+        <div class="mt-2 font-display text-lg font-bold text-white">{documents.length}</div>
+      </div>
+      <div class="bg-space-900/95 p-5">
+        <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">Files</div>
+        <div class="mt-2 font-display text-lg font-bold text-white">{totalFiles}</div>
+      </div>
+      <div class="bg-space-900/95 p-5">
+        <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">Media</div>
+        <div class="mt-2 text-sm font-semibold text-white">{imageCount} image records / {videoCount} video records</div>
+      </div>
+      <div class="bg-space-900/95 p-5">
+        <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">PDF Records</div>
+        <div class="mt-2 font-display text-lg font-bold text-white">{pdfCount}</div>
+      </div>
     </div>
 
-    <!-- Document grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {documents.map((doc, i) => (
-        <a href={`/documents/${doc.slug}`} class="doc-card group fade-up cursor-pointer" style={`animation-delay: ${Math.min(i * 25, 400)}ms`} id={`doc-${doc.slug}`}>
-          {doc.files.find(f => f.type === 'image') && (
-            <div class="relative overflow-hidden rounded-t aspect-video bg-space-900 scanlines">
-              <img 
-                src={mediaUrl('image', doc.files.find(f => f.type === 'image')!.filename)}
-                alt={doc.title}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                loading="lazy"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-space-950/50 via-transparent to-transparent"></div>
-              <div class="absolute top-3 left-3">
-                <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[9px]`}>{doc.agency}</span>
-              </div>
-              {doc.files.some(f => f.type === 'video') && (
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="w-10 h-10 rounded-full bg-space-950/70 flex items-center justify-center backdrop-blur-sm border border-cyan-glow/20">
-                    <span class="text-cyan-bright text-sm ml-0.5">▶</span>
-                  </div>
+    <div class="glass-panel p-5 mb-8" id="filter-bar">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+        <label class="lg:col-span-2">
+          <span class="block text-[10px] font-mono uppercase tracking-[0.2em] text-space-300 mb-2">Search</span>
+          <input id="doc-search" type="search" placeholder="Title, agency, location, year, summary..." class="archive-control w-full rounded border border-cyan-glow/25 bg-space-950/80 px-4 py-3 text-sm text-white placeholder:text-space-300 focus:border-cyan-bright focus:outline-none" />
+        </label>
+
+        <label>
+          <span class="block text-[10px] font-mono uppercase tracking-[0.2em] text-space-300 mb-2">Agency</span>
+          <select id="filter-agency" class="archive-control w-full rounded border border-cyan-glow/25 bg-space-950/80 px-3 py-3 text-sm text-white focus:border-cyan-bright focus:outline-none">
+            <option value="">All agencies</option>
+            {allAgencies.map(agency => (
+              <option value={agency}>{AGENCY_INFO[agency].name} ({documents.filter(doc => doc.agency === agency).length})</option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          <span class="block text-[10px] font-mono uppercase tracking-[0.2em] text-space-300 mb-2">Category</span>
+          <select id="filter-category" class="archive-control w-full rounded border border-cyan-glow/25 bg-space-950/80 px-3 py-3 text-sm text-white focus:border-cyan-bright focus:outline-none">
+            <option value="">All categories</option>
+            {allCategories.map(category => (
+              <option value={category}>{CATEGORY_INFO[category]?.label}</option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          <span class="block text-[10px] font-mono uppercase tracking-[0.2em] text-space-300 mb-2">File Type</span>
+          <select id="filter-filetype" class="archive-control w-full rounded border border-cyan-glow/25 bg-space-950/80 px-3 py-3 text-sm text-white focus:border-cyan-bright focus:outline-none">
+            <option value="">All file types</option>
+            <option value="image">Images</option>
+            <option value="video">Videos</option>
+            <option value="pdf">PDFs</option>
+          </select>
+        </label>
+
+        <label>
+          <span class="block text-[10px] font-mono uppercase tracking-[0.2em] text-space-300 mb-2">Year</span>
+          <select id="filter-year" class="archive-control w-full rounded border border-cyan-glow/25 bg-space-950/80 px-3 py-3 text-sm text-white focus:border-cyan-bright focus:outline-none">
+            <option value="">All years</option>
+            {allYears.map(year => (
+              <option value={year}>{year}</option>
+            ))}
+          </select>
+        </label>
+      </div>
+
+      <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-space-300">
+        <div id="filter-count">Showing {documents.length} of {documents.length} records</div>
+        <button type="button" id="clear-filters" class="self-start sm:self-auto rounded border border-space-400/50 px-3 py-2 text-cyan-bright hover:border-cyan-bright hover:text-white transition-colors">Clear filters</button>
+      </div>
+    </div>
+
+    <div class="mb-10">
+      <div class="section-header">
+        <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">Research Topic Shortcuts</h2>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        {archiveTopics.map(topic => (
+          <a href={`/topics/${topic.slug}`} class="rounded border border-cyan-glow/25 bg-space-900/70 px-3 py-2 text-xs font-mono uppercase tracking-[0.14em] text-cyan-bright hover:border-cyan-bright hover:bg-cyan-glow/10">
+            {topic.shortTitle}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div id="no-results" class="hidden glass-panel p-8 mb-8 text-center">
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">No Matching Records</h2>
+      <p class="mt-3 text-sm text-space-100">Try clearing one filter, searching a broader term such as FBI or Apollo, or opening a research topic guide.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="document-grid">
+      {documents.map((doc, i) => {
+        const fileTypes = [...new Set(doc.files.map(file => file.type))].join(' ');
+        const searchText = [
+          doc.title,
+          doc.summary,
+          doc.agency,
+          AGENCY_INFO[doc.agency].fullName,
+          CATEGORY_INFO[doc.category]?.label,
+          doc.location?.name || '',
+          doc.location?.region || '',
+          doc.year,
+          doc.tags.join(' '),
+        ].join(' ').toLowerCase();
+
+        return (
+          <a
+            href={`/documents/${doc.slug}`}
+            class="doc-card group fade-up cursor-pointer"
+            style={`animation-delay: ${Math.min(i * 15, 300)}ms`}
+            id={`doc-${doc.slug}`}
+            data-document-card
+            data-agency={doc.agency}
+            data-category={doc.category}
+            data-year={doc.year}
+            data-filetypes={fileTypes}
+            data-search={searchText}
+          >
+            {doc.files.find(f => f.type === 'image') && (
+              <div class="relative overflow-hidden rounded-t aspect-video bg-space-900 scanlines">
+                <img
+                  src={mediaUrl('image', doc.files.find(f => f.type === 'image')!.filename)}
+                  alt={doc.title}
+                  class="featured-thumb w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-space-950/45 via-transparent to-transparent"></div>
+                <div class="absolute top-3 left-3">
+                  <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[9px]`}>{doc.agency}</span>
                 </div>
-              )}
-            </div>
-          )}
-          <div class="p-4">
-            <h3 class="font-semibold text-white text-sm leading-snug mb-2 group-hover:text-cyan-bright transition-colors line-clamp-2">
-              {doc.title}
-            </h3>
-            <div class="flex items-center gap-2 text-[10px] text-space-400 font-mono">
-              <span>{CATEGORY_INFO[doc.category]?.label}</span>
-            </div>
-            <div class="flex items-center justify-between mt-3">
-              <div class="flex gap-1">
-                {doc.files.some(f => f.type === 'video') && <span class="file-icon file-icon-video text-[8px]">▶</span>}
-                {doc.files.some(f => f.type === 'pdf') && <span class="file-icon file-icon-pdf text-[8px]">PDF</span>}
-                {doc.files.some(f => f.type === 'image') && <span class="file-icon file-icon-image text-[8px]">IMG</span>}
+                {doc.files.some(f => f.type === 'video') && (
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-10 h-10 rounded-full bg-space-950/70 flex items-center justify-center backdrop-blur-sm border border-cyan-glow/20">
+                      <span class="text-cyan-bright text-sm ml-0.5">▶</span>
+                    </div>
+                  </div>
+                )}
               </div>
-              <span class="text-[10px] font-mono text-space-500">{doc.year}</span>
+            )}
+            <div class="p-4">
+              <h3 class="font-semibold text-white text-sm leading-snug mb-2 group-hover:text-cyan-bright transition-colors line-clamp-2">
+                {doc.title}
+              </h3>
+              <p class="text-xs leading-relaxed text-space-200 line-clamp-3">{doc.summary}</p>
+              <div class="flex flex-wrap items-center gap-2 text-[10px] text-space-300 font-mono mt-3">
+                <span>{CATEGORY_INFO[doc.category]?.label}</span>
+                <span>{doc.year}</span>
+                {doc.location && <span>{doc.location.name}</span>}
+              </div>
+              <div class="flex items-center justify-between mt-3">
+                <div class="flex gap-1">
+                  {doc.files.some(f => f.type === 'video') && <span class="file-icon file-icon-video text-[8px]">VID</span>}
+                  {doc.files.some(f => f.type === 'pdf') && <span class="file-icon file-icon-pdf text-[8px]">PDF</span>}
+                  {doc.files.some(f => f.type === 'image') && <span class="file-icon file-icon-image text-[8px]">IMG</span>}
+                </div>
+                <span class="text-[10px] font-mono text-space-300">{doc.files.length} file{doc.files.length > 1 ? 's' : ''}</span>
+              </div>
             </div>
-          </div>
-        </a>
-      ))}
+          </a>
+        );
+      })}
     </div>
   </section>
+
+  <script is:inline>
+    const searchInput = document.getElementById('doc-search');
+    const agencyFilter = document.getElementById('filter-agency');
+    const categoryFilter = document.getElementById('filter-category');
+    const fileTypeFilter = document.getElementById('filter-filetype');
+    const yearFilter = document.getElementById('filter-year');
+    const clearButton = document.getElementById('clear-filters');
+    const countLabel = document.getElementById('filter-count');
+    const noResults = document.getElementById('no-results');
+    const cards = Array.from(document.querySelectorAll('[data-document-card]'));
+
+    function applyFilters() {
+      const term = searchInput.value.trim().toLowerCase();
+      const agency = agencyFilter.value;
+      const category = categoryFilter.value;
+      const fileType = fileTypeFilter.value;
+      const year = yearFilter.value;
+      let visible = 0;
+
+      for (const card of cards) {
+        const matchesTerm = !term || card.dataset.search.includes(term);
+        const matchesAgency = !agency || card.dataset.agency === agency;
+        const matchesCategory = !category || card.dataset.category === category;
+        const matchesFileType = !fileType || card.dataset.filetypes.split(' ').includes(fileType);
+        const matchesYear = !year || card.dataset.year === year;
+        const show = matchesTerm && matchesAgency && matchesCategory && matchesFileType && matchesYear;
+        card.classList.toggle('hidden', !show);
+        if (show) visible += 1;
+      }
+
+      countLabel.textContent = `Showing ${visible} of ${cards.length} records`;
+      noResults.classList.toggle('hidden', visible !== 0);
+    }
+
+    for (const control of [searchInput, agencyFilter, categoryFilter, fileTypeFilter, yearFilter]) {
+      control.addEventListener('input', applyFilters);
+      control.addEventListener('change', applyFilters);
+    }
+
+    clearButton.addEventListener('click', () => {
+      searchInput.value = '';
+      agencyFilter.value = '';
+      categoryFilter.value = '';
+      fileTypeFilter.value = '';
+      yearFilter.value = '';
+      applyFilters();
+      searchInput.focus();
+    });
+  </script>
 </BaseLayout>

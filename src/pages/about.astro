@@ -1,5 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { documents } from '../data/documents';
+
+const totalFiles = documents.reduce((sum, doc) => sum + doc.files.length, 0);
+const imageFiles = documents.reduce((sum, doc) => sum + doc.files.filter(file => file.type === 'image').length, 0);
+const videoFiles = documents.reduce((sum, doc) => sum + doc.files.filter(file => file.type === 'video').length, 0);
+const pdfFiles = documents.reduce((sum, doc) => sum + doc.files.filter(file => file.type === 'pdf').length, 0);
 ---
 <BaseLayout title="About" description="About UFO Declassified — the most comprehensive public archive of U.S. government declassified UAP documents released under the PURSUE initiative.">
   <section class="container-narrow py-12 max-w-3xl mx-auto">
@@ -19,21 +25,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">What We Do</h2>
       <p>
-        We believe that government transparency is only meaningful when the public can actually access and understand the disclosed information. Our team works to:
+        We believe that government transparency is only meaningful when the public can actually access and understand the disclosed information. This site organizes source records into stable pages with clear summaries, file lists, agency metadata, and citation text. Our team works to:
       </p>
       <ul class="space-y-2">
-        <li><strong class="text-white">Organize</strong> — Categorize 162+ released files by agency, type, date, and location for easy discovery</li>
+        <li><strong class="text-white">Organize</strong> — Categorize {totalFiles} released files and {documents.length} records by agency, type, date, and location for easy discovery</li>
         <li><strong class="text-white">Contextualize</strong> — Provide historical background, agency context, and cross-references between related documents</li>
-        <li><strong class="text-white">Analyze</strong> — Publish in-depth research articles examining the significance of key documents and patterns</li>
+        <li><strong class="text-white">Make citable</strong> — Give each record a citation-ready summary, source/provenance block, canonical URL, and related-record links</li>
         <li><strong class="text-white">Track</strong> — Monitor and curate global media coverage, expert reactions, and congressional responses</li>
       </ul>
+
+      <div class="glass-panel p-6 my-8">
+        <h2 class="font-display text-lg font-bold text-white mb-3 uppercase tracking-wider">How This Archive Works</h2>
+        <p>
+          UFO Declassified is structured as a searchable research database. Each document page identifies the source agency, category, record year, release date, file package, source portal, and citation format before showing media previews or related records.
+        </p>
+      </div>
 
       <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">What is PURSUE?</h2>
       <p>
         The <strong class="text-white">Presidential Unsealing and Reporting System for UAP Encounters (PURSUE)</strong> was launched on May 8, 2026. Under this directive, federal agencies — including the Department of War, FBI, NASA, Department of State, and the Office of the Director of National Intelligence — are required to identify, review, and declassify records related to UAP encounters.
       </p>
       <p>
-        The first release included <strong class="text-white">162 files</strong>: 120 PDFs, 28 videos, and 14 images. These span decades of government records, from 1947 FBI flying disc investigations to 2026 military sensor footage. Further releases are expected in the coming weeks.
+        This archive currently indexes <strong class="text-white">{documents.length} records</strong> and <strong class="text-white">{totalFiles} files</strong>, including {imageFiles} image files, {videoFiles} video files, and {pdfFiles} PDF files. These span decades of government records, from historical flying-disc investigations to recent military sensor material.
       </p>
 
       <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">Documents on This Site</h2>
@@ -50,7 +63,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         We are committed to accuracy and responsible reporting. Our editorial approach:
       </p>
       <ul class="space-y-2">
-        <li><strong class="text-white">Primary Sources First</strong> — All document listings link directly to original government files</li>
+        <li><strong class="text-white">Primary Sources First</strong> — Document pages identify the government source portal and link to the indexed source files</li>
+        <li><strong class="text-white">Stable Record Pages</strong> — Each document has a persistent URL, citation text, and structured metadata for researchers and AI citation systems</li>
         <li><strong class="text-white">Clear Attribution</strong> — Every analysis article identifies its sources and distinguishes between fact and interpretation</li>
         <li><strong class="text-white">No Sensationalism</strong> — We present materials objectively without exaggeration or conspiracy framing</li>
         <li><strong class="text-white">Corrections Welcome</strong> — We promptly correct any errors brought to our attention</li>

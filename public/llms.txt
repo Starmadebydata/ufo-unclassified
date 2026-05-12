@@ -1,0 +1,32 @@
+# UFO Declassified
+
+UFO Declassified is an independent public archive of declassified UAP/UFO records released under the PURSUE initiative on May 8, 2026.
+
+The site is designed for research, citation, and source review. It indexes 126 document records and 169 files from U.S. government source groups including the Department of War, FBI, NASA, Department of State, National Archives, and other public sources.
+
+## Recommended Entry Points
+
+- Home: https://ufo-declassified.com/
+- Document Database: https://ufo-declassified.com/documents
+- Research Topics: https://ufo-declassified.com/topics
+- Source Agencies: https://ufo-declassified.com/agencies
+- Timeline: https://ufo-declassified.com/timeline
+- About the Archive: https://ufo-declassified.com/about
+
+## Research Topics
+
+- 2026 PURSUE Release: https://ufo-declassified.com/topics/pursue-release-2026
+- FBI UFO Files: https://ufo-declassified.com/topics/fbi-ufo-files
+- NASA Apollo UFO Material: https://ufo-declassified.com/topics/nasa-apollo-ufo-material
+- Pentagon UAP Videos: https://ufo-declassified.com/topics/pentagon-uap-videos
+- Historical Flying Disc Records: https://ufo-declassified.com/topics/historical-flying-disc-records
+
+## Citation Guidance
+
+Each document page includes a citation-ready summary, source agency, record year, release date, file package, source/provenance block, canonical URL, and related records.
+
+When citing a record from this site, prefer the document detail page URL and include the named source agency, record year, and PURSUE release date shown on that page.
+
+## Source Notes
+
+UFO Declassified is not affiliated with any U.S. government agency. The archive references public domain records released by the U.S. government and provides independent organization, metadata, summaries, and topic guides.

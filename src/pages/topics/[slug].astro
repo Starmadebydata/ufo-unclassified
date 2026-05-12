@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { documents } from '../../data/documents';
+import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
+import { archiveTopics, getTopicBySlug } from '../../data/topics';
+import { mediaUrl } from '../../config';
+
+export function getStaticPaths() {
+  return archiveTopics.map(topic => ({
+    params: { slug: topic.slug },
+    props: { topic },
+  }));
+}
+
+const { topic } = Astro.props;
+
+function topicMatches(slug: string, doc: any): boolean {
+  const title = doc.title.toLowerCase();
+  const tags = doc.tags.join(' ').toLowerCase();
+  if (slug === 'pursue-release-2026') return doc.dateReleased === '2026-05-08';
+  if (slug === 'fbi-ufo-files') return doc.agency === 'FBI';
+  if (slug === 'nasa-apollo-ufo-material') return doc.agency === 'NASA' || title.includes('apollo') || tags.includes('apollo');
+  if (slug === 'pentagon-uap-videos') return doc.agency === 'DOW' || doc.files.some((file: any) => file.type === 'video');
+  if (slug === 'historical-flying-disc-records') return doc.year <= 1963 || title.includes('flying disc') || title.includes('flying discs');
+  return false;
+}
+
+const matchingDocs = documents.filter(doc => topicMatches(topic.slug, doc));
+const totalFiles = matchingDocs.reduce((sum, doc) => sum + doc.files.length, 0);
+const agencyCount = new Set(matchingDocs.map(doc => doc.agency)).size;
+const years = [...new Set(matchingDocs.map(doc => doc.year))].sort((a, b) => a - b);
+const yearRange = years.length ? `${years[0]}-${years[years.length - 1]}` : 'N/A';
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const topicSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: topic.title,
+  description: topic.answer,
+  url: canonicalUrl,
+  isPartOf: {
+    '@type': 'Dataset',
+    name: 'UFO Declassified PURSUE Document Archive',
+    url: new URL('/', Astro.site).href,
+  },
+  about: matchingDocs.slice(0, 12).map(doc => ({
+    '@type': 'CreativeWork',
+    name: doc.title,
+    url: new URL(`/documents/${doc.slug}`, Astro.site).href,
+  })),
+};
+---
+<BaseLayout title={topic.title} description={topic.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(topicSchema)} />
+
+  <section class="container-narrow py-12">
+    <nav class="flex items-center gap-2 text-[10px] text-space-300 mb-6 font-mono tracking-wider uppercase">
+      <a href="/" class="hover:text-cyan-bright transition-colors">Home</a>
+      <span>/</span>
+      <a href="/topics" class="hover:text-cyan-bright transition-colors">Topics</a>
+      <span>/</span>
+      <span class="text-space-100 truncate max-w-[240px]">{topic.shortTitle}</span>
+    </nav>
+
+    <div class="section-header">
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">{topic.title}</h1>
+    </div>
+
+    <div class="glass-panel p-6 md:p-8">
+      <div class="text-[10px] font-mono uppercase tracking-[0.2em] text-cyan-bright mb-3">Direct Answer</div>
+      <p class="text-space-50 text-base leading-relaxed">{topic.answer}</p>
+    </div>
+
+    <div class="status-strip mt-6 grid grid-cols-1 sm:grid-cols-4 gap-px overflow-hidden rounded border border-cyan-glow/18 bg-cyan-glow/10">
+      <div class="bg-space-900/95 p-5">
+        <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">Selection Rule</div>
+        <div class="mt-2 text-sm font-semibold text-white">{topic.criteriaLabel}</div>
+      </div>
+      <div class="bg-space-900/95 p-5">
+        <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">Records</div>
+        <div class="mt-2 font-display text-lg font-bold text-white">{matchingDocs.length}</div>
+      </div>
+      <div class="bg-space-900/95 p-5">
+        <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">Files</div>
+        <div class="mt-2 font-display text-lg font-bold text-white">{totalFiles}</div>
+      </div>
+      <div class="bg-space-900/95 p-5">
+        <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">Years</div>
+        <div class="mt-2 font-display text-lg font-bold text-white">{yearRange}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-narrow pb-16">
+    <div class="section-header">
+      <h2 class="font-display text-lg md:text-xl font-bold text-white uppercase tracking-wider">Records in This Topic</h2>
+    </div>
+    <p class="mb-8 text-sm font-mono text-space-300">Showing {matchingDocs.length} records across {agencyCount} source group{agencyCount === 1 ? '' : 's'}.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {matchingDocs.map(doc => (
+        <a href={`/documents/${doc.slug}`} class="doc-card group cursor-pointer">
+          {doc.files.find(file => file.type === 'image') && (
+            <div class="relative overflow-hidden rounded-t aspect-video bg-space-900 scanlines">
+              <img
+                src={mediaUrl('image', doc.files.find(file => file.type === 'image')!.filename)}
+                alt={doc.title}
+                class="featured-thumb w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-space-950/45 via-transparent to-transparent"></div>
+              <div class="absolute top-3 left-3">
+                <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[9px]`}>{doc.agency}</span>
+              </div>
+            </div>
+          )}
+          <div class="p-4">
+            <h3 class="font-semibold text-white text-sm leading-snug mb-2 group-hover:text-cyan-bright transition-colors line-clamp-2">{doc.title}</h3>
+            <p class="text-xs leading-relaxed text-space-200 line-clamp-3">{doc.summary}</p>
+            <div class="mt-3 flex flex-wrap items-center gap-2 text-[10px] text-space-300 font-mono">
+              <span>{CATEGORY_INFO[doc.category]?.label}</span>
+              <span>{doc.year}</span>
+              <span>{doc.files.length} file{doc.files.length > 1 ? 's' : ''}</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
