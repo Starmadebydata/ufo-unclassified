@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import { documents } from '../../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
-import { mediaUrl } from '../../config';
+import { makeArchiveDatasetSchema, mediaUrl } from '../../config';
 
 export function getStaticPaths() {
   return documents.map(doc => ({
@@ -50,6 +50,44 @@ function fileHref(file: any): string {
   return mediaUrl(file.type, file.filename);
 }
 
+function videoThumbnailPath(file: any): string {
+  return `/video-thumbnails/${file.filename.replace(/\.[^.]+$/, '.jpg')}`;
+}
+
+function videoThumbnailUrl(file: any): string {
+  return new URL(videoThumbnailPath(file), Astro.site).href;
+}
+
+function encodingFormat(file: any): string {
+  if (file.type === 'video') return 'video/mp4';
+  if (file.type === 'pdf') return 'application/pdf';
+  const ext = file.filename.split('.').pop()?.toLowerCase();
+  if (ext === 'png') return 'image/png';
+  if (ext === 'webp') return 'image/webp';
+  return 'image/jpeg';
+}
+
+function mediaSchema(file: any) {
+  const type = file.type === 'video' ? 'VideoObject' : file.type === 'image' ? 'ImageObject' : 'DigitalDocument';
+  const description = file.description || `${doc.summary} Source file: ${file.filename}.`;
+  const baseSchema = {
+    '@type': type,
+    name: `${doc.title} - ${file.filename}`,
+    description,
+    contentUrl: fileHref(file),
+    encodingFormat: encodingFormat(file),
+  };
+
+  if (file.type !== 'video') return baseSchema;
+
+  return {
+    ...baseSchema,
+    thumbnailUrl: [videoThumbnailUrl(file)],
+    uploadDate: doc.dateReleased,
+    url: `${canonicalUrl}#video-${videoFiles.findIndex((videoFile: any) => videoFile.filename === file.filename)}`,
+  };
+}
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'CreativeWork',
@@ -63,17 +101,8 @@ const schema = {
     '@type': 'GovernmentOrganization',
     name: agencyInfo.fullName,
   },
-  isPartOf: {
-    '@type': 'Dataset',
-    name: 'UFO Declassified PURSUE Document Archive',
-    url: new URL('/documents', Astro.site).href,
-  },
-  associatedMedia: doc.files.map((file: any) => ({
-    '@type': file.type === 'video' ? 'VideoObject' : file.type === 'image' ? 'ImageObject' : 'DigitalDocument',
-    name: file.filename,
-    contentUrl: fileHref(file),
-    encodingFormat: file.type,
-  })),
+  isPartOf: makeArchiveDatasetSchema(Astro.site),
+  associatedMedia: doc.files.map(mediaSchema),
 };
 ---
 <BaseLayout 
@@ -203,7 +232,7 @@ const schema = {
                   controls
                   preload="metadata"
                   class="w-full"
-                  poster={imageFiles[0] ? mediaUrl('image', imageFiles[0].filename) : undefined}
+                  poster={videoThumbnailPath(file)}
                 >
                   <source src={mediaUrl('video', file.filename)} type="video/mp4" />
                 </video>
