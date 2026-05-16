@@ -25,6 +25,7 @@ const jsonLd = {
   '@type': 'Article',
   headline: post.data.title,
   description: post.data.description,
+  image: post.data.ogImage ? [post.data.ogImage] : undefined,
   datePublished: post.data.date,
   dateModified: post.data.updated || post.data.date,
   author: {
@@ -41,6 +42,7 @@ const jsonLd = {
 <BaseLayout 
   title={post.data.title} 
   description={post.data.description}
+  ogImage={post.data.ogImage}
   ogType="article"
 >
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
@@ -79,8 +81,14 @@ const jsonLd = {
       <div class="divider-glow my-6"></div>
     </header>
 
+    {post.data.ogImage && (
+      <figure class="article-hero-image scanlines mb-10">
+        <img src={post.data.ogImage} alt={`${post.data.title} cover image`} loading="eager" />
+      </figure>
+    )}
+
     {/* Article Body */}
-    <div class="prose prose-invert prose-lg max-w-none
+    <div class="article-body prose prose-invert prose-lg max-w-none
       prose-headings:font-display prose-headings:text-white prose-headings:font-bold prose-headings:uppercase prose-headings:tracking-wider
       prose-h2:text-lg prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-space-700/50 prose-h2:pb-2
       prose-h3:text-base prose-h3:mt-8 prose-h3:mb-3

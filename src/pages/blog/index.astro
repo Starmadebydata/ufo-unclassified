@@ -21,6 +21,17 @@ const regular = posts.filter(p => !p.data.featured);
       <div class="mb-12">
         {featured.map(post => (
           <a href={`/blog/${post.id}`} class="block doc-card group p-0 overflow-hidden radar-sweep cursor-pointer" id={`featured-${post.id}`}>
+            {post.data.ogImage && (
+              <div class="relative aspect-[16/7] overflow-hidden bg-space-900 scanlines">
+                <img
+                  src={post.data.ogImage}
+                  alt={post.data.title}
+                  class="featured-thumb h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-space-950/75 via-space-950/10 to-transparent"></div>
+              </div>
+            )}
             <div class="p-6 md:p-8">
               <div class="flex items-center gap-2 mb-4">
                 <span class="badge badge-amber text-[9px]">FEATURED</span>
@@ -58,22 +69,35 @@ const regular = posts.filter(p => !p.data.featured);
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {regular.map(post => (
-            <a href={`/blog/${post.id}`} class="doc-card group p-5 cursor-pointer" id={`post-${post.id}`}>
-              <div class="flex items-center gap-2 mb-3">
-                <span class="badge badge-cyan text-[9px]">{post.data.category}</span>
-                {post.data.readingTime && (
-                  <span class="text-[10px] font-mono text-space-500">{post.data.readingTime}</span>
-                )}
+            <a href={`/blog/${post.id}`} class="doc-card group cursor-pointer overflow-hidden" id={`post-${post.id}`}>
+              {post.data.ogImage && (
+                <div class="relative aspect-video overflow-hidden bg-space-900 scanlines">
+                  <img
+                    src={post.data.ogImage}
+                    alt={post.data.title}
+                    class="featured-thumb h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-space-950/55 via-transparent to-transparent"></div>
+                </div>
+              )}
+              <div class="p-5">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="badge badge-cyan text-[9px]">{post.data.category}</span>
+                  {post.data.readingTime && (
+                    <span class="text-[10px] font-mono text-space-500">{post.data.readingTime}</span>
+                  )}
+                </div>
+                <h3 class="font-semibold text-white text-sm leading-snug mb-2 group-hover:text-cyan-bright transition-colors">
+                  {post.data.title}
+                </h3>
+                <p class="text-space-400 text-xs leading-relaxed mb-3 line-clamp-3 font-mono">
+                  {post.data.description}
+                </p>
+                <span class="text-[10px] font-mono text-space-500 tracking-wider">
+                  {new Date(post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                </span>
               </div>
-              <h3 class="font-semibold text-white text-sm leading-snug mb-2 group-hover:text-cyan-bright transition-colors">
-                {post.data.title}
-              </h3>
-              <p class="text-space-400 text-xs leading-relaxed mb-3 line-clamp-2 font-mono">
-                {post.data.description}
-              </p>
-              <span class="text-[10px] font-mono text-space-500 tracking-wider">
-                {new Date(post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-              </span>
             </a>
           ))}
         </div>

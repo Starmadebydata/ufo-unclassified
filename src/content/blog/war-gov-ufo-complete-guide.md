@@ -5,6 +5,7 @@ date: "2026-05-09"
 author: "UFO Declassified Research Team"
 category: "Guide"
 tags: ["war.gov", "PURSUE", "UAP", "declassified", "guide", "2026"]
+ogImage: "/hero-bg.png"
 featured: true
 readingTime: "12 min read"
 ---

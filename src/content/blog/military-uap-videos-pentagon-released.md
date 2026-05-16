@@ -5,6 +5,7 @@ date: "2026-05-10"
 author: "UFO Declassified Research Team"
 category: "Analysis"
 tags: ["military", "Pentagon", "videos", "UAP", "DOW", "FLIR", "2026", "footage"]
+ogImage: "/video-thumbnails/1006080_DOW-UAP-PR34_Unresolved_UAP_Report_Greece_October_2023.jpg"
 featured: false
 readingTime: "8 min read"
 ---

@@ -5,6 +5,7 @@ date: "2026-05-10"
 author: "UFO Declassified Research Team"
 category: "Investigation"
 tags: ["FBI", "case-file", "FLIR", "evidence", "photos", "declassified", "investigation"]
+ogImage: "/blog-assets/fbi-photo-a1.jpg"
 featured: false
 readingTime: "9 min read"
 ---

@@ -5,6 +5,7 @@ date: "2026-05-10"
 author: "UFO Declassified Research Team"
 category: "Incident Report"
 tags: ["orbs", "Western US", "2026", "federal agents", "UAP", "incident", "witness"]
+ogImage: "/blog-assets/western-us-event-slides-2026.jpg"
 featured: false
 readingTime: "7 min read"
 ---
