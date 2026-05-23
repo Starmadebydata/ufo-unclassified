@@ -35,6 +35,10 @@ const videoDocs = documents.filter(d => d.files.some(f => f.type === 'video'));
 const audioDocs = documents.filter(d => d.files.some(f => f.type === 'audio'));
 const imageDocs = documents.filter(d => d.files.some(f => f.type === 'image'));
 const release02Docs = documents.filter(d => (d.releaseLabel || 'Release 01') === 'Release 02');
+const release02Files = release02Docs.reduce((sum, d) => sum + d.files.length, 0);
+const release02VideoDocs = release02Docs.filter(d => d.files.some(f => f.type === 'video')).length;
+const release02AudioDocs = release02Docs.filter(d => d.files.some(f => f.type === 'audio')).length;
+const release02PdfDocs = release02Docs.filter(d => d.files.some(f => f.type === 'pdf')).length;
 const searchSuggestions = ['Release 02', 'Sandia', 'PANTEX', 'Apollo'];
 
 function documentPreviewUrl(doc: any): string | undefined {
@@ -117,20 +121,29 @@ const entryPoints = [
 
     <div class="container-narrow relative z-10 py-10 md:py-24">
       <div class="mx-auto max-w-4xl text-center fade-up">
-        <div class="mb-7 inline-block">
+        <div class="mb-5 md:mb-7 inline-block">
           <span class="stamp-declassified">DECLASSIFIED — MAY 2026</span>
         </div>
 
-        <h1 class="font-display text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.12] mb-6 tracking-wide uppercase glitch-text">
+        <a href="/documents?release=Release%2002" class="release-alert mx-auto mb-5 md:mb-7" aria-label="Open War.gov Release 02 UFO files">
+          <span class="release-alert__marker">Release 02</span>
+          <span class="release-alert__text">
+            <strong>War.gov published the second UFO file release.</strong>
+            <span>{release02Docs.length} new records are now indexed.</span>
+          </span>
+          <span class="release-alert__cta">Open batch →</span>
+        </a>
+
+        <h1 class="font-display text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.12] mb-5 md:mb-6 tracking-wide uppercase glitch-text">
           Search the UFO Files<br class="hidden sm:block"/>
-          <span class="glow-cyan">Just Released by the Government</span>
+          <span class="glow-red">Release 02 Now Indexed</span>
         </h1>
 
-        <p class="text-base md:text-lg text-space-100 leading-relaxed mb-8 max-w-2xl mx-auto font-light">
-          Search <strong class="text-white font-semibold">{totalDocs} document records</strong> and <strong class="text-white font-semibold">{totalFiles} files</strong> from the Department of War, FBI, NASA, DOE, CIA, ODNI, State Department, and National Archives.
+        <p class="text-base md:text-lg text-space-100 leading-relaxed mb-6 md:mb-8 max-w-2xl mx-auto font-light">
+          Search <strong class="text-white font-semibold">{totalDocs} document records</strong> and <strong class="text-white font-semibold">{totalFiles} files</strong>, including War.gov's second public UAP release from May 22, 2026.
         </p>
 
-        <div class="flex flex-wrap justify-center gap-6 md:gap-10 mb-9">
+        <div class="flex flex-wrap justify-center gap-5 md:gap-10 mb-7 md:mb-9">
           {[
             { val: totalDocs, label: 'Records' },
             { val: totalFiles, label: 'Files' },
@@ -145,18 +158,48 @@ const entryPoints = [
           ))}
         </div>
 
-        <div class="mb-7">
+        <div class="mb-5 md:mb-7">
           <SearchBar client:load documents={searchDocs} suggestedQueries={searchSuggestions} />
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="/documents?release=Release%2002" class="release02-action inline-flex items-center justify-center gap-2 px-8 py-3 font-mono font-bold text-xs tracking-wider uppercase rounded transition-all" id="cta-release-02">
+            View Release 02 Files →
+          </a>
           <a href="/documents" class="primary-action inline-flex items-center justify-center gap-2 px-8 py-3 bg-cyan-glow/95 hover:bg-cyan-bright text-space-950 font-mono font-bold text-xs tracking-wider uppercase rounded transition-all hover:shadow-lg hover:shadow-cyan-glow/25" id="cta-browse">
             Browse Full Database →
           </a>
-          <a href="/agencies" class="secondary-action inline-flex items-center justify-center gap-2 px-8 py-3 border border-space-400/60 text-space-100 hover:text-white hover:border-cyan-glow/50 hover:bg-space-800/35 font-mono font-semibold text-xs tracking-wider uppercase rounded transition-all" id="cta-agencies">
-            Explore by Agency
-          </a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-narrow pt-10 pb-4">
+    <div class="release02-briefing">
+      <div class="release02-copy">
+        <div class="release02-eyebrow">New public release · May 22, 2026</div>
+        <h2>War.gov Release 02 adds a second batch of UFO files</h2>
+        <p>
+          The new batch expands the archive with Department of War videos, NASA audio excerpts, and historical files from DOE, CIA, and ODNI. Release 02 is marked in red across the site so it stands apart from the first batch.
+        </p>
+        <div class="release02-links">
+          <a href="/documents?release=Release%2002">Browse Release 02</a>
+          <a href="/blog/war-gov-ufo-release-02-analysis">Read the analysis</a>
+        </div>
+      </div>
+      <div class="release02-metrics" aria-label="Release 02 file summary">
+        {[
+          { value: release02Docs.length, label: 'Records' },
+          { value: release02Files, label: 'Files' },
+          { value: release02VideoDocs, label: 'Videos' },
+          { value: release02AudioDocs, label: 'Audio' },
+          { value: release02PdfDocs, label: 'PDFs' },
+        ].map(item => (
+          <div class="release02-metric">
+            <span>{item.value}</span>
+            <small>{item.label}</small>
+          </div>
+        ))}
       </div>
     </div>
   </section>
