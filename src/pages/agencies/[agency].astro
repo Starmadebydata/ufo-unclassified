@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { documents } from '../../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
 import type { Agency } from '../../data/types';
-import { mediaUrl } from '../../config';
+import { fileThumbnailUrl } from '../../config';
 
 export function getStaticPaths() {
   return (Object.keys(AGENCY_INFO) as Agency[])
@@ -17,6 +17,27 @@ export function getStaticPaths() {
 const { agencyKey } = Astro.props;
 const agency = AGENCY_INFO[agencyKey as Agency];
 const agencyDocs = documents.filter(d => d.agency === agencyKey);
+
+function documentPreviewUrl(doc: any): string | undefined {
+  const imageFile = doc.files.find((file: any) => file.type === 'image');
+  if (imageFile) return fileThumbnailUrl(imageFile);
+  const mediaFile = doc.files.find((file: any) => (file.type === 'video' || file.type === 'audio') && file.thumbnailUrl);
+  return mediaFile ? fileThumbnailUrl(mediaFile) : undefined;
+}
+
+function primaryFileType(doc: any): string {
+  if (doc.files.some((file: any) => file.type === 'video')) return 'video';
+  if (doc.files.some((file: any) => file.type === 'audio')) return 'audio';
+  if (doc.files.some((file: any) => file.type === 'pdf')) return 'pdf';
+  return 'image';
+}
+
+function fileIconClass(type: string): string {
+  if (type === 'pdf') return 'file-icon-pdf';
+  if (type === 'video') return 'file-icon-video';
+  if (type === 'audio') return 'file-icon-audio';
+  return 'file-icon-image';
+}
 ---
 <BaseLayout title={`${agency.fullName} Documents`} description={`Browse ${agencyDocs.length} declassified UAP documents from the ${agency.fullName}.`}>
   <section class="container-narrow py-12">
@@ -35,12 +56,22 @@ const agencyDocs = documents.filter(d => d.agency === agencyKey);
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {agencyDocs.map(doc => (
+      {agencyDocs.map(doc => {
+        const previewUrl = documentPreviewUrl(doc);
+        const mainType = primaryFileType(doc);
+        return (
         <a href={`/documents/${doc.slug}`} class="doc-card group cursor-pointer">
-          {doc.files.find(f => f.type === 'image') && (
+          {previewUrl ? (
             <div class="relative overflow-hidden rounded-t aspect-video bg-space-900 scanlines">
-              <img src={mediaUrl('image', doc.files.find(f => f.type === 'image')!.filename)} alt={doc.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>
+              <img src={previewUrl} alt={doc.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>
               <div class="absolute inset-0 bg-gradient-to-t from-space-950/50 via-transparent to-transparent"></div>
+              <div class="absolute top-3 left-3">
+                <span class={`badge ${agency.badgeClass} text-[9px]`}>{agency.name}</span>
+              </div>
+            </div>
+          ) : (
+            <div class="relative overflow-hidden rounded-t aspect-video bg-space-900 scanlines flex items-center justify-center">
+              <span class={`file-icon ${fileIconClass(mainType)} text-[9px]`}>{mainType.toUpperCase().slice(0, 3)}</span>
               <div class="absolute top-3 left-3">
                 <span class={`badge ${agency.badgeClass} text-[9px]`}>{agency.name}</span>
               </div>
@@ -49,12 +80,13 @@ const agencyDocs = documents.filter(d => d.agency === agencyKey);
           <div class="p-4">
             <h3 class="font-semibold text-white text-sm leading-snug mb-2 group-hover:text-cyan-bright transition-colors line-clamp-2">{doc.title}</h3>
             <div class="flex items-center justify-between text-[10px] text-space-400 font-mono">
-              <span>{CATEGORY_INFO[doc.category]?.label}</span>
+              <span>{doc.releaseLabel || 'Release 01'} / {CATEGORY_INFO[doc.category]?.label}</span>
               <span>{doc.year}</span>
             </div>
           </div>
         </a>
-      ))}
+        );
+      })}
     </div>
   </section>
 </BaseLayout>

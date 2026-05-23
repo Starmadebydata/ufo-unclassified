@@ -5,6 +5,7 @@ import { documents } from '../data/documents';
 const totalFiles = documents.reduce((sum, doc) => sum + doc.files.length, 0);
 const imageFiles = documents.reduce((sum, doc) => sum + doc.files.filter(file => file.type === 'image').length, 0);
 const videoFiles = documents.reduce((sum, doc) => sum + doc.files.filter(file => file.type === 'video').length, 0);
+const audioFiles = documents.reduce((sum, doc) => sum + doc.files.filter(file => file.type === 'audio').length, 0);
 const pdfFiles = documents.reduce((sum, doc) => sum + doc.files.filter(file => file.type === 'pdf').length, 0);
 ---
 <BaseLayout title="About" description="About UFO Declassified — the most comprehensive public archive of U.S. government declassified UAP documents released under the PURSUE initiative.">
@@ -43,17 +44,19 @@ const pdfFiles = documents.reduce((sum, doc) => sum + doc.files.filter(file => f
 
       <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">What is PURSUE?</h2>
       <p>
-        The <strong class="text-white">Presidential Unsealing and Reporting System for UAP Encounters (PURSUE)</strong> was launched on May 8, 2026. Under this directive, federal agencies — including the Department of War, FBI, NASA, Department of State, and the Office of the Director of National Intelligence — are required to identify, review, and declassify records related to UAP encounters.
+        The <strong class="text-white">Presidential Unsealing and Reporting System for UAP Encounters (PURSUE)</strong> was launched on May 8, 2026, with a second public tranche released on May 22, 2026. Under this directive, federal agencies and source groups — including the Department of War, FBI, NASA, Department of Energy, CIA, Department of State, National Archives, and the Office of the Director of National Intelligence — identify, review, and declassify records related to UAP encounters.
       </p>
       <p>
-        This archive currently indexes <strong class="text-white">{documents.length} records</strong> and <strong class="text-white">{totalFiles} files</strong>, including {imageFiles} image files, {videoFiles} video files, and {pdfFiles} PDF files. These span decades of government records, from historical flying-disc investigations to recent military sensor material.
+        This archive currently indexes <strong class="text-white">{documents.length} records</strong> and <strong class="text-white">{totalFiles} files</strong>, including {imageFiles} image files, {videoFiles} video files, {audioFiles} audio files, and {pdfFiles} PDF files. These span decades of government records, from historical flying-disc investigations to recent military sensor material.
       </p>
 
       <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">Documents on This Site</h2>
       <ul class="space-y-3">
         <li><strong class="text-amber-bright">Department of War (DOW)</strong> — Military mission reports, Range Fouler debriefs, and UAP encounter videos from global operations</li>
         <li><strong class="text-blue-400">FBI</strong> — Case files, FLIR/sensor imagery, and physical evidence photographs from ongoing investigations</li>
-        <li><strong class="text-cyan-bright">NASA</strong> — Apollo mission transcripts, crew debriefings, and visual media showing anomalous observations</li>
+        <li><strong class="text-cyan-bright">NASA</strong> — Apollo and Mercury mission transcripts, crew debriefings, audio excerpts, and visual media showing anomalous observations</li>
+        <li><strong class="text-yellow-300">Department of Energy (DOE)</strong> — Laboratory, PANTEX, and historical correspondence records</li>
+        <li><strong class="text-orange-400">CIA / ODNI</strong> — Intelligence and narrative records from the broader U.S. intelligence community</li>
         <li><strong class="text-purple-400">Department of State (DOS)</strong> — Diplomatic cables documenting UAP sightings reported through embassy channels</li>
         <li><strong class="text-green-400">National Archives (NARA)</strong> — Historical records dating back to the 1940s including flying disc investigations</li>
       </ul>

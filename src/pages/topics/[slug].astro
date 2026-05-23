@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { documents } from '../../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
 import { archiveTopics, getTopicBySlug } from '../../data/topics';
-import { makeArchiveDatasetSchema, mediaUrl } from '../../config';
+import { fileThumbnailUrl, makeArchiveDatasetSchema } from '../../config';
 
 export function getStaticPaths() {
   return archiveTopics.map(topic => ({
@@ -17,7 +17,8 @@ const { topic } = Astro.props;
 function topicMatches(slug: string, doc: any): boolean {
   const title = doc.title.toLowerCase();
   const tags = doc.tags.join(' ').toLowerCase();
-  if (slug === 'pursue-release-2026') return doc.dateReleased === '2026-05-08';
+  if (slug === 'pursue-release-2026') return doc.dateReleased.startsWith('2026-05');
+  if (slug === 'pursue-release-02') return (doc.releaseLabel || 'Release 01') === 'Release 02';
   if (slug === 'fbi-ufo-files') return doc.agency === 'FBI';
   if (slug === 'nasa-apollo-ufo-material') return doc.agency === 'NASA' || title.includes('apollo') || tags.includes('apollo');
   if (slug === 'pentagon-uap-videos') return doc.agency === 'DOW' || doc.files.some((file: any) => file.type === 'video');
@@ -44,6 +45,27 @@ const topicSchema = {
     url: new URL(`/documents/${doc.slug}`, Astro.site).href,
   })),
 };
+
+function documentPreviewUrl(doc: any): string | undefined {
+  const imageFile = doc.files.find((file: any) => file.type === 'image');
+  if (imageFile) return fileThumbnailUrl(imageFile);
+  const mediaFile = doc.files.find((file: any) => (file.type === 'video' || file.type === 'audio') && file.thumbnailUrl);
+  return mediaFile ? fileThumbnailUrl(mediaFile) : undefined;
+}
+
+function primaryFileType(doc: any): string {
+  if (doc.files.some((file: any) => file.type === 'video')) return 'video';
+  if (doc.files.some((file: any) => file.type === 'audio')) return 'audio';
+  if (doc.files.some((file: any) => file.type === 'pdf')) return 'pdf';
+  return 'image';
+}
+
+function fileIconClass(type: string): string {
+  if (type === 'pdf') return 'file-icon-pdf';
+  if (type === 'video') return 'file-icon-video';
+  if (type === 'audio') return 'file-icon-audio';
+  return 'file-icon-image';
+}
 ---
 <BaseLayout title={topic.title} description={topic.description}>
   <script type="application/ld+json" set:html={JSON.stringify(topicSchema)} />
@@ -93,12 +115,15 @@ const topicSchema = {
     <p class="mb-8 text-sm font-mono text-space-300">Showing {matchingDocs.length} records across {agencyCount} source group{agencyCount === 1 ? '' : 's'}.</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {matchingDocs.map(doc => (
+      {matchingDocs.map(doc => {
+        const previewUrl = documentPreviewUrl(doc);
+        const mainType = primaryFileType(doc);
+        return (
         <a href={`/documents/${doc.slug}`} class="doc-card group cursor-pointer">
-          {doc.files.find(file => file.type === 'image') && (
+          {previewUrl ? (
             <div class="relative overflow-hidden rounded-t aspect-video bg-space-900 scanlines">
               <img
-                src={mediaUrl('image', doc.files.find(file => file.type === 'image')!.filename)}
+                src={previewUrl}
                 alt={doc.title}
                 class="featured-thumb w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 loading="lazy"
@@ -108,18 +133,27 @@ const topicSchema = {
                 <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[9px]`}>{doc.agency}</span>
               </div>
             </div>
+          ) : (
+            <div class="relative overflow-hidden rounded-t aspect-video bg-space-900 scanlines flex items-center justify-center">
+              <span class={`file-icon ${fileIconClass(mainType)} text-[9px]`}>{mainType.toUpperCase().slice(0, 3)}</span>
+              <div class="absolute top-3 left-3">
+                <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[9px]`}>{doc.agency}</span>
+              </div>
+            </div>
           )}
           <div class="p-4">
             <h3 class="font-semibold text-white text-sm leading-snug mb-2 group-hover:text-cyan-bright transition-colors line-clamp-2">{doc.title}</h3>
             <p class="text-xs leading-relaxed text-space-200 line-clamp-3">{doc.summary}</p>
             <div class="mt-3 flex flex-wrap items-center gap-2 text-[10px] text-space-300 font-mono">
+              <span>{doc.releaseLabel || 'Release 01'}</span>
               <span>{CATEGORY_INFO[doc.category]?.label}</span>
               <span>{doc.year}</span>
               <span>{doc.files.length} file{doc.files.length > 1 ? 's' : ''}</span>
             </div>
           </div>
         </a>
-      ))}
+        );
+      })}
     </div>
   </section>
 </BaseLayout>

@@ -1,8 +1,8 @@
 # UFO Declassified
 
-UFO Declassified is an independent public archive of declassified UAP/UFO records released under the PURSUE initiative on May 8, 2026.
+UFO Declassified is an independent public archive of declassified UAP/UFO records released under the PURSUE initiative beginning on May 8, 2026, with Release 02 added on May 22, 2026.
 
-The site is designed for research, citation, and source review. It indexes 126 document records and 169 files from U.S. government source groups including the Department of War, FBI, NASA, Department of State, National Archives, and other public sources.
+The site is designed for research, citation, and source review. It indexes PURSUE Release 01 and Release 02 records from U.S. government source groups including the Department of War, FBI, NASA, Department of Energy, CIA, ODNI, Department of State, National Archives, and other public sources.
 
 ## Recommended Entry Points
 
@@ -16,6 +16,7 @@ The site is designed for research, citation, and source review. It indexes 126 d
 ## Research Topics
 
 - 2026 PURSUE Release: https://ufo-declassified.com/topics/pursue-release-2026
+- PURSUE Release 02: https://ufo-declassified.com/topics/pursue-release-02
 - FBI UFO Files: https://ufo-declassified.com/topics/fbi-ufo-files
 - NASA Apollo UFO Material: https://ufo-declassified.com/topics/nasa-apollo-ufo-material
 - Pentagon UAP Videos: https://ufo-declassified.com/topics/pentagon-uap-videos

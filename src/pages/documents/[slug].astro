@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import { documents } from '../../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
-import { makeArchiveDatasetSchema, mediaUrl } from '../../config';
+import { ARCHIVE_SOURCE_URL, fileThumbnailUrl, fileUrl, makeArchiveDatasetSchema } from '../../config';
 
 export function getStaticPaths() {
   return documents.map(doc => ({
@@ -15,21 +15,26 @@ export function getStaticPaths() {
 const { doc } = Astro.props;
 const imageFiles = doc.files.filter((file: any) => file.type === 'image');
 const videoFiles = doc.files.filter((file: any) => file.type === 'video');
+const audioFiles = doc.files.filter((file: any) => file.type === 'audio');
 const pdfFiles = doc.files.filter((file: any) => file.type === 'pdf');
 const agencyInfo = AGENCY_INFO[doc.agency];
 const categoryInfo = CATEGORY_INFO[doc.category];
+const releaseLabel = doc.releaseLabel || 'Release 01';
+const releaseDateDisplay = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(`${doc.dateReleased}T00:00:00Z`));
+const sourceUrl = doc.sourceUrl || ARCHIVE_SOURCE_URL;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
-const ogImage = imageFiles[0] ? mediaUrl('image', imageFiles[0].filename) : '/og-default.png';
+const previewFile = imageFiles[0] || videoFiles.find((file: any) => fileThumbnailUrl(file)) || audioFiles.find((file: any) => fileThumbnailUrl(file));
+const ogImage = previewFile ? fileThumbnailUrl(previewFile) || '/og-default.png' : '/og-default.png';
 const citationDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
-const answerBlock = `${doc.title} is a declassified ${categoryInfo?.label || 'UAP document'} from ${agencyInfo.fullName}. The record is dated ${doc.year}, was released on ${doc.dateReleased} under the PURSUE initiative, and contains ${doc.files.length} file${doc.files.length > 1 ? 's' : ''}${doc.location ? ` connected to ${doc.location.name}` : ''}.`;
+const answerBlock = `${doc.title} is a declassified ${categoryInfo?.label || 'UAP document'} from ${agencyInfo.fullName}. The record is dated ${doc.year}, was released in ${releaseLabel} on ${doc.dateReleased} under the PURSUE initiative, and contains ${doc.files.length} file${doc.files.length > 1 ? 's' : ''}${doc.location ? ` connected to ${doc.location.name}` : ''}.`;
 const generatedFindings = [
   `Source agency: ${agencyInfo.fullName}.`,
   `Record category: ${categoryInfo?.label || 'Declassified record'}.`,
-  `Release date: ${doc.dateReleased}.`,
-  `File package: ${imageFiles.length} image${imageFiles.length === 1 ? '' : 's'}, ${videoFiles.length} video${videoFiles.length === 1 ? '' : 's'}, and ${pdfFiles.length} PDF${pdfFiles.length === 1 ? '' : 's'}.`,
+  `Release: ${releaseLabel}, ${doc.dateReleased}.`,
+  `File package: ${imageFiles.length} image${imageFiles.length === 1 ? '' : 's'}, ${videoFiles.length} video${videoFiles.length === 1 ? '' : 's'}, ${audioFiles.length} audio file${audioFiles.length === 1 ? '' : 's'}, and ${pdfFiles.length} PDF${pdfFiles.length === 1 ? '' : 's'}.`,
 ];
 const findings = doc.keyFindings.length > 0 ? doc.keyFindings : generatedFindings;
-const citationText = `UFO Declassified. "${doc.title}." ${agencyInfo.fullName}, ${doc.year}. Released ${doc.dateReleased}. ${canonicalUrl}. Accessed ${citationDate}.`;
+const citationText = `UFO Declassified. "${doc.title}." ${agencyInfo.fullName}, ${doc.year}. ${releaseLabel}, released ${doc.dateReleased}. ${canonicalUrl}. Accessed ${citationDate}.`;
 const relatedFromIds = doc.relatedDocs
   .map((id: string) => documents.find(candidate => candidate.id === id))
   .filter(Boolean);
@@ -41,13 +46,14 @@ const relatedDocs = [...relatedFromIds, ...fallbackRelated]
   .slice(0, 6);
 
 function formatBytes(bytes: number): string {
+  if (!bytes || bytes <= 0) return 'External';
   if (bytes < 1024) return bytes + ' B';
   if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
   return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
 }
 
 function fileHref(file: any): string {
-  return mediaUrl(file.type, file.filename);
+  return fileUrl(file);
 }
 
 function videoThumbnailPath(file: any): string {
@@ -55,11 +61,13 @@ function videoThumbnailPath(file: any): string {
 }
 
 function videoThumbnailUrl(file: any): string {
-  return new URL(videoThumbnailPath(file), Astro.site).href;
+  return fileThumbnailUrl(file) || new URL(videoThumbnailPath(file), Astro.site).href;
 }
 
 function encodingFormat(file: any): string {
+  if (file.contentType) return file.contentType;
   if (file.type === 'video') return 'video/mp4';
+  if (file.type === 'audio') return 'audio/mp4';
   if (file.type === 'pdf') return 'application/pdf';
   const ext = file.filename.split('.').pop()?.toLowerCase();
   if (ext === 'png') return 'image/png';
@@ -68,7 +76,7 @@ function encodingFormat(file: any): string {
 }
 
 function mediaSchema(file: any) {
-  const type = file.type === 'video' ? 'VideoObject' : file.type === 'image' ? 'ImageObject' : 'DigitalDocument';
+  const type = file.type === 'video' ? 'VideoObject' : file.type === 'audio' ? 'AudioObject' : file.type === 'image' ? 'ImageObject' : 'DigitalDocument';
   const description = file.description || `${doc.summary} Source file: ${file.filename}.`;
   const baseSchema = {
     '@type': type,
@@ -78,13 +86,17 @@ function mediaSchema(file: any) {
     encodingFormat: encodingFormat(file),
   };
 
-  if (file.type !== 'video') return baseSchema;
+  if (file.type !== 'video' && file.type !== 'audio') return baseSchema;
+
+  const thumbnail = file.type === 'video' ? videoThumbnailUrl(file) : fileThumbnailUrl(file);
 
   return {
     ...baseSchema,
-    thumbnailUrl: [videoThumbnailUrl(file)],
+    ...(thumbnail ? { thumbnailUrl: [thumbnail] } : {}),
     uploadDate: doc.dateReleased,
-    url: `${canonicalUrl}#video-${videoFiles.findIndex((videoFile: any) => videoFile.filename === file.filename)}`,
+    url: file.type === 'video'
+      ? `${canonicalUrl}#video-${videoFiles.findIndex((videoFile: any) => videoFile.filename === file.filename)}`
+      : `${canonicalUrl}#audio-${audioFiles.findIndex((audioFile: any) => audioFile.filename === file.filename)}`,
   };
 }
 
@@ -126,7 +138,7 @@ const schema = {
       <div class="flex flex-wrap items-center gap-2 mb-4">
         <span class={`badge ${agencyInfo.badgeClass}`}>{agencyInfo.name}</span>
         <span class="badge badge-cyan">{categoryInfo?.label}</span>
-        <span class="stamp-declassified text-[9px]">DECLASSIFIED</span>
+        <span class="stamp-declassified text-[9px]">{releaseLabel}</span>
       </div>
 
       <h1 class="font-display text-xl md:text-3xl font-bold text-white mb-4 leading-tight uppercase tracking-wide">{doc.title}</h1>
@@ -187,7 +199,7 @@ const schema = {
             </div>
             {doc.files.map((file: any, index: number) => (
               <a href={fileHref(file)} target="_blank" rel="noopener" class="grid grid-cols-[88px_minmax(0,1fr)_90px] gap-3 px-4 py-3 border-b border-cyan-glow/8 last:border-0 hover:bg-cyan-glow/5 transition-colors">
-                <span class={`file-icon ${file.type === 'pdf' ? 'file-icon-pdf' : file.type === 'video' ? 'file-icon-video' : 'file-icon-image'} text-[8px]`}>{file.type.toUpperCase()}</span>
+                <span class={`file-icon ${file.type === 'pdf' ? 'file-icon-pdf' : file.type === 'video' ? 'file-icon-video' : file.type === 'audio' ? 'file-icon-audio' : 'file-icon-image'} text-[8px]`}>{file.type.toUpperCase().slice(0, 3)}</span>
                 <span class="min-w-0 truncate text-sm text-white">{file.filename}</span>
                 <span class="text-right text-[10px] font-mono text-space-300">{formatBytes(file.size)}</span>
               </a>
@@ -205,7 +217,7 @@ const schema = {
                 <div class="doc-card overflow-hidden" id={`img-${i}`}>
                   <div class="scanlines border border-space-700/30">
                     <img
-                      src={mediaUrl('image', file.filename)}
+                      src={fileHref(file)}
                       alt={`${doc.title} source image ${i + 1}`}
                       class="w-full h-auto max-h-[80vh] object-contain bg-space-900"
                       loading="lazy"
@@ -232,10 +244,31 @@ const schema = {
                   controls
                   preload="metadata"
                   class="w-full"
-                  poster={videoThumbnailPath(file)}
+                  poster={fileThumbnailUrl(file) || videoThumbnailPath(file)}
                 >
-                  <source src={mediaUrl('video', file.filename)} type="video/mp4" />
+                  <source src={fileHref(file)} type={encodingFormat(file)} />
                 </video>
+                <div class="p-3 flex items-center justify-between gap-4 text-[10px] text-space-300 font-mono">
+                  <span class="truncate">{file.filename}</span>
+                  <span>{formatBytes(file.size)}</span>
+                </div>
+              </div>
+            ))}
+          </section>
+        )}
+
+        {audioFiles.length > 0 && (
+          <section>
+            <div class="section-header">
+              <h2 class="font-display text-base font-bold text-white uppercase tracking-wider">Audio Preview ({audioFiles.length})</h2>
+            </div>
+            {audioFiles.map((file: any, i: number) => (
+              <div class="doc-card overflow-hidden mb-4" id={`audio-${i}`}>
+                <div class="p-4 bg-space-900/70">
+                  <audio controls preload="metadata" class="w-full">
+                    <source src={fileHref(file)} type={encodingFormat(file)} />
+                  </audio>
+                </div>
                 <div class="p-3 flex items-center justify-between gap-4 text-[10px] text-space-300 font-mono">
                   <span class="truncate">{file.filename}</span>
                   <span>{formatBytes(file.size)}</span>
@@ -258,11 +291,11 @@ const schema = {
           <dl class="mt-4 space-y-4 text-sm">
             <div>
               <dt class="text-[10px] font-mono uppercase tracking-[0.18em] text-space-300">Original Release</dt>
-              <dd class="mt-1 text-white">PURSUE first batch, May 8, 2026</dd>
+              <dd class="mt-1 text-white">PURSUE {releaseLabel}, {releaseDateDisplay}</dd>
             </div>
             <div>
               <dt class="text-[10px] font-mono uppercase tracking-[0.18em] text-space-300">Source Portal</dt>
-              <dd class="mt-1"><a href="https://war.gov/UFO" target="_blank" rel="noopener">war.gov/UFO ↗</a></dd>
+              <dd class="mt-1"><a href={sourceUrl} target="_blank" rel="noopener">Official source ↗</a></dd>
             </div>
             <div>
               <dt class="text-[10px] font-mono uppercase tracking-[0.18em] text-space-300">Archive Page</dt>

@@ -1,6 +1,6 @@
 // Document data types for the UFO Declassified project
 
-export type Agency = 'DOW' | 'FBI' | 'NASA' | 'DOS' | 'NARA' | 'OTHER';
+export type Agency = 'DOW' | 'FBI' | 'NASA' | 'DOS' | 'NARA' | 'CIA' | 'ODNI' | 'DOE' | 'OTHER';
 
 export type DocumentCategory =
   | 'mission-report'
@@ -14,9 +14,10 @@ export type DocumentCategory =
   | 'archival'
   | 'crew-debriefing'
   | 'launch-summary'
-  | 'presentation';
+  | 'presentation'
+  | 'audio-recording';
 
-export type FileType = 'image' | 'video' | 'pdf';
+export type FileType = 'image' | 'video' | 'pdf' | 'audio';
 
 export interface DocumentFile {
   type: FileType;
@@ -24,6 +25,14 @@ export interface DocumentFile {
   /** Size in bytes */
   size: number;
   description?: string;
+  /** Optional official or externally hosted file URL. */
+  url?: string;
+  /** Optional image used as a preview or video poster. */
+  thumbnailUrl?: string;
+  /** Optional official source page URL for the file. */
+  sourceUrl?: string;
+  /** Optional MIME type from the source. */
+  contentType?: string;
 }
 
 export interface GeoLocation {
@@ -45,6 +54,10 @@ export interface DeclassifiedDocument {
   year: number;
   /** Date declassified or released */
   dateReleased: string;
+  /** Release tranche label shown in filters and provenance. */
+  releaseLabel?: string;
+  /** Official source URL for this record when available. */
+  sourceUrl?: string;
   location?: GeoLocation;
   /** Original classification level */
   classification: string;
@@ -65,6 +78,9 @@ export const AGENCY_INFO: Record<Agency, { name: string; fullName: string; color
   NASA: { name: 'NASA', fullName: 'National Aeronautics and Space Administration', color: '#06b6d4', badgeClass: 'badge-nasa' },
   DOS: { name: 'DOS', fullName: 'Department of State', color: '#a855f7', badgeClass: 'badge-dos' },
   NARA: { name: 'NARA', fullName: 'National Archives and Records Administration', color: '#10b981', badgeClass: 'badge-nara' },
+  CIA: { name: 'CIA', fullName: 'Central Intelligence Agency', color: '#f97316', badgeClass: 'badge-cia' },
+  ODNI: { name: 'ODNI', fullName: 'Office of the Director of National Intelligence', color: '#14b8a6', badgeClass: 'badge-odni' },
+  DOE: { name: 'DOE', fullName: 'Department of Energy', color: '#eab308', badgeClass: 'badge-doe' },
   OTHER: { name: 'Other', fullName: 'Other Sources', color: '#6b7280', badgeClass: 'badge-nara' },
 };
 
@@ -81,4 +97,5 @@ export const CATEGORY_INFO: Record<DocumentCategory, { label: string; icon: stri
   'crew-debriefing': { label: 'Crew Debriefing', icon: '[CD]' },
   'launch-summary': { label: 'Launch Summary', icon: '[LS]' },
   'presentation': { label: 'Presentation', icon: '[PR]' },
+  'audio-recording': { label: 'Audio Recording', icon: '[AU]' },
 };

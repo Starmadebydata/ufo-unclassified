@@ -10,12 +10,12 @@ const agencies = (Object.keys(AGENCY_INFO) as Agency[]).map(key => ({
   count: documents.filter(d => d.agency === key).length,
 })).filter(a => a.count > 0);
 ---
-<BaseLayout title="Agencies" description="Browse declassified UAP documents by source agency: FBI, Department of War, NASA, State Department, and National Archives.">
+<BaseLayout title="Agencies" description="Browse declassified UAP documents by source agency: Department of War, FBI, NASA, DOE, CIA, ODNI, State Department, and National Archives.">
   <section class="container-narrow py-12">
     <div class="section-header">
       <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">Source Agencies</h1>
     </div>
-    <p class="text-space-400 mb-10 text-sm font-mono">Documents organized by the U.S. government agency that released them.</p>
+    <p class="text-space-400 mb-10 text-sm font-mono">Documents organized by the U.S. government agency or source group that released them.</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {agencies.map(agency => (

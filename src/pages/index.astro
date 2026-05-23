@@ -4,7 +4,7 @@ import SearchBar from '../components/SearchBar.tsx';
 import { documents, getFeaturedDocuments, getAllYears } from '../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../data/types';
 import type { Agency } from '../data/types';
-import { mediaUrl } from '../config';
+import { fileThumbnailUrl } from '../config';
 
 const searchDocs = documents.map(d => ({
   slug: d.slug,
@@ -14,6 +14,7 @@ const searchDocs = documents.map(d => ({
   year: d.year,
   location: d.location?.name || '',
   summary: d.summary,
+  release: d.releaseLabel || 'Release 01',
 }));
 
 const featured = getFeaturedDocuments();
@@ -31,8 +32,31 @@ const earliestYear = years.length ? Math.min(...years) : null;
 const latestYear = years.length ? Math.max(...years) : null;
 const yearRange = earliestYear && latestYear ? `${earliestYear}-${latestYear}` : '80+ years';
 const videoDocs = documents.filter(d => d.files.some(f => f.type === 'video'));
+const audioDocs = documents.filter(d => d.files.some(f => f.type === 'audio'));
 const imageDocs = documents.filter(d => d.files.some(f => f.type === 'image'));
-const searchSuggestions = ['FBI', 'Apollo', '2026', 'Iraq'];
+const release02Docs = documents.filter(d => (d.releaseLabel || 'Release 01') === 'Release 02');
+const searchSuggestions = ['Release 02', 'Sandia', 'PANTEX', 'Apollo'];
+
+function documentPreviewUrl(doc: any): string | undefined {
+  const imageFile = doc.files.find((file: any) => file.type === 'image');
+  if (imageFile) return fileThumbnailUrl(imageFile);
+  const mediaFile = doc.files.find((file: any) => (file.type === 'video' || file.type === 'audio') && file.thumbnailUrl);
+  return mediaFile ? fileThumbnailUrl(mediaFile) : undefined;
+}
+
+function primaryFileType(doc: any): string {
+  if (doc.files.some((file: any) => file.type === 'video')) return 'video';
+  if (doc.files.some((file: any) => file.type === 'audio')) return 'audio';
+  if (doc.files.some((file: any) => file.type === 'pdf')) return 'pdf';
+  return 'image';
+}
+
+function fileIconClass(type: string): string {
+  if (type === 'pdf') return 'file-icon-pdf';
+  if (type === 'video') return 'file-icon-video';
+  if (type === 'audio') return 'file-icon-audio';
+  return 'file-icon-image';
+}
 
 const entryPoints = [
   {
@@ -53,7 +77,7 @@ const entryPoints = [
     href: '/agencies',
     label: 'By Agency',
     title: 'Follow the source',
-    body: 'Start from FBI, Department of War, NASA, State Department, National Archives, or other public sources.',
+    body: 'Start from Department of War, FBI, NASA, DOE, CIA, ODNI, State Department, National Archives, or other public sources.',
     meta: `${agencyList.length} source groups`,
   },
   {
@@ -94,7 +118,7 @@ const entryPoints = [
     <div class="container-narrow relative z-10 py-10 md:py-24">
       <div class="mx-auto max-w-4xl text-center fade-up">
         <div class="mb-7 inline-block">
-          <span class="stamp-declassified">DECLASSIFIED — MAY 8, 2026</span>
+          <span class="stamp-declassified">DECLASSIFIED — MAY 2026</span>
         </div>
 
         <h1 class="font-display text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.12] mb-6 tracking-wide uppercase glitch-text">
@@ -103,7 +127,7 @@ const entryPoints = [
         </h1>
 
         <p class="text-base md:text-lg text-space-100 leading-relaxed mb-8 max-w-2xl mx-auto font-light">
-          Search <strong class="text-white font-semibold">{totalDocs} document records</strong> and <strong class="text-white font-semibold">{totalFiles} files</strong> from the FBI, Department of War, NASA, State Department, and National Archives.
+          Search <strong class="text-white font-semibold">{totalDocs} document records</strong> and <strong class="text-white font-semibold">{totalFiles} files</strong> from the Department of War, FBI, NASA, DOE, CIA, ODNI, State Department, and National Archives.
         </p>
 
         <div class="flex flex-wrap justify-center gap-6 md:gap-10 mb-9">
@@ -111,8 +135,8 @@ const entryPoints = [
             { val: totalDocs, label: 'Records' },
             { val: totalFiles, label: 'Files' },
             { val: videoDocs.length, label: 'Videos' },
+            { val: audioDocs.length, label: 'Audio' },
             { val: governmentAgencyCount, label: 'Agencies' },
-            { val: yearRange, label: 'Years' },
           ].map((stat, i) => (
             <div class="text-center group" style={`animation: fadeUp 0.5s ease-out ${i * 0.1}s both;`}>
               <div class="text-xl md:text-3xl font-display font-black text-white tracking-wider group-hover:text-cyan-bright transition-colors">{stat.val}</div>
@@ -142,8 +166,8 @@ const entryPoints = [
       {[
         { label: 'Source', value: 'war.gov/UFO', detail: 'Public government release' },
         { label: 'Indexed', value: `${totalFiles} files`, detail: `${totalDocs} searchable records` },
-        { label: 'Coverage', value: `${imageDocs.length} image sets`, detail: `${videoDocs.length} videos included` },
-        { label: 'Updated', value: 'May 8, 2026', detail: 'First PURSUE batch' },
+        { label: 'Coverage', value: `${imageDocs.length} image sets`, detail: `${videoDocs.length} video and ${audioDocs.length} audio records` },
+        { label: 'Updated', value: 'May 22, 2026', detail: `${release02Docs.length} Release 02 records added` },
       ].map(item => (
         <div class="bg-space-900/95 p-5">
           <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">{item.label}</div>
@@ -195,15 +219,18 @@ const entryPoints = [
     <div class="section-header">
       <h2 class="font-display text-lg md:text-xl font-bold text-white uppercase tracking-wider">Featured Documents</h2>
     </div>
-    <p class="text-space-300 mb-8 text-sm font-mono">High-signal files from the first PURSUE release.</p>
+    <p class="text-space-300 mb-8 text-sm font-mono">High-signal files from the first two PURSUE releases.</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      {featured.slice(0, 6).map(doc => (
+      {featured.slice(0, 6).map(doc => {
+        const previewUrl = documentPreviewUrl(doc);
+        const mainType = primaryFileType(doc);
+        return (
         <a href={`/documents/${doc.slug}`} class="doc-card group cursor-pointer" id={`featured-${doc.id}`}>
-          {doc.files.find(f => f.type === 'image') && (
+          {previewUrl ? (
             <div class="relative overflow-hidden rounded-t aspect-video bg-space-900 scanlines">
               <img 
-                src={mediaUrl('image', doc.files.find(f => f.type === 'image')!.filename)}
+                src={previewUrl}
                 alt={doc.title}
                 class="featured-thumb w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 loading="lazy"
@@ -213,6 +240,13 @@ const entryPoints = [
                 <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[9px]`}>
                   {doc.agency}
                 </span>
+              </div>
+            </div>
+          ) : (
+            <div class="relative overflow-hidden rounded-t aspect-video bg-space-900 scanlines flex items-center justify-center">
+              <span class={`file-icon ${fileIconClass(mainType)} text-[9px]`}>{mainType.toUpperCase().slice(0, 3)}</span>
+              <div class="absolute top-3 left-3">
+                <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[9px]`}>{doc.agency}</span>
               </div>
             </div>
           )}
@@ -226,12 +260,14 @@ const entryPoints = [
             </div>
             <div class="flex items-center gap-2 mt-3">
               {doc.files.some(f => f.type === 'video') && <span class="file-icon file-icon-video text-[9px]">MP4</span>}
+              {doc.files.some(f => f.type === 'audio') && <span class="file-icon file-icon-audio text-[9px]">AUD</span>}
               {doc.files.some(f => f.type === 'pdf') && <span class="file-icon file-icon-pdf text-[9px]">PDF</span>}
               {doc.files.some(f => f.type === 'image') && <span class="file-icon file-icon-image text-[9px]">IMG</span>}
             </div>
           </div>
         </a>
-      ))}
+        );
+      })}
     </div>
   </section>
 
@@ -250,8 +286,9 @@ const entryPoints = [
         <a href={`/documents/${doc.slug}`} class="doc-card flex items-center gap-4 p-3.5 group cursor-pointer" id={`doc-row-${i}`}>
           <div class="flex gap-1 shrink-0">
             {doc.files.some(f => f.type === 'video') && <span class="file-icon file-icon-video text-[9px]">VID</span>}
+            {doc.files.some(f => f.type === 'audio') && <span class="file-icon file-icon-audio text-[9px]">AUD</span>}
             {doc.files.some(f => f.type === 'pdf') && <span class="file-icon file-icon-pdf text-[9px]">PDF</span>}
-            {!doc.files.some(f => f.type === 'video') && !doc.files.some(f => f.type === 'pdf') && <span class="file-icon file-icon-image text-[9px]">IMG</span>}
+            {!doc.files.some(f => f.type === 'video') && !doc.files.some(f => f.type === 'audio') && !doc.files.some(f => f.type === 'pdf') && <span class="file-icon file-icon-image text-[9px]">IMG</span>}
           </div>
 
           <div class="flex-1 min-w-0">
@@ -291,7 +328,7 @@ const entryPoints = [
           It directed agencies including the Department of War, FBI, NASA, State Department, and National Archives to identify, review, and declassify records related to <strong class="text-white">Unidentified Anomalous Phenomena (UAP)</strong>.
         </p>
         <p>
-          This site turns the first public batch into a searchable archive, with direct routes into records, agencies, media coverage, and the release timeline.
+          This site turns the public release batches into a searchable archive, with direct routes into records, agencies, media coverage, and the release timeline.
         </p>
       </div>
     </div>

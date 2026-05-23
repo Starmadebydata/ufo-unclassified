@@ -8,6 +8,7 @@ interface SearchDoc {
   year: number;
   location?: string;
   summary: string;
+  release?: string;
 }
 
 interface Props {
@@ -16,7 +17,7 @@ interface Props {
 }
 
 const AGENCY_COLORS: Record<string, string> = {
-  DOW: '#f59e0b', FBI: '#3b82f6', NASA: '#06b6d4', DOS: '#a855f7', NARA: '#10b981', OTHER: '#6b7280',
+  DOW: '#f59e0b', FBI: '#3b82f6', NASA: '#06b6d4', DOS: '#a855f7', NARA: '#10b981', CIA: '#f97316', ODNI: '#14b8a6', DOE: '#eab308', OTHER: '#6b7280',
 };
 
 export default function SearchBar({ documents, suggestedQueries = [] }: Props) {
@@ -32,6 +33,7 @@ export default function SearchBar({ documents, suggestedQueries = [] }: Props) {
         d.agency.toLowerCase().includes(q) ||
         d.category.toLowerCase().includes(q) ||
         d.summary.toLowerCase().includes(q) ||
+        (d.release && d.release.toLowerCase().includes(q)) ||
         (d.location && d.location.toLowerCase().includes(q)) ||
         String(d.year).includes(q)
       )
@@ -123,7 +125,7 @@ export default function SearchBar({ documents, suggestedQueries = [] }: Props) {
               <div className="flex-1 min-w-0">
                 <div className="text-sm text-white truncate group-hover:text-cyan-300 transition-colors font-medium">{doc.title}</div>
                 <div className="text-[10px] text-[#7a9fd4] truncate font-mono">
-                  {doc.category.replace(/-/g, ' ')} {doc.location ? `/ ${doc.location}` : ''} / {doc.year}
+                  {doc.release ? `${doc.release} / ` : ''}{doc.category.replace(/-/g, ' ')} {doc.location ? `/ ${doc.location}` : ''} / {doc.year}
                 </div>
               </div>
             </a>
