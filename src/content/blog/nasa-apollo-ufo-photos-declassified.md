@@ -5,7 +5,7 @@ date: "2026-05-09"
 author: "UFO Declassified Research Team"
 category: "Analysis"
 tags: ["NASA", "Apollo", "moon", "declassified", "photos", "astronauts", "lunar"]
-ogImage: "/blog-assets/nasa-uap-vm1-apollo-12-1969.jpg"
+ogImage: "/blog-assets/nasa-uap-vm2-apollo-12-1969.jpg"
 featured: false
 readingTime: "10 min read"
 ---

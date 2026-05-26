@@ -5,7 +5,7 @@ date: "2026-05-23"
 author: "UFO Declassified Research Team"
 category: "Analysis"
 tags: ["Release 02", "war.gov", "PURSUE", "UAP", "NASA", "DOE", "CIA", "ODNI", "Sandia"]
-ogImage: "/hero-bg.png"
+ogImage: "/blog-assets/release02-pr051-syrian-acceleration.jpg"
 featured: true
 readingTime: "10 min read"
 ---

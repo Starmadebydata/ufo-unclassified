@@ -5,7 +5,7 @@ date: "2026-05-16"
 author: "UFO Declassified Research Team"
 category: "Deep Dive"
 tags: ["DOW", "Persian Gulf", "Arabian Gulf", "Strait of Hormuz", "military", "range-fouler", "UAP"]
-ogImage: "/blog-assets/dow-uap-d38-range-fouler-middle-east-may-2020.jpg"
+ogImage: "/blog-assets/release02-pr098-persian-gulf-formation.jpg"
 featured: false
 readingTime: "12 min read"
 ---

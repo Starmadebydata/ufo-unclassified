@@ -5,7 +5,7 @@ date: "2026-05-27"
 author: "UFO Declassified Research Team"
 category: "Commentary"
 tags: ["Release 02", "war.gov", "PURSUE", "UAP", "evidence", "commentary", "AARO", "NASA", "ODNI", "DOE"]
-ogImage: "/hero-bg.png"
+ogImage: "/blog-assets/release02-pr071-lake-huron.jpg"
 featured: true
 readingTime: "11 min read"
 ---

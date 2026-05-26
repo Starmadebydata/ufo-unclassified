@@ -6,7 +6,7 @@ updated: "2026-05-23"
 author: "UFO Declassified Research Team"
 category: "Guide"
 tags: ["war.gov", "PURSUE", "UAP", "declassified", "guide", "Release 02", "2026"]
-ogImage: "/hero-bg.png"
+ogImage: "/blog-assets/release02-pr050-iran-formation.jpg"
 featured: true
 readingTime: "12 min read"
 ---
