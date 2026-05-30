@@ -5,6 +5,7 @@ import { documents, getFeaturedDocuments, getAllYears } from '../data/documents'
 import { AGENCY_INFO, CATEGORY_INFO } from '../data/types';
 import type { Agency } from '../data/types';
 import { fileThumbnailUrl } from '../config';
+import { cultureItems } from '../data/culture';
 
 const searchDocs = documents.map(d => ({
   slug: d.slug,
@@ -90,6 +91,13 @@ const entryPoints = [
     title: 'Read the outside reports',
     body: 'Review media coverage and source commentary around the PURSUE release without leaving the archive flow.',
     meta: 'Press and public context',
+  },
+  {
+    href: '/culture',
+    label: 'Films & Reports',
+    title: 'Track the public imagination',
+    body: 'Explore UFO films, TV series, documentaries, journalism, official reports, and public hearings from around the world.',
+    meta: `${cultureItems.length} cultural signals`,
   },
   {
     href: '/timeline',
@@ -227,7 +235,7 @@ const entryPoints = [
     </div>
     <p class="text-space-300 mb-8 text-sm font-mono">Choose the fastest route into the archive.</p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
       {entryPoints.map(item => (
         <a href={item.href} class="doc-card p-5 group cursor-pointer">
           <div class="text-[10px] font-mono uppercase tracking-[0.2em] text-cyan-bright">{item.label}</div>

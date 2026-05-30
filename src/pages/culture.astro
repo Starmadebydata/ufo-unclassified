@@ -1,0 +1,522 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  CULTURE_CATEGORIES,
+  cultureItems,
+  getFeaturedCulture,
+  reportMilestones,
+  screenWorks,
+} from '../data/culture';
+import type { CultureCategory, CultureItem } from '../data/culture';
+
+const featured = getFeaturedCulture();
+const screenCategories = ['film', 'series', 'documentary'] as CultureCategory[];
+const reportCategories = ['journalism', 'case-file', 'official-report', 'public-hearing'] as CultureCategory[];
+const regionCount = new Set(cultureItems.map(item => item.region)).size;
+const decadeCount = new Set(cultureItems.map(item => Math.floor(item.year / 10) * 10)).size;
+const reportYears = reportMilestones.map(item => item.year);
+const reportRange = `${Math.min(...reportYears)}-${Math.max(...reportYears)}`;
+
+function categoryStyle(category: CultureCategory) {
+  const color = CULTURE_CATEGORIES[category].color;
+  return `background: ${color}12; color: ${color}; border-color: ${color}35;`;
+}
+
+const coverPositions = ['center 20%', 'center 34%', 'center 48%', 'left 42%', 'right 38%', 'center 62%'];
+
+function coverStyle(item: CultureItem, index: number) {
+  const color = CULTURE_CATEGORIES[item.category].color;
+  const position = item.coverPosition ?? coverPositions[index % coverPositions.length];
+  return `--culture-accent: ${color}; --cover-position: ${position};`;
+}
+
+function externalLabel(item: CultureItem) {
+  if (item.category === 'film' || item.category === 'series' || item.category === 'documentary') return 'Reference';
+  if (item.category === 'public-hearing') return 'Hearing';
+  if (item.category === 'official-report') return 'Report';
+  return 'Source';
+}
+---
+<BaseLayout
+  title="UFO Films, TV & Reports"
+  description="A global guide to UFO films, television series, documentaries, journalism, public hearings, and official reports that shaped how the world talks about UAP and UFO history."
+>
+  <section class="culture-hero relative overflow-hidden border-b border-cyan-glow/10">
+    <div class="absolute inset-0 z-0" aria-hidden="true">
+      <img
+        src="/hero-bg.png"
+        alt=""
+        class="w-full h-full object-cover object-center scale-105"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-space-950/74 via-space-950/70 to-space-950"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-space-950 via-space-950/52 to-space-950/86"></div>
+    </div>
+    <div class="absolute inset-0 hero-grid opacity-20 z-[1]" aria-hidden="true"></div>
+    <div class="container-narrow relative z-10 py-16 md:py-24">
+      <div class="max-w-4xl">
+        <span class="stamp-declassified">WORLD SIGNALS</span>
+        <h1 class="mt-7 font-display text-3xl md:text-5xl font-black text-white leading-tight uppercase tracking-wide">
+          UFO Films, TV & Reports
+        </h1>
+        <p class="mt-5 max-w-3xl text-base md:text-lg text-space-100 leading-relaxed">
+          A curated guide to the screen stories, documentaries, journalism, official reports, and public hearings that shaped the global UFO conversation.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#screen-works" class="culture-action culture-action-primary">Browse screen works</a>
+          <a href="#reports" class="culture-action">Review reports</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-narrow py-10">
+    <div class="status-strip grid grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded border border-cyan-glow/18 bg-cyan-glow/10">
+      {[
+        { label: 'Screen Works', value: screenWorks.length, detail: 'Films, series, documentaries' },
+        { label: 'Reports', value: reportMilestones.length, detail: 'News, hearings, official files' },
+        { label: 'Regions', value: regionCount, detail: 'U.S., Europe, Japan, Brazil, global' },
+        { label: 'Timeline', value: reportRange, detail: `${decadeCount} decades represented` },
+      ].map(item => (
+        <div class="bg-space-900/95 p-5">
+          <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">{item.label}</div>
+          <div class="mt-2 font-display text-xl font-bold text-white">{item.value}</div>
+          <div class="mt-1 text-xs font-mono text-space-300">{item.detail}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="container-narrow py-8">
+    <div class="culture-briefing">
+      <div>
+        <div class="culture-eyebrow">Culture file</div>
+        <h2>Separate fiction, documentary storytelling, journalism, and source records</h2>
+      </div>
+      <p>
+        This column sits beside the document archive. It does not treat every movie or report as evidence. It shows how UFO ideas move through public imagination, newsroom coverage, official language, and entertainment around the world.
+      </p>
+    </div>
+  </section>
+
+  {featured.length > 0 && (
+    <section class="container-narrow py-12">
+      <div class="section-header">
+        <h2 class="font-display text-lg md:text-xl font-bold text-white uppercase tracking-wider">Featured Signals</h2>
+      </div>
+      <p class="text-space-300 mb-8 text-sm font-mono">High-impact works and reports that changed the public vocabulary around UFOs.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {featured.map((item, index) => (
+          <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="culture-feature-card doc-card group radar-sweep cursor-pointer" style={coverStyle(item, index)}>
+            <div class="culture-cover culture-cover-feature" aria-hidden="true">
+              <img src={item.coverImage} alt="" loading="lazy" />
+              <div class="culture-cover-shade"></div>
+              <div class="culture-cover-title">{item.title}</div>
+              <div class="culture-cover-label">
+                <span>{CULTURE_CATEGORIES[item.category].code}</span>
+                <strong>{item.year}</strong>
+              </div>
+            </div>
+            <div class="culture-card-body">
+              <div class="flex items-center justify-between gap-3 mb-4">
+                <span class="culture-badge" style={categoryStyle(item.category)}>{CULTURE_CATEGORIES[item.category].code}</span>
+                <span class="text-[10px] font-mono text-space-400">{item.year}</span>
+              </div>
+              <h3 class="font-display text-sm font-bold text-white group-hover:text-cyan-bright transition-colors leading-snug uppercase tracking-wide">{item.title}</h3>
+              <p class="mt-3 text-xs text-space-300 leading-relaxed">{item.whyItMatters}</p>
+              <div class="mt-5 text-[10px] font-mono text-cyan-bright uppercase tracking-wider">{externalLabel(item)}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="container-narrow py-12" id="screen-works">
+    <div class="section-header">
+      <h2 class="font-display text-lg md:text-xl font-bold text-white uppercase tracking-wider">Screen Works</h2>
+    </div>
+    <p class="text-space-300 mb-8 text-sm font-mono">Films, series, and documentaries where UFOs shape the story, visual language, or public debate.</p>
+
+    <div class="glass-panel p-4 mb-8">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="text-[9px] font-mono text-space-500 uppercase tracking-[0.2em] shrink-0">// FORMATS:</span>
+        {screenCategories.map(category => (
+          <a href={`#${category}`} class="culture-filter" style={categoryStyle(category)}>
+            <span>{CULTURE_CATEGORIES[category].label}</span>
+            <span class="opacity-60">({screenWorks.filter(item => item.category === category).length})</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {screenWorks.map((item, index) => (
+        <article class="culture-card doc-card" id={item.id} style={coverStyle(item, index)}>
+          <div class="culture-cover" aria-hidden="true">
+            <img src={item.coverImage} alt="" loading="lazy" />
+            <div class="culture-cover-shade"></div>
+            <div class="culture-cover-title">{item.title}</div>
+            <div class="culture-cover-label">
+              <span>{item.format}</span>
+              <strong>{item.year}</strong>
+            </div>
+          </div>
+          <div class="culture-card-body">
+            <div class="flex flex-wrap items-center gap-2 mb-4">
+              <span class="culture-badge" style={categoryStyle(item.category)}>{CULTURE_CATEGORIES[item.category].label}</span>
+              <span class="text-[10px] font-mono text-space-400">{item.year}</span>
+              <span class="text-[10px] font-mono text-space-500">/</span>
+              <span class="text-[10px] font-mono text-space-300">{item.region}</span>
+            </div>
+            <h3 class="font-display text-base font-bold text-white uppercase tracking-wide leading-tight">{item.title}</h3>
+            <p class="mt-3 text-sm text-space-200 leading-relaxed">{item.summary}</p>
+            <p class="mt-3 text-xs text-space-300 leading-relaxed font-mono">{item.whyItMatters}</p>
+            <div class="mt-5 flex flex-wrap items-center gap-2">
+              {item.tags.slice(0, 4).map(tag => (
+                <span class="text-[8px] font-mono px-1.5 py-0.5 rounded bg-space-800/80 text-space-400 border border-space-600/40">{tag}</span>
+              ))}
+              {item.sourceUrl && (
+                <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="ml-auto text-[10px] font-mono text-cyan-bright uppercase tracking-wider">
+                  {externalLabel(item)}
+                </a>
+              )}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="container-narrow py-12" id="reports">
+    <div class="section-header">
+      <h2 class="font-display text-lg md:text-xl font-bold text-white uppercase tracking-wider">Reports & Public Records</h2>
+    </div>
+    <p class="text-space-300 mb-8 text-sm font-mono">News moments, official records, and public hearings that shaped the factual side of UFO history.</p>
+
+    <div class="glass-panel p-4 mb-8">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="text-[9px] font-mono text-space-500 uppercase tracking-[0.2em] shrink-0">// TYPES:</span>
+        {reportCategories.map(category => (
+          <a href={`#${category}`} class="culture-filter" style={categoryStyle(category)}>
+            <span>{CULTURE_CATEGORIES[category].label}</span>
+            <span class="opacity-60">({reportMilestones.filter(item => item.category === category).length})</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="culture-timeline">
+      {reportMilestones.map((item, index) => (
+        <article class="culture-report-card doc-card" id={item.id} style={coverStyle(item, index)}>
+          <div class="culture-cover culture-cover-report" aria-hidden="true">
+            <img src={item.coverImage} alt="" loading="lazy" />
+            <div class="culture-cover-shade"></div>
+            <div class="culture-cover-title">{item.title}</div>
+            <div class="culture-cover-label">
+              <span>{String(index + 1).padStart(2, '0')} / {CULTURE_CATEGORIES[item.category].code}</span>
+              <strong>{item.year}</strong>
+            </div>
+          </div>
+          <div class="culture-card-body">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="culture-badge" style={categoryStyle(item.category)}>{CULTURE_CATEGORIES[item.category].code}</span>
+              <span class="text-[10px] font-mono text-space-400">{item.year}</span>
+              <span class="text-[10px] font-mono text-space-500">/</span>
+              <span class="text-[10px] font-mono text-space-300">{item.region}</span>
+            </div>
+            <h3 class="font-display text-base font-bold text-white uppercase tracking-wide leading-tight">{item.title}</h3>
+            <p class="mt-3 text-sm text-space-200 leading-relaxed">{item.summary}</p>
+            <p class="mt-3 text-xs text-space-300 leading-relaxed font-mono">{item.whyItMatters}</p>
+            <div class="mt-5 flex flex-wrap items-center gap-2">
+              {item.tags.slice(0, 4).map(tag => (
+                <span class="text-[8px] font-mono px-1.5 py-0.5 rounded bg-space-800/80 text-space-400 border border-space-600/40">{tag}</span>
+              ))}
+              {item.sourceUrl && (
+                <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="ml-auto text-[10px] font-mono text-cyan-bright uppercase tracking-wider">
+                  Open {externalLabel(item)}
+                </a>
+              )}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="container-narrow py-12">
+    <div class="glass-panel p-6 md:p-8 text-center">
+      <p class="text-space-400 text-xs mb-4 font-mono">Use this cultural map alongside the source archive.</p>
+      <a href="/documents" class="inline-flex items-center gap-2 px-7 py-3 bg-cyan-glow/90 hover:bg-cyan-bright text-space-950 font-mono font-bold text-xs tracking-wider uppercase rounded transition-all">
+        Browse declassified documents
+      </a>
+    </div>
+  </section>
+
+  <style>
+    .culture-hero {
+      min-height: 460px;
+    }
+
+    .culture-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0.75rem 1rem;
+      border: 1px solid rgba(143, 176, 224, 0.42);
+      border-radius: 4px;
+      color: var(--color-space-100);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-shadow: none;
+    }
+
+    .culture-action:hover {
+      border-color: rgba(34, 211, 238, 0.7);
+      color: white;
+      text-shadow: none;
+    }
+
+    .culture-action-primary {
+      background: rgba(6, 182, 212, 0.95);
+      border-color: rgba(34, 211, 238, 0.85);
+      color: var(--color-space-950);
+    }
+
+    .culture-action-primary:hover {
+      color: var(--color-space-950);
+      background: var(--color-cyan-bright);
+    }
+
+    .culture-briefing {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: 2rem;
+      align-items: center;
+      padding: 2rem;
+      border: 1px solid rgba(6, 182, 212, 0.18);
+      border-left: 5px solid var(--color-cyan-glow);
+      border-radius: 4px;
+      background:
+        linear-gradient(135deg, rgba(6, 182, 212, 0.12), rgba(11, 18, 33, 0.82) 48%, rgba(6, 11, 20, 0.96)),
+        rgba(11, 18, 33, 0.72);
+      box-shadow: 0 0 30px rgba(6, 182, 212, 0.08);
+    }
+
+    .culture-eyebrow {
+      color: var(--color-cyan-bright);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .culture-briefing h2 {
+      margin-top: 0.7rem;
+      color: white;
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.1vw, 2.1rem);
+      font-weight: 900;
+      line-height: 1.16;
+      text-transform: uppercase;
+    }
+
+    .culture-briefing p {
+      color: var(--color-space-100);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    .culture-badge,
+    .culture-filter {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 1px solid;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      text-transform: uppercase;
+      text-shadow: none;
+    }
+
+    .culture-badge {
+      padding: 0.35rem 0.55rem;
+    }
+
+    .culture-filter {
+      min-height: 30px;
+      padding: 0.45rem 0.65rem;
+    }
+
+    .culture-filter:hover {
+      color: white !important;
+      text-shadow: none;
+    }
+
+    .culture-feature-card,
+    .culture-card,
+    .culture-report-card {
+      padding: 0;
+    }
+
+    .culture-card-body {
+      padding: 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .culture-cover {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 8.2;
+      overflow: hidden;
+      border-bottom: 1px solid color-mix(in srgb, var(--culture-accent) 42%, transparent);
+      background: var(--color-space-900);
+    }
+
+    .culture-cover-feature {
+      aspect-ratio: 16 / 9;
+    }
+
+    .culture-cover-report {
+      aspect-ratio: 18 / 5.7;
+    }
+
+    .culture-cover img {
+      display: block;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: var(--cover-position, center);
+      filter: brightness(0.78) contrast(1.12) saturate(1.04);
+      transform: scale(1.045);
+    }
+
+    .culture-cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(circle at 72% 28%, color-mix(in srgb, var(--culture-accent) 30%, transparent), transparent 34%),
+        linear-gradient(135deg, color-mix(in srgb, var(--culture-accent) 18%, transparent), rgba(2, 4, 8, 0.34) 48%, rgba(2, 4, 8, 0.74));
+      mix-blend-mode: screen;
+      opacity: 0.48;
+    }
+
+    .culture-cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        linear-gradient(0deg, rgba(2, 4, 8, 0.94), rgba(2, 4, 8, 0.12) 56%, rgba(2, 4, 8, 0.44)),
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.08) 2px, rgba(0, 0, 0, 0.08) 4px);
+      pointer-events: none;
+    }
+
+    .culture-cover-shade {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background-image:
+        linear-gradient(color-mix(in srgb, var(--culture-accent) 12%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in srgb, var(--culture-accent) 10%, transparent) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.32;
+      pointer-events: none;
+    }
+
+    .culture-cover-title {
+      position: absolute;
+      left: 0.9rem;
+      right: 0.9rem;
+      top: 0.82rem;
+      z-index: 4;
+      max-width: 84%;
+      color: white;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      font-family: var(--font-display);
+      font-size: clamp(0.74rem, 1.6vw, 1rem);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      line-height: 1.08;
+      text-transform: uppercase;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.92);
+    }
+
+    .culture-cover-label {
+      position: absolute;
+      left: 0.9rem;
+      right: 0.9rem;
+      bottom: 0.85rem;
+      z-index: 4;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      color: white;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      text-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+    }
+
+    .culture-cover-label span {
+      min-width: 0;
+      color: color-mix(in srgb, var(--culture-accent) 72%, white);
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      line-height: 1.25;
+    }
+
+    .culture-cover-label strong {
+      color: white;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .culture-timeline {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 767px) {
+      .culture-hero {
+        min-height: 420px;
+      }
+
+      .culture-briefing {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1.35rem;
+      }
+
+      .culture-cover,
+      .culture-cover-feature,
+      .culture-cover-report {
+        aspect-ratio: 16 / 9;
+      }
+    }
+  </style>
+</BaseLayout>
