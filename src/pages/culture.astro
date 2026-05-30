@@ -4,6 +4,7 @@ import {
   CULTURE_CATEGORIES,
   cultureItems,
   getFeaturedCulture,
+  getCultureHref,
   reportMilestones,
   screenWorks,
 } from '../data/culture';
@@ -30,11 +31,11 @@ function coverStyle(item: CultureItem, index: number) {
   return `--culture-accent: ${color}; --cover-position: ${position};`;
 }
 
-function externalLabel(item: CultureItem) {
-  if (item.category === 'film' || item.category === 'series' || item.category === 'documentary') return 'Reference';
-  if (item.category === 'public-hearing') return 'Hearing';
-  if (item.category === 'official-report') return 'Report';
-  return 'Source';
+function detailLabel(item: CultureItem) {
+  if (item.category === 'film' || item.category === 'series' || item.category === 'documentary') return 'View guide';
+  if (item.category === 'public-hearing') return 'View hearing guide';
+  if (item.category === 'official-report') return 'View report guide';
+  return 'View source guide';
 }
 ---
 <BaseLayout
@@ -109,7 +110,7 @@ function externalLabel(item: CultureItem) {
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {featured.map((item, index) => (
-          <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="culture-feature-card doc-card group radar-sweep cursor-pointer" style={coverStyle(item, index)}>
+          <a href={getCultureHref(item)} class="culture-feature-card doc-card group radar-sweep cursor-pointer" style={coverStyle(item, index)}>
             <div class="culture-cover culture-cover-feature" aria-hidden="true">
               <img src={item.coverImage} alt="" loading="lazy" />
               <div class="culture-cover-shade"></div>
@@ -126,7 +127,7 @@ function externalLabel(item: CultureItem) {
               </div>
               <h3 class="font-display text-sm font-bold text-white group-hover:text-cyan-bright transition-colors leading-snug uppercase tracking-wide">{item.title}</h3>
               <p class="mt-3 text-xs text-space-300 leading-relaxed">{item.whyItMatters}</p>
-              <div class="mt-5 text-[10px] font-mono text-cyan-bright uppercase tracking-wider">{externalLabel(item)}</div>
+              <div class="mt-5 text-[10px] font-mono text-cyan-bright uppercase tracking-wider">{detailLabel(item)}</div>
             </div>
           </a>
         ))}
@@ -154,7 +155,7 @@ function externalLabel(item: CultureItem) {
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       {screenWorks.map((item, index) => (
-        <article class="culture-card doc-card" id={item.id} style={coverStyle(item, index)}>
+        <a href={getCultureHref(item)} class="culture-card doc-card group cursor-pointer" id={item.id} style={coverStyle(item, index)}>
           <div class="culture-cover" aria-hidden="true">
             <img src={item.coverImage} alt="" loading="lazy" />
             <div class="culture-cover-shade"></div>
@@ -171,21 +172,17 @@ function externalLabel(item: CultureItem) {
               <span class="text-[10px] font-mono text-space-500">/</span>
               <span class="text-[10px] font-mono text-space-300">{item.region}</span>
             </div>
-            <h3 class="font-display text-base font-bold text-white uppercase tracking-wide leading-tight">{item.title}</h3>
+            <h3 class="font-display text-base font-bold text-white group-hover:text-cyan-bright transition-colors uppercase tracking-wide leading-tight">{item.title}</h3>
             <p class="mt-3 text-sm text-space-200 leading-relaxed">{item.summary}</p>
             <p class="mt-3 text-xs text-space-300 leading-relaxed font-mono">{item.whyItMatters}</p>
             <div class="mt-5 flex flex-wrap items-center gap-2">
               {item.tags.slice(0, 4).map(tag => (
                 <span class="text-[8px] font-mono px-1.5 py-0.5 rounded bg-space-800/80 text-space-400 border border-space-600/40">{tag}</span>
               ))}
-              {item.sourceUrl && (
-                <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="ml-auto text-[10px] font-mono text-cyan-bright uppercase tracking-wider">
-                  {externalLabel(item)}
-                </a>
-              )}
+              <span class="ml-auto text-[10px] font-mono text-cyan-bright uppercase tracking-wider">{detailLabel(item)}</span>
             </div>
           </div>
-        </article>
+        </a>
       ))}
     </div>
   </section>
@@ -210,7 +207,7 @@ function externalLabel(item: CultureItem) {
 
     <div class="culture-timeline">
       {reportMilestones.map((item, index) => (
-        <article class="culture-report-card doc-card" id={item.id} style={coverStyle(item, index)}>
+        <a href={getCultureHref(item)} class="culture-report-card doc-card group cursor-pointer" id={item.id} style={coverStyle(item, index)}>
           <div class="culture-cover culture-cover-report" aria-hidden="true">
             <img src={item.coverImage} alt="" loading="lazy" />
             <div class="culture-cover-shade"></div>
@@ -227,21 +224,17 @@ function externalLabel(item: CultureItem) {
               <span class="text-[10px] font-mono text-space-500">/</span>
               <span class="text-[10px] font-mono text-space-300">{item.region}</span>
             </div>
-            <h3 class="font-display text-base font-bold text-white uppercase tracking-wide leading-tight">{item.title}</h3>
+            <h3 class="font-display text-base font-bold text-white group-hover:text-cyan-bright transition-colors uppercase tracking-wide leading-tight">{item.title}</h3>
             <p class="mt-3 text-sm text-space-200 leading-relaxed">{item.summary}</p>
             <p class="mt-3 text-xs text-space-300 leading-relaxed font-mono">{item.whyItMatters}</p>
             <div class="mt-5 flex flex-wrap items-center gap-2">
               {item.tags.slice(0, 4).map(tag => (
                 <span class="text-[8px] font-mono px-1.5 py-0.5 rounded bg-space-800/80 text-space-400 border border-space-600/40">{tag}</span>
               ))}
-              {item.sourceUrl && (
-                <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="ml-auto text-[10px] font-mono text-cyan-bright uppercase tracking-wider">
-                  Open {externalLabel(item)}
-                </a>
-              )}
+              <span class="ml-auto text-[10px] font-mono text-cyan-bright uppercase tracking-wider">{detailLabel(item)}</span>
             </div>
           </div>
-        </article>
+        </a>
       ))}
     </div>
   </section>
@@ -367,7 +360,10 @@ function externalLabel(item: CultureItem) {
     .culture-feature-card,
     .culture-card,
     .culture-report-card {
+      display: block;
       padding: 0;
+      color: inherit;
+      text-decoration: none;
     }
 
     .culture-card-body {

@@ -1,0 +1,433 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
+import {
+  CULTURE_CATEGORIES,
+  cultureRecords,
+  getCultureHref,
+  getRelatedCulture,
+} from '../../data/culture';
+import type { CultureCategory, CultureRecord } from '../../data/culture';
+import { getDocumentBySlug } from '../../data/documents';
+import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
+import { getTopicBySlug } from '../../data/topics';
+
+export function getStaticPaths() {
+  return cultureRecords.map(item => ({
+    params: { id: item.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props as { item: CultureRecord };
+const category = CULTURE_CATEGORIES[item.category];
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const absoluteImage = new URL(item.coverImage, Astro.site).href;
+const citationText = `UFO Declassified. "${item.title}." UFO Films, TV & Reports, ${item.year}. ${canonicalUrl}.`;
+const relatedCulture = getRelatedCulture(item, 4);
+const relatedTopics = (item.detail.relatedTopicSlugs || [])
+  .map(slug => getTopicBySlug(slug))
+  .filter(Boolean);
+const relatedDocs = (item.detail.relatedDocumentSlugs || [])
+  .map(slug => getDocumentBySlug(slug))
+  .filter(Boolean)
+  .slice(0, 4);
+
+function categoryStyle(categoryKey: CultureCategory) {
+  const color = CULTURE_CATEGORIES[categoryKey].color;
+  return `background: ${color}12; color: ${color}; border-color: ${color}35;`;
+}
+
+function coverStyle(record: CultureRecord) {
+  const accent = CULTURE_CATEGORIES[record.category].color;
+  return `--culture-accent: ${accent}; --cover-position: ${record.coverPosition || 'center'};`;
+}
+
+function sourceLabel(record: CultureRecord) {
+  if (record.category === 'film' || record.category === 'series' || record.category === 'documentary') return 'Reference';
+  if (record.category === 'public-hearing') return 'Hearing page';
+  if (record.category === 'official-report') return 'Report';
+  return 'Source';
+}
+
+function schemaType(record: CultureRecord) {
+  if (record.category === 'film') return 'Movie';
+  if (record.category === 'series') return 'TVSeries';
+  if (record.category === 'documentary') return record.format.toLowerCase().includes('series') ? 'TVSeries' : 'Movie';
+  if (record.category === 'journalism') return 'Article';
+  if (record.category === 'official-report') return 'Report';
+  if (record.category === 'public-hearing') return 'Event';
+  return 'CreativeWork';
+}
+
+const creativeSchema = {
+  '@context': 'https://schema.org',
+  '@type': schemaType(item),
+  name: item.title,
+  headline: item.title,
+  description: item.detail.directAnswer,
+  url: canonicalUrl,
+  image: [absoluteImage],
+  datePublished: String(item.year),
+  temporalCoverage: String(item.year),
+  genre: category.label,
+  inLanguage: 'en-US',
+  isAccessibleForFree: true,
+  keywords: ['UFO', 'UAP', ...item.tags],
+  sameAs: item.sourceUrl,
+  isBasedOn: item.sourceUrl,
+  isPartOf: {
+    '@type': 'CollectionPage',
+    name: 'UFO Films, TV & Reports',
+    url: new URL('/culture', Astro.site).href,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'UFO Declassified',
+    url: new URL('/', Astro.site).href,
+  },
+  about: item.tags.map(tag => ({ '@type': 'Thing', name: tag })),
+  citation: item.sourceUrl ? [item.sourceUrl, canonicalUrl] : [canonicalUrl],
+};
+
+const faqSchema = item.detail.faqs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: item.detail.faqs.map(faq => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+} : null;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).href },
+    { '@type': 'ListItem', position: 2, name: 'Culture', item: new URL('/culture', Astro.site).href },
+    { '@type': 'ListItem', position: 3, name: item.title, item: canonicalUrl },
+  ],
+};
+
+const jsonLd = [creativeSchema, faqSchema, breadcrumbSchema].filter(Boolean);
+---
+<BaseLayout
+  title={item.detail.seoTitle}
+  description={item.detail.seoDescription}
+  ogImage={item.coverImage}
+  ogType="article"
+  canonical={canonicalUrl}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+
+  <article class="culture-detail" style={coverStyle(item)}>
+    <section class="culture-detail-hero relative overflow-hidden border-b border-cyan-glow/10">
+      <div class="absolute inset-0 z-0" aria-hidden="true">
+        <img
+          src={item.coverImage}
+          alt=""
+          class="h-full w-full object-cover culture-detail-hero-image"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-space-950/72 via-space-950/78 to-space-950"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-space-950 via-space-950/66 to-space-950/88"></div>
+      </div>
+      <div class="absolute inset-0 hero-grid opacity-20 z-[1]" aria-hidden="true"></div>
+
+      <div class="container-narrow relative z-10 py-10 md:py-16">
+        <nav class="flex items-center gap-2 text-[10px] text-space-300 mb-8 font-mono tracking-wider uppercase">
+          <a href="/" class="hover:text-cyan-bright transition-colors">Home</a>
+          <span>/</span>
+          <a href="/culture" class="hover:text-cyan-bright transition-colors">Culture</a>
+          <span>/</span>
+          <span class="text-space-100 truncate max-w-[260px]">{item.title}</span>
+        </nav>
+
+        <div class="max-w-5xl">
+          <div class="flex flex-wrap items-center gap-2 mb-5">
+            <span class="culture-badge" style={categoryStyle(item.category)}>{category.label}</span>
+            <span class="stamp-declassified text-[9px]">{item.format}</span>
+            <span class="text-[10px] font-mono text-space-300">{item.year} / {item.region}</span>
+          </div>
+
+          <h1 class="font-display text-2xl md:text-5xl font-black text-white leading-tight uppercase tracking-wide">
+            {item.title}
+          </h1>
+
+          <p class="mt-6 max-w-4xl text-base md:text-lg text-space-50 leading-relaxed">
+            {item.detail.directAnswer}
+          </p>
+
+          <div class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded border border-cyan-glow/18 bg-cyan-glow/10">
+            {[
+              { label: 'Year', value: item.year },
+              { label: 'Region', value: item.region },
+              { label: 'Type', value: category.label },
+              { label: 'Format', value: item.format },
+            ].map(stat => (
+              <div class="bg-space-900/95 p-4">
+                <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">{stat.label}</div>
+                <div class="mt-2 text-sm font-semibold text-white">{stat.value}</div>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-6">
+            <ShareButtons url={getCultureHref(item)} title={item.title} description={item.detail.seoDescription} />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container-narrow py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] gap-8">
+        <div class="space-y-10">
+          <section class="glass-panel p-6 md:p-8">
+            <div class="section-header">
+              <h2 class="font-display text-base font-bold text-white uppercase tracking-wider">Direct Answer</h2>
+            </div>
+            <p class="text-space-50 text-sm md:text-base leading-relaxed">{item.detail.directAnswer}</p>
+          </section>
+
+          <section>
+            <div class="section-header">
+              <h2 class="font-display text-base font-bold text-white uppercase tracking-wider">Key Facts</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {item.detail.keyFacts.map(fact => (
+                <div class="doc-card p-4">
+                  <p class="text-sm leading-relaxed text-space-100">{fact}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section>
+            <div class="section-header">
+              <h2 class="font-display text-base font-bold text-white uppercase tracking-wider">Context</h2>
+            </div>
+            <div class="space-y-4">
+              {item.detail.context.map(paragraph => (
+                <p class="text-sm md:text-base leading-relaxed text-space-100">{paragraph}</p>
+              ))}
+            </div>
+          </section>
+
+          <section class="culture-analysis-grid">
+            <div class="glass-panel p-6">
+              <div class="section-header">
+                <h2 class="font-display text-base font-bold text-white uppercase tracking-wider">Why It Matters</h2>
+              </div>
+              <div class="space-y-4">
+                {item.detail.impact.map(paragraph => (
+                  <p class="text-sm leading-relaxed text-space-100">{paragraph}</p>
+                ))}
+              </div>
+            </div>
+
+            <div class="glass-panel p-6">
+              <div class="section-header">
+                <h2 class="font-display text-base font-bold text-white uppercase tracking-wider">Evidence Boundary</h2>
+              </div>
+              <p class="text-sm leading-relaxed text-space-100">{item.detail.boundaryNote}</p>
+            </div>
+          </section>
+
+          {item.detail.faqs.length > 0 && (
+            <section>
+              <div class="section-header">
+                <h2 class="font-display text-base font-bold text-white uppercase tracking-wider">Questions People Ask</h2>
+              </div>
+              <div class="space-y-3">
+                {item.detail.faqs.map(faq => (
+                  <details class="culture-faq doc-card p-4">
+                    <summary class="cursor-pointer font-semibold text-white text-sm leading-snug">{faq.question}</summary>
+                    <p class="mt-3 text-sm leading-relaxed text-space-100">{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )}
+        </div>
+
+        <aside class="space-y-6">
+          <section class="glass-panel p-5">
+            <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">Source & Reference</h2>
+            <p class="mt-3 text-xs leading-relaxed text-space-100">{item.detail.sourceNote}</p>
+            {item.sourceUrl && (
+              <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center rounded border border-cyan-glow/30 bg-cyan-glow/10 px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-wider text-cyan-bright hover:bg-cyan-glow/20">
+                Open {sourceLabel(item)}
+              </a>
+            )}
+          </section>
+
+          <section class="glass-panel p-5">
+            <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">How to Cite</h2>
+            <p class="mt-3 text-xs leading-relaxed text-space-100">{citationText}</p>
+            <a href={canonicalUrl} class="mt-4 block truncate text-xs font-mono text-cyan-bright hover:text-white">{canonicalUrl}</a>
+          </section>
+
+          <section class="glass-panel p-5">
+            <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">Tags</h2>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {item.tags.map(tag => (
+                <span class="rounded border border-cyan-glow/20 bg-cyan-glow/5 px-2 py-1 text-[10px] font-mono text-cyan-bright">{tag}</span>
+              ))}
+            </div>
+          </section>
+
+          {relatedTopics.length > 0 && (
+            <section class="glass-panel p-5">
+              <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">Archive Topics</h2>
+              <div class="mt-4 space-y-3">
+                {relatedTopics.map((topic: any) => (
+                  <a href={`/topics/${topic.slug}`} class="block rounded border border-cyan-glow/12 bg-space-900/45 p-3 hover:border-cyan-glow/40 transition-colors">
+                    <span class="text-[9px] font-mono uppercase tracking-[0.16em] text-cyan-bright">{topic.shortTitle}</span>
+                    <p class="mt-1 text-xs leading-relaxed text-space-200">{topic.description}</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {relatedDocs.length > 0 && (
+            <section class="glass-panel p-5">
+              <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">Related Records</h2>
+              <div class="mt-4 space-y-3">
+                {relatedDocs.map((doc: any) => (
+                  <a href={`/documents/${doc.slug}`} class="block rounded border border-cyan-glow/12 bg-space-900/45 p-3 hover:border-cyan-glow/40 transition-colors">
+                    <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[8px]`}>{doc.agency}</span>
+                    <h3 class="mt-2 text-sm text-white leading-snug">{doc.title}</h3>
+                    <p class="mt-1 text-[10px] font-mono text-space-300">{CATEGORY_INFO[doc.category]?.label || doc.category} / {doc.year}</p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+        </aside>
+      </div>
+    </section>
+
+    {relatedCulture.length > 0 && (
+      <section class="container-narrow pb-16">
+        <div class="section-header">
+          <h2 class="font-display text-base font-bold text-white uppercase tracking-wider">Related Culture Files</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {relatedCulture.map(related => (
+            <a href={getCultureHref(related)} class="doc-card group overflow-hidden" style={coverStyle(related)}>
+              <div class="culture-related-cover">
+                <img src={related.coverImage} alt="" loading="lazy" />
+                <div class="culture-related-shade"></div>
+                <span class="culture-related-year">{related.year}</span>
+              </div>
+              <div class="p-4">
+                <span class="culture-badge" style={categoryStyle(related.category)}>{CULTURE_CATEGORIES[related.category].code}</span>
+                <h3 class="mt-3 text-sm font-semibold text-white leading-snug group-hover:text-cyan-bright transition-colors">{related.title}</h3>
+                <p class="mt-2 text-xs leading-relaxed text-space-300 line-clamp-3">{related.whyItMatters}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </article>
+
+  <style>
+    .culture-detail {
+      --culture-accent-soft: color-mix(in srgb, var(--culture-accent) 20%, transparent);
+    }
+
+    .culture-detail-hero {
+      min-height: 520px;
+    }
+
+    .culture-detail-hero-image {
+      object-position: var(--cover-position, center);
+      filter: brightness(0.68) contrast(1.08) saturate(1.06);
+      transform: scale(1.03);
+    }
+
+    .culture-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 1px solid;
+      border-radius: 3px;
+      padding: 0.35rem 0.55rem;
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      text-transform: uppercase;
+      text-shadow: none;
+    }
+
+    .culture-analysis-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      gap: 1rem;
+    }
+
+    .culture-faq summary {
+      list-style-position: outside;
+    }
+
+    .culture-related-cover {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--color-space-900);
+      border-bottom: 1px solid var(--culture-accent-soft);
+    }
+
+    .culture-related-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: var(--cover-position, center);
+      filter: brightness(0.78) contrast(1.1);
+      transform: scale(1.04);
+      transition: transform 0.5s ease;
+    }
+
+    .doc-card:hover .culture-related-cover img {
+      transform: scale(1.09);
+    }
+
+    .culture-related-shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(0deg, rgba(2, 4, 8, 0.88), transparent 62%),
+        radial-gradient(circle at 70% 28%, var(--culture-accent-soft), transparent 38%);
+    }
+
+    .culture-related-year {
+      position: absolute;
+      left: 0.75rem;
+      bottom: 0.65rem;
+      color: white;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    @media (max-width: 767px) {
+      .culture-detail-hero {
+        min-height: 500px;
+      }
+
+      .culture-analysis-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</BaseLayout>

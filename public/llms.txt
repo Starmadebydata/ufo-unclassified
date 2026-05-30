@@ -14,6 +14,31 @@ The site is designed for research, citation, and source review. It indexes PURSU
 - Timeline: https://ufo-declassified.com/timeline
 - About the Archive: https://ufo-declassified.com/about
 
+## Culture Detail Pages
+
+The Culture section has native detail pages for individual UFO films, television series, documentaries, journalism milestones, official reports, public hearings, and historical case-file references. Each detail page includes a direct answer, key facts, cultural context, evidence boundary note, source/reference link, citation text, FAQs, related Culture entries, and related archive links where available.
+
+- The Day the Earth Stood Still: https://ufo-declassified.com/culture/day-earth-stood-still
+- The Mysterians: https://ufo-declassified.com/culture/mysterians
+- Close Encounters of the Third Kind: https://ufo-declassified.com/culture/close-encounters
+- The X-Files: https://ufo-declassified.com/culture/x-files
+- Arrival: https://ufo-declassified.com/culture/arrival
+- The Phenomenon: https://ufo-declassified.com/culture/phenomenon
+- Nope: https://ufo-declassified.com/culture/nope
+- UFO Sweden / Watch the Skies: https://ufo-declassified.com/culture/ufo-sweden
+- Moment of Contact: https://ufo-declassified.com/culture/moment-of-contact
+- Encounters: https://ufo-declassified.com/culture/encounters-netflix
+- Kenneth Arnold and the flying saucer wave: https://ufo-declassified.com/culture/kenneth-arnold-flying-saucer
+- Project BLUE BOOK records: https://ufo-declassified.com/culture/project-blue-book
+- Rendlesham Forest files: https://ufo-declassified.com/culture/rendlesham-forest
+- Belgian UFO wave: https://ufo-declassified.com/culture/belgian-ufo-wave
+- Department of Defense Navy UAP videos: https://ufo-declassified.com/culture/dod-navy-videos
+- 60 Minutes UAP report: https://ufo-declassified.com/culture/sixty-minutes-uap
+- ODNI Preliminary Assessment on UAP: https://ufo-declassified.com/culture/odni-preliminary-assessment
+- House Oversight UAP hearing: https://ufo-declassified.com/culture/house-oversight-2023
+- NASA UAP Independent Study Team report: https://ufo-declassified.com/culture/nasa-uap-report
+- AARO Historical Record Report, Volume I: https://ufo-declassified.com/culture/aaro-historical-report
+
 ## Research Topics
 
 - 2026 PURSUE Release: https://ufo-declassified.com/topics/pursue-release-2026
@@ -28,6 +53,8 @@ The site is designed for research, citation, and source review. It indexes PURSU
 Each document page includes a citation-ready summary, source agency, record year, release date, file package, source/provenance block, canonical URL, and related records.
 
 When citing a record from this site, prefer the document detail page URL and include the named source agency, record year, and PURSUE release date shown on that page.
+
+When citing Culture pages, prefer the native detail page URL and use the visible "How to Cite" block. Culture pages separate fiction, documentary storytelling, journalism, official reports, hearings, and source records so a cultural reference is not confused with primary evidence.
 
 ## Source Notes
 
