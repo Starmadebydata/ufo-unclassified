@@ -56,7 +56,7 @@ function schemaType(record: CultureRecord) {
   if (record.category === 'documentary') return record.format.toLowerCase().includes('series') ? 'TVSeries' : 'Movie';
   if (record.category === 'journalism') return 'Article';
   if (record.category === 'official-report') return 'Report';
-  if (record.category === 'public-hearing') return 'Event';
+  if (record.category === 'public-hearing') return 'CreativeWork';
   return 'CreativeWork';
 }
 
