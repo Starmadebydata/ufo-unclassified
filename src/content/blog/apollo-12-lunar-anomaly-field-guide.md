@@ -1,6 +1,6 @@
 ---
-title: "Apollo 12 Lunar Anomaly Field Guide: How to Read the NASA Visual Files"
-description: "A visual field guide for UFO researchers studying the Apollo 12 and Apollo 17 files in the PURSUE release, with image-by-image viewing tactics, document links, and caution points."
+title: "Apollo 12 UFO Files and Transcript: NASA Lunar Anomaly Field Guide"
+description: "A visual field guide for UFO researchers studying the Apollo 12 transcript, Apollo 12 lunar image files, and Apollo 17 UAP records in the PURSUE release."
 date: "2026-05-16"
 author: "UFO Declassified Research Team"
 category: "Field Guide"
@@ -10,7 +10,7 @@ featured: true
 readingTime: "11 min read"
 ---
 
-# Apollo 12 Lunar Anomaly Field Guide: How to Read the NASA Visual Files
+# Apollo 12 UFO Files and Transcript: NASA Lunar Anomaly Field Guide
 
 The NASA files in PURSUE are the kind of material UFO researchers can spend hours with. They are not just "space photos." They sit at the intersection of astronaut field documentation, mission transcripts, lunar surface photography, and a UAP-focused release filter.
 

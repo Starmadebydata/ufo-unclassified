@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "generate-types": "wrangler types",
-    "upload:release2": "node scripts/upload-release2-to-r2.mjs"
+    "upload:release2": "node scripts/upload-release2-to-r2.mjs",
+    "upload:release3": "node scripts/upload-release3-to-r2.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.0",

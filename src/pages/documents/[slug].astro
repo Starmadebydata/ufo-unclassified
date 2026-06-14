@@ -27,6 +27,7 @@ const previewFile = imageFiles[0] || videoFiles.find((file: any) => fileThumbnai
 const ogImage = previewFile ? fileThumbnailUrl(previewFile) || '/og-default.png' : '/og-default.png';
 const citationDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
 const answerBlock = `${doc.title} is a declassified ${categoryInfo?.label || 'UAP document'} from ${agencyInfo.fullName}. The record is dated ${doc.year}, was released in ${releaseLabel} on ${doc.dateReleased} under the PURSUE initiative, and contains ${doc.files.length} file${doc.files.length > 1 ? 's' : ''}${doc.location ? ` connected to ${doc.location.name}` : ''}.`;
+const pageDescription = doc.summary || `Declassified ${categoryInfo?.label || 'document'} from ${agencyInfo.fullName}. Released ${doc.dateReleased} under PURSUE.${doc.location ? ` Location: ${doc.location.name}.` : ''}`;
 const generatedFindings = [
   `Source agency: ${agencyInfo.fullName}.`,
   `Record category: ${categoryInfo?.label || 'Declassified record'}.`,
@@ -119,7 +120,7 @@ const schema = {
 ---
 <BaseLayout 
   title={doc.title} 
-  description={`Declassified ${categoryInfo?.label || 'document'} from ${agencyInfo.fullName}. Released ${doc.dateReleased} under PURSUE.${doc.location ? ` Location: ${doc.location.name}.` : ''}`}
+  description={pageDescription}
   ogImage={ogImage}
   ogType="article"
 >

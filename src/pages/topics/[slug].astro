@@ -14,10 +14,88 @@ export function getStaticPaths() {
 
 const { topic } = Astro.props;
 
+const topicSpotlights: Record<string, Array<{ href: string; label: string; title: string; body: string }>> = {
+  'nasa-apollo-ufo-material': [
+    {
+      href: '/documents/nasa-uap-d1-apollo-12-transcript-1969',
+      label: 'Apollo 12 transcript',
+      title: 'Apollo 12 Mission Transcript',
+      body: 'The primary NASA transcript page for Apollo 12 communications and anomalous-observation context.',
+    },
+    {
+      href: '/documents/nasa-uap-vm1-apollo-12-1969',
+      label: 'Apollo 12 UFO files',
+      title: 'Apollo 12 Visual Media',
+      body: 'The entry point for the Apollo 12 lunar image set selected into the UAP release.',
+    },
+    {
+      href: '/documents/nasa-uap-d2-apollo-17-transcript-1972',
+      label: 'Apollo 17 transcript',
+      title: 'Apollo 17 Mission Transcript',
+      body: 'NASA transcript context for Apollo 17 anomalous-light and UAP searches.',
+    },
+    {
+      href: '/documents/nasa-uap-vm6-apollo-17-1972',
+      label: 'Apollo 17 UAP',
+      title: 'Apollo 17 Visual Media VM6',
+      body: 'The Apollo 17 image record to compare with transcript and crew debriefing material.',
+    },
+    {
+      href: '/blog/apollo-12-lunar-anomaly-field-guide',
+      label: 'Field guide',
+      title: 'How to Read the Apollo Files',
+      body: 'A guided reading path for comparing Apollo 12 images, transcript records, and Apollo 17 material.',
+    },
+  ],
+  'fbi-ufo-files': [
+    {
+      href: '/documents/65-hs1-834228961-62-hq-83894-section-10',
+      label: '65-HS1 834228961',
+      title: 'FBI 62-HQ-83894 Section 10',
+      body: 'A high-demand FBI case-file page with public image and PDF files.',
+    },
+    {
+      href: '/documents/65-hs1-834228961-62-hq-83894-section-7',
+      label: '62-HQ-83894',
+      title: 'FBI 62-HQ-83894 Section 7',
+      body: 'A companion section in the same FBI file series for cross-checking adjacent records.',
+    },
+    {
+      href: '/blog/fbi-physical-evidence-photo-lab',
+      label: 'Photo evidence',
+      title: 'FBI Physical Evidence Guide',
+      body: 'A reader-friendly guide to the FBI photo and case-file records in the archive.',
+    },
+  ],
+  'pentagon-uap-videos': [
+    {
+      href: '/documents/1006106-dow-uap-pr46-unresolved-uap-report-indopacom-2024',
+      label: 'DOW-UAP-PR46',
+      title: 'PR46 INDOPACOM 2024',
+      body: 'The public source page for the INDOPACOM unresolved UAP video record.',
+    },
+    {
+      href: '/documents/1006073-dow-uap-pr28-unresolved-uap-report-greece-january-2024',
+      label: 'DOW-UAP-PR28',
+      title: 'PR28 Greece 2024',
+      body: 'The public source page for the Greece January 2024 unresolved UAP video record.',
+    },
+    {
+      href: '/documents/2024-04-30-composite-sketch',
+      label: 'Composite sketch',
+      title: 'April 30, 2024 Sketch',
+      body: 'The composite sketch record that appears in recent search demand.',
+    },
+  ],
+};
+
+const spotlightItems = topicSpotlights[topic.slug] || [];
+
 function topicMatches(slug: string, doc: any): boolean {
   const title = doc.title.toLowerCase();
   const tags = doc.tags.join(' ').toLowerCase();
-  if (slug === 'pursue-release-2026') return doc.dateReleased.startsWith('2026-05');
+  if (slug === 'pursue-release-2026') return doc.dateReleased.startsWith('2026-');
+  if (slug === 'pursue-release-03') return (doc.releaseLabel || 'Release 01') === 'Release 03';
   if (slug === 'pursue-release-02') return (doc.releaseLabel || 'Release 01') === 'Release 02';
   if (slug === 'fbi-ufo-files') return doc.agency === 'FBI';
   if (slug === 'nasa-apollo-ufo-material') return doc.agency === 'NASA' || title.includes('apollo') || tags.includes('apollo');
@@ -87,6 +165,23 @@ function fileIconClass(type: string): string {
       <div class="text-[10px] font-mono uppercase tracking-[0.2em] text-cyan-bright mb-3">Direct Answer</div>
       <p class="text-space-50 text-base leading-relaxed">{topic.answer}</p>
     </div>
+
+    {spotlightItems.length > 0 && (
+      <div class="mt-6">
+        <div class="section-header">
+          <h2 class="font-display text-base font-bold text-white uppercase tracking-wider">Common Search Paths</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          {spotlightItems.map(item => (
+            <a href={item.href} class="doc-card p-4 group cursor-pointer">
+              <div class="text-[10px] font-mono uppercase tracking-[0.18em] text-amber-bright">{item.label}</div>
+              <h3 class="mt-3 text-sm font-semibold text-white group-hover:text-cyan-bright transition-colors">{item.title}</h3>
+              <p class="mt-2 text-xs leading-relaxed text-space-200">{item.body}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
 
     <div class="status-strip mt-6 grid grid-cols-1 sm:grid-cols-4 gap-px overflow-hidden rounded border border-cyan-glow/18 bg-cyan-glow/10">
       <div class="bg-space-900/95 p-5">

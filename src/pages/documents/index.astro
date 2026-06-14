@@ -7,6 +7,8 @@ import { fileThumbnailUrl } from '../../config';
 
 const releaseLabel = (doc: any) => doc.releaseLabel || 'Release 01';
 const allReleases = [...new Set(documents.map(releaseLabel))];
+const latestRelease = allReleases.sort((a, b) => b.localeCompare(a, undefined, { numeric: true })).at(0) || 'Release 01';
+const latestReleaseCount = documents.filter(doc => releaseLabel(doc) === latestRelease).length;
 const allAgencies = [...new Set(documents.map(d => d.agency))];
 const allCategories = [...new Set(documents.map(d => d.category))];
 const allYears = getAllYears();
@@ -15,7 +17,6 @@ const videoCount = documents.filter(doc => doc.files.some(file => file.type === 
 const audioCount = documents.filter(doc => doc.files.some(file => file.type === 'audio')).length;
 const pdfCount = documents.filter(doc => doc.files.some(file => file.type === 'pdf')).length;
 const imageCount = documents.filter(doc => doc.files.some(file => file.type === 'image')).length;
-const release02Count = documents.filter(doc => releaseLabel(doc) === 'Release 02').length;
 
 function documentPreviewUrl(doc: any): string | undefined {
   const imageFile = doc.files.find((file: any) => file.type === 'image');
@@ -38,13 +39,13 @@ function fileIconClass(type: string): string {
   return 'file-icon-image';
 }
 ---
-<BaseLayout title="Document Database" description="Search and filter Release 01 and Release 02 declassified UAP/UFO records in the PURSUE archive by agency, category, file type, release, year, title, location, and summary.">
+<BaseLayout title="Document Database" description="Search and filter Release 01, Release 02, and Release 03 declassified UAP/UFO records in the PURSUE archive by agency, category, file type, release, year, title, location, and summary.">
   <section class="container-narrow py-12">
     <div class="mb-8">
       <span class="stamp-declassified mb-4">PURSUE ARCHIVE</span>
       <h1 class="font-display text-2xl md:text-3xl font-bold text-white mt-4 mb-3 uppercase tracking-wider">Document Database</h1>
       <p class="max-w-3xl text-space-100 text-sm leading-relaxed">
-        The Document Database contains {documents.length} searchable records and {totalFiles} files from PURSUE Release 01 and Release 02. Use the controls below to narrow the archive by release, source agency, category, file type, year, title, location, or summary text.
+        The Document Database contains {documents.length} searchable records and {totalFiles} files from PURSUE Release 01, Release 02, and Release 03. Use the controls below to narrow the archive by release, source agency, category, file type, year, title, location, or summary text.
       </p>
     </div>
 
@@ -62,8 +63,8 @@ function fileIconClass(type: string): string {
         <div class="mt-2 text-sm font-semibold text-white">{imageCount} image / {videoCount} video / {audioCount} audio</div>
       </div>
       <div class="bg-space-900/95 p-5">
-        <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">Release 02</div>
-        <div class="mt-2 font-display text-lg font-bold text-white">{release02Count}</div>
+        <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">{latestRelease}</div>
+        <div class="mt-2 font-display text-lg font-bold text-white">{latestReleaseCount}</div>
       </div>
     </div>
 
