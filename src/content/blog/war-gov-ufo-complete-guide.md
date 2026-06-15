@@ -1,21 +1,21 @@
 ---
-title: "War.gov/UFO: Complete Guide to the PURSUE Release 01 and Release 02 Files"
-description: "Navigate the declassified UAP/UFO files released through PURSUE on War.gov/UFO, including Release 01 from May 8, 2026 and Release 02 from May 22, 2026."
+title: "War.gov/UFO: Complete Guide to the PURSUE Release 01, 02, and 03 Files"
+description: "Navigate the declassified UAP/UFO files released through PURSUE on War.gov/UFO, including Release 01 from May 8, Release 02 from May 22, and Release 03 from June 12, 2026."
 date: "2026-05-09"
-updated: "2026-05-23"
+updated: "2026-06-15"
 author: "UFO Declassified Research Team"
 category: "Guide"
-tags: ["war.gov", "PURSUE", "UAP", "declassified", "guide", "Release 02", "2026"]
+tags: ["war.gov", "PURSUE", "UAP", "declassified", "guide", "Release 03", "2026"]
 ogImage: "/blog-assets/release02-pr050-iran-formation.jpg"
 featured: true
-readingTime: "12 min read"
+readingTime: "14 min read"
 ---
 
-# War.gov/UFO: Complete Guide to the PURSUE Release 01 and Release 02 Files
+# War.gov/UFO: Complete Guide to the PURSUE Release 01, 02, and 03 Files
 
-On May 8, 2026, the United States government launched the public PURSUE archive for UAP (Unidentified Anomalous Phenomena) records through [War.gov/UFO](https://war.gov/UFO). On May 22, 2026, the Department of War published Release 02, adding a second tranche of declassified and historical UAP files.
+On May 8, 2026, the United States government launched the public PURSUE archive for UAP (Unidentified Anomalous Phenomena) records through [War.gov/UFO](https://war.gov/UFO). On May 22, 2026, the Department of War published Release 02. On June 12, 2026, the Department published Release 03.
 
-This guide now covers the first two PURSUE batches: what changed, which agencies are represented, and where to start if you want the primary records rather than headlines.
+This guide now covers the first three PURSUE batches: what changed, which agencies are represented, and where to start if you want the primary records rather than headlines.
 
 ---
 
@@ -40,7 +40,16 @@ The second batch, published on May 22, 2026, adds 64 indexed records:
 - **Central Intelligence Agency (CIA)** — a 1973 USSR intelligence information report
 - **Office of the Director of National Intelligence (ODNI)** — a senior U.S. intelligence-community narrative record
 
-For a focused breakdown of the new tranche, read our [Release 02 analysis](/blog/war-gov-ufo-release-02-analysis).
+The third batch, published on June 12, 2026, adds 72 indexed records:
+
+- **Federal Bureau of Investigation (FBI)** — modern orb-sighting interviews, Colorado Springs material, Western U.S. event renderings, and older field-office records
+- **Department of War (DOW)** — AARO case analysis, Western U.S. narratives, historical military UFO studies, and nine videos
+- **Central Intelligence Agency (CIA)** — historical intelligence files, Project Blue Book material, foreign sightings, and international UFO studies
+- **NASA** — Gemini-era crew and experiment debriefings
+- **Intelligence Community Assessment (ICA)** — Colorado Springs incident analysis
+- **U.S. Government / other** — Congress-White House UFO correspondence
+
+For focused breakdowns, read our [Release 02 analysis](/blog/war-gov-ufo-release-02-analysis/) and [Release 03 analysis](/blog/war-gov-ufo-release-03-analysis/).
 
 ---
 
@@ -53,11 +62,13 @@ The official government portal at war.gov/UFO organizes files into downloadable 
 - Limited search and filtering capabilities
 - No contextual analysis or cross-referencing
 
-This guide — and our [complete document database](/documents) — addresses these gaps by providing structured metadata, summaries, and cross-references for every file in the release.
+This guide - and our [complete document database](/documents) - addresses these gaps by providing structured metadata, summaries, and cross-references for the indexed release files.
 
 ---
 
-## Complete File Breakdown by Agency
+## Release 01 Baseline: File Breakdown by Agency
+
+The following section describes the original May 8 baseline release. Later batches add new agencies, updated case material, and follow-up records.
 
 ### Department of War (DOW) — 41 Files
 
@@ -145,13 +156,13 @@ The FBI's contribution focuses on two major evidence categories and one extensiv
 
 Eight infrared sensor images with significant redactions (black bars obscuring portions of the imagery). These appear to be forward-looking infrared (FLIR) captures, consistent with aerial surveillance equipment. The heavy redaction suggests classified sensor capabilities or operational details remain protected.
 
-[View FBI FLIR imagery →](/documents/fbi-photo-a1)
+[View FBI FLIR imagery →](/documents/fbi-photo-series-a)
 
 #### Physical Evidence Photographs — Series B (24 files)
 
 Twenty-four high-resolution photographs of physical evidence. These represent some of the most detailed photographic records in the release, showing objects and materials collected during FBI investigations. The resolution and detail in these images suggest professional forensic documentation.
 
-[View FBI evidence photos →](/documents/fbi-photo-b1)
+[View FBI evidence photos →](/documents/fbi-photo-series-b)
 
 #### Case File 62-HQ-83894
 
@@ -251,23 +262,26 @@ Several files fall outside standard agency classifications:
 | AATIP/UAPTF Videos | 2017–2021 | 3 videos | DoD |
 | **PURSUE Batch 1** | **2026** | **162** | **5 agencies** |
 | **PURSUE Release 02** | **2026** | **64 indexed records** | **DOW, NASA, DOE, CIA, ODNI** |
+| **PURSUE Release 03** | **2026** | **72 indexed records** | **FBI, DOW, CIA, NASA, ICA, other U.S. Government** |
 
-While PURSUE has fewer total files than some older bulk releases, it stands apart in three ways:
+While PURSUE has fewer total files than some older bulk releases, it stands apart in four ways:
 
-1. **Multi-agency coordination**: Multiple federal agencies and source groups are represented across the first two batches
-2. **Video and audio evidence**: The archive now includes military sensor video and NASA audio alongside PDFs and images
+1. **Multi-agency coordination**: Multiple federal agencies and source groups are represented across the first three batches
+2. **Video and audio evidence**: The archive includes military sensor video, NASA audio, public videos, PDFs, and images
 3. **Recency**: Includes files as recent as 2026, unlike previous releases that focused on decades-old records
+4. **Case updates**: Release 03 adds follow-up analysis and supporting material for previously visible cases, including the Western U.S. orb event
 
 ---
 
 ## What Comes Next?
 
-The May 22, 2026 Release 02 publication confirms that PURSUE is operating as a rolling release program rather than a one-time archive drop. Key indicators now suggest:
+The June 12, 2026 Release 03 publication confirms that PURSUE is operating as a rolling release program rather than a one-time archive drop. The Department of War says additional files are still being prepared. Key indicators now suggest:
 
 - Additional batches may include more files from intelligence and defense agencies
 - Congressional pressure continues for records related to **crash retrieval programs**
 - The AARO (All-domain Anomaly Resolution Office) backlog of cases may be incorporated
 - International partner nations may contribute their own declassified records
+- Existing public cases may receive follow-up records, technical context, or revised analysis
 
 ---
 
@@ -281,10 +295,10 @@ Our [Document Database](/documents) provides tools the official war.gov site lac
 - **Cross-reference**: Each document page links to related files
 - **Direct media access**: View images, play videos, listen to audio, and download PDFs directly
 
-Every document in the first two PURSUE batches has been cataloged with structured metadata, making it easy to research specific topics, time periods, geographic regions, and release batches.
+The first three PURSUE batches have been cataloged with structured metadata, making it easy to research specific topics, time periods, geographic regions, and release batches.
 
 [Start exploring the archive →](/documents)
 
 ---
 
-*This article is maintained by the UFO Declassified research team and updated as new information becomes available. Last updated: May 23, 2026.*
+*This article is maintained by the UFO Declassified research team and updated as new information becomes available. Last updated: June 15, 2026.*
