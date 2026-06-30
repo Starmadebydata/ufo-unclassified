@@ -148,3 +148,38 @@ The forum was better than a hearing in one specific way: it asked institutional 
 The gap between what was discussed and what was demonstrated is the gap that has defined UAP disclosure for three years. The Disclosure Forum did not close that gap. It may have made it slightly more visible.
 
 That is worth something. It is not yet worth what the participants are promising.
+
+---
+
+## Sources
+
+**Official and primary sources:**
+
+- [War.gov/UFO — Presidential Unsealing and Reporting System for UAP Encounters](https://www.war.gov/UFO/)
+- [Disclosure Forum 2026 — Disclosure Foundation](https://forum.disclosure.org/)
+- [S.Amdt.3111 — UAP Disclosure Act of 2025, 119th Congress](https://www.congress.gov/amendment/119th-congress/senate-amendment/3111/text)
+- [Sen. Gillibrand — Statement on Release of UAP Files](https://www.gillibrand.senate.gov/news/press/release/gillibrand-statement-on-release-of-uap-files/)
+
+**Reporting on the Disclosure Forum:**
+
+- [NewsNation — UFO Transparency Takes Center Stage at Disclosure Forum (June 25, 2026)](https://www.newsnationnow.com/space/ufo/ufo-experts-lawmakers-disclosure-forum/)
+- [The Hill — 'Invasion of Washington' UFO Tape May Surface as Lawmakers Push Release](https://thehill.com/homenews/5944717-ufo-washington-invasion-evidence/)
+- [TodayWhy — Disclosure Forum 2026: Why It's a UAP Turning Point](https://todaywhy.com/disclosure-forum-2026-uap-transparency/)
+- [IBTimes — Bipartisan UFO Forum Set to Expose Pentagon's Secret Contractor Loophole](https://www.ibtimes.co.uk/ufo-disclosure-forum-washington-1804997)
+- [IBTimes — UAP Expert Urges Government to Provide Whistleblowers Legal Protection](https://www.ibtimes.co.uk/whistleblower-protections-ufo-uap-disclosure-1805905)
+
+**Legislative and policy context:**
+
+- [The Disclosure Era — UAP Disclosure Act Stalls Again: UAPDA Excluded from FY2026 Defense Bill](https://www.thedisclosureera.com/articles/uap-disclosure-act-stalls-again-uapda-excluded-from-fy2026-defense-bill)
+- [DefenseScoop — Congress Wants to Know More About Military's UAP Intercepts](https://defensescoop.com/2025/12/10/uap-ufo-military-intercepts-north-america-fy-2026-ndaa/)
+- [NewsNation — UFO Researcher Suggests Disclosure Push May Be Latest Coverup](https://www.newsnationnow.com/space/ufo/uap-disclosure-potential-ruse/)
+
+**Expert analysis:**
+
+- [Avi Loeb — UAP Disclosure Forum in the U.S. Senate (June 2026)](https://avi-loeb.medium.com/uap-disclosure-forum-in-the-u-s-senate-10a8d3af1028)
+
+**Related UFO Declassified coverage:**
+
+- [War.gov UFO Release 03: The New Files Are a Map of Evidence Gaps](/blog/war-gov-ufo-release-03-analysis/)
+- [Western U.S. Orbs: The AARO Analysis That Left 40 Percent Unresolved](/blog/western-us-orbs-release-03-analysis/)
+- [The UAP Science Advisory Council: 15 Scientists Will Not Solve the Mystery](/blog/uap-science-advisory-council-what-15-scientists-can-change/)

@@ -189,3 +189,32 @@ The council's impact will depend on several factors that are not yet visible.
 Fifteen scientists will not tell us what UAP are. If they do their job, they will tell us what we need to measure, how precisely we need to measure it, and what standard of evidence we should demand before accepting any conclusion.
 
 That is less dramatic than disclosure. It is more likely to produce something real.
+
+---
+
+## Sources
+
+**Official and primary sources:**
+
+- [Department of War — PURSUE Release 03 Announcement (June 12, 2026)](https://www.war.gov/News/Releases/Release/Article/4515408/department-of-war-publishes-third-release-of-unidentified-anomalous-phenomena-f/)
+- [War.gov/UFO — Presidential Unsealing and Reporting System for UAP Encounters](https://www.war.gov/UFO/)
+- [Disclosure Foundation — Advisory Board Member Avi Loeb to Lead New UAP Science Advisory Council](https://disclosure.org/news/uap-science-advisory-council)
+
+**Reporting and analysis:**
+
+- [DefenseScoop — New Science Advisory Council Forms to Help US Government 'Resolve the UAP Mystery' (June 17, 2026)](https://defensescoop.com/2026/06/17/new-science-advisory-council-forms-to-help-us-government-resolve-the-uap-mystery/)
+- [Newsweek — UFO Files: 5 Key Revelations as Pentagon Drops Third Batch of Records](https://www.newsweek.com/ufo-files-pentagon-releases-third-batch-records-uap-pete-hegseth-trump-12064856)
+- [NewsNation — Avi Loeb, Head of New UFO Advisory Panel to Government, Says Era of Cooperation at Hand](https://www.newsnationnow.com/space/ufo/avi-loeb-uap-advisory-panel/)
+
+**Avi Loeb's public analysis (Medium):**
+
+- [More Details on the UAP Science Advisory Council (June 2026)](https://avi-loeb.medium.com/more-details-on-the-uap-science-advisory-council-825bd250d23c)
+- [UAP Disclosure #3 Is the Most Intriguing Release Thus Far (June 2026)](https://avi-loeb.medium.com/uap-disclosure-3-is-most-intriguing-release-thus-far-e4643013245b)
+- [A UAP Science Advisory Council to the U.S. Government (June 2026)](https://avi-loeb.medium.com/a-uap-science-advisory-council-to-the-u-s-f7262e57b0df)
+- [UAP Disclosure Forum in the U.S. Senate (June 2026)](https://avi-loeb.medium.com/uap-disclosure-forum-in-the-u-s-senate-10a8d3af1028)
+- [About UAP and Interstellar Objects (June 2026)](https://avi-loeb.medium.com/about-uap-and-interstellar-objects-28de976438f9)
+
+**Related UFO Declassified coverage:**
+
+- [War.gov UFO Release 03: The New Files Are a Map of Evidence Gaps](/blog/war-gov-ufo-release-03-analysis/)
+- [Western U.S. Orbs: The AARO Analysis That Left 40 Percent Unresolved](/blog/western-us-orbs-release-03-analysis/)
