@@ -2,7 +2,7 @@
 title: "Inside the FBI Physical Evidence Photos: A Lab-Style Guide for UFO Researchers"
 description: "A deep visual guide to the FBI Series B physical evidence photographs in the PURSUE archive, showing how to inspect the image set without jumping to weak conclusions."
 date: "2026-05-16"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Investigation"
 tags: ["FBI", "physical-evidence", "photos", "case-file", "forensics", "UAP", "research"]
 ogImage: "/blog-assets/fbi-photo-b1.jpg"

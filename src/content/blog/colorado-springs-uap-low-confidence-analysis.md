@@ -2,7 +2,7 @@
 title: "Colorado Springs UAP: A Low-Confidence Explanation Is Not a Closed Case"
 description: "A source-first analysis of the Colorado Springs UAP incident in War.gov Release 03: five Army witnesses, a pale potato-shaped object, and AARO's low-confidence sunlight backscatter explanation."
 date: "2026-06-21T09:30:00+08:00"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["Colorado Springs", "Cheyenne Mountain", "Release 03", "war.gov", "PURSUE", "AARO", "FBI", "UAP evidence", "low confidence"]
 ogImage: "/blog-assets/colorado-springs-uap-low-confidence-cover.jpg"

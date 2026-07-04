@@ -2,7 +2,7 @@
 title: "Orbs Launching Orbs: The Western US Event That Stumped Federal Agents"
 description: "Analysis of the May 8, 2026 'Orbs Launching Orbs' incident — federal law enforcement agents independently observed orange spheres releasing smaller red orbs over the Western United States on at least five separate occasions."
 date: "2026-05-10"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Incident Report"
 tags: ["orbs", "Western US", "2026", "federal agents", "UAP", "incident", "witness"]
 ogImage: "/blog-assets/western-us-event-slides-2026.jpg"

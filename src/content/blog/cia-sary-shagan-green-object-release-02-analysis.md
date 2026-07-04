@@ -2,7 +2,7 @@
 title: "CIA Sary Shagan Green Object: Intelligence Context, Not Proof"
 description: "A source-first analysis of CIA-UAP-D001 in War.gov Release 02, the 1973 Sary Shagan green-object report, and why Cold War intelligence context matters without settling the case."
 date: "2026-05-29T17:10:00+08:00"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["CIA", "Sary Shagan", "Release 02", "war.gov", "PURSUE", "Soviet Union", "green object", "Cold War", "historical UAP files"]
 ogImage: "/blog-assets/cia-sary-shagan-green-object-1973-cover.jpg"

@@ -2,7 +2,7 @@
 title: "War.gov Release 02 Is a Test of Evidence Discipline, Not Belief"
 description: "The second PURSUE UFO release matters because it forces readers to separate public records, viral clips, official uncertainty, media claims, and actual evidence."
 date: "2026-05-27"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Commentary"
 tags: ["Release 02", "war.gov", "PURSUE", "UAP", "evidence", "commentary", "AARO", "NASA", "ODNI", "DOE"]
 ogImage: "/blog-assets/release02-pr071-lake-huron.jpg"

@@ -26,14 +26,24 @@ const currentPath = Astro.url.pathname;
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X49F7XPJWB"></script>
+  <!-- Consent management: defer ad/analytics personalization until user choice.
+       EEA/UK users get a banner; elsewhere default to granted. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    // Default consent state — denied until user opts in (GDPR/EEA requirement)
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500,
+    });
     gtag('js', new Date());
-    gtag('config', 'G-X49F7XPJWB');
+    gtag('config', 'G-X49F7XPJWB', { anonymize_ip: true });
   </script>
+  <!-- Google tag (gtag.js) — loaded after consent default so it respects the state -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X49F7XPJWB"></script>
   <script
     async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9461995056900435"
@@ -84,7 +94,7 @@ const currentPath = Astro.url.pathname;
     <!-- Top micro-bar -->
     <div class="top-micro-bar hidden md:block border-b border-space-700/30">
       <div class="container-narrow flex items-center justify-between h-7 text-[9px] font-mono text-space-400 tracking-widest uppercase">
-        <span>sys.ufo-declassified.gov // classified terminal</span>
+        <span>sys.ufo-declassified.com // independent archive</span>
         <div class="signal-active">
           signal active
         </div>
@@ -196,7 +206,7 @@ const currentPath = Astro.url.pathname;
           <ul class="space-y-1.5 text-xs">
             <li><a href="/privacy" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Privacy Policy</a></li>
             <li><a href="/terms" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Terms of Service</a></li>
-            <li><a href="mailto:jason@ufo-declassified.com" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Contact Us</a></li>
+            <li><a href="/contact" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Contact</a></li>
           </ul>
         </div>
         <div>
@@ -224,6 +234,75 @@ const currentPath = Astro.url.pathname;
         menu.classList.toggle('hidden');
       });
     }
+  </script>
+
+  <!-- Consent banner: shown to EEA/UK visitors per Google EU User Consent Policy.
+       Non-EEA visitors default to granted consent (no banner). -->
+  <div id="consent-banner" hidden class="fixed bottom-0 inset-x-0 z-[100] bg-space-950/95 backdrop-blur-xl border-t border-cyan-glow/20 p-4 md:p-5">
+    <div class="container-narrow flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
+      <div class="flex-1 text-space-200 text-xs md:text-sm leading-relaxed">
+        <p>
+          <strong class="text-white">We use cookies</strong> for analytics and to serve ads via Google AdSense.
+          We and our partners may use cookies/IP addresses to serve ads based on your activity.
+          You can accept or reject personalized advertising; see our
+          <a href="/privacy" class="text-cyan-bright hover:underline">Privacy Policy</a>.
+        </p>
+      </div>
+      <div class="flex items-center gap-3 shrink-0">
+        <button id="consent-reject" type="button" class="px-4 py-2 text-xs font-mono uppercase tracking-wider text-space-300 border border-space-600 hover:border-space-400 hover:text-white rounded transition-all">
+          Reject
+        </button>
+        <button id="consent-accept" type="button" class="px-4 py-2 text-xs font-mono uppercase tracking-wider font-bold text-space-950 bg-cyan-glow/90 hover:bg-cyan-bright rounded transition-all">
+          Accept
+        </button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const STORAGE_KEY = 'ufo-consent-v1';
+      const banner = document.getElementById('consent-banner');
+      if (!banner) return;
+
+      // Heuristic EEA/UK detection: timezone or locale.
+      // Real geo-IP would be more accurate, but this catches the common case without a third-party API.
+      const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase();
+      const lang = (navigator.language || navigator.languages?.[0] || '').toLowerCase();
+      const isEEA = /europe|london|dublin|paris|berlin|madrid|rome|amsterdam|stockholm|oslo|helsinki|copenhagen|warsaw|prague|vienna|zurich|athens|lisbon|brussels|budapest|bucharest|sofia|tallinn|riga|vilnius|ljubljana|bratislava|nicosia|luxembourg|malta|reykjavik/i.test(tz)
+        || /^(en-gb|en-ie|de|fr|es|it|nl|sv|no|nb|nn|da|fi|pl|cs|sk|hu|ro|bg|et|lv|lt|sl|el|cy|lb|lu|mt|is|pt|hr)/i.test(lang);
+
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === 'granted' || stored === 'denied') {
+        applyConsent(stored);
+        return;
+      }
+      // Only show banner to likely EEA/UK visitors; others default to granted.
+      if (!isEEA) {
+        applyConsent('granted');
+        return;
+      }
+      banner.hidden = false;
+
+      function applyConsent(state) {
+        const granted = state === 'granted';
+        gtag('consent', 'update', {
+          ad_storage: granted ? 'granted' : 'denied',
+          ad_user_data: granted ? 'granted' : 'denied',
+          ad_personalization: granted ? 'granted' : 'denied',
+          analytics_storage: granted ? 'granted' : 'denied',
+        });
+        if (banner) banner.hidden = true;
+      }
+
+      document.getElementById('consent-accept')?.addEventListener('click', () => {
+        localStorage.setItem(STORAGE_KEY, 'granted');
+        applyConsent('granted');
+      });
+      document.getElementById('consent-reject')?.addEventListener('click', () => {
+        localStorage.setItem(STORAGE_KEY, 'denied');
+        applyConsent('denied');
+      });
+    })();
   </script>
 </body>
 </html>

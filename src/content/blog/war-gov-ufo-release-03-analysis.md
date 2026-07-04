@@ -2,7 +2,7 @@
 title: "War.gov UFO Release 03: The New Files Are a Map of Evidence Gaps"
 description: "A source-first analysis of the June 12, 2026 PURSUE Release 03 files: 72 records across CIA, DOW, FBI, NASA, intelligence assessment material, orb cases, historical files, Gemini records, and public reaction."
 date: "2026-06-15T09:30:00+08:00"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["Release 03", "war.gov", "PURSUE", "UAP", "FBI", "CIA", "DOW", "NASA", "AARO", "orbs", "evidence"]
 ogImage: "/blog-assets/release03-western-us-event-rendering.jpg"

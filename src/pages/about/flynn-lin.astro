@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Flynn Lin',
+  url: 'https://ufo-declassified.com/about/flynn-lin',
+  jobTitle: 'Founder & Editor',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'UFO Declassified',
+    url: 'https://ufo-declassified.com',
+  },
+  knowsAbout: [
+    'Declassified U.S. government documents',
+    'UAP / UFO history',
+    'PURSUE initiative',
+    'Science fiction film and television',
+  ],
+};
+---
+<BaseLayout
+  title="Flynn Lin"
+  description="About Flynn Lin — founder and editor of UFO Declassified. Independent developer, lifelong science fiction reader, and UAP document archivist."
+  ogType="article"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+
+  <section class="container-narrow py-12 max-w-3xl mx-auto">
+    <nav class="flex items-center gap-2 text-[10px] text-space-300 mb-6 font-mono tracking-wider uppercase">
+      <a href="/" class="hover:text-cyan-bright transition-colors">Home</a>
+      <span>/</span>
+      <a href="/about" class="hover:text-cyan-bright transition-colors">About</a>
+      <span>/</span>
+      <span class="text-space-100">Flynn Lin</span>
+    </nav>
+
+    <div class="section-header">
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">Flynn Lin</h1>
+      <p class="text-cyan-bright text-xs font-mono tracking-widest uppercase mt-2">Founder & Editor</p>
+    </div>
+
+    <div class="prose prose-invert max-w-none space-y-6 text-space-200 text-sm mt-8">
+
+      <p>
+        <strong class="text-white">Flynn Lin</strong> is the founder, editor, and sole operator of
+        UFO Declassified. He built and maintains the archive, writes the analysis articles, and curates
+        every record page on the site.
+      </p>
+
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">Background</h2>
+      <p>
+        Flynn has been fascinated with the unknown since childhood. Growing up in China, he read every
+        issue of <em class="text-white">Feidie Tansuo</em> (飞碟探索, "UFO Exploration") — a monthly
+        magazine that was, for years, the country's only mainstream publication dedicated to UFO
+        reporting and investigation. That magazine taught him to treat sightings as data to be
+        organized rather than mysteries to be sensationalized — an approach that directly shapes how
+        UFO Declassified is structured today.
+      </p>
+      <p>
+        His favorite filmmaker is <strong class="text-white">Steven Spielberg</strong>, and
+        <em class="text-white">Close Encounters of the Third Kind</em> (1977) remains the single most
+        formative film of his life — not for its aliens, but for its patient, ordinary protagonist who
+        simply refuses to look away from something he cannot explain. He is also a longtime fan of the
+        American miniseries <em class="text-white">Taken</em> (2002), which traced a single family's
+        encounter across generations and reinforced his belief that the human story around UAP matters
+        as much as the technical record.
+      </p>
+
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">Why This Site Exists</h2>
+      <p>
+        By day, Flynn is an independent developer and website operator. When the U.S. government
+        launched the PURSUE initiative in May 2026 and began releasing declassified UAP records through
+        war.gov/UFO, he found the official portal powerful but hard to navigate — large file sizes,
+        inconsistent naming, and no contextual analysis. UFO Declassified is his attempt to fix that:
+        a searchable, citable, human-readable archive built by one person who cares about getting the
+        source material right.
+      </p>
+
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">Editorial Approach</h2>
+      <ul class="space-y-2">
+        <li><strong class="text-white">Primary sources first.</strong> Every record page links back to the original government file.</li>
+        <li><strong class="text-white">No sensationalism.</strong> Analysis is clearly separated from fact; interpretation is labeled as such.</li>
+        <li><strong class="text-white">Citation-ready.</strong> Each page is structured so researchers and journalists can cite it directly.</li>
+        <li><strong class="text-white">Corrections welcome.</strong> Errors are fixed promptly — see the <a href="/contact" class="text-cyan-bright hover:underline">contact page</a>.</li>
+      </ul>
+
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">Connect</h2>
+      <p>
+        Reach Flynn directly at <a href="mailto:contact@ufo-declassified.com" class="text-cyan-bright hover:underline">contact@ufo-declassified.com</a>
+        for corrections, tips, media inquiries, or questions about any record on this site.
+      </p>
+
+    </div>
+  </section>
+</BaseLayout>

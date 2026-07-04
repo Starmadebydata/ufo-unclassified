@@ -2,7 +2,7 @@
 title: "War.gov UFO Release 02: What Changed in the May 22 PURSUE Files"
 description: "A deep guide to PURSUE Release 02 on War.gov/UFO: 64 new UAP records, military sensor videos, NASA audio, Sandia Base documents, PANTEX imagery, DOE records, CIA material, and ODNI narrative files."
 date: "2026-05-23"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["Release 02", "war.gov", "PURSUE", "UAP", "NASA", "DOE", "CIA", "ODNI", "Sandia"]
 ogImage: "/blog-assets/release02-pr051-syrian-acceleration.jpg"

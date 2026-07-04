@@ -2,7 +2,7 @@
 title: "The Syrian UAP Acceleration Clip Needs a Slow Reading"
 description: "A source-first analysis of DOW-UAP-PR051 in War.gov Release 02: why the Syrian instant acceleration video went viral, what the official description actually says, and what the public still needs."
 date: "2026-05-27T17:40:00+08:00"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["Syrian UAP", "Release 02", "war.gov", "PURSUE", "AARO", "CENTCOM", "infrared video", "sensor evidence"]
 ogImage: "/blog-assets/release02-pr051-syrian-instant-acceleration-cover.jpg"

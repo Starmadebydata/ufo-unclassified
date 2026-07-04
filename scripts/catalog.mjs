@@ -292,7 +292,19 @@ for (const id of featuredIds) {
   if (docMap.has(id)) docMap.get(id).featured = true;
 }
 
-// Populate relatedDocs by agency
+// Filter out placeholder documents without manual summaries.
+// These are auto-generated stub pages (templated summary + empty keyFindings)
+// that AdSense flags as "low value content". Keeping them out of the catalog
+// ensures they are not rebuilt into document pages or the sitemap.
+const beforeFilter = docMap.size;
+for (const [id, doc] of docMap) {
+  if (!SUMMARY_MAP[id]) {
+    docMap.delete(id);
+  }
+}
+console.log(`   Filtered out ${beforeFilter - docMap.size} placeholder documents without manual summaries (${docMap.size} remaining)`);
+
+// Populate relatedDocs by agency (after filtering, so no references to placeholders)
 for (const [id, doc] of docMap) {
   doc.relatedDocs = Array.from(docMap.values())
     .filter(d => d.agency === doc.agency && d.id !== id)

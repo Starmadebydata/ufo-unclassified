@@ -3,7 +3,7 @@ title: "War.gov/UFO: Complete Guide to the PURSUE Release 01, 02, and 03 Files"
 description: "Navigate the declassified UAP/UFO files released through PURSUE on War.gov/UFO, including Release 01 from May 8, Release 02 from May 22, and Release 03 from June 12, 2026."
 date: "2026-05-09"
 updated: "2026-06-15"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Guide"
 tags: ["war.gov", "PURSUE", "UAP", "declassified", "guide", "Release 03", "2026"]
 ogImage: "/blog-assets/release02-pr050-iran-formation.jpg"
@@ -104,7 +104,7 @@ These are standardized military reports documenting UAP encounters during operat
 
 - **DOW-UAP-D55**: A P-8A maritime patrol aircraft observed an unidentified low-flying object 55 nautical miles northwest of Latakia, Syria on November 18, 2016. The object was detected via EO/IR sensor traveling at approximately 500 knots and was observed passing between Russian naval vessels. [Read full analysis →](/documents/dow-uap-d55-mission-report-syria-november-2016)
 
-- **DOW-UAP-D10**: A mission report from the Middle East in May 2022 documenting an unresolved UAP encounter with accompanying video evidence. [View document →](/documents/dow-uap-d10-mission-report-middle-east-may-2022)
+- **DOW-UAP-D10**: A mission report from the Middle East in May 2022 documenting an unresolved UAP encounter with accompanying video evidence. [View document →](https://war.gov/UFO)
 
 #### Range Fouler Debriefs (5 files)
 

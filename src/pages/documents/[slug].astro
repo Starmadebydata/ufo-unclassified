@@ -127,7 +127,7 @@ const schema = {
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
   <article class="container-narrow py-12">
-    <nav class="flex items-center gap-2 text-[10px] text-space-300 mb-6 font-mono tracking-wider uppercase">
+    <nav class="flex items-center gap-2 text-xs text-space-300 mb-6 font-mono tracking-wider uppercase">
       <a href="/" class="hover:text-cyan-bright transition-colors">Home</a>
       <span>/</span>
       <a href="/documents" class="hover:text-cyan-bright transition-colors">Documents</a>
@@ -154,8 +154,8 @@ const schema = {
           { label: 'Files', value: `${doc.files.length} total` },
         ].map(item => (
           <div class="bg-space-900/95 p-5">
-            <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">{item.label}</div>
-            <div class="mt-2 text-sm font-semibold text-white">{item.value}</div>
+            <div class="text-[11px] font-mono uppercase tracking-[0.22em] text-space-300">{item.label}</div>
+            <div class="mt-2 text-sm md:text-base font-semibold text-white">{item.value}</div>
           </div>
         ))}
       </div>
@@ -172,7 +172,7 @@ const schema = {
             <h2 class="font-display text-base font-bold text-white uppercase tracking-wider">Citation-Ready Summary</h2>
           </div>
           <p class="text-space-50 text-sm md:text-base leading-relaxed">{answerBlock}</p>
-          {doc.summary && <p class="mt-4 text-space-100 text-sm leading-relaxed">{doc.summary}</p>}
+          {doc.summary && <p class="mt-4 text-space-100 text-sm md:text-base leading-relaxed">{doc.summary}</p>}
         </section>
 
         <section>
@@ -182,7 +182,7 @@ const schema = {
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {findings.map((finding: string) => (
               <div class="doc-card p-4">
-                <p class="text-sm leading-relaxed text-space-100">{finding}</p>
+                <p class="text-sm md:text-base leading-relaxed text-space-100">{finding}</p>
               </div>
             ))}
           </div>
@@ -193,7 +193,7 @@ const schema = {
             <h2 class="font-display text-base font-bold text-white uppercase tracking-wider">Files in This Record</h2>
           </div>
           <div class="glass-panel overflow-hidden">
-            <div class="grid grid-cols-[88px_minmax(0,1fr)_90px] gap-3 border-b border-cyan-glow/10 px-4 py-3 text-[10px] font-mono uppercase tracking-[0.18em] text-space-300">
+            <div class="grid grid-cols-[88px_minmax(0,1fr)_90px] gap-3 border-b border-cyan-glow/10 px-4 py-3 text-[11px] font-mono uppercase tracking-[0.18em] text-space-300">
               <span>Type</span>
               <span>Filename</span>
               <span class="text-right">Size</span>
@@ -202,7 +202,7 @@ const schema = {
               <a href={fileHref(file)} target="_blank" rel="noopener" class="grid grid-cols-[88px_minmax(0,1fr)_90px] gap-3 px-4 py-3 border-b border-cyan-glow/8 last:border-0 hover:bg-cyan-glow/5 transition-colors">
                 <span class={`file-icon ${file.type === 'pdf' ? 'file-icon-pdf' : file.type === 'video' ? 'file-icon-video' : file.type === 'audio' ? 'file-icon-audio' : 'file-icon-image'} text-[8px]`}>{file.type.toUpperCase().slice(0, 3)}</span>
                 <span class="min-w-0 truncate text-sm text-white">{file.filename}</span>
-                <span class="text-right text-[10px] font-mono text-space-300">{formatBytes(file.size)}</span>
+                <span class="text-right text-xs font-mono text-space-300">{formatBytes(file.size)}</span>
               </a>
             ))}
           </div>
@@ -224,7 +224,7 @@ const schema = {
                       loading="lazy"
                     />
                   </div>
-                  <div class="p-3 flex items-center justify-between gap-4 text-[10px] text-space-300 font-mono">
+                  <div class="p-3 flex items-center justify-between gap-4 text-xs text-space-300 font-mono">
                     <span class="truncate">{file.filename}</span>
                     <span>{formatBytes(file.size)}</span>
                   </div>
@@ -249,7 +249,7 @@ const schema = {
                 >
                   <source src={fileHref(file)} type={encodingFormat(file)} />
                 </video>
-                <div class="p-3 flex items-center justify-between gap-4 text-[10px] text-space-300 font-mono">
+                <div class="p-3 flex items-center justify-between gap-4 text-xs text-space-300 font-mono">
                   <span class="truncate">{file.filename}</span>
                   <span>{formatBytes(file.size)}</span>
                 </div>
@@ -270,7 +270,7 @@ const schema = {
                     <source src={fileHref(file)} type={encodingFormat(file)} />
                   </audio>
                 </div>
-                <div class="p-3 flex items-center justify-between gap-4 text-[10px] text-space-300 font-mono">
+                <div class="p-3 flex items-center justify-between gap-4 text-xs text-space-300 font-mono">
                   <span class="truncate">{file.filename}</span>
                   <span>{formatBytes(file.size)}</span>
                 </div>
@@ -283,27 +283,27 @@ const schema = {
       <aside class="space-y-6">
         <section class="glass-panel p-5">
           <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">How to Cite</h2>
-          <p class="mt-3 text-xs leading-relaxed text-space-100">{citationText}</p>
+          <p class="mt-3 text-sm leading-relaxed text-space-100">{citationText}</p>
           <a href={canonicalUrl} class="mt-4 block truncate text-xs font-mono text-cyan-bright hover:text-white">{canonicalUrl}</a>
         </section>
 
         <section class="glass-panel p-5">
           <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">Source & Provenance</h2>
-          <dl class="mt-4 space-y-4 text-sm">
+          <dl class="mt-4 space-y-4 text-sm md:text-base">
             <div>
-              <dt class="text-[10px] font-mono uppercase tracking-[0.18em] text-space-300">Original Release</dt>
+              <dt class="text-[11px] font-mono uppercase tracking-[0.18em] text-space-300">Original Release</dt>
               <dd class="mt-1 text-white">PURSUE {releaseLabel}, {releaseDateDisplay}</dd>
             </div>
             <div>
-              <dt class="text-[10px] font-mono uppercase tracking-[0.18em] text-space-300">Source Portal</dt>
+              <dt class="text-[11px] font-mono uppercase tracking-[0.18em] text-space-300">Source Portal</dt>
               <dd class="mt-1"><a href={sourceUrl} target="_blank" rel="noopener">Official source ↗</a></dd>
             </div>
             <div>
-              <dt class="text-[10px] font-mono uppercase tracking-[0.18em] text-space-300">Archive Page</dt>
+              <dt class="text-[11px] font-mono uppercase tracking-[0.18em] text-space-300">Archive Page</dt>
               <dd class="mt-1 text-white">UFO Declassified index record</dd>
             </div>
             <div>
-              <dt class="text-[10px] font-mono uppercase tracking-[0.18em] text-space-300">Classification</dt>
+              <dt class="text-[11px] font-mono uppercase tracking-[0.18em] text-space-300">Classification</dt>
               <dd class="mt-1 text-red-stamp font-mono font-bold">{doc.classification}</dd>
             </div>
           </dl>
@@ -311,23 +311,23 @@ const schema = {
 
         <section class="glass-panel p-5">
           <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">Record Details</h2>
-          <dl class="mt-4 space-y-4 text-sm">
+          <dl class="mt-4 space-y-4 text-sm md:text-base">
             <div>
-              <dt class="text-[10px] font-mono uppercase tracking-[0.18em] text-space-300">Category</dt>
+              <dt class="text-[11px] font-mono uppercase tracking-[0.18em] text-space-300">Category</dt>
               <dd class="mt-1 text-white">{categoryInfo?.label}</dd>
             </div>
             <div>
-              <dt class="text-[10px] font-mono uppercase tracking-[0.18em] text-space-300">Agency</dt>
+              <dt class="text-[11px] font-mono uppercase tracking-[0.18em] text-space-300">Agency</dt>
               <dd class="mt-1 text-white">{agencyInfo.fullName}</dd>
             </div>
             {doc.location && (
               <div>
-                <dt class="text-[10px] font-mono uppercase tracking-[0.18em] text-space-300">Location</dt>
+                <dt class="text-[11px] font-mono uppercase tracking-[0.18em] text-space-300">Location</dt>
                 <dd class="mt-1 text-white">{doc.location.name}, {doc.location.region}</dd>
               </div>
             )}
             <div>
-              <dt class="text-[10px] font-mono uppercase tracking-[0.18em] text-space-300">Tags</dt>
+              <dt class="text-[11px] font-mono uppercase tracking-[0.18em] text-space-300">Tags</dt>
               <dd class="mt-2 flex flex-wrap gap-2">
                 {doc.tags.map((tag: string) => (
                   <span class="rounded border border-cyan-glow/20 bg-cyan-glow/5 px-2 py-1 text-[10px] font-mono text-cyan-bright">{tag}</span>
@@ -349,7 +349,7 @@ const schema = {
             <a href={`/documents/${related.slug}`} class="doc-card p-4 group cursor-pointer">
               <span class={`badge ${AGENCY_INFO[related.agency].badgeClass} text-[8px] mb-3`}>{related.agency}</span>
               <h3 class="text-sm text-white group-hover:text-cyan-bright transition-colors line-clamp-2 font-medium">{related.title}</h3>
-              <p class="text-[10px] text-space-300 mt-2 font-mono">{CATEGORY_INFO[related.category]?.label} / {related.year}</p>
+              <p class="text-xs text-space-300 mt-2 font-mono">{CATEGORY_INFO[related.category]?.label} / {related.year}</p>
             </a>
           ))}
         </div>

@@ -2,7 +2,7 @@
 title: "Northeastern Red Orb: Video Is Evidence, Not Identification"
 description: "A source-first analysis of the Northeastern Red Orb case in War.gov Release 03: two witnesses, FBI follow-up, recurring lights near a property, and the missing data needed before anyone can identify the object."
 date: "2026-06-21T15:20:00+08:00"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["Northeastern Red Orb", "Release 03", "war.gov", "PURSUE", "FBI", "UAP evidence", "orbs", "witness video"]
 ogImage: "/blog-assets/northeastern-red-orb-fbi-case-cover.jpg"

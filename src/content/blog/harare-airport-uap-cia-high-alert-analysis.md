@@ -2,7 +2,7 @@
 title: "Harare Airport UAP: A CIA High-Alert Cable Is Not an Answer"
 description: "A source-first analysis of CIA-UAP-017 in War.gov Release 03: the 2008 Harare airport object, why the high-alert context matters, and what evidence is still missing."
 date: "2026-06-24T16:30:00+08:00"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["Harare Airport", "Zimbabwe", "CIA", "Release 03", "war.gov", "PURSUE", "UAP evidence", "historical files"]
 ogImage: "/blog-assets/harare-airport-cia-high-alert-cover.jpg"

@@ -2,7 +2,7 @@
 title: "Sandia Green Fireballs: Evidence of Attention, Not Proof of Origin"
 description: "A source-first analysis of DOW-UAP-D017 in War.gov Release 02, the 1948-1950 Sandia Base green fireball file, and what it really adds to the public UAP record."
 date: "2026-05-27T12:30:00+08:00"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["Sandia Base", "green fireballs", "Release 02", "war.gov", "PURSUE", "New Mexico", "LaPaz", "historical UAP files"]
 ogImage: "/blog-assets/sandia-green-fireballs-1948-1950-cover.jpg"

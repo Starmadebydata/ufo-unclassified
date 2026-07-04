@@ -2,7 +2,7 @@
 title: "Western U.S. Orbs: The Strongest Release 03 Case Still Needs Data"
 description: "A source-first analysis of the Western U.S. 'orbs launching orbs' case in War.gov Release 03: what AARO found, why 40 percent remains unresolved, and what evidence is still missing."
 date: "2026-06-20T01:20:00+08:00"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["Western U.S. Orbs", "Release 03", "war.gov", "PURSUE", "AARO", "DOW", "federal agents", "UAP evidence", "orbs"]
 ogImage: "/blog-assets/western-us-orbs-case-analysis-cover.jpg"

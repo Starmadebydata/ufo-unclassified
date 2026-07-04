@@ -2,7 +2,7 @@
 title: "Every NASA Apollo UFO Photo Just Declassified — Full Analysis"
 description: "Detailed analysis of all 12 newly declassified NASA files from the PURSUE release, including 6 Apollo 12 lunar surface anomaly images, Apollo 11 & 17 crew debriefings, and the Gemini 12 audio recording."
 date: "2026-05-09"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["NASA", "Apollo", "moon", "declassified", "photos", "astronauts", "lunar"]
 ogImage: "/blog-assets/nasa-uap-vm2-apollo-12-1969.jpg"
@@ -155,7 +155,7 @@ The Skylab crews conducted extensive Earth observation experiments and photograp
 3. Scientific instruments aboard could potentially record phenomena
 4. The station's orientation could be adjusted for better observation
 
-[Read the Skylab debriefing →](/documents/nasa-uap-d7-skylab-technical-crew-debriefing-1973)
+[Read the Skylab debriefing →](https://war.gov/UFO)
 
 ---
 
@@ -175,7 +175,7 @@ The mission launched on November 11, 1966. However, the audio file is dated Dece
 
 The audio format itself is significant. In the Gemini era, voice communications were recorded on analog tapes. The fact that this recording survived and was identified for UAP-related disclosure suggests it contains content that reviewers in 2026 considered relevant.
 
-[Listen to the Gemini audio →](/documents/1006119-nasa-audio-12-5-1965-low-earth-orbit)
+[Listen to the Gemini audio →](https://war.gov/UFO)
 
 ---
 
@@ -223,8 +223,8 @@ All twelve NASA files are available in our archive:
 - [Apollo 17 Visual Media](/documents/nasa-uap-vm6-apollo-17-1972)
 - [Apollo 17 Science Debriefing (1973)](/documents/nasa-uap-d5-apollo-17-crew-debriefing-for-science-1973)
 - [Apollo 17 Technical Debriefing (1973)](/documents/nasa-uap-d6-apollo-17-technical-crew-debriefing-1973)
-- [Skylab Technical Debriefing (1973)](/documents/nasa-uap-d7-skylab-technical-crew-debriefing-1973)
-- [Gemini Audio Recording (1965)](/documents/1006119-nasa-audio-12-5-1965-low-earth-orbit)
+- [Skylab Technical Debriefing (1973)](https://war.gov/UFO)
+- [Gemini Audio Recording (1965)](https://war.gov/UFO)
 
 Browse the full archive by visiting our [NASA agency page →](/agencies/nasa)
 

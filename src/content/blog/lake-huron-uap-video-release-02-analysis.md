@@ -2,7 +2,7 @@
 title: "The Lake Huron UAP Video Shows Why Release 02 Still Needs Case Files"
 description: "A focused analysis of the Lake Huron F-16 shootdown footage in War.gov Release 02, what the video adds, and why a public clip is not the same as a complete case file."
 date: "2026-05-27"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["Lake Huron", "Release 02", "war.gov", "PURSUE", "UAP", "F-16", "NORTHCOM", "video evidence"]
 ogImage: "/blog-assets/release02-pr071-lake-huron-intercept.jpg"

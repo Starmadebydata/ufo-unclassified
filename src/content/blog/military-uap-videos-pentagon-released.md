@@ -2,7 +2,7 @@
 title: "28 Military UAP Videos the Pentagon Just Released — What They Show"
 description: "Complete catalog and analysis of all 28 military UAP video recordings released through PURSUE, from a 2013 Mediterranean encounter to a 2026 Department of the Army recording — the newest military UAP footage ever publicly released."
 date: "2026-05-10"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["military", "Pentagon", "videos", "UAP", "DOW", "FLIR", "2026", "footage"]
 ogImage: "/video-thumbnails/1006080_DOW-UAP-PR34_Unresolved_UAP_Report_Greece_October_2023.jpg"

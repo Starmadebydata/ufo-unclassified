@@ -2,7 +2,7 @@
 title: "The UAP Science Advisory Council: 15 Scientists Will Not Solve the Mystery. They Might Redefine It."
 description: "A source-first analysis of the White House UAP Science Advisory Council: who the 15 members are, what they can and cannot do, and why redefining the question matters more than answering it."
 date: "2026-07-01T10:00:00+08:00"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["UAP Science Advisory Council", "Avi Loeb", "AARO", "Galileo Project", "PURSUE", "scientific method", "UAP evidence", "Release 03"]
 ogImage: "/blog-assets/uap-science-advisory-council-cover.jpg"

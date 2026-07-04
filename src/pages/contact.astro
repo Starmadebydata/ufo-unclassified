@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const lastUpdated = 'July 4, 2026';
+---
+<BaseLayout title="Contact" description="Contact UFO Declassified — questions, corrections, tips, and media inquiries.">
+  <section class="container-narrow py-12 max-w-3xl mx-auto">
+    <div class="section-header">
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">Contact</h1>
+    </div>
+    <p class="text-space-400 text-xs font-mono mb-8">Last updated: {lastUpdated}</p>
+
+    <div class="prose prose-invert max-w-none space-y-6 text-space-200 text-sm">
+
+      <p>
+        We welcome questions, corrections, tips, and media inquiries about the declassified UAP documents
+        indexed on this site. Whether you spotted a metadata error, want to request coverage of a specific
+        record, or are a journalist working on a PURSUE-related story — please reach out.
+      </p>
+
+      <div class="glass-panel p-6 my-8">
+        <h2 class="font-display text-lg font-bold text-white mb-3 uppercase tracking-wider">Email</h2>
+        <p class="mb-3">
+          <strong class="text-white">General inquiries & corrections:</strong><br />
+          <a href="mailto:contact@ufo-declassified.com" class="text-cyan-bright hover:underline">contact@ufo-declassified.com</a>
+        </p>
+        <p class="text-space-300 text-xs leading-relaxed mt-4">
+          We aim to respond within 2–3 business days. For factual corrections to a specific document or
+          article, please include the URL and a description of the error. If you are a government source
+          with additional context on a released record, let us know — we treat source communications
+          confidentially by default.
+        </p>
+      </div>
+
+      <div class="glass-panel p-6 my-8">
+        <h2 class="font-display text-lg font-bold text-white mb-3 uppercase tracking-wider">What to Include</h2>
+        <ul class="space-y-2">
+          <li><strong class="text-white">Corrections:</strong> The page URL and the specific text or metadata that needs fixing.</li>
+          <li><strong class="text-white">Tips & new records:</strong> Agency, file ID, release batch, and any source link you can share.</li>
+          <li><strong class="text-white">Media inquiries:</strong> Your outlet, deadline, and the angle you are pursuing.</li>
+          <li><strong class="text-white">General feedback:</strong> Suggestions for improving navigation, search, or topic coverage.</li>
+        </ul>
+      </div>
+
+      <div class="glass-panel p-6 my-8">
+        <h2 class="font-display text-lg font-bold text-white mb-3 uppercase tracking-wider">Editorial Standards</h2>
+        <p>
+          UFO Declassified is an independent, non-governmental project. We do not have access to classified
+          or unreleased materials. All content on this site is based on publicly released U.S. government
+          records. We do not pursue conspiracy theories, and we do not publish unverified claims. If you
+          are seeking official comment on a UAP matter, please contact the relevant agency directly.
+        </p>
+      </div>
+
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">Response Expectations</h2>
+      <ul class="space-y-2">
+        <li><strong class="text-white">Corrections:</strong> Reviewed and applied within 2–3 business days.</li>
+        <li><strong class="text-white">New record suggestions:</strong> Indexed within 1–2 weeks of release, if publicly available.</li>
+        <li><strong class="text-white">Media inquiries:</strong> Same-day or next-business-day response.</li>
+        <li><strong class="text-white">We do not respond to:</strong> Spam, solicitations for paid placement, or requests to remove legally published public-domain government records.</li>
+      </ul>
+
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">Legal</h2>
+      <p class="text-space-300">
+        By contacting us, you agree to our <a href="/terms" class="text-cyan-bright hover:underline">Terms of Service</a>
+        and acknowledge our <a href="/privacy" class="text-cyan-bright hover:underline">Privacy Policy</a>.
+        We do not share your email or inquiry content with third parties except as required by law.
+      </p>
+
+    </div>
+  </section>
+</BaseLayout>

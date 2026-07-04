@@ -29,8 +29,9 @@ const jsonLd = {
   datePublished: post.data.date,
   dateModified: post.data.updated || post.data.date,
   author: {
-    '@type': 'Organization',
+    '@type': 'Person',
     name: post.data.author,
+    url: 'https://ufo-declassified.com/about/flynn-lin',
   },
   publisher: {
     '@type': 'Organization',
@@ -68,7 +69,7 @@ const jsonLd = {
       </p>
       <div class="flex items-center gap-4 text-[10px] text-space-500 mb-4 font-mono tracking-wider">
         <span>{new Date(post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-        <span>by {post.data.author}</span>
+        <span>by <a href="/about/flynn-lin" class="text-cyan-bright hover:underline">{post.data.author}</a></span>
       </div>
       <div class="flex flex-wrap gap-2">
         {post.data.tags.map(tag => (

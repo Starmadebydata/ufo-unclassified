@@ -2,7 +2,7 @@
 title: "ODNI Orange-Orb Narrative: Evidence, Not Verification"
 description: "A source-first analysis of ODNI-UAP-D001 in War.gov Release 02: why the senior intelligence officer's orange-orb account matters, and why testimony still needs independent records."
 date: "2026-05-27T11:00:00+08:00"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["ODNI", "Release 02", "war.gov", "PURSUE", "orange orbs", "USPER", "testimony", "UAP evidence"]
 ogImage: "/blog-assets/odni-usper-narrative-redacted-cover.jpg"

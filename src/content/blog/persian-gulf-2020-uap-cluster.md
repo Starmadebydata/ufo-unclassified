@@ -2,7 +2,7 @@
 title: "The 2020 Persian Gulf UAP Cluster: Why These Military Files Belong Together"
 description: "A deep dive into the 2020 Arabian Gulf, Persian Gulf, Strait of Hormuz, and Arabian Sea UAP records, showing how mission reports, range fouler forms, and videos create a cluster worth studying."
 date: "2026-05-16"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Deep Dive"
 tags: ["DOW", "Persian Gulf", "Arabian Gulf", "Strait of Hormuz", "military", "range-fouler", "UAP"]
 ogImage: "/blog-assets/release02-pr098-persian-gulf-formation.jpg"
@@ -32,11 +32,11 @@ These files are the core of the 2020 Gulf cluster:
 | Record | Region | Format | Why it matters |
 |---|---|---|---|
 | [DOW-UAP-D38](/documents/dow-uap-d38-range-fouler-debrief-middle-east-may-2020) | Middle East | Range fouler debrief | Structured pilot or crew report format |
-| [DOW-UAP-D56](/documents/dow-uap-d56-range-fouler-debrief-arabian-sea-august-2020) | Arabian Sea | Range fouler debrief | Second debrief-style record in same broader theater |
-| [DOW-UAP-D60](/documents/dow-uap-d60-mission-report-persian-gulf-august-2020) | Persian Gulf | Mission report | Operational mission context |
-| [DOW-UAP-D62](/documents/dow-uap-d62-mission-report-strait-of-hormuz-september-2020) | Strait of Hormuz | Mission report | Strategic chokepoint location |
-| [DOW-UAP-D63](/documents/dow-uap-d63-mission-report-strait-of-hormuz-october-2020) | Strait of Hormuz | Mission report | Follow-on record one month later |
-| [DOW-UAP-D64](/documents/dow-uap-d64-mission-report-iran-november-2020) | Iran | Mission report | Regional continuity into late 2020 |
+| [DOW-UAP-D56](https://war.gov/UFO) | Arabian Sea | Range fouler debrief | Second debrief-style record in same broader theater |
+| [DOW-UAP-D60](https://war.gov/UFO) | Persian Gulf | Mission report | Operational mission context |
+| [DOW-UAP-D62](https://war.gov/UFO) | Strait of Hormuz | Mission report | Strategic chokepoint location |
+| [DOW-UAP-D63](https://war.gov/UFO) | Strait of Hormuz | Mission report | Follow-on record one month later |
+| [DOW-UAP-D64](https://war.gov/UFO) | Iran | Mission report | Regional continuity into late 2020 |
 
 The pattern is not just "many files." It is many files in adjacent operational spaces, using multiple reporting formats.
 
@@ -72,8 +72,8 @@ That does not make the object extraordinary by default. It makes the report oper
 
 Two records deserve to be read together:
 
-- [DOW-UAP-D62 - Strait of Hormuz, September 2020](/documents/dow-uap-d62-mission-report-strait-of-hormuz-september-2020)
-- [DOW-UAP-D63 - Strait of Hormuz, October 2020](/documents/dow-uap-d63-mission-report-strait-of-hormuz-october-2020)
+- [DOW-UAP-D62 - Strait of Hormuz, September 2020](https://war.gov/UFO)
+- [DOW-UAP-D63 - Strait of Hormuz, October 2020](https://war.gov/UFO)
 
 The location matters. The Strait of Hormuz is one of the world's most monitored maritime corridors. Military, commercial, and regional security activity all overlap there. A UAP report in that environment raises more questions than a report over an empty training range:
 
@@ -101,10 +101,10 @@ The same broader 2020 period also includes several video records. These should n
 
 Useful video pages:
 
-- [PR36 - Middle East, May 2020](/documents/1006083-dow-uap-pr36-unresolved-uap-report-middle-east-may-2020)
-- [PR37 - Middle East, 2020](/documents/1006087-dow-uap-pr37-unresolved-uap-report-middle-east-2020)
-- [PR39 - Middle East, 2020](/documents/1006089-dow-uap-pr39-unresolved-uap-report-middle-east-2020)
-- [PR42 - Middle East, 2020](/documents/1006097-dow-uap-pr42-unresolved-uap-report-middle-east-2020)
+- [PR36 - Middle East, May 2020](https://war.gov/UFO)
+- [PR37 - Middle East, 2020](https://war.gov/UFO)
+- [PR39 - Middle East, 2020](https://war.gov/UFO)
+- [PR42 - Middle East, 2020](https://war.gov/UFO)
 
 ## How to Read the Cluster Without Forcing It
 
@@ -140,8 +140,8 @@ That is exactly the kind of set serious researchers look for. It offers more tha
 Use this order:
 
 1. Start with [DOW-UAP-D38](/documents/dow-uap-d38-range-fouler-debrief-middle-east-may-2020) to understand the debrief format.
-2. Compare with [DOW-UAP-D56](/documents/dow-uap-d56-range-fouler-debrief-arabian-sea-august-2020) for format overlap.
-3. Move into mission reports [D60](/documents/dow-uap-d60-mission-report-persian-gulf-august-2020), [D62](/documents/dow-uap-d62-mission-report-strait-of-hormuz-september-2020), and [D63](/documents/dow-uap-d63-mission-report-strait-of-hormuz-october-2020).
+2. Compare with [DOW-UAP-D56](https://war.gov/UFO) for format overlap.
+3. Move into mission reports [D60](https://war.gov/UFO), [D62](https://war.gov/UFO), and [D63](https://war.gov/UFO).
 4. Add the video pages as visual context.
 5. Only then write a claim about the cluster.
 

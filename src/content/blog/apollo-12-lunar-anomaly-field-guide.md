@@ -2,7 +2,7 @@
 title: "Apollo 12 UFO Files and Transcript: NASA Lunar Anomaly Field Guide"
 description: "A visual field guide for UFO researchers studying the Apollo 12 transcript, Apollo 12 lunar image files, and Apollo 17 UAP records in the PURSUE release."
 date: "2026-05-16"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Field Guide"
 tags: ["NASA", "Apollo 12", "Apollo 17", "lunar", "photo-evidence", "anomaly", "field-guide"]
 ogImage: "/blog-assets/nasa-uap-vm1-apollo-12-1969.jpg"

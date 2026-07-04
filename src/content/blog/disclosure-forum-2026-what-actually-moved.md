@@ -2,7 +2,7 @@
 title: "Disclosure Forum 2026: Washington Talked About UFOs for a Day. Here Is What Actually Moved."
 description: "A source-first analysis of the June 25, 2026 Disclosure Forum in the U.S. Senate: the 1952 Washington tape, whistleblower immunity, the contractor loophole, and what changed versus what was theater."
 date: "2026-07-01T12:00:00+08:00"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Analysis"
 tags: ["Disclosure Forum 2026", "UAP legislation", "whistleblower", "1952 Washington", "MIT Lincoln Lab", "contractor loophole", "PURSUE", "UAP Disclosure Act", "Congress"]
 ogImage: "/blog-assets/disclosure-forum-2026-cover.jpg"

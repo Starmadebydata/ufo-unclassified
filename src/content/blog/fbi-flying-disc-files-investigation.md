@@ -2,7 +2,7 @@
 title: "FBI's Flying Disc Files: Inside the Bureau's 80-Year UFO Investigation"
 description: "Deep dive into the FBI's 22 declassified UAP files from PURSUE, including the massive Case File 62-HQ-83894, FLIR sensor imagery, and 24 physical evidence photographs spanning decades of investigation."
 date: "2026-05-10"
-author: "UFO Declassified Research Team"
+author: "Flynn Lin"
 category: "Investigation"
 tags: ["FBI", "case-file", "FLIR", "evidence", "photos", "declassified", "investigation"]
 ogImage: "/blog-assets/fbi-photo-a1.jpg"
