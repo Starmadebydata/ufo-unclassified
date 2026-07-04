@@ -118,7 +118,7 @@ This was the first theory the 415th considered. The reports came from over Germa
 
 ### What did the CIA Robertson Panel conclude about foo fighters?
 
-The CIA's Scientific Advisory Panel on Unidentified Flying Objects, better known as the Robertson Panel after its chairman H.P. Robertson, met for five days in January 1953. The panel reviewed a selection of the best-documented UFO cases from the early 1950s, including some of the same nocturnal-light reports that echoed the 415th's wartime observations.
+The CIA's Scientific Advisory Panel on Unidentified Flying Objects, better known as the [Robertson Panel](/blog/cia-robertson-panel-1953-ufo-report/) after its chairman H.P. Robertson, met for five days in January 1953. The panel reviewed a selection of the best-documented UFO cases from the early 1950s, including some of the same nocturnal-light reports that echoed the 415th's wartime observations.
 
 The Robertson Panel's conclusion was institutional, not explanatory. The panel did not identify the foo fighters. It did not identify any of the cases it reviewed. Instead, it concluded that the phenomenon did not constitute a direct physical threat to national security and recommended that the intelligence community downplay public interest in UFOs to prevent information overload.
 
