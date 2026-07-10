@@ -1,21 +1,21 @@
 ---
-title: "War.gov/UFO: Complete Guide to the PURSUE Release 01, 02, and 03 Files"
-description: "Navigate the declassified UAP/UFO files released through PURSUE on War.gov/UFO, including Release 01 from May 8, Release 02 from May 22, and Release 03 from June 12, 2026."
+title: "War.gov/UFO: Complete Guide to the PURSUE Release 01 Through 04 Files"
+description: "Navigate the declassified UAP/UFO files released through PURSUE on War.gov/UFO, including Release 01 from May 8, Release 02 from May 22, Release 03 from June 12, and Release 04 from July 10, 2026."
 date: "2026-05-09"
-updated: "2026-06-15"
+updated: "2026-07-11"
 author: "Flynn Lin"
 category: "Guide"
-tags: ["war.gov", "PURSUE", "UAP", "declassified", "guide", "Release 03", "2026"]
+tags: ["war.gov", "PURSUE", "UAP", "declassified", "guide", "Release 04", "2026"]
 ogImage: "/blog-assets/release02-pr050-iran-formation.jpg"
 featured: true
 readingTime: "14 min read"
 ---
 
-# War.gov/UFO: Complete Guide to the PURSUE Release 01, 02, and 03 Files
+# War.gov/UFO: Complete Guide to the PURSUE Release 01 Through 04 Files
 
-On May 8, 2026, the United States government launched the public PURSUE archive for UAP (Unidentified Anomalous Phenomena) records through [War.gov/UFO](https://war.gov/UFO). On May 22, 2026, the Department of War published Release 02. On June 12, 2026, the Department published Release 03.
+On May 8, 2026, the United States government launched the public PURSUE archive for UAP (Unidentified Anomalous Phenomena) records through [War.gov/UFO](https://war.gov/UFO). On May 22, 2026, the Department of War published Release 02. On June 12, 2026, the Department published Release 03. On July 10, 2026, the Department published Release 04.
 
-This guide now covers the first three PURSUE batches: what changed, which agencies are represented, and where to start if you want the primary records rather than headlines.
+This guide now covers all four PURSUE batches: what changed, which agencies are represented, and where to start if you want the primary records rather than headlines.
 
 ---
 
@@ -49,7 +49,7 @@ The third batch, published on June 12, 2026, adds 72 indexed records:
 - **Intelligence Community Assessment (ICA)** — Colorado Springs incident analysis
 - **U.S. Government / other** — Congress-White House UFO correspondence
 
-For focused breakdowns, read our [Release 02 analysis](/blog/war-gov-ufo-release-02-analysis/) and [Release 03 analysis](/blog/war-gov-ufo-release-03-analysis/).
+For focused breakdowns, read our [Release 02 analysis](/blog/war-gov-ufo-release-02-analysis/), [Release 03 analysis](/blog/war-gov-ufo-release-03-analysis/), and [Release 04 first look](/blog/war-gov-ufo-release-04-first-look/).
 
 ---
 
