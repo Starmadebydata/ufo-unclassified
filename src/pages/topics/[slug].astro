@@ -95,6 +95,7 @@ function topicMatches(slug: string, doc: any): boolean {
   const title = doc.title.toLowerCase();
   const tags = doc.tags.join(' ').toLowerCase();
   if (slug === 'pursue-release-2026') return doc.dateReleased.startsWith('2026-');
+  if (slug === 'pursue-release-04') return (doc.releaseLabel || 'Release 01') === 'Release 04';
   if (slug === 'pursue-release-03') return (doc.releaseLabel || 'Release 01') === 'Release 03';
   if (slug === 'pursue-release-02') return (doc.releaseLabel || 'Release 01') === 'Release 02';
   if (slug === 'fbi-ufo-files') return doc.agency === 'FBI';
