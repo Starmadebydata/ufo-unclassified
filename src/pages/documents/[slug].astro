@@ -4,6 +4,7 @@ import ShareButtons from '../../components/ShareButtons.astro';
 import { documents } from '../../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
 import { ARCHIVE_SOURCE_URL, fileThumbnailUrl, fileUrl, makeArchiveDatasetSchema } from '../../config';
+import { isThinDocument } from '../../data/seo';
 
 export function getStaticPaths() {
   return documents.map(doc => ({
@@ -118,11 +119,12 @@ const schema = {
   associatedMedia: doc.files.map(mediaSchema),
 };
 ---
-<BaseLayout 
-  title={doc.title} 
+<BaseLayout
+  title={doc.title}
   description={pageDescription}
   ogImage={ogImage}
   ogType="article"
+  noindex={isThinDocument(doc)}
 >
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 

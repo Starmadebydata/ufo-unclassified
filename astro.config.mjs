@@ -17,6 +17,9 @@ export default defineConfig({
       changefreq: 'daily',
       priority: 0.7,
       lastmod: new Date(),
+      // Exclude bulk DOD/DVIDS asset pages (noindexed in documents/[slug].astro —
+      // keep this URL pattern in sync with isThinDocument() in src/data/seo.ts).
+      filter: (page) => !/\/documents\/[^/]*-dod-\d{6,}/.test(page),
     }),
   ],
 

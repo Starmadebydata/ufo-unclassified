@@ -7,14 +7,17 @@ interface Props {
   ogImage?: string;
   ogType?: 'website' | 'article';
   canonical?: string;
+  /** Emit a robots noindex,follow meta — for bulk asset pages kept on-site but out of search. */
+  noindex?: boolean;
 }
 
-const { 
-  title, 
+const {
+  title,
   description = 'The most comprehensive database of declassified UAP/UFO documents from the U.S. government. Browse PURSUE Release 01 through Release 04 files from DOW, FBI, NASA, DOE, CIA, ICA, ODNI, and more.',
   ogImage = '/og-default.png',
   ogType = 'website',
   canonical,
+  noindex = false,
 } = Astro.props;
 
 const siteTitle = title === 'Home' ? 'UFO Declassified — Explore Government UAP Files' : `${title} | UFO Declassified`;
@@ -54,6 +57,7 @@ const currentPath = Astro.url.pathname;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{siteTitle}</title>
   <meta name="description" content={description} />
+  {noindex && <meta name="robots" content="noindex, follow" />}
   <link rel="canonical" href={canonicalURL} />
 
   <!-- Fonts: Orbitron (sci-fi display) + Inter + JetBrains Mono -->
