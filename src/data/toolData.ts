@@ -4,6 +4,7 @@
 import { documents } from './documents';
 import { GEO_OVERLAY, UNMAPPABLE_LOCATIONS } from './geo';
 import type { GeoPrecision } from './geo';
+import { fileUrl, fileThumbnailUrl } from '../config';
 
 export interface ToolDoc {
   slug: string;
@@ -69,6 +70,42 @@ export function getMapLocations(): { locations: MapLocation[]; unmappableCount: 
   locations.sort((a, b) => b.docs.length - a.docs.length);
 
   return { locations, unmappableCount, unlocatedCount };
+}
+
+export interface VideoEntry {
+  docSlug: string;
+  docTitle: string;
+  agency: string;
+  release: string;
+  year: number;
+  location?: string;
+  videoUrl: string;
+  thumb?: string;
+  sourceUrl?: string;
+}
+
+/** One entry per video file across the archive, for the video browser. */
+export function getVideoEntries(): VideoEntry[] {
+  const entries: VideoEntry[] = [];
+  for (const d of documents) {
+    for (const f of d.files) {
+      if (f.type !== 'video') continue;
+      entries.push({
+        docSlug: d.slug,
+        docTitle: d.title,
+        agency: d.agency,
+        release: d.releaseLabel || 'Release 01',
+        year: d.year,
+        location: d.location?.name,
+        videoUrl: fileUrl(f),
+        thumb: fileThumbnailUrl(f),
+        sourceUrl: f.sourceUrl || d.sourceUrl,
+      });
+    }
+  }
+  // Newest events first, then by title for stability.
+  entries.sort((a, b) => b.year - a.year || a.docTitle.localeCompare(b.docTitle));
+  return entries;
 }
 
 export const RELEASES = ['Release 01', 'Release 02', 'Release 03', 'Release 04'];

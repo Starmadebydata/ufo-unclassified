@@ -1,10 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getToolDocs, getMapLocations } from '../../data/toolData';
+import { getToolDocs, getMapLocations, getVideoEntries } from '../../data/toolData';
+import { trackedClaims } from '../../data/claims';
 
 const docs = getToolDocs();
 const { locations } = getMapLocations();
 const mappedDocs = locations.reduce((sum, l) => sum + l.docs.length, 0);
+const videoCount = getVideoEntries().length;
 
 const tools = [
   {
@@ -27,6 +29,20 @@ const tools = [
     tagline: `${docs.length} records in numbers`,
     description: 'The whole archive at a glance: per-release, per-agency, per-format, and per-decade breakdowns, recomputed on every site build.',
     icon: 'M3 21h18 M6 21V10 M11 21V4 M16 21v-7 M21 21V8',
+  },
+  {
+    href: '/tools/videos',
+    title: 'Video Browser',
+    tagline: `All ${videoCount} archive videos in one place`,
+    description: 'Filterable gallery of every released clip with in-page playback, record links, official source links, and standing chain-of-custody cautions.',
+    icon: 'M4 5h16v14H4z M10 9l5 3-5 3z',
+  },
+  {
+    href: '/tools/claims',
+    title: 'Claim Tracker',
+    tagline: `${trackedClaims.length} public claims under watch`,
+    description: 'Who claimed what, its current verification status, and what evidence would settle it — from the 1952 tape to the contractor loophole.',
+    icon: 'M9 11l3 3 8-8 M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9',
   },
 ];
 ---

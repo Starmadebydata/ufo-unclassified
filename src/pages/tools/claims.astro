@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { trackedClaims, STATUS_INFO } from '../../data/claims';
+import type { ClaimStatus } from '../../data/claims';
+
+const statuses = (Object.keys(STATUS_INFO) as ClaimStatus[]).sort(
+  (a, b) => STATUS_INFO[a].order - STATUS_INFO[b].order
+);
+const grouped = statuses
+  .map(s => ({ status: s, info: STATUS_INFO[s], claims: trackedClaims.filter(c => c.status === s) }))
+  .filter(g => g.claims.length > 0);
+const lastUpdated = trackedClaims.map(c => c.lastUpdated).sort().at(-1);
+---
+<BaseLayout
+  title="Claim Tracker"
+  description={`Tracking ${trackedClaims.length} public claims around the PURSUE UAP releases — the 1952 Washington tape, whistleblower immunity, withheld footage, contractor loophole — with verification status and sources.`}
+>
+  <section class="container-narrow py-12">
+    <div class="section-header">
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">Claim Tracker</h1>
+    </div>
+    <p class="text-space-400 mb-2 text-sm font-mono max-w-3xl">
+      Public claims around the PURSUE releases, tracked with the same discipline we apply to documents: who said it,
+      what its verification status is, and what evidence would settle it.
+    </p>
+    <p class="text-space-500 mb-8 text-xs font-mono">
+      {trackedClaims.length} tracked claims · last updated {lastUpdated}
+    </p>
+
+    <!-- Status legend -->
+    <div class="doc-card p-5 mb-10">
+      <h2 class="font-mono text-[10px] text-cyan-glow/60 uppercase tracking-[0.2em] mb-3">// Status definitions</h2>
+      <div class="grid md:grid-cols-2 gap-x-8 gap-y-2">
+        {statuses.map(s => (
+          <div class="flex gap-2 text-[11px] font-mono leading-relaxed">
+            <span class="shrink-0 mt-1 w-2 h-2 rounded-full" style={`background:${STATUS_INFO[s].color}`}></span>
+            <span><span class="uppercase tracking-wider" style={`color:${STATUS_INFO[s].color}`}>{STATUS_INFO[s].label}</span>
+            <span class="text-space-400"> — {STATUS_INFO[s].description}</span></span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {grouped.map(group => (
+      <div class="mb-10">
+        <h2 class="font-display text-lg font-bold uppercase tracking-wider mb-4 flex items-center gap-3">
+          <span class="w-2.5 h-2.5 rounded-full" style={`background:${group.info.color}`}></span>
+          <span class="text-white">{group.info.label}</span>
+          <span class="text-[10px] font-mono text-space-500 tracking-widest">({group.claims.length})</span>
+        </h2>
+        <div class="space-y-4">
+          {group.claims.map(claim => (
+            <article class="doc-card p-5" id={claim.id}>
+              <div class="flex items-start justify-between gap-4 flex-wrap">
+                <h3 class="font-bold text-white text-sm leading-snug max-w-2xl">{claim.title}</h3>
+                <span class="badge text-[9px] shrink-0" style={`background:${group.info.color}18;color:${group.info.color};border:1px solid ${group.info.color}44`}>
+                  {group.info.label}
+                </span>
+              </div>
+              <p class="text-xs text-space-200 font-mono leading-relaxed mt-3">{claim.claim}</p>
+
+              <div class="grid md:grid-cols-2 gap-x-8 gap-y-3 mt-4 text-[11px] font-mono leading-relaxed">
+                <div>
+                  <div class="text-space-500 uppercase tracking-widest text-[9px] mb-1">Claimed by</div>
+                  <div class="text-space-300">{claim.claimants}</div>
+                </div>
+                <div>
+                  <div class="text-space-500 uppercase tracking-widest text-[9px] mb-1">Status note</div>
+                  <div class="text-space-300">{claim.statusNote}</div>
+                </div>
+                <div class="md:col-span-2">
+                  <div class="text-space-500 uppercase tracking-widest text-[9px] mb-1">What would settle it</div>
+                  <div class="text-space-300">{claim.whatWouldConfirm}</div>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-4 pt-3 border-t border-space-700/40 text-[10px] font-mono">
+                <span class="text-space-500">First reported {claim.firstReported}</span>
+                {claim.sources.map(s => (
+                  <a href={s.url} target="_blank" rel="noopener" class="text-cyan-bright hover:underline">{s.label} ↗</a>
+                ))}
+                {(claim.related || []).map(r => (
+                  <a href={r.href} class="text-amber-bright hover:underline">{r.label}</a>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <div class="doc-card p-6">
+      <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider mb-3">How this tracker works</h2>
+      <ul class="space-y-2 text-xs text-space-300 font-mono leading-relaxed">
+        <li>// A claim being tracked is not an endorsement. Tracking is how unverified claims stay accountable instead of ambient.</li>
+        <li>// "Confirmed" refers to the narrowest verifiable statement — a tape existing is confirmed; what the tape proves is not.</li>
+        <li>// Entries are updated when status changes, with the date shown. Stale entries are a bug: <a href="/contact" class="text-cyan-bright hover:underline">tell us</a>.</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
