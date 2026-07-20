@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SightingMap from '../../components/SightingMap.tsx';
+import { getMapLocations, RELEASES, RELEASE_COLORS } from '../../data/toolData';
+
+const { locations, unmappableCount, unlocatedCount } = getMapLocations();
+const mappedDocs = locations.reduce((sum, l) => sum + l.docs.length, 0);
+const topLocations = locations.slice(0, 8);
+---
+<BaseLayout
+  title="UAP Sighting Map"
+  description={`Interactive map of ${mappedDocs} declassified UAP document locations from PURSUE Releases 01-04: Western U.S. orbs, CENTCOM encounters, Cold War sites, and more.`}
+>
+  <section class="container-narrow py-12">
+    <div class="section-header">
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">UAP Sighting Map</h1>
+    </div>
+    <p class="text-space-400 mb-2 text-sm font-mono max-w-3xl">
+      Every mappable record in the PURSUE archive, placed by reported location. Click a marker to open the underlying documents. Filter by release using the buttons above the map.
+    </p>
+    <p class="text-space-500 mb-8 text-xs font-mono max-w-3xl">
+      Caution: many official records only name a broad region (for example "Western United States" or a combatant command area). Dashed markers are indicative positions, not precise coordinates. {unmappableCount} orbital or undisclosed-location records cannot be shown on a ground map.
+    </p>
+
+    <SightingMap
+      client:only="react"
+      locations={locations}
+      releases={RELEASES}
+      releaseColors={RELEASE_COLORS}
+      unmappableCount={unmappableCount}
+    />
+
+    <div class="mt-12">
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider mb-4">Top Locations by Record Count</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {topLocations.map(loc => (
+          <div class="doc-card p-4">
+            <div class="text-2xl font-display font-bold text-cyan-bright">{loc.docs.length}</div>
+            <div class="text-xs text-white mt-1">{loc.name}</div>
+            <div class="text-[10px] text-space-500 font-mono mt-1">
+              {loc.precision === 'region' ? 'broad region' : loc.precision === 'approx' ? 'country / sea' : 'exact site'}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12 doc-card p-6">
+      <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider mb-3">How to read this map</h2>
+      <ul class="space-y-2 text-xs text-space-300 font-mono leading-relaxed">
+        <li>// Locations come from the official document metadata, not from independent verification.</li>
+        <li>// A large marker means many records name that area — it does not mean the events are related.</li>
+        <li>// Combatant-command areas (CENTCOM, EUCOM…) span millions of square kilometers; the marker is an anchor, not a pin.</li>
+        <li>// {unlocatedCount > 0 ? `${unlocatedCount} records have no usable location and are omitted.` : 'All located records are shown.'}</li>
+      </ul>
+      <p class="text-xs text-space-400 font-mono mt-4">
+        Related reading: <a href="/blog/western-us-orbs-release-03-analysis/" class="text-cyan-bright hover:underline">the Western U.S. orbs analysis</a> and
+        <a href="/blog/war-gov-ufo-release-03-analysis/" class="text-cyan-bright hover:underline">the Release 03 evidence-gap map</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .sighting-popup .leaflet-popup-content-wrapper {
+    background: #0b1221;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 8px;
+    color: #c3d1f2;
+  }
+  .sighting-popup .leaflet-popup-tip { background: #0b1221; }
+  .leaflet-container { font-family: 'JetBrains Mono', monospace; }
+</style>

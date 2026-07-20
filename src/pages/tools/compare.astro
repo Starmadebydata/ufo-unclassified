@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ReleaseCompare from '../../components/ReleaseCompare.tsx';
+import { getToolDocs, RELEASES, RELEASE_COLORS } from '../../data/toolData';
+
+const docs = getToolDocs();
+const perRelease = RELEASES.map(r => `${r.replace('Release ', 'R')}: ${docs.filter(d => d.release === r).length}`).join(', ');
+---
+<BaseLayout
+  title="Release Comparator"
+  description={`Compare PURSUE UAP releases side by side (${perRelease} records): agency mix, file types, event years, and top locations for each tranche.`}
+>
+  <section class="container-narrow py-12">
+    <div class="section-header">
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">Release Comparator</h1>
+    </div>
+    <p class="text-space-400 mb-2 text-sm font-mono max-w-3xl">
+      Pick any two PURSUE tranches and compare them side by side: how many records, which agencies contributed, what file formats dominate, and where the reported events cluster.
+    </p>
+    <p class="text-space-500 mb-8 text-xs font-mono max-w-3xl">
+      This tool exists because cumulative totals and per-release counts keep getting mixed up in public discussion. Each column below counts only the records in that specific release.
+    </p>
+
+    <ReleaseCompare client:load docs={docs} releases={RELEASES} releaseColors={RELEASE_COLORS} />
+
+    <div class="mt-12 doc-card p-6">
+      <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider mb-3">Reading the differences</h2>
+      <ul class="space-y-2 text-xs text-space-300 font-mono leading-relaxed">
+        <li>// Release 01 (May 8, 2026) skews archival: historical photos and scanned records.</li>
+        <li>// Release 02 (May 22, 2026) is video-heavy: 51 of 64 records carry video files, mostly CENTCOM-area encounters.</li>
+        <li>// Release 03 (June 12, 2026) is document-heavy: CIA historical files enter the archive for the first time, plus modern FBI orb cases.</li>
+        <li>// Release 04 continues the pattern of official DOD video packages plus facility-related records.</li>
+      </ul>
+      <p class="text-xs text-space-400 font-mono mt-4">
+        Deep dives: <a href="/blog/war-gov-ufo-release-02-analysis/" class="text-cyan-bright hover:underline">Release 02 analysis</a> ·
+        <a href="/blog/war-gov-ufo-release-03-analysis/" class="text-cyan-bright hover:underline">Release 03 analysis</a> ·
+        <a href="/blog/war-gov-ufo-complete-guide/" class="text-cyan-bright hover:underline">complete War.gov/UFO guide</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

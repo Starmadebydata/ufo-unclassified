@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getToolDocs, RELEASES, RELEASE_COLORS } from '../../data/toolData';
+import { AGENCY_INFO } from '../../data/types';
+import type { Agency } from '../../data/types';
+import { makeArchiveDatasetSchema } from '../../config';
+
+const docs = getToolDocs();
+const total = docs.length;
+
+function countBy<T extends string>(items: T[]): [T, number][] {
+  const m = new Map<T, number>();
+  for (const i of items) m.set(i, (m.get(i) || 0) + 1);
+  return [...m.entries()].sort((a, b) => b[1] - a[1]);
+}
+
+const byRelease = RELEASES.map(r => [r, docs.filter(d => d.release === r).length] as [string, number]);
+const byAgency = countBy(docs.map(d => d.agency));
+const byType = countBy(docs.flatMap(d => d.fileTypes));
+
+// Decade histogram
+const decades = new Map<string, number>();
+for (const d of docs) {
+  const label = `${Math.floor(d.year / 10) * 10}s`;
+  decades.set(label, (decades.get(label) || 0) + 1);
+}
+const byDecade = [...decades.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+
+const maxRelease = Math.max(...byRelease.map(([, n]) => n));
+const maxAgency = Math.max(...byAgency.map(([, n]) => n));
+const maxType = Math.max(...byType.map(([, n]) => n));
+const maxDecade = Math.max(...byDecade.map(([, n]) => n));
+
+const years = docs.map(d => d.year);
+const yearMin = Math.min(...years);
+const yearMax = Math.max(...years);
+const videoDocs = docs.filter(d => d.fileTypes.includes('video')).length;
+const agencyCount = byAgency.filter(([a]) => a !== 'OTHER').length;
+
+const datasetSchema = {
+  '@context': 'https://schema.org',
+  ...makeArchiveDatasetSchema(Astro.site!),
+};
+---
+<BaseLayout
+  title="Archive Statistics"
+  description={`${total} declassified UAP records at a glance: breakdown by release, agency, file type, and decade (${yearMin}–${yearMax}) across the PURSUE archive.`}
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(datasetSchema)} />
+
+  <section class="container-narrow py-12">
+    <div class="section-header">
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">Archive Statistics</h1>
+    </div>
+    <p class="text-space-400 mb-8 text-sm font-mono max-w-3xl">
+      The complete PURSUE archive in numbers, computed from this site's document index at build time.
+    </p>
+
+    <!-- Headline stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12">
+      <div class="doc-card p-5 text-center">
+        <div class="font-display text-4xl font-bold text-cyan-bright">{total}</div>
+        <div class="text-[10px] font-mono text-space-400 uppercase tracking-widest mt-2">Indexed records</div>
+      </div>
+      <div class="doc-card p-5 text-center">
+        <div class="font-display text-4xl font-bold text-amber-bright">{agencyCount}</div>
+        <div class="text-[10px] font-mono text-space-400 uppercase tracking-widest mt-2">Government agencies</div>
+      </div>
+      <div class="doc-card p-5 text-center">
+        <div class="font-display text-4xl font-bold text-white">{videoDocs}</div>
+        <div class="text-[10px] font-mono text-space-400 uppercase tracking-widest mt-2">Records with video</div>
+      </div>
+      <div class="doc-card p-5 text-center">
+        <div class="font-display text-4xl font-bold text-white">{yearMax - yearMin}</div>
+        <div class="text-[10px] font-mono text-space-400 uppercase tracking-widest mt-2">Years covered ({yearMin}–{yearMax})</div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- By release -->
+      <div class="doc-card p-6">
+        <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider mb-4">Records per Release</h2>
+        <div class="space-y-3">
+          {byRelease.map(([r, n]) => (
+            <div class="flex items-center gap-3 text-xs font-mono">
+              <span class="w-24 shrink-0 text-space-300">{r}</span>
+              <div class="flex-1 h-4 bg-space-800 rounded-sm overflow-hidden">
+                <div class="h-full rounded-sm" style={`width:${(n / maxRelease) * 100}%;background-color:${RELEASE_COLORS[r]};opacity:.7`}></div>
+              </div>
+              <span class="w-10 text-right text-white">{n}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- By agency -->
+      <div class="doc-card p-6">
+        <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider mb-4">Records per Agency</h2>
+        <div class="space-y-3">
+          {byAgency.map(([a, n]) => (
+            <div class="flex items-center gap-3 text-xs font-mono">
+              <span class="w-24 shrink-0 text-space-300">{AGENCY_INFO[a as Agency]?.name || a}</span>
+              <div class="flex-1 h-4 bg-space-800 rounded-sm overflow-hidden">
+                <div class="h-full rounded-sm" style={`width:${(n / maxAgency) * 100}%;background-color:${AGENCY_INFO[a as Agency]?.color || '#6b7280'};opacity:.7`}></div>
+              </div>
+              <span class="w-10 text-right text-white">{n}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- By file type -->
+      <div class="doc-card p-6">
+        <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider mb-4">Records per File Type</h2>
+        <div class="space-y-3">
+          {byType.map(([t, n]) => (
+            <div class="flex items-center gap-3 text-xs font-mono">
+              <span class="w-24 shrink-0 text-space-300">{t}</span>
+              <div class="flex-1 h-4 bg-space-800 rounded-sm overflow-hidden">
+                <div class="h-full rounded-sm bg-cyan-glow" style={`width:${(n / maxType) * 100}%;opacity:.7`}></div>
+              </div>
+              <span class="w-10 text-right text-white">{n}</span>
+            </div>
+          ))}
+        </div>
+        <p class="text-[10px] font-mono text-space-500 mt-4">// A record with multiple file formats is counted once per format.</p>
+      </div>
+
+      <!-- By decade -->
+      <div class="doc-card p-6">
+        <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider mb-4">Event Decade</h2>
+        <div class="space-y-3">
+          {byDecade.map(([d, n]) => (
+            <div class="flex items-center gap-3 text-xs font-mono">
+              <span class="w-24 shrink-0 text-space-300">{d}</span>
+              <div class="flex-1 h-4 bg-space-800 rounded-sm overflow-hidden">
+                <div class="h-full rounded-sm bg-amber-glow" style={`width:${(n / maxDecade) * 100}%;opacity:.7`}></div>
+              </div>
+              <span class="w-10 text-right text-white">{n}</span>
+            </div>
+          ))}
+        </div>
+        <p class="text-[10px] font-mono text-space-500 mt-4">// Dated by reported event year, not release date. Undated archival records default to their release year.</p>
+      </div>
+    </div>
+
+    <div class="mt-12 doc-card p-6">
+      <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider mb-3">About these numbers</h2>
+      <p class="text-xs text-space-300 font-mono leading-relaxed">
+        Counts reflect the records this archive has indexed from the official
+        <a href="https://www.war.gov/UFO/" target="_blank" rel="noopener" class="text-cyan-bright hover:underline">War.gov/UFO portal</a>
+        across PURSUE Releases 01–04. They count indexed records, not pages or individual files, and may differ from
+        cumulative figures quoted in press coverage. See the
+        <a href="/tools/compare" class="text-cyan-bright hover:underline">Release Comparator</a> for per-release breakdowns
+        and the <a href="/blog/war-gov-ufo-complete-guide/" class="text-cyan-bright hover:underline">complete guide</a> for methodology.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
