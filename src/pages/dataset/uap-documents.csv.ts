@@ -12,7 +12,7 @@ function csvEscape(value: string): string {
 
 export const GET: APIRoute = () => {
   const docs = getToolDocs();
-  const header = ['slug', 'title', 'agency', 'year', 'release', 'location', 'file_types', 'record_url'];
+  const header = ['slug', 'title', 'agency', 'year', 'release', 'location', 'file_types', 'evidence_labels', 'record_url'];
   const rows = docs.map(d => [
     d.slug,
     d.title,
@@ -21,6 +21,7 @@ export const GET: APIRoute = () => {
     d.release,
     d.location || '',
     d.fileTypes.join(';'),
+    d.evidenceLabels.join(';'),
     `https://ufo-declassified.com/documents/${d.slug}/`,
   ].map(csvEscape).join(','));
 

@@ -5,6 +5,8 @@ import { documents } from './documents';
 import { GEO_OVERLAY, UNMAPPABLE_LOCATIONS } from './geo';
 import type { GeoPrecision } from './geo';
 import { fileUrl, fileThumbnailUrl } from '../config';
+import { getRecordEvidence } from './evidence';
+import type { EvidenceLabel } from './evidence';
 
 export interface ToolDoc {
   slug: string;
@@ -14,6 +16,7 @@ export interface ToolDoc {
   release: string;
   location?: string;
   fileTypes: string[];
+  evidenceLabels: EvidenceLabel[];
 }
 
 export interface MapLocation {
@@ -34,6 +37,7 @@ export function getToolDocs(): ToolDoc[] {
     release: d.releaseLabel || 'Release 01',
     location: d.location?.name,
     fileTypes: [...new Set(d.files.map(f => f.type))],
+    evidenceLabels: getRecordEvidence(d).labels,
   }));
 }
 

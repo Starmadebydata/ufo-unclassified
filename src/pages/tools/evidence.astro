@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EvidenceExplorer from '../../components/EvidenceExplorer.tsx';
+import { getToolDocs } from '../../data/toolData';
+import { LABEL_INFO } from '../../data/evidence';
+import type { EvidenceLabel } from '../../data/evidence';
+
+const docs = getToolDocs();
+const labelOrder = Object.keys(LABEL_INFO) as EvidenceLabel[];
+const derived = labelOrder.filter(l => LABEL_INFO[l].layer === 'derived');
+const editorial = labelOrder.filter(l => LABEL_INFO[l].layer === 'editorial');
+const labeledCount = docs.filter(d => d.evidenceLabels.length > 0).length;
+const editorialCount = docs.filter(d => d.evidenceLabels.some(l => LABEL_INFO[l].layer === 'editorial')).length;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const citationDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
+const citationText = `UFO Declassified. "Evidence Explorer." ${labeledCount} labeled records across PURSUE Releases 01-04. ${canonicalUrl}. Accessed ${citationDate}.`;
+---
+<BaseLayout
+  title="Evidence Explorer"
+  description={`Browse ${docs.length} declassified UAP records by source-status label: official source, public rendition, witness testimony, official analysis, unresolved, and documented context gaps.`}
+  ogImage="/blog-assets/tool-og-evidence.jpg"
+>
+  <section class="container-narrow py-12">
+    <div class="section-header">
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">Evidence Explorer</h1>
+    </div>
+    <p class="text-space-400 mb-2 text-sm font-mono max-w-3xl">
+      Every record labeled by what is actually known about its sourcing — not by how compelling it looks. Click a label
+      to filter, click a record to open it.
+    </p>
+    <p class="text-space-500 mb-8 text-xs font-mono max-w-3xl">
+      {labeledCount} of {docs.length} records carry at least one label. {editorialCount} carry an editorial judgment
+      label backed by this site's own analysis — the rest are mechanically derived from record metadata.
+    </p>
+
+    <!-- Label legend -->
+    <div class="doc-card p-5 mb-10">
+      <h2 class="font-mono text-[10px] text-cyan-glow/60 uppercase tracking-[0.2em] mb-3">// Derived labels — mechanical, applies to any qualifying record</h2>
+      <div class="grid md:grid-cols-2 gap-x-8 gap-y-2 mb-5">
+        {derived.map(l => (
+          <div class="flex gap-2 text-[11px] font-mono leading-relaxed">
+            <span class="shrink-0 mt-1 w-2 h-2 rounded-full" style={`background:${LABEL_INFO[l].color}`}></span>
+            <span><span class="uppercase tracking-wider" style={`color:${LABEL_INFO[l].color}`}>{LABEL_INFO[l].label}</span>
+            <span class="text-space-400"> — {LABEL_INFO[l].description}</span></span>
+          </div>
+        ))}
+      </div>
+      <h2 class="font-mono text-[10px] text-amber-glow/60 uppercase tracking-[0.2em] mb-3">// Editorial labels — judgment, only where this site has published analysis</h2>
+      <div class="grid md:grid-cols-2 gap-x-8 gap-y-2">
+        {editorial.map(l => (
+          <div class="flex gap-2 text-[11px] font-mono leading-relaxed">
+            <span class="shrink-0 mt-1 w-2 h-2 rounded-full" style={`background:${LABEL_INFO[l].color}`}></span>
+            <span><span class="uppercase tracking-wider" style={`color:${LABEL_INFO[l].color}`}>{LABEL_INFO[l].label}</span>
+            <span class="text-space-400"> — {LABEL_INFO[l].description}</span></span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <EvidenceExplorer client:load docs={docs} labelOrder={labelOrder} labelInfo={LABEL_INFO} />
+
+    <div class="mt-12 glass-panel p-5">
+      <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">How to Cite</h2>
+      <p class="mt-3 text-sm leading-relaxed text-space-100 font-mono">{citationText}</p>
+      <a href={canonicalUrl} class="mt-4 block truncate text-xs font-mono text-cyan-bright hover:text-white">{canonicalUrl}</a>
+    </div>
+
+    <div class="mt-6 doc-card p-6">
+      <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider mb-3">What these labels are not</h2>
+      <ul class="space-y-2 text-xs text-space-300 font-mono leading-relaxed">
+        <li>// Labels describe sourcing, not likelihood. "Unresolved" means the releasing agency itself did not identify the object — it is not a claim about origin.</li>
+        <li>// "Official analysis on record" means an assessment exists, not that the assessment is correct or complete.</li>
+        <li>// Absence of a label is not suspicious. Most records are simple archival files with no unresolved question attached to them.</li>
+        <li>// Editorial labels are added only after this site has published a source-checked analysis of that specific record — see the linked article on each labeled record page.</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

@@ -5,6 +5,7 @@ import { documents } from '../../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
 import { ARCHIVE_SOURCE_URL, fileThumbnailUrl, fileUrl, makeArchiveDatasetSchema } from '../../config';
 import { isThinDocument } from '../../data/seo';
+import { getRecordEvidence, LABEL_INFO } from '../../data/evidence';
 
 export function getStaticPaths() {
   return documents.map(doc => ({
@@ -37,6 +38,7 @@ const generatedFindings = [
 ];
 const findings = doc.keyFindings.length > 0 ? doc.keyFindings : generatedFindings;
 const citationText = `UFO Declassified. "${doc.title}." ${agencyInfo.fullName}, ${doc.year}. ${releaseLabel}, released ${doc.dateReleased}. ${canonicalUrl}. Accessed ${citationDate}.`;
+const evidence = getRecordEvidence(doc);
 const relatedFromIds = doc.relatedDocs
   .map((id: string) => documents.find(candidate => candidate.id === id))
   .filter(Boolean);
@@ -310,6 +312,28 @@ const schema = {
             </div>
           </dl>
         </section>
+
+        {evidence.labels.length > 0 && (
+          <section class="glass-panel p-5">
+            <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">Evidence Labels</h2>
+            <div class="mt-3 flex flex-wrap gap-2">
+              {evidence.labels.map((l) => (
+                <span
+                  class="badge text-[9px]"
+                  style={`background:${LABEL_INFO[l].color}18;color:${LABEL_INFO[l].color};border:1px solid ${LABEL_INFO[l].color}44`}
+                  title={LABEL_INFO[l].description}
+                >{LABEL_INFO[l].label}</span>
+              ))}
+            </div>
+            {evidence.note && (
+              <p class="mt-3 text-xs text-space-200 font-mono leading-relaxed">{evidence.note}</p>
+            )}
+            {evidence.articleHref && (
+              <a href={evidence.articleHref} class="mt-2 inline-block text-xs font-mono text-cyan-bright hover:underline">Read the analysis →</a>
+            )}
+            <a href="/tools/evidence" class="mt-3 block text-[10px] font-mono text-space-500 hover:text-cyan-bright">What do these labels mean? →</a>
+          </section>
+        )}
 
         <section class="glass-panel p-5">
           <h2 class="font-display text-sm font-bold text-white uppercase tracking-wider">Record Details</h2>
