@@ -1,18 +1,118 @@
 # UFO Declassified
 
-UFO Declassified is an independent public archive of declassified UAP/UFO records released under the PURSUE initiative beginning on May 8, 2026, with Release 02 added on May 22, 2026.
+UFO Declassified is an independent public archive of declassified UAP/UFO records released under the PURSUE initiative (Presidential Unsealing and Reporting System for UAP Encounters), beginning on May 8, 2026. It indexes all four public tranches released to date: Release 01 (May 8, 2026), Release 02 (May 22, 2026), Release 03 (June 12, 2026), and Release 04 (July 10, 2026).
 
-The site is designed for research, citation, and source review. It indexes PURSUE Release 01 and Release 02 records from U.S. government source groups including the Department of War, FBI, NASA, Department of Energy, CIA, ODNI, Department of State, National Archives, and other public sources.
+The archive currently holds **207 document records** spanning **1948–2026**, drawn from U.S. government source groups including the Department of War, FBI, NASA, CIA, Department of Energy, Department of State, ODNI, the Intelligence Community Assessment process, and the National Archives.
+
+The site is designed for research, citation, and source review. Every record links to its official government source, carries source-status labels describing what kind of evidence it is, and includes copy-paste citation text.
 
 ## Recommended Entry Points
 
 - Home: https://ufo-declassified.com/
 - Document Database: https://ufo-declassified.com/documents
+- Research Tools: https://ufo-declassified.com/tools
 - Research Topics: https://ufo-declassified.com/topics
 - Source Agencies: https://ufo-declassified.com/agencies
+- Analysis Articles: https://ufo-declassified.com/blog
 - UFO Films, TV & Reports: https://ufo-declassified.com/culture
 - Timeline: https://ufo-declassified.com/timeline
+- Media Coverage: https://ufo-declassified.com/coverage
 - About the Archive: https://ufo-declassified.com/about
+
+## Research Tools
+
+Five interactive tools built on the same indexed catalog. These are the pages best suited to citation, data reuse, and answering quantitative questions about the PURSUE releases.
+
+- Evidence Explorer: https://ufo-declassified.com/tools/evidence — Source-status labels across every record. Distinguishes officially unresolved cases from those with a partial explanation on record, official public renditions from raw sensor data, and documents where a specific evidentiary gap has been publicly identified. Each judgment label carries a stated basis.
+- Archive Statistics: https://ufo-declassified.com/tools/stats — Full catalog in numbers: breakdown by release, agency, file type, and decade. Includes a CSV download of the complete dataset and a citation block.
+- Sighting Map: https://ufo-declassified.com/tools/map — Every locatable record plotted, with honest precision labels (exact site, regional, or approximate). 157 of 207 records carry a location.
+- Claim Tracker: https://ufo-declassified.com/tools/claims — Tracks specific UAP claims against what the released records actually support, separating confirmed facts, official statements, and unverified assertions.
+- Video Browser: https://ufo-declassified.com/tools/videos — All 85 released UAP video records in one filterable view.
+- Release Comparator: https://ufo-declassified.com/tools/compare — What each PURSUE release actually added, resolving the common confusion between cumulative totals and per-release new records.
+
+## Open Dataset
+
+- Full catalog (CSV): https://ufo-declassified.com/dataset/uap-documents.csv
+- Permanent archived version (Zenodo, DOI): https://doi.org/10.5281/zenodo.21605258
+- Source repository: https://github.com/Starmadebydata/pursue-uap-documents-dataset
+- License: CC BY 4.0
+
+The CSV contains one row per indexed record with these fields: `slug`, `title`, `agency`, `year`, `release`, `location`, `file_types`, `evidence_labels`, `record_url`. It is regenerated on every site build.
+
+The catalog is archived on Zenodo with the permanent concept DOI `10.5281/zenodo.21605258`, which always resolves to the latest version. It is released under CC BY 4.0 and is free to reuse, including commercially, with attribution. Preferred citation:
+
+```
+Lin, Flynn. (2026). PURSUE UAP Documents Dataset: A structured catalog of declassified
+U.S. government UAP records (2026). Zenodo. https://doi.org/10.5281/zenodo.21605258
+```
+
+Current composition: Release 01 (31 records), Release 02 (64), Release 03 (72), Release 04 (40). By agency: Department of War (109), FBI (34), NASA (29), CIA (21), Department of Energy (5), Department of State (2), ODNI (1), ICA (1), other (5). By file type: video (85), PDF (74), image (42), audio (7).
+
+## Source-Status Labels
+
+The Evidence Explorer applies two layers of labels. Layer 1 is derived mechanically from record metadata and applies to every record. Layer 2 is editorial and applied only to records this site has researched in depth; each carries a note stating its basis and, where available, a link to the supporting analysis.
+
+Derived labels:
+- **Official source linked** — the record carries a link to its official government source page (all 207 records).
+- **Public rendition video** — video files are official public renditions, not raw sensor data; chain-of-custody caveats apply (85 records).
+- **Historical archival record** — a scanned historical record, valuable as institutional history rather than as a modern case file (66 records).
+- **Witness testimony** — the record is primarily first-person account: transcript, debriefing, interview, or case file (54 records).
+
+Editorial labels:
+- **Official analysis on record** — an official analytic assessment (AARO, ICA, or agency) exists in the public file.
+- **Partial explanation offered** — officials offered a partial or low-confidence conventional explanation, on the record.
+- **Officially unresolved** — the releasing agency itself labels the case unresolved or unidentified.
+- **Documented context gap** — a specific missing piece (pages, radar data, analysis records) has been publicly documented.
+
+These labels are verifiable statements about a record's sourcing. They are not quality ratings and not judgments about what the underlying event was.
+
+## Analysis Articles
+
+Independent analysis of specific records and releases. Each article states what the underlying documents do and do not establish.
+
+Release coverage:
+- War.gov/UFO: Complete Guide to the PURSUE Release 01 Through 04 Files: https://ufo-declassified.com/blog/war-gov-ufo-complete-guide
+- PURSUE Release 04: A First Look at War.gov's Fourth UFO File Drop: https://ufo-declassified.com/blog/war-gov-ufo-release-04-first-look
+- War.gov UFO Release 03: The New Files Are a Map of Evidence Gaps: https://ufo-declassified.com/blog/war-gov-ufo-release-03-analysis
+- War.gov UFO Release 02: What Changed in the May 22 PURSUE Files: https://ufo-declassified.com/blog/war-gov-ufo-release-02-analysis
+- War.gov Release 02 Is a Test of Evidence Discipline, Not Belief: https://ufo-declassified.com/blog/war-gov-release-02-evidence-discipline
+
+Case analysis:
+- Western U.S. Orbs: The Strongest Release 03 Case Still Needs Data: https://ufo-declassified.com/blog/western-us-orbs-release-03-analysis
+- Orbs Launching Orbs: The Western US Event That Stumped Federal Agents: https://ufo-declassified.com/blog/orbs-launching-orbs-western-us-event
+- Colorado Springs UAP: A Low-Confidence Explanation Is Not a Closed Case: https://ufo-declassified.com/blog/colorado-springs-uap-low-confidence-analysis
+- Northeastern Red Orb: Video Is Evidence, Not Identification: https://ufo-declassified.com/blog/northeastern-red-orb-release-03-analysis
+- The Syrian UAP Acceleration Clip Needs a Slow Reading: https://ufo-declassified.com/blog/syrian-uap-instant-acceleration-release-02-analysis
+- The Lake Huron UAP Video Shows Why Release 02 Still Needs Case Files: https://ufo-declassified.com/blog/lake-huron-uap-video-release-02-analysis
+- The 2020 Persian Gulf UAP Cluster: Why These Military Files Belong Together: https://ufo-declassified.com/blog/persian-gulf-2020-uap-cluster
+- Harare Airport UAP: A CIA High-Alert Cable Is Not an Answer: https://ufo-declassified.com/blog/harare-airport-uap-cia-high-alert-analysis
+- CIA Sary Shagan Green Object: Intelligence Context, Not Proof: https://ufo-declassified.com/blog/cia-sary-shagan-green-object-release-02-analysis
+- Sandia Green Fireballs: Evidence of Attention, Not Proof of Origin: https://ufo-declassified.com/blog/sandia-green-fireballs-release-02-analysis
+- ODNI Orange-Orb Narrative: Evidence, Not Verification: https://ufo-declassified.com/blog/odni-orange-orb-narrative-release-02-analysis
+
+Agency and historical files:
+- FBI's Flying Disc Files: Inside the Bureau's 80-Year UFO Investigation: https://ufo-declassified.com/blog/fbi-flying-disc-files-investigation
+- Inside the FBI Physical Evidence Photos: A Lab-Style Guide for UFO Researchers: https://ufo-declassified.com/blog/fbi-physical-evidence-photo-lab
+- Every NASA Apollo UFO Photo Just Declassified — Full Analysis: https://ufo-declassified.com/blog/nasa-apollo-ufo-photos-declassified
+- Apollo 12 UFO Files and Transcript: NASA Lunar Anomaly Field Guide: https://ufo-declassified.com/blog/apollo-12-lunar-anomaly-field-guide
+- 28 Military UAP Videos the Pentagon Just Released — What They Show: https://ufo-declassified.com/blog/military-uap-videos-pentagon-released
+- The CIA Robertson Panel of 1953: How 5 Scientists Dismissed UFOs in 5 Days: https://ufo-declassified.com/blog/cia-robertson-panel-1953-ufo-report
+- Foo Fighters of WWII: The 415th Night Fighter Squadron Files: https://ufo-declassified.com/blog/foo-fighters-wwii-415th-night-fighter-squadron
+
+Policy and institutions:
+- The UAP Science Advisory Council: 15 Scientists Will Not Solve the Mystery. They Might Redefine It.: https://ufo-declassified.com/blog/uap-science-advisory-council-what-15-scientists-can-change
+- Disclosure Forum 2026: Washington Talked About UFOs for a Day. Here Is What Actually Moved.: https://ufo-declassified.com/blog/disclosure-forum-2026-what-actually-moved
+
+## Research Topics
+
+- 2026 PURSUE Release: https://ufo-declassified.com/topics/pursue-release-2026
+- PURSUE Release 04: https://ufo-declassified.com/topics/pursue-release-04
+- PURSUE Release 03: https://ufo-declassified.com/topics/pursue-release-03
+- PURSUE Release 02: https://ufo-declassified.com/topics/pursue-release-02
+- FBI UFO Files: https://ufo-declassified.com/topics/fbi-ufo-files
+- NASA Apollo UFO Material: https://ufo-declassified.com/topics/nasa-apollo-ufo-material
+- Pentagon UAP Videos: https://ufo-declassified.com/topics/pentagon-uap-videos
+- Historical Flying Disc Records: https://ufo-declassified.com/topics/historical-flying-disc-records
 
 ## Culture Detail Pages
 
@@ -39,23 +139,18 @@ The Culture section has native detail pages for individual UFO films, television
 - NASA UAP Independent Study Team report: https://ufo-declassified.com/culture/nasa-uap-report
 - AARO Historical Record Report, Volume I: https://ufo-declassified.com/culture/aaro-historical-report
 
-## Research Topics
-
-- 2026 PURSUE Release: https://ufo-declassified.com/topics/pursue-release-2026
-- PURSUE Release 02: https://ufo-declassified.com/topics/pursue-release-02
-- FBI UFO Files: https://ufo-declassified.com/topics/fbi-ufo-files
-- NASA Apollo UFO Material: https://ufo-declassified.com/topics/nasa-apollo-ufo-material
-- Pentagon UAP Videos: https://ufo-declassified.com/topics/pentagon-uap-videos
-- Historical Flying Disc Records: https://ufo-declassified.com/topics/historical-flying-disc-records
-
 ## Citation Guidance
 
 Each document page includes a citation-ready summary, source agency, record year, release date, file package, source/provenance block, canonical URL, and related records.
 
 When citing a record from this site, prefer the document detail page URL and include the named source agency, record year, and PURSUE release date shown on that page.
 
+The Archive Statistics and Sighting Map pages carry a visible "How to Cite" block with copy-paste citation text. Aggregate figures (record counts, per-release breakdowns, agency composition) may be cited from https://ufo-declassified.com/tools/stats.
+
 When citing Culture pages, prefer the native detail page URL and use the visible "How to Cite" block. Culture pages separate fiction, documentary storytelling, journalism, official reports, hearings, and source records so a cultural reference is not confused with primary evidence.
 
 ## Source Notes
 
-UFO Declassified is not affiliated with any U.S. government agency. The archive references public domain records released by the U.S. government and provides independent organization, metadata, summaries, and topic guides.
+UFO Declassified is not affiliated with any U.S. government agency. The archive references public domain records released by the U.S. government and provides independent organization, metadata, summaries, source-status labeling, and topic guides.
+
+The site does not assert conclusions about the origin or nature of the phenomena in these records. Where a case is unresolved, it is labeled unresolved. Where officials have offered an explanation, the explanation and its stated confidence level are reported as given.

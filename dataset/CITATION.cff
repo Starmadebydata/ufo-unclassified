@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+title: "PURSUE UAP Documents Dataset: A structured catalog of declassified U.S. government UAP records"
+abstract: >-
+  A structured catalog of every U.S. government UAP record released under the
+  PURSUE initiative (Presidential Unsealing and Reporting System for UAP
+  Encounters), covering all public tranches from May 8, 2026 onward: 207
+  records, 1948-2026, 9 source agencies, 4 releases. Each row carries the
+  releasing agency, document/event year, release tranche, file-package
+  composition, location as named in the record, official source URL, and a set
+  of source-status labels describing what kind of evidence the record is.
+type: dataset
+authors:
+  - family-names: Lin
+    given-names: Flynn
+    affiliation: "UFO Declassified"
+    website: "https://ufo-declassified.com/about/flynn-lin"
+version: 1.0.0
+date-released: "2026-07-26"
+license: CC-BY-4.0
+doi: 10.5281/zenodo.21605258
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21605258
+    description: "Concept DOI — always resolves to the latest version. Cite this one."
+  - type: doi
+    value: 10.5281/zenodo.21605259
+    description: "Version DOI for v1 — use only to pin this exact snapshot."
+url: "https://ufo-declassified.com/tools/stats"
+repository-artifact: "https://ufo-declassified.com/dataset/uap-documents.csv"
+keywords:
+  - UAP
+  - UFO
+  - PURSUE
+  - declassified documents
+  - government transparency
+  - open government data
+  - archival metadata

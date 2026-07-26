@@ -13,6 +13,11 @@ export const ARCHIVE_DATASET_DESCRIPTION =
 export const ARCHIVE_SOURCE_URL = 'https://war.gov/UFO';
 export const ARCHIVE_RELEASE_DATE = '2026-05-08';
 
+// Zenodo concept DOI for the published catalog export — always resolves to the
+// latest version, so it is the one to cite. The v1 version DOI is ...259.
+export const ARCHIVE_DOI = '10.5281/zenodo.21605258';
+export const ARCHIVE_DOI_URL = `https://doi.org/${ARCHIVE_DOI}`;
+
 // Helper to build media URLs
 export function mediaUrl(type: 'image' | 'video' | 'pdf' | 'audio', filename: string): string {
   return `${R2_BASE}/${type}/${filename}`;
@@ -37,11 +42,22 @@ export function makeArchiveDatasetSchema(site: URL | string) {
     name: ARCHIVE_DATASET_NAME,
     description: ARCHIVE_DATASET_DESCRIPTION,
     url: new URL('/documents', baseUrl).href,
-    sameAs: ARCHIVE_SOURCE_URL,
+    sameAs: [ARCHIVE_SOURCE_URL, ARCHIVE_DOI_URL],
     isBasedOn: ARCHIVE_SOURCE_URL,
     datePublished: ARCHIVE_RELEASE_DATE,
-    license: new URL('/terms', baseUrl).href,
+    license: 'https://creativecommons.org/licenses/by/4.0/',
     isAccessibleForFree: true,
+    identifier: {
+      '@type': 'PropertyValue',
+      propertyID: 'DOI',
+      value: ARCHIVE_DOI,
+      url: ARCHIVE_DOI_URL,
+    },
+    distribution: {
+      '@type': 'DataDownload',
+      encodingFormat: 'text/csv',
+      contentUrl: new URL('/dataset/uap-documents.csv', baseUrl).href,
+    },
     keywords: ['UAP', 'UFO', 'PURSUE', 'Release 04', 'declassified records', 'government documents'],
     creator: {
       '@type': 'Organization',
