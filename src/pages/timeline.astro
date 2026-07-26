@@ -34,7 +34,7 @@ const docsByYear = years.map(year => ({
           <!-- Documents in this year -->
           <div class="ml-12 md:ml-20 space-y-2">
             {docs.map(doc => (
-              <a href={`/documents/${doc.slug}`} class="doc-card flex items-center gap-3 p-3 group cursor-pointer">
+              <a href={`/documents/${doc.slug}/`} class="doc-card flex items-center gap-3 p-3 group cursor-pointer">
                 <span class={`badge ${AGENCY_INFO[doc.agency].badgeClass} text-[8px] shrink-0`}>{doc.agency}</span>
                 <span class="text-xs text-white group-hover:text-cyan-bright transition-colors truncate">{doc.title}</span>
                 {doc.location && <span class="text-[10px] text-space-500 shrink-0 hidden sm:inline font-mono">// {doc.location.name}</span>}

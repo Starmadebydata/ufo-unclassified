@@ -134,7 +134,7 @@ const schema = {
     <nav class="flex items-center gap-2 text-xs text-space-300 mb-6 font-mono tracking-wider uppercase">
       <a href="/" class="hover:text-cyan-bright transition-colors">Home</a>
       <span>/</span>
-      <a href="/documents" class="hover:text-cyan-bright transition-colors">Documents</a>
+      <a href="/documents/" class="hover:text-cyan-bright transition-colors">Documents</a>
       <span>/</span>
       <span class="text-space-100 truncate max-w-[240px]">{doc.title}</span>
     </nav>
@@ -165,7 +165,7 @@ const schema = {
       </div>
 
       <div class="mt-5">
-        <ShareButtons url={`/documents/${doc.slug}`} title={doc.title} description={doc.summary || answerBlock} />
+        <ShareButtons url={`/documents/${doc.slug}/`} title={doc.title} description={doc.summary || answerBlock} />
       </div>
     </header>
 
@@ -331,7 +331,7 @@ const schema = {
             {evidence.articleHref && (
               <a href={evidence.articleHref} class="mt-2 inline-block text-xs font-mono text-cyan-bright hover:underline">Read the analysis →</a>
             )}
-            <a href="/tools/evidence" class="mt-3 block text-[10px] font-mono text-space-500 hover:text-cyan-bright">What do these labels mean? →</a>
+            <a href="/tools/evidence/" class="mt-3 block text-[10px] font-mono text-space-500 hover:text-cyan-bright">What do these labels mean? →</a>
           </section>
         )}
 
@@ -372,7 +372,7 @@ const schema = {
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {relatedDocs.map((related: any) => (
-            <a href={`/documents/${related.slug}`} class="doc-card p-4 group cursor-pointer">
+            <a href={`/documents/${related.slug}/`} class="doc-card p-4 group cursor-pointer">
               <span class={`badge ${AGENCY_INFO[related.agency].badgeClass} text-[8px] mb-3`}>{related.agency}</span>
               <h3 class="text-sm text-white group-hover:text-cyan-bright transition-colors line-clamp-2 font-medium">{related.title}</h3>
               <p class="text-xs text-space-300 mt-2 font-mono">{CATEGORY_INFO[related.category]?.label} / {related.year}</p>

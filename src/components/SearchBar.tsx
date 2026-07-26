@@ -107,7 +107,7 @@ export default function SearchBar({ documents, suggestedQueries = [] }: Props) {
           {results.map((doc, i) => (
             <a
               key={doc.slug}
-              href={`/documents/${doc.slug}`}
+              href={`/documents/${doc.slug}/`}
               className="flex items-center gap-3 px-4 py-3 hover:bg-[rgba(6,182,212,0.08)] transition-colors border-b border-[rgba(6,182,212,0.08)] last:border-0 group"
               id={`search-result-${i}`}
             >

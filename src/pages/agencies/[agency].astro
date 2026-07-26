@@ -43,7 +43,7 @@ function fileIconClass(type: string): string {
   <section class="container-narrow py-12">
     <nav class="flex items-center gap-2 text-[10px] text-space-500 mb-6 font-mono tracking-wider uppercase">
       <a href="/" class="hover:text-cyan-bright transition-colors">Home</a><span>/</span>
-      <a href="/agencies" class="hover:text-cyan-bright transition-colors">Agencies</a><span>/</span>
+      <a href="/agencies/" class="hover:text-cyan-bright transition-colors">Agencies</a><span>/</span>
       <span class="text-space-300">{agency.name}</span>
     </nav>
 
@@ -60,7 +60,7 @@ function fileIconClass(type: string): string {
         const previewUrl = documentPreviewUrl(doc);
         const mainType = primaryFileType(doc);
         return (
-        <a href={`/documents/${doc.slug}`} class="doc-card group cursor-pointer">
+        <a href={`/documents/${doc.slug}/`} class="doc-card group cursor-pointer">
           {previewUrl ? (
             <div class="relative overflow-hidden rounded-t aspect-video bg-space-900 scanlines">
               <img src={previewUrl} alt={doc.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>

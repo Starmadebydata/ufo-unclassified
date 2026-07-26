@@ -17,31 +17,31 @@ const { topic } = Astro.props;
 const topicSpotlights: Record<string, Array<{ href: string; label: string; title: string; body: string }>> = {
   'nasa-apollo-ufo-material': [
     {
-      href: '/documents/nasa-uap-d1-apollo-12-transcript-1969',
+      href: '/documents/nasa-uap-d1-apollo-12-transcript-1969/',
       label: 'Apollo 12 transcript',
       title: 'Apollo 12 Mission Transcript',
       body: 'The primary NASA transcript page for Apollo 12 communications and anomalous-observation context.',
     },
     {
-      href: '/documents/nasa-uap-vm1-apollo-12-1969',
+      href: '/documents/nasa-uap-vm1-apollo-12-1969/',
       label: 'Apollo 12 UFO files',
       title: 'Apollo 12 Visual Media',
       body: 'The entry point for the Apollo 12 lunar image set selected into the UAP release.',
     },
     {
-      href: '/documents/nasa-uap-d2-apollo-17-transcript-1972',
+      href: '/documents/nasa-uap-d2-apollo-17-transcript-1972/',
       label: 'Apollo 17 transcript',
       title: 'Apollo 17 Mission Transcript',
       body: 'NASA transcript context for Apollo 17 anomalous-light and UAP searches.',
     },
     {
-      href: '/documents/nasa-uap-vm6-apollo-17-1972',
+      href: '/documents/nasa-uap-vm6-apollo-17-1972/',
       label: 'Apollo 17 UAP',
       title: 'Apollo 17 Visual Media VM6',
       body: 'The Apollo 17 image record to compare with transcript and crew debriefing material.',
     },
     {
-      href: '/blog/apollo-12-lunar-anomaly-field-guide',
+      href: '/blog/apollo-12-lunar-anomaly-field-guide/',
       label: 'Field guide',
       title: 'How to Read the Apollo Files',
       body: 'A guided reading path for comparing Apollo 12 images, transcript records, and Apollo 17 material.',
@@ -49,19 +49,19 @@ const topicSpotlights: Record<string, Array<{ href: string; label: string; title
   ],
   'fbi-ufo-files': [
     {
-      href: '/documents/65-hs1-834228961-62-hq-83894-section-10',
+      href: '/documents/65-hs1-834228961-62-hq-83894-section-10/',
       label: '65-HS1 834228961',
       title: 'FBI 62-HQ-83894 Section 10',
       body: 'A high-demand FBI case-file page with public image and PDF files.',
     },
     {
-      href: '/documents/65-hs1-834228961-62-hq-83894-section-7',
+      href: '/documents/65-hs1-834228961-62-hq-83894-section-7/',
       label: '62-HQ-83894',
       title: 'FBI 62-HQ-83894 Section 7',
       body: 'A companion section in the same FBI file series for cross-checking adjacent records.',
     },
     {
-      href: '/blog/fbi-physical-evidence-photo-lab',
+      href: '/blog/fbi-physical-evidence-photo-lab/',
       label: 'Photo evidence',
       title: 'FBI Physical Evidence Guide',
       body: 'A reader-friendly guide to the FBI photo and case-file records in the archive.',
@@ -69,19 +69,19 @@ const topicSpotlights: Record<string, Array<{ href: string; label: string; title
   ],
   'pentagon-uap-videos': [
     {
-      href: '/documents/1006106-dow-uap-pr46-unresolved-uap-report-indopacom-2024',
+      href: '/documents/1006106-dow-uap-pr46-unresolved-uap-report-indopacom-2024/',
       label: 'DOW-UAP-PR46',
       title: 'PR46 INDOPACOM 2024',
       body: 'The public source page for the INDOPACOM unresolved UAP video record.',
     },
     {
-      href: '/documents/1006073-dow-uap-pr28-unresolved-uap-report-greece-january-2024',
+      href: '/documents/1006073-dow-uap-pr28-unresolved-uap-report-greece-january-2024/',
       label: 'DOW-UAP-PR28',
       title: 'PR28 Greece 2024',
       body: 'The public source page for the Greece January 2024 unresolved UAP video record.',
     },
     {
-      href: '/documents/2024-04-30-composite-sketch',
+      href: '/documents/2024-04-30-composite-sketch/',
       label: 'Composite sketch',
       title: 'April 30, 2024 Sketch',
       body: 'The composite sketch record that appears in recent search demand.',
@@ -153,7 +153,7 @@ function fileIconClass(type: string): string {
     <nav class="flex items-center gap-2 text-[10px] text-space-300 mb-6 font-mono tracking-wider uppercase">
       <a href="/" class="hover:text-cyan-bright transition-colors">Home</a>
       <span>/</span>
-      <a href="/topics" class="hover:text-cyan-bright transition-colors">Topics</a>
+      <a href="/topics/" class="hover:text-cyan-bright transition-colors">Topics</a>
       <span>/</span>
       <span class="text-space-100 truncate max-w-[240px]">{topic.shortTitle}</span>
     </nav>
@@ -215,7 +215,7 @@ function fileIconClass(type: string): string {
         const previewUrl = documentPreviewUrl(doc);
         const mainType = primaryFileType(doc);
         return (
-        <a href={`/documents/${doc.slug}`} class="doc-card group cursor-pointer">
+        <a href={`/documents/${doc.slug}/`} class="doc-card group cursor-pointer">
           {previewUrl ? (
             <div class="relative overflow-hidden rounded-t aspect-video bg-space-900 scanlines">
               <img

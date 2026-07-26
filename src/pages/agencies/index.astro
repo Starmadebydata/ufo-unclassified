@@ -19,7 +19,7 @@ const agencies = (Object.keys(AGENCY_INFO) as Agency[]).map(key => ({
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {agencies.map(agency => (
-        <a href={`/agencies/${agency.key.toLowerCase()}`} class="doc-card p-6 group radar-sweep cursor-pointer" id={`agency-card-${agency.key}`}>
+        <a href={`/agencies/${agency.key.toLowerCase()}/`} class="doc-card p-6 group radar-sweep cursor-pointer" id={`agency-card-${agency.key}`}>
           <div class="flex items-start justify-between mb-4">
             <span class={`badge ${agency.badgeClass} text-sm`}>{agency.name}</span>
             <span class="text-2xl font-display font-bold text-white group-hover:text-cyan-bright transition-colors">{agency.count}</span>

@@ -63,7 +63,7 @@ export default function EvidenceExplorer({ docs, labelOrder, labelInfo }: Props)
         {filtered.slice(0, 120).map(d => (
           <a
             key={d.slug}
-            href={`/documents/${d.slug}`}
+            href={`/documents/${d.slug}/`}
             className="doc-card p-3 group cursor-pointer"
           >
             <div className="text-[11px] text-white leading-snug line-clamp-2 group-hover:text-cyan-bright transition-colors">{d.title}</div>
@@ -79,7 +79,7 @@ export default function EvidenceExplorer({ docs, labelOrder, labelInfo }: Props)
       {filtered.length > 120 && (
         <p className="text-[10px] font-mono text-space-500 mt-4">
           Showing the first 120 of {filtered.length} matching records. Narrow the filter or browse the full{' '}
-          <a href="/documents" className="text-cyan-bright hover:underline">document database</a>.
+          <a href="/documents/" className="text-cyan-bright hover:underline">document database</a>.
         </p>
       )}
     </div>

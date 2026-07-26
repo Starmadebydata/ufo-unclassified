@@ -28,10 +28,10 @@ function popupHtml(loc: MapLocation, filtered: MapLocation['docs']): string {
       <div style="font-size:10px;color:#8fb0e0;margin-bottom:6px;">${precisionLabel}${loc.note ? ' · ' + loc.note : ''}</div>
       <div style="font-size:10px;color:#6f8dcc;margin-bottom:6px;">${filtered.length} record${filtered.length === 1 ? '' : 's'}</div>
       ${shown.map(d => `
-        <a href="/documents/${d.slug}" style="display:block;font-size:11px;color:#22d3ee;text-decoration:none;padding:2px 0;border-top:1px solid rgba(82,112,168,.2);">
+        <a href="/documents/${d.slug}/" style="display:block;font-size:11px;color:#22d3ee;text-decoration:none;padding:2px 0;border-top:1px solid rgba(82,112,168,.2);">
           <span style="color:#8fb0e0;">[${d.agency}]</span> ${d.title.length > 46 ? d.title.slice(0, 46) + '…' : d.title}
         </a>`).join('')}
-      ${more > 0 ? `<div style="font-size:10px;color:#6f8dcc;padding-top:4px;">+ ${more} more — see <a href="/documents" style="color:#22d3ee;">document database</a></div>` : ''}
+      ${more > 0 ? `<div style="font-size:10px;color:#6f8dcc;padding-top:4px;">+ ${more} more — see <a href="/documents/" style="color:#22d3ee;">document database</a></div>` : ''}
     </div>`;
 }
 

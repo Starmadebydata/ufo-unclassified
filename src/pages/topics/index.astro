@@ -34,7 +34,7 @@ const sourceAgencies = new Set(documents.map(doc => doc.agency)).size;
   <section class="container-narrow pb-16">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {archiveTopics.map(topic => (
-        <a href={`/topics/${topic.slug}`} class="doc-card p-6 group cursor-pointer">
+        <a href={`/topics/${topic.slug}/`} class="doc-card p-6 group cursor-pointer">
           <div class="text-[10px] font-mono uppercase tracking-[0.2em] text-cyan-bright">{topic.criteriaLabel}</div>
           <h2 class="mt-4 font-display text-lg font-bold text-white group-hover:text-cyan-bright transition-colors">{topic.title}</h2>
           <p class="mt-3 text-sm leading-relaxed text-space-100">{topic.answer}</p>

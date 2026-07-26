@@ -124,7 +124,7 @@ export default function VideoBrowser({ videos, releases, releaseColors }: Props)
               className="w-full rounded-lg border border-cyan-glow/30 bg-black"
             />
             <div className="flex flex-wrap gap-x-5 gap-y-1 mt-3 text-[11px] font-mono">
-              <a href={`/documents/${active.docSlug}`} className="text-cyan-bright hover:underline">Open record page →</a>
+              <a href={`/documents/${active.docSlug}/`} className="text-cyan-bright hover:underline">Open record page →</a>
               {active.sourceUrl && (
                 <a href={active.sourceUrl} target="_blank" rel="noopener" className="text-amber-bright hover:underline">Official source ↗</a>
               )}

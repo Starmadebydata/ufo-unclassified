@@ -65,42 +65,42 @@ function fileIconClass(type: string): string {
 
 const entryPoints = [
   {
-    href: '/documents',
+    href: '/documents/',
     label: 'Full Database',
     title: 'Search every record',
     body: `Open the complete archive with ${totalDocs} document records and filters for agency, file type, year, and category.`,
     meta: `${totalFiles} files indexed`,
   },
   {
-    href: '/topics',
+    href: '/topics/',
     label: 'Research Topics',
     title: 'Start from a guide',
     body: 'Use curated paths for FBI files, NASA Apollo records, Pentagon UAP videos, historical records, and the PURSUE release.',
     meta: 'Citation-ready topic pages',
   },
   {
-    href: '/agencies',
+    href: '/agencies/',
     label: 'By Agency',
     title: 'Follow the source',
     body: 'Start from Department of War, FBI, NASA, DOE, CIA, ODNI, State Department, National Archives, or other public sources.',
     meta: `${agencyList.length} source groups`,
   },
   {
-    href: '/coverage',
+    href: '/coverage/',
     label: 'Coverage',
     title: 'Read the outside reports',
     body: 'Review media coverage and source commentary around the PURSUE release without leaving the archive flow.',
     meta: 'Press and public context',
   },
   {
-    href: '/culture',
+    href: '/culture/',
     label: 'Films & Reports',
     title: 'Track the public imagination',
     body: 'Explore UFO films, TV series, documentaries, journalism, official reports, and public hearings from around the world.',
     meta: `${cultureItems.length} cultural signals`,
   },
   {
-    href: '/timeline',
+    href: '/timeline/',
     label: 'Timeline',
     title: 'Scan by year',
     body: 'Move through the archive chronologically to see older case files, space-era material, and recent releases together.',
@@ -110,42 +110,42 @@ const entryPoints = [
 
 const trendingSearches = [
   {
-    href: '/topics/nasa-apollo-ufo-material',
+    href: '/topics/nasa-apollo-ufo-material/',
     query: 'apollo 12 ufo',
     title: 'Apollo 12 UFO Files',
     body: 'Start with the Apollo topic hub, then jump into the Apollo 12 transcript, visual media, and Apollo 17 comparison records.',
     meta: 'NASA transcript and lunar image set',
   },
   {
-    href: '/documents/nasa-uap-d1-apollo-12-transcript-1969',
+    href: '/documents/nasa-uap-d1-apollo-12-transcript-1969/',
     query: 'apollo 12 transcript',
     title: 'Apollo 12 Mission Transcript',
     body: 'Open the primary NASA transcript page for Apollo 12 mission communications and anomalous-observation context.',
     meta: 'Primary transcript record',
   },
   {
-    href: '/documents/nasa-uap-vm6-apollo-17-1972',
+    href: '/documents/nasa-uap-vm6-apollo-17-1972/',
     query: 'apollo 17 uap',
     title: 'Apollo 17 Visual Media VM6',
     body: 'Review the Apollo 17 image record beside the Apollo 17 transcript and crew debriefing pages.',
     meta: 'Apollo 17 image record',
   },
   {
-    href: '/documents/65-hs1-834228961-62-hq-83894-section-10',
+    href: '/documents/65-hs1-834228961-62-hq-83894-section-10/',
     query: '65 hs1 834228961',
     title: 'FBI 62-HQ-83894 Section 10',
     body: 'Go directly to the FBI 65-HS1 / 62-HQ-83894 record with image and PDF files in the public archive.',
     meta: 'FBI case-file series',
   },
   {
-    href: '/documents/1006106-dow-uap-pr46-unresolved-uap-report-indopacom-2024',
+    href: '/documents/1006106-dow-uap-pr46-unresolved-uap-report-indopacom-2024/',
     query: 'dow-uap-pr46',
     title: 'DOW-UAP-PR46 INDOPACOM 2024',
     body: 'Open the public Department of War PR46 video source page for the unresolved INDOPACOM UAP report.',
     meta: 'UAP video source page',
   },
   {
-    href: '/documents/1006073-dow-uap-pr28-unresolved-uap-report-greece-january-2024',
+    href: '/documents/1006073-dow-uap-pr28-unresolved-uap-report-greece-january-2024/',
     query: 'uappr28',
     title: 'DOW-UAP-PR28 Greece 2024',
     body: 'Review the Department of War PR28 video source page tied to the Greece January 2024 UAP report.',
@@ -178,7 +178,7 @@ const trendingSearches = [
           <span class="stamp-declassified">DECLASSIFIED — MAY 2026</span>
         </div>
 
-        <a href="/documents?release=Release%2004" class="release-alert mx-auto mb-5 md:mb-7" aria-label="Open War.gov Release 04 UFO files">
+        <a href="/documents/?release=Release%2004" class="release-alert mx-auto mb-5 md:mb-7" aria-label="Open War.gov Release 04 UFO files">
           <span class="release-alert__marker">Release 04</span>
           <span class="release-alert__text">
             <strong>War.gov published the fourth UFO file release.</strong>
@@ -216,10 +216,10 @@ const trendingSearches = [
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="/documents?release=Release%2004" class="release02-action inline-flex items-center justify-center gap-2 px-8 py-3 font-mono font-bold text-xs tracking-wider uppercase rounded transition-all" id="cta-release-04">
+          <a href="/documents/?release=Release%2004" class="release02-action inline-flex items-center justify-center gap-2 px-8 py-3 font-mono font-bold text-xs tracking-wider uppercase rounded transition-all" id="cta-release-04">
             View Release 04 Files →
           </a>
-          <a href="/documents" class="primary-action inline-flex items-center justify-center gap-2 px-8 py-3 bg-cyan-glow/95 hover:bg-cyan-bright text-space-950 font-mono font-bold text-xs tracking-wider uppercase rounded transition-all hover:shadow-lg hover:shadow-cyan-glow/25" id="cta-browse">
+          <a href="/documents/" class="primary-action inline-flex items-center justify-center gap-2 px-8 py-3 bg-cyan-glow/95 hover:bg-cyan-bright text-space-950 font-mono font-bold text-xs tracking-wider uppercase rounded transition-all hover:shadow-lg hover:shadow-cyan-glow/25" id="cta-browse">
             Browse Full Database →
           </a>
         </div>
@@ -236,8 +236,8 @@ const trendingSearches = [
           The new batch adds 23 Department of War UAP videos plus Project Sign and Blue Book records, 1955 CIA sighting analyses, the 1949 Los Alamos aerial phenomena conference, a 2015 Pantex Plant incident report, FBI correspondence, and NASA STS-80 imagery. Release 04 is indexed across the site so it stands apart from the earlier batches.
         </p>
         <div class="release02-links">
-          <a href="/documents?release=Release%2004">Browse Release 04</a>
-          <a href="/topics/pursue-release-04">Open the topic guide</a>
+          <a href="/documents/?release=Release%2004">Browse Release 04</a>
+          <a href="/topics/pursue-release-04/">Open the topic guide</a>
         </div>
       </div>
       <div class="release02-metrics" aria-label="Release 04 file summary">
@@ -318,7 +318,7 @@ const trendingSearches = [
 
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
       {agencyList.map(agency => (
-        <a href={`/agencies/${agency.toLowerCase()}`} class="doc-card p-5 text-center group cursor-pointer" id={`agency-${agency.toLowerCase()}`}>
+        <a href={`/agencies/${agency.toLowerCase()}/`} class="doc-card p-5 text-center group cursor-pointer" id={`agency-${agency.toLowerCase()}`}>
           <div class={`badge ${AGENCY_INFO[agency].badgeClass} mb-3 mx-auto`}>
             {AGENCY_INFO[agency].name}
           </div>
@@ -340,7 +340,7 @@ const trendingSearches = [
         const previewUrl = documentPreviewUrl(doc);
         const mainType = primaryFileType(doc);
         return (
-        <a href={`/documents/${doc.slug}`} class="doc-card group cursor-pointer" id={`featured-${doc.id}`}>
+        <a href={`/documents/${doc.slug}/`} class="doc-card group cursor-pointer" id={`featured-${doc.id}`}>
           {previewUrl ? (
             <div class="relative overflow-hidden rounded-t aspect-video bg-space-900 scanlines">
               <img 
@@ -390,14 +390,14 @@ const trendingSearches = [
       <div class="section-header flex-1">
         <h2 class="font-display text-lg md:text-xl font-bold text-white uppercase tracking-wider">Sample Records</h2>
       </div>
-      <a href="/documents" class="shrink-0 text-xs text-cyan-bright hover:text-white transition-colors font-mono tracking-wider uppercase">
+      <a href="/documents/" class="shrink-0 text-xs text-cyan-bright hover:text-white transition-colors font-mono tracking-wider uppercase">
         View All →
       </a>
     </div>
 
     <div class="space-y-2">
       {documents.slice(0, 8).map((doc, i) => (
-        <a href={`/documents/${doc.slug}`} class="doc-card flex items-center gap-4 p-3.5 group cursor-pointer" id={`doc-row-${i}`}>
+        <a href={`/documents/${doc.slug}/`} class="doc-card flex items-center gap-4 p-3.5 group cursor-pointer" id={`doc-row-${i}`}>
           <div class="flex gap-1 shrink-0">
             {doc.files.some(f => f.type === 'video') && <span class="file-icon file-icon-video text-[9px]">VID</span>}
             {doc.files.some(f => f.type === 'audio') && <span class="file-icon file-icon-audio text-[9px]">AUD</span>}
@@ -423,7 +423,7 @@ const trendingSearches = [
     </div>
 
     <div class="text-center mt-8">
-      <a href="/documents" class="inline-flex items-center gap-2 px-6 py-2.5 border border-space-400/60 text-space-100 hover:text-white hover:border-cyan-glow/50 font-mono font-medium text-xs tracking-wider uppercase rounded transition-all">
+      <a href="/documents/" class="inline-flex items-center gap-2 px-6 py-2.5 border border-space-400/60 text-space-100 hover:text-white hover:border-cyan-glow/50 font-mono font-medium text-xs tracking-wider uppercase rounded transition-all">
         View All {totalDocs} Records →
       </a>
     </div>

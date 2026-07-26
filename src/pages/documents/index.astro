@@ -139,7 +139,7 @@ function fileIconClass(type: string): string {
       </div>
       <div class="flex flex-wrap gap-2">
         {archiveTopics.map(topic => (
-          <a href={`/topics/${topic.slug}`} class="rounded border border-cyan-glow/25 bg-space-900/70 px-3 py-2 text-xs font-mono uppercase tracking-[0.14em] text-cyan-bright hover:border-cyan-bright hover:bg-cyan-glow/10">
+          <a href={`/topics/${topic.slug}/`} class="rounded border border-cyan-glow/25 bg-space-900/70 px-3 py-2 text-xs font-mono uppercase tracking-[0.14em] text-cyan-bright hover:border-cyan-bright hover:bg-cyan-glow/10">
             {topic.shortTitle}
           </a>
         ))}
@@ -172,7 +172,7 @@ function fileIconClass(type: string): string {
 
         return (
           <a
-            href={`/documents/${doc.slug}`}
+            href={`/documents/${doc.slug}/`}
             class="doc-card group fade-up cursor-pointer"
             style={`animation-delay: ${Math.min(i * 15, 300)}ms`}
             id={`doc-${doc.slug}`}

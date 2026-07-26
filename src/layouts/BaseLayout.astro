@@ -125,15 +125,15 @@ const currentPath = Astro.url.pathname;
 
       <nav class="hidden md:flex items-center gap-1 text-xs font-mono tracking-wider uppercase" id="main-nav">
         {[
-          { href: '/documents', label: 'Documents' },
-          { href: '/topics', label: 'Topics' },
-          { href: '/agencies', label: 'Agencies' },
-          { href: '/coverage', label: 'Coverage' },
-          { href: '/culture', label: 'Culture' },
-          { href: '/timeline', label: 'Timeline' },
-          { href: '/tools', label: 'Tools' },
-          { href: '/blog', label: 'Intel' },
-          { href: '/about', label: 'About' },
+          { href: '/documents/', label: 'Documents' },
+          { href: '/topics/', label: 'Topics' },
+          { href: '/agencies/', label: 'Agencies' },
+          { href: '/coverage/', label: 'Coverage' },
+          { href: '/culture/', label: 'Culture' },
+          { href: '/timeline/', label: 'Timeline' },
+          { href: '/tools/', label: 'Tools' },
+          { href: '/blog/', label: 'Intel' },
+          { href: '/about/', label: 'About' },
         ].map(item => (
           <a 
             href={item.href} 
@@ -161,15 +161,15 @@ const currentPath = Astro.url.pathname;
     <!-- Mobile menu -->
     <div class="md:hidden hidden border-t border-space-700/30 bg-space-950/95 backdrop-blur-2xl" id="mobile-menu">
       <nav class="container-narrow py-4 flex flex-col gap-2 text-sm font-mono tracking-wider uppercase">
-        <a href="/documents" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Documents</a>
-        <a href="/topics" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Topics</a>
-        <a href="/agencies" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Agencies</a>
-        <a href="/coverage" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Coverage</a>
-        <a href="/culture" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Culture</a>
-        <a href="/timeline" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Timeline</a>
-        <a href="/tools" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Tools</a>
-        <a href="/blog" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Intel</a>
-        <a href="/about" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">About</a>
+        <a href="/documents/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Documents</a>
+        <a href="/topics/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Topics</a>
+        <a href="/agencies/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Agencies</a>
+        <a href="/coverage/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Coverage</a>
+        <a href="/culture/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Culture</a>
+        <a href="/timeline/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Timeline</a>
+        <a href="/tools/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Tools</a>
+        <a href="/blog/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Intel</a>
+        <a href="/about/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">About</a>
       </nav>
     </div>
   </header>
@@ -198,22 +198,22 @@ const currentPath = Astro.url.pathname;
         <div>
           <h4 class="font-mono text-[10px] text-cyan-glow/60 mb-3 uppercase tracking-[0.2em]">// Navigate</h4>
           <ul class="space-y-1.5 text-xs">
-            <li><a href="/documents" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Document Database</a></li>
-            <li><a href="/topics" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Research Topics</a></li>
-            <li><a href="/agencies" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">By Agency</a></li>
-            <li><a href="/coverage" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Media Coverage</a></li>
-            <li><a href="/culture" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">UFO Films & Reports</a></li>
-            <li><a href="/timeline" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Timeline</a></li>
-            <li><a href="/tools" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Research Tools</a></li>
-            <li><a href="/about" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">About This Project</a></li>
+            <li><a href="/documents/" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Document Database</a></li>
+            <li><a href="/topics/" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Research Topics</a></li>
+            <li><a href="/agencies/" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">By Agency</a></li>
+            <li><a href="/coverage/" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Media Coverage</a></li>
+            <li><a href="/culture/" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">UFO Films & Reports</a></li>
+            <li><a href="/timeline/" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Timeline</a></li>
+            <li><a href="/tools/" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Research Tools</a></li>
+            <li><a href="/about/" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">About This Project</a></li>
           </ul>
         </div>
         <div>
           <h4 class="font-mono text-[10px] text-cyan-glow/60 mb-3 uppercase tracking-[0.2em]">// Legal</h4>
           <ul class="space-y-1.5 text-xs">
-            <li><a href="/privacy" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Privacy Policy</a></li>
-            <li><a href="/terms" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Terms of Service</a></li>
-            <li><a href="/contact" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Contact</a></li>
+            <li><a href="/privacy/" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Privacy Policy</a></li>
+            <li><a href="/terms/" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Terms of Service</a></li>
+            <li><a href="/contact/" class="text-space-300 hover:text-cyan-bright transition-colors font-mono">Contact</a></li>
           </ul>
         </div>
         <div>
@@ -252,7 +252,7 @@ const currentPath = Astro.url.pathname;
           <strong class="text-white">We use cookies</strong> for analytics and to serve ads via Google AdSense.
           We and our partners may use cookies/IP addresses to serve ads based on your activity.
           You can accept or reject personalized advertising; see our
-          <a href="/privacy" class="text-cyan-bright hover:underline">Privacy Policy</a>.
+          <a href="/privacy/" class="text-cyan-bright hover:underline">Privacy Policy</a>.
         </p>
       </div>
       <div class="flex items-center gap-3 shrink-0">

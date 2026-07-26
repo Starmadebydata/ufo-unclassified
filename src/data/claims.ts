@@ -193,7 +193,7 @@ export const trackedClaims: TrackedClaim[] = [
     sources: [
       { label: 'War.gov Release 02 announcement', url: 'https://www.war.gov/News/Releases/Release/Article/4499305/department-of-war-publishes-second-release-of-unidentified-anomalous-phenomena/' },
     ],
-    related: [{ label: 'Release Comparator', href: '/tools/compare' }],
+    related: [{ label: 'Release Comparator', href: '/tools/compare/' }],
     lastUpdated: '2026-07-20',
   },
 ];
