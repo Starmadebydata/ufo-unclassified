@@ -1,7 +1,8 @@
 ---
-title: "Project Blue Book Special Report 14: When the Statistics Said \"Unknown\""
-description: "Project Blue Book Special Report 14 (Battelle, 1955) analyzed 3,201 UFO cases. 21.5% of object sightings stayed unknown—and better-quality reports were harder to close. What the PURSUE PDF actually shows."
+title: "Project Blue Book Special Report 14 Analysis"
+description: "Battelle's 1955 Special Report 14 coded 3,201 UFO cases. 21.5% of object sightings stayed unknown—and better-quality reports were harder to close."
 date: "2026-08-03T18:00:00+08:00"
+updated: "2026-08-03T22:30:00+08:00"
 author: "Flynn Lin"
 category: "Analysis"
 tags: ["Project Blue Book", "Special Report 14", "Battelle Memorial Institute", "UFO statistics", "unknown percentage", "ATIC", "CIA", "PURSUE", "Release 03", "historical UAP files"]
@@ -9,8 +10,6 @@ ogImage: "/blog-assets/project-blue-book-special-report-14-cover.jpg"
 featured: true
 readingTime: "14 min read"
 ---
-
-# Project Blue Book Special Report 14: When the Statistics Said "Unknown"
 
 The most useful number in the history of official UFO investigation is not the number of cases closed.
 
