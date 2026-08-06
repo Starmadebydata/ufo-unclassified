@@ -5,6 +5,14 @@ import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
+import { documents } from './src/data/documents';
+import { isThinDocument } from './src/data/seo';
+
+// Thin document pages are noindexed in documents/[slug].astro; excluding them
+// from the sitemap here keeps both decisions driven by the same function.
+const thinDocumentPaths = new Set(
+  documents.filter(isThinDocument).map(doc => `/documents/${doc.slug}/`),
+);
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,9 +25,7 @@ export default defineConfig({
       changefreq: 'daily',
       priority: 0.7,
       lastmod: new Date(),
-      // Exclude bulk DOD/DVIDS asset pages (noindexed in documents/[slug].astro —
-      // keep this URL pattern in sync with isThinDocument() in src/data/seo.ts).
-      filter: (page) => !/\/documents\/[^/]*-dod-\d{6,}/.test(page),
+      filter: (page) => !thinDocumentPaths.has(new URL(page).pathname),
     }),
   ],
 

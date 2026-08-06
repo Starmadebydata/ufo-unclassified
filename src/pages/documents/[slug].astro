@@ -4,7 +4,7 @@ import ShareButtons from '../../components/ShareButtons.astro';
 import { documents } from '../../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
 import { ARCHIVE_SOURCE_URL, fileThumbnailUrl, fileUrl, makeArchiveDatasetSchema } from '../../config';
-import { isThinDocument } from '../../data/seo';
+import { isThinDocument, isUndatedRecord } from '../../data/seo';
 import { getRecordEvidence, LABEL_INFO } from '../../data/evidence';
 
 export function getStaticPaths() {
@@ -28,7 +28,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const previewFile = imageFiles[0] || videoFiles.find((file: any) => fileThumbnailUrl(file)) || audioFiles.find((file: any) => fileThumbnailUrl(file));
 const ogImage = previewFile ? fileThumbnailUrl(previewFile) || '/og-default.png' : '/og-default.png';
 const citationDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
-const answerBlock = `${doc.title} is a declassified ${categoryInfo?.label || 'UAP document'} from ${agencyInfo.fullName}. The record is dated ${doc.year}, was released in ${releaseLabel} on ${doc.dateReleased} under the PURSUE initiative, and contains ${doc.files.length} file${doc.files.length > 1 ? 's' : ''}${doc.location ? ` connected to ${doc.location.name}` : ''}.`;
+const undated = isUndatedRecord(doc);
+const answerBlock = `${doc.title} is a declassified ${categoryInfo?.label || 'UAP document'} from ${agencyInfo.fullName}. The record is ${undated ? 'undated in the public release' : `dated ${doc.year}`}, was released in ${releaseLabel} on ${doc.dateReleased} under the PURSUE initiative, and contains ${doc.files.length} file${doc.files.length > 1 ? 's' : ''}${doc.location ? ` connected to ${doc.location.name}` : ''}.`;
 const pageDescription = doc.summary || `Declassified ${categoryInfo?.label || 'document'} from ${agencyInfo.fullName}. Released ${doc.dateReleased} under PURSUE.${doc.location ? ` Location: ${doc.location.name}.` : ''}`;
 const generatedFindings = [
   `Source agency: ${agencyInfo.fullName}.`,
@@ -37,7 +38,7 @@ const generatedFindings = [
   `File package: ${imageFiles.length} image${imageFiles.length === 1 ? '' : 's'}, ${videoFiles.length} video${videoFiles.length === 1 ? '' : 's'}, ${audioFiles.length} audio file${audioFiles.length === 1 ? '' : 's'}, and ${pdfFiles.length} PDF${pdfFiles.length === 1 ? '' : 's'}.`,
 ];
 const findings = doc.keyFindings.length > 0 ? doc.keyFindings : generatedFindings;
-const citationText = `UFO Declassified. "${doc.title}." ${agencyInfo.fullName}, ${doc.year}. ${releaseLabel}, released ${doc.dateReleased}. ${canonicalUrl}. Accessed ${citationDate}.`;
+const citationText = `UFO Declassified. "${doc.title}." ${agencyInfo.fullName}, ${undated ? 'n.d.' : doc.year}. ${releaseLabel}, released ${doc.dateReleased}. ${canonicalUrl}. Accessed ${citationDate}.`;
 const evidence = getRecordEvidence(doc);
 const relatedFromIds = doc.relatedDocs
   .map((id: string) => documents.find(candidate => candidate.id === id))
@@ -111,7 +112,7 @@ const schema = {
   description: doc.summary,
   url: canonicalUrl,
   datePublished: doc.dateReleased,
-  temporalCoverage: String(doc.year),
+  ...(undated ? {} : { temporalCoverage: String(doc.year) }),
   genre: categoryInfo?.label,
   provider: {
     '@type': 'GovernmentOrganization',
@@ -153,7 +154,7 @@ const schema = {
       <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded border border-cyan-glow/18 bg-cyan-glow/10">
         {[
           { label: 'Agency', value: agencyInfo.fullName },
-          { label: 'Record Year', value: doc.year },
+          { label: 'Record Year', value: undated ? 'Undated' : doc.year },
           { label: 'Released', value: doc.dateReleased },
           { label: 'Files', value: `${doc.files.length} total` },
         ].map(item => (
