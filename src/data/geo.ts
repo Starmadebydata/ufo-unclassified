@@ -25,6 +25,17 @@ export const GEO_OVERLAY: Record<string, GeoPoint> = {
   'Los Alamos, New Mexico': { lat: 35.88, lng: -106.3, precision: 'exact' },
   'Pantex Plant, Texas': { lat: 35.32, lng: -101.56, precision: 'exact' },
 
+  // Release 05 locations
+  'Bagram, Afghanistan': { lat: 34.95, lng: 69.27, precision: 'exact', note: 'Bagram Airfield' },
+  'Colorado Springs, Colorado': { lat: 38.83, lng: -104.82, precision: 'exact' },
+  'Bahia, Brazil': { lat: -12.97, lng: -38.5, precision: 'approx' },
+  'Afghanistan': { lat: 33.9, lng: 67.7, precision: 'approx' },
+  'Sweden': { lat: 60.1, lng: 18.6, precision: 'approx' },
+  'Gulf of Oman': { lat: 24.8, lng: 58.5, precision: 'approx' },
+  'Pacific Ocean': { lat: 20.0, lng: -140.0, precision: 'approx' },
+  'Caribbean Sea (near Puerto Rico)': { lat: 18.2, lng: -66.5, precision: 'approx' },
+  'Montana & Utah, USA': { lat: 44.5, lng: -110.5, precision: 'region', note: 'Great Falls (1950) and Tremonton (1952) film locations' },
+
   // Countries / seas (centroids)
   'Djibouti': { lat: 11.6, lng: 43.1, precision: 'approx' },
   'Greece': { lat: 39.0, lng: 22.0, precision: 'approx' },

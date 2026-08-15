@@ -3,6 +3,7 @@ import type { DeclassifiedDocument } from './types';
 import { release02Documents } from './release-02-documents';
 import { release03Documents } from './release-03-documents';
 import { release04Documents } from './release-04-documents';
+import { release05Documents } from './release-05-documents';
 
 export const release01Documents: DeclassifiedDocument[] = [
   {
@@ -90,11 +91,6 @@ export const release01Documents: DeclassifiedDocument[] = [
         "type": "image",
         "filename": "65_hs1-834228961_62-hq-83894_section_2.jpg",
         "size": 260559
-      },
-      {
-        "type": "pdf",
-        "filename": "65_hs1-834228961_62-hq-83894_section_2.pdf",
-        "size": 118380300
       }
     ],
     "relatedDocs": [
@@ -1325,7 +1321,7 @@ export const release01Documents: DeclassifiedDocument[] = [
   }
 ];
 
-export const documents: DeclassifiedDocument[] = [...release04Documents, ...release03Documents, ...release02Documents, ...release01Documents].sort((a, b) =>
+export const documents: DeclassifiedDocument[] = [...release05Documents, ...release04Documents, ...release03Documents, ...release02Documents, ...release01Documents].sort((a, b) =>
   b.dateReleased.localeCompare(a.dateReleased) || b.year - a.year || a.title.localeCompare(b.title)
 );
 

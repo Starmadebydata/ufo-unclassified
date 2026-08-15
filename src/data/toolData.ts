@@ -112,11 +112,12 @@ export function getVideoEntries(): VideoEntry[] {
   return entries;
 }
 
-export const RELEASES = ['Release 01', 'Release 02', 'Release 03', 'Release 04'];
+export const RELEASES = ['Release 01', 'Release 02', 'Release 03', 'Release 04', 'Release 05'];
 
 export const RELEASE_COLORS: Record<string, string> = {
   'Release 01': '#22d3ee', // cyan-bright
   'Release 02': '#fbbf24', // amber-bright
   'Release 03': '#00ff88', // neon-green
   'Release 04': '#a855f7', // purple
+  'Release 05': '#f43f5e', // rose
 };

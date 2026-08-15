@@ -1,8 +1,8 @@
 # UFO Declassified
 
-UFO Declassified is an independent public archive of declassified UAP/UFO records released under the PURSUE initiative (Presidential Unsealing and Reporting System for UAP Encounters), beginning on May 8, 2026. It indexes all four public tranches released to date: Release 01 (May 8, 2026), Release 02 (May 22, 2026), Release 03 (June 12, 2026), and Release 04 (July 10, 2026).
+UFO Declassified is an independent public archive of declassified UAP/UFO records released under the PURSUE initiative (Presidential Unsealing and Reporting System for UAP Encounters), beginning on May 8, 2026. It indexes all five public tranches released to date: Release 01 (May 8, 2026), Release 02 (May 22, 2026), Release 03 (June 12, 2026), Release 04 (July 10, 2026), and Release 05 (August 7, 2026).
 
-The archive currently holds **207 document records** spanning **1948–2026**, drawn from U.S. government source groups including the Department of War, FBI, NASA, CIA, Department of Energy, Department of State, ODNI, the Intelligence Community Assessment process, and the National Archives.
+The archive currently holds **248 document records** spanning **1947–2026**, drawn from U.S. government source groups including the Department of War, FBI, NASA, CIA, Department of Energy, Department of State, the Executive Office of the President, ODNI, the Intelligence Community Assessment process, and the National Archives.
 
 The site is designed for research, citation, and source review. Every record links to its official government source, carries source-status labels describing what kind of evidence it is, and includes copy-paste citation text.
 
@@ -25,7 +25,7 @@ Five interactive tools built on the same indexed catalog. These are the pages be
 
 - Evidence Explorer: https://ufo-declassified.com/tools/evidence — Source-status labels across every record. Distinguishes officially unresolved cases from those with a partial explanation on record, official public renditions from raw sensor data, and documents where a specific evidentiary gap has been publicly identified. Each judgment label carries a stated basis.
 - Archive Statistics: https://ufo-declassified.com/tools/stats — Full catalog in numbers: breakdown by release, agency, file type, and decade. Includes a CSV download of the complete dataset and a citation block.
-- Sighting Map: https://ufo-declassified.com/tools/map — Every locatable record plotted, with honest precision labels (exact site, regional, or approximate). 157 of 207 records carry a location.
+- Sighting Map: https://ufo-declassified.com/tools/map — Every locatable record plotted, with honest precision labels (exact site, regional, or approximate). 195 of 248 records carry a location.
 - Claim Tracker: https://ufo-declassified.com/tools/claims — Tracks specific UAP claims against what the released records actually support, separating confirmed facts, official statements, and unverified assertions.
 - Video Browser: https://ufo-declassified.com/tools/videos — All 85 released UAP video records in one filterable view.
 - Release Comparator: https://ufo-declassified.com/tools/compare — What each PURSUE release actually added, resolving the common confusion between cumulative totals and per-release new records.
@@ -46,14 +46,14 @@ Lin, Flynn. (2026). PURSUE UAP Documents Dataset: A structured catalog of declas
 U.S. government UAP records (2026). Zenodo. https://doi.org/10.5281/zenodo.21605258
 ```
 
-Current composition: Release 01 (31 records), Release 02 (64), Release 03 (72), Release 04 (40). By agency: Department of War (109), FBI (34), NASA (29), CIA (21), Department of Energy (5), Department of State (2), ODNI (1), ICA (1), other (5). By file type: video (85), PDF (74), image (42), audio (7).
+Current composition: Release 01 (31 records), Release 02 (64), Release 03 (72), Release 04 (40), Release 05 (41). By agency: Department of War (128), FBI (51), NASA (29), CIA (23), Department of Energy (5), Department of State (4), Executive Office of the President (1), ODNI (1), ICA (1), other (5). By file type: video (101), PDF (96), image (45), audio (7).
 
 ## Source-Status Labels
 
 The Evidence Explorer applies two layers of labels. Layer 1 is derived mechanically from record metadata and applies to every record. Layer 2 is editorial and applied only to records this site has researched in depth; each carries a note stating its basis and, where available, a link to the supporting analysis.
 
 Derived labels:
-- **Official source linked** — the record carries a link to its official government source page (all 207 records).
+- **Official source linked** — the record carries a link to its official government source page (all 248 records).
 - **Public rendition video** — video files are official public renditions, not raw sensor data; chain-of-custody caveats apply (85 records).
 - **Historical archival record** — a scanned historical record, valuable as institutional history rather than as a modern case file (66 records).
 - **Witness testimony** — the record is primarily first-person account: transcript, debriefing, interview, or case file (54 records).
@@ -106,6 +106,7 @@ Policy and institutions:
 ## Research Topics
 
 - 2026 PURSUE Release: https://ufo-declassified.com/topics/pursue-release-2026
+- PURSUE Release 05: https://ufo-declassified.com/topics/pursue-release-05
 - PURSUE Release 04: https://ufo-declassified.com/topics/pursue-release-04
 - PURSUE Release 03: https://ufo-declassified.com/topics/pursue-release-03
 - PURSUE Release 02: https://ufo-declassified.com/topics/pursue-release-02

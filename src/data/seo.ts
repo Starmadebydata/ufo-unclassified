@@ -26,7 +26,21 @@ import type { CultureRecord } from './culture';
  */
 const MIN_SUMMARY_WORDS = 40;
 
+/**
+ * Records whose official source text is byte-identical to a sibling record
+ * (e.g. "rendering 2 of 2" pages sharing one witness account). The sibling
+ * with the primary rendering stays indexed; these stay browsable but are
+ * noindexed so the cluster does not read as programmatic duplication.
+ */
+const NEAR_DUPLICATE_SLUGS = new Set([
+  // Release 05: second FBI rendering of the same FD-302 witness account.
+  // Indexed representatives: ...d038... (for D037) and ...d041... (for D040).
+  'release-05-file-007-fbi-uap-d039-digital-rendering-2-multiple-red-lights-2026',
+  'release-05-file-009-fbi-uap-d042-digital-rendering-2-multiple-red-lights-2026',
+]);
+
 export function isThinDocument(doc: DeclassifiedDocument): boolean {
+  if (NEAR_DUPLICATE_SLUGS.has(doc.slug)) return true;
   if (/^DOD_\d{6,}/.test(doc.title)) return true;
   if (doc.keyFindings.length === 0) return true;
   if (!doc.summary || doc.summary.includes('This page indexes')) return true;

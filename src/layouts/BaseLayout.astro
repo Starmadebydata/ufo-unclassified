@@ -20,7 +20,7 @@ interface Props {
 
 const {
   title,
-  description = 'The most comprehensive database of declassified UAP/UFO documents from the U.S. government. Browse PURSUE Release 01 through Release 04 files from DOW, FBI, NASA, DOE, CIA, ICA, ODNI, and more.',
+  description = 'The most comprehensive database of declassified UAP/UFO documents from the U.S. government. Browse PURSUE Release 01 through Release 05 files from DOW, FBI, NASA, DOE, CIA, ICA, ODNI, and more.',
   ogImage = '/og-default.png',
   ogType = 'website',
   canonical,
@@ -150,7 +150,7 @@ const currentPath = Astro.url.pathname;
           { href: '/culture/', label: 'Culture' },
           { href: '/timeline/', label: 'Timeline' },
           { href: '/tools/', label: 'Tools' },
-          { href: '/blog/', label: 'Intel' },
+          { href: '/blog/', label: 'Blog' },
           { href: '/about/', label: 'About' },
         ].map(item => (
           <a 
@@ -186,7 +186,7 @@ const currentPath = Astro.url.pathname;
         <a href="/culture/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Culture</a>
         <a href="/timeline/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Timeline</a>
         <a href="/tools/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Tools</a>
-        <a href="/blog/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Intel</a>
+        <a href="/blog/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">Blog</a>
         <a href="/about/" class="px-4 py-2 text-space-200 hover:text-cyan-bright hover:bg-space-800/50 rounded transition-all">About</a>
       </nav>
     </div>

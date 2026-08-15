@@ -320,10 +320,11 @@ import type { DeclassifiedDocument } from './types';
 import { release02Documents } from './release-02-documents';
 import { release03Documents } from './release-03-documents';
 import { release04Documents } from './release-04-documents';
+import { release05Documents } from './release-05-documents';
 
 export const release01Documents: DeclassifiedDocument[] = ${JSON.stringify(docs, null, 2)};
 
-export const documents: DeclassifiedDocument[] = [...release04Documents, ...release03Documents, ...release02Documents, ...release01Documents].sort((a, b) =>
+export const documents: DeclassifiedDocument[] = [...release05Documents, ...release04Documents, ...release03Documents, ...release02Documents, ...release01Documents].sort((a, b) =>
   b.dateReleased.localeCompare(a.dateReleased) || b.year - a.year || a.title.localeCompare(b.title)
 );
 
