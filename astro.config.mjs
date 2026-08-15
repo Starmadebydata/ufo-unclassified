@@ -6,13 +6,15 @@ import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
 import { documents } from './src/data/documents';
-import { isThinDocument } from './src/data/seo';
+import { cultureRecords } from './src/data/culture';
+import { isThinDocument, isThinCulture } from './src/data/seo';
 
-// Thin document pages are noindexed in documents/[slug].astro; excluding them
-// from the sitemap here keeps both decisions driven by the same function.
-const thinDocumentPaths = new Set(
-  documents.filter(isThinDocument).map(doc => `/documents/${doc.slug}/`),
-);
+// Thin pages are noindexed in their page templates; excluding them from the
+// sitemap here keeps both decisions driven by the same functions.
+const thinPaths = new Set([
+  ...documents.filter(isThinDocument).map(doc => `/documents/${doc.slug}/`),
+  ...cultureRecords.filter(isThinCulture).map(item => `/culture/${item.id}/`),
+]);
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,7 +27,7 @@ export default defineConfig({
       changefreq: 'daily',
       priority: 0.7,
       lastmod: new Date(),
-      filter: (page) => !thinDocumentPaths.has(new URL(page).pathname),
+      filter: (page) => !thinPaths.has(new URL(page).pathname),
     }),
   ],
 

@@ -11,6 +11,7 @@ import type { CultureCategory, CultureRecord } from '../../data/culture';
 import { getDocumentBySlug } from '../../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
 import { getTopicBySlug } from '../../data/topics';
+import { isThinCulture } from '../../data/seo';
 
 export function getStaticPaths() {
   return cultureRecords.map(item => ({
@@ -121,6 +122,7 @@ const jsonLd = [creativeSchema, faqSchema, breadcrumbSchema].filter(Boolean);
   ogImage={item.coverImage}
   ogType="article"
   canonical={canonicalUrl}
+  noindex={isThinCulture(item)}
 >
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
 

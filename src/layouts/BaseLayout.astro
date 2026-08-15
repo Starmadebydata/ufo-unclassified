@@ -9,6 +9,13 @@ interface Props {
   canonical?: string;
   /** Emit a robots noindex,follow meta — for bulk asset pages kept on-site but out of search. */
   noindex?: boolean;
+  /**
+   * Load the AdSense script on this page. Defaults to false on noindex pages
+   * and on legal/utility pages (privacy, terms, contact, 404) — Google
+   * Publisher Policies prohibit ads on screens without publisher content,
+   * and low-value screens drag down the whole-site review.
+   */
+  showAds?: boolean;
 }
 
 const {
@@ -18,7 +25,13 @@ const {
   ogType = 'website',
   canonical,
   noindex = false,
+  showAds,
 } = Astro.props;
+
+const AD_FREE_PATHS = ['/privacy', '/terms', '/contact', '/404'];
+const pathname = Astro.url.pathname;
+const isAdFreePath = AD_FREE_PATHS.some(p => pathname === p || pathname === `${p}/` || pathname.startsWith(`${p}/`));
+const adsEnabled = showAds ?? (!noindex && !isAdFreePath);
 
 const siteTitle = title === 'Home' ? 'UFO Declassified — Explore Government UAP Files' : `${title} | UFO Declassified`;
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
@@ -30,10 +43,13 @@ const currentPath = Astro.url.pathname;
 <html lang="en">
 <head>
   <!-- Consent management: defer ad/analytics personalization until user choice.
-       EEA/UK users get a banner; elsewhere default to granted. -->
-  <script>
+       EEA/UK users get a banner; elsewhere default to granted.
+       is:inline is required: Astro bundles bare <script> as a module, which
+       keeps `gtag` out of the global scope and breaks the consent banner
+       ("ReferenceError: gtag is not defined"). -->
+  <script is:inline>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    window.gtag = function gtag(){dataLayer.push(arguments);}
     // Default consent state — denied until user opts in (GDPR/EEA requirement)
     gtag('consent', 'default', {
       ad_storage: 'denied',
@@ -47,11 +63,13 @@ const currentPath = Astro.url.pathname;
   </script>
   <!-- Google tag (gtag.js) — loaded after consent default so it respects the state -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-X49F7XPJWB"></script>
-  <script
-    async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9461995056900435"
-    crossorigin="anonymous"
-  ></script>
+  {adsEnabled && (
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9461995056900435"
+      crossorigin="anonymous"
+    />
+  )}
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
