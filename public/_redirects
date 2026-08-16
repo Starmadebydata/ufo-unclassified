@@ -1,0 +1,5 @@
+# Cloudflare Workers static assets redirects.
+# The blog lives at /blog/; /intel was only ever a nav label but redirect
+# guessed URLs there permanently.
+/intel /blog/ 301
+/intel/ /blog/ 301
