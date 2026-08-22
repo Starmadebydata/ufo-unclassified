@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getToolDocs, RELEASES, RELEASE_COLORS } from '../../data/toolData';
+import { getToolDocs, RELEASES, RELEASE_COLORS, RELEASE_RANGE_LABEL } from '../../data/toolData';
 import { AGENCY_INFO } from '../../data/types';
 import type { Agency } from '../../data/types';
 import { makeArchiveDatasetSchema, ARCHIVE_DOI, ARCHIVE_DOI_URL } from '../../config';
@@ -44,7 +44,7 @@ const datasetSchema = {
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const citationDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
-const citationText = `UFO Declassified. "Archive Statistics." ${total} records across PURSUE Releases 01-04. ${canonicalUrl}. Accessed ${citationDate}.`;
+const citationText = `UFO Declassified. "Archive Statistics." ${total} records across PURSUE ${RELEASE_RANGE_LABEL}. ${canonicalUrl}. Accessed ${citationDate}.`;
 const datasetCitationText = `Lin, Flynn. (2026). PURSUE UAP Documents Dataset: A structured catalog of declassified U.S. government UAP records (2026). Zenodo. ${ARCHIVE_DOI_URL}`;
 ---
 <BaseLayout
@@ -185,7 +185,7 @@ const datasetCitationText = `Lin, Flynn. (2026). PURSUE UAP Documents Dataset: A
       <p class="text-xs text-space-300 font-mono leading-relaxed">
         Counts reflect the records this archive has indexed from the official
         <a href="https://www.war.gov/UFO/" target="_blank" rel="noopener" class="text-cyan-bright hover:underline">War.gov/UFO portal</a>
-        across PURSUE Releases 01–04. They count indexed records, not pages or individual files, and may differ from
+        across PURSUE {RELEASE_RANGE_LABEL}. They count indexed records, not pages or individual files, and may differ from
         cumulative figures quoted in press coverage. See the
         <a href="/tools/compare/" class="text-cyan-bright hover:underline">Release Comparator</a> for per-release breakdowns
         and the <a href="/blog/war-gov-ufo-complete-guide/" class="text-cyan-bright hover:underline">complete guide</a> for methodology.

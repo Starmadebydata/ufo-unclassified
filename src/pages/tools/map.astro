@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SightingMap from '../../components/SightingMap.tsx';
-import { getMapLocations, RELEASES, RELEASE_COLORS } from '../../data/toolData';
+import { getMapLocations, RELEASES, RELEASE_COLORS, RELEASE_RANGE_LABEL } from '../../data/toolData';
 
 const { locations, unmappableCount, unlocatedCount } = getMapLocations();
 const mappedDocs = locations.reduce((sum, l) => sum + l.docs.length, 0);
@@ -9,11 +9,11 @@ const topLocations = locations.slice(0, 8);
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const citationDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
-const citationText = `UFO Declassified. "UAP Sighting Map." ${mappedDocs} mapped records across PURSUE Releases 01-04. ${canonicalUrl}. Accessed ${citationDate}.`;
+const citationText = `UFO Declassified. "UAP Sighting Map." ${mappedDocs} mapped records across PURSUE ${RELEASE_RANGE_LABEL}. ${canonicalUrl}. Accessed ${citationDate}.`;
 ---
 <BaseLayout
   title="UAP Sighting Map"
-  description={`Interactive map of ${mappedDocs} declassified UAP document locations from PURSUE Releases 01-04: Western U.S. orbs, CENTCOM encounters, Cold War sites, and more.`}
+  description={`Interactive map of ${mappedDocs} declassified UAP document locations from PURSUE ${RELEASE_RANGE_LABEL}: Western U.S. orbs, CENTCOM encounters, Cold War sites, and more.`}
   ogImage="/blog-assets/tool-og-map.jpg"
 >
   <section class="container-narrow py-12">

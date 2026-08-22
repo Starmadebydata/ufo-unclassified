@@ -1,13 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import VideoBrowser from '../../components/VideoBrowser.tsx';
-import { getVideoEntries, RELEASES, RELEASE_COLORS } from '../../data/toolData';
+import { getVideoEntries, RELEASES, RELEASE_COLORS, RELEASE_RANGE_LABEL } from '../../data/toolData';
 
 const videos = getVideoEntries();
 ---
 <BaseLayout
   title="UAP Video Browser"
-  description={`Browse all ${videos.length} declassified UAP videos from PURSUE Releases 01-04 in one place: Lake Huron shootdown, Syrian instant acceleration, CENTCOM encounters, and more, with links to records and official sources.`}
+  description={`Browse all ${videos.length} declassified UAP videos from PURSUE ${RELEASE_RANGE_LABEL} in one place: Lake Huron shootdown, Syrian instant acceleration, CENTCOM encounters, and more, with links to records and official sources.`}
   ogImage="/blog-assets/tool-og-videos.jpg"
 >
   <section class="container-narrow py-12">

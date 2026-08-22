@@ -114,6 +114,10 @@ export function getVideoEntries(): VideoEntry[] {
 
 export const RELEASES = ['Release 01', 'Release 02', 'Release 03', 'Release 04', 'Release 05'];
 
+// Derived so citation text and descriptions on /tools pages stay correct without
+// a manual find-and-replace every time a new release is added to RELEASES above.
+export const RELEASE_RANGE_LABEL = `Releases ${RELEASES[0].replace('Release ', '')}-${RELEASES[RELEASES.length - 1].replace('Release ', '')}`;
+
 export const RELEASE_COLORS: Record<string, string> = {
   'Release 01': '#22d3ee', // cyan-bright
   'Release 02': '#fbbf24', // amber-bright

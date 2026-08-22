@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import EvidenceExplorer from '../../components/EvidenceExplorer.tsx';
-import { getToolDocs } from '../../data/toolData';
+import { getToolDocs, RELEASE_RANGE_LABEL } from '../../data/toolData';
 import { LABEL_INFO } from '../../data/evidence';
 import type { EvidenceLabel } from '../../data/evidence';
 
@@ -14,7 +14,7 @@ const editorialCount = docs.filter(d => d.evidenceLabels.some(l => LABEL_INFO[l]
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const citationDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
-const citationText = `UFO Declassified. "Evidence Explorer." ${labeledCount} labeled records across PURSUE Releases 01-04. ${canonicalUrl}. Accessed ${citationDate}.`;
+const citationText = `UFO Declassified. "Evidence Explorer." ${labeledCount} labeled records across PURSUE ${RELEASE_RANGE_LABEL}. ${canonicalUrl}. Accessed ${citationDate}.`;
 ---
 <BaseLayout
   title="Evidence Explorer"

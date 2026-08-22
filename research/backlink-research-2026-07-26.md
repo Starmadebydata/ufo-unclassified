@@ -109,12 +109,20 @@
 4. ~~**/tools/stats 与文档页的 citation 块补上 DOI**~~ ✅ **已完成(2026-07-26)** —— DOI 已回填至 `src/config.ts`(Dataset JSON-LD 的 `identifier`/`sameAs`/`distribution`)、`/tools/stats` 下载按钮下方与 How to Cite 块(拆为"This page"/"The dataset"两段)、`llms.txt` 的 Open Dataset 段、以及 `dataset/` 的 README 与 CITATION.cff。
 5. **修正 /terms 的授权冲突** ✅ **已完成(2026-07-26)** —— 原 /terms 禁止未经书面许可复制"organizational structure",与 Zenodo 上刚发布的 CC BY 4.0 直接矛盾。已加入目录数据集的 CC BY 4.0 明确豁免条款,书面许可限制只保留给设计与文章。**这条是发布 CC BY 数据集的必要前提,否则任何想复用数据的人会在 /terms 撞到反向条款。**
 
-### Release 05 窗口(72 小时,时间敏感)
+### Release 05 窗口 —— 复盘:整个错过了
 
-5. **Metabunk 既有帖**(帖子会自动出现)——针对具体记录的证据属性发言,链接落到具体记录页 / Evidence Explorer。
-6. **r/UFOs megathread** —— 用 `/tools/compare` 给逐 Release 增量数字回答"这次到底新增了什么"这个每次都会被问的问题。
-7. **当次快速分析文章** —— 内链全部工具页(既有编辑模式)。
-8. **记者供数邮件** —— 报道过 PURSUE 的线人(AP、CBS、NBC、Newsweek、NewsNation、Guardian US),提供逐 Release 拆解 + 现成图表 + 免费引用授权。此时手上已有 DOI,可信度显著不同。
+Release 05 于 2026-08-07 落地。站内内容(41 条记录入库、数据集镜像升级)直到 2026-08-16 才提交,**晚了 9 天**;期间没有发布 first-look 分析文章,Metabunk、r/UFOs、记者外联均无执行痕迹。这一轮 72 小时窗口完全放空。
+
+诊断:不是没人执行,是**每次都要从空白开始写**——文章框架、工具页内链、外联文案,没有一样是提前准备好的,导致"等新闻周期冷却了才想起来做"。
+
+### Release 06 窗口(72 小时,时间敏感)—— 这次提前备好了
+
+模板已就绪,发布当天只需要填数据,不用重新构思:
+
+- **[release-first-look.md](templates/release-first-look.md)** —— first-look 文章骨架,frontmatter、结构、语气规则齐全,**并且把"Explore This Release"段落设为必填项**——这是此前 01–04 四篇文章都没做的:没有一篇链接过任何 /tools 页面。复制到 `src/content/blog/war-gov-ufo-release-0N-first-look.md`,填 `[[TOKEN]]` 即可。
+- **[release-window-outreach.md](templates/release-window-outreach.md)** —— Metabunk 回帖、r/UFOs 评论、记者邮件三份可直接发的文案,附 T+0 到 T+72h 的执行时间表和发布当天的技术清单(toolData.ts 加新 release、数据集刷新、Zenodo 发新版、llms.txt 更新)。
+
+`pursue-release-05-watch` 定时任务命中 Release 06 时,会在推送里直接指向这两个文件。
 
 ### 月度滴灌
 
