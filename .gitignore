@@ -31,3 +31,10 @@ source-files/
 # Cloudflare
 .wrangler/
 worker-configuration.d.ts
+
+# Internal planning/process docs — not for the public repo
+research/
+editorial-calendar-2026Q3.md
+.devin/
+skills/
+output/
