@@ -194,5 +194,6 @@ This catalog — the indexing, metadata normalization, and source-status labelin
 - Sighting Map: <https://ufo-declassified.com/tools/map>
 - Release Comparator: <https://ufo-declassified.com/tools/compare>
 - Official source: <https://war.gov/ufo>
+- Also mirrored on Kaggle: <https://www.kaggle.com/datasets/feifeiai/pursue-uap-documents-dataset>
 
 Not affiliated with any U.S. government agency.
