@@ -51,8 +51,14 @@ export const release01Documents: DeclassifiedDocument[] = [
     "releaseLabel": "Release 01",
     "sourceUrl": "https://war.gov/UFO",
     "classification": "DECLASSIFIED",
-    "summary": "FBI case-file record 65-HS1-834228961, 62-HQ-83894 Section 10. The record includes public image and PDF files for the 62-HQ-83894 series and should be read with adjacent FBI sections and serials.",
-    "keyFindings": [],
+    "summary": "Folder cover for Section 10 (Serials 448 onward) of FBI Headquarters file 62-HQ-83894, the file number under which the FBI kept its UFO records. The image shows the envelope, not the case pages: a barcode label marked OPEN, several \"Copied for FOIPA\" stamps from the 1970s, a handwritten note for Serial 449 and a \"Use Care in Handling This File\" warning.",
+    "keyFindings": [
+      "The label identifies the folder as FBI Headquarters, Class/Case 0062 83894, Section 10, starting at Serial 448. The label reads OPEN, and the side label gives an open-ended range, \"Serials 448-\", rather than a fixed end.",
+      "Several \"Copied for FOIPA\" stamps overlap on the cover with dates in the mid to late 1970s, and a handwritten note marks Serial 449.",
+      "The cover carries the warnings \"Use Care in Handling This File\" and \"Do Not Destroy\", and a \"Transfer-Call 3421\" stamp.",
+      "Section 10 starts at Serial 448, while Section 8 in this archive ends at Serial 384, so the serials between them (385 to 447) are not part of this record.",
+      "This record provides the folder cover image only. It does not reproduce the serials inside the folder."
+    ],
     "files": [
       {
         "type": "image",
@@ -117,8 +123,14 @@ export const release01Documents: DeclassifiedDocument[] = [
     "releaseLabel": "Release 01",
     "sourceUrl": "https://war.gov/UFO",
     "classification": "DECLASSIFIED",
-    "summary": "FBI case-file record 65-HS1-834228961, 62-HQ-83894 Section 7. Use this source page with Sections 1, 8, and 10 to navigate the declassified FBI 62-HQ-83894 UFO file series.",
-    "keyFindings": [],
+    "summary": "Folder cover for Section 7 (Serials 302 to 343) of FBI Headquarters file 62-HQ-83894, the file number under which the FBI kept its UFO records. The image shows the envelope, not the case pages: a Central Records Center barcode label, several \"Copied for FOIPA\" stamps from the 1970s, a \"Do Not Destroy\" marking and FOIPA number 993087.",
+    "keyFindings": [
+      "The label identifies the folder as FBI Headquarters, Class/Case 0062 83894, Section 7, covering Serials 302 to 343. A second label on the right repeats 62-HQ-83894, Serials 302-343, Section 7.",
+      "Several overlapping \"Copied for FOIPA\" stamps cover the front, with dates in the late 1970s. They record when the folder was copied for Freedom of Information and Privacy Act processing.",
+      "Handwriting on the cover notes Serials 322, 320 and 343, and a handwritten FOIPA number, 993087, appears near the bottom. The cover carries a \"Do Not Destroy\" marking and a \"Transfer-Call 421\" stamp.",
+      "A blue notice states that declassification authority derives from the FBI Automatic Declassification Guide issued May 24, 2007.",
+      "This record provides the folder cover image only. It does not reproduce the serials inside the folder."
+    ],
     "files": [
       {
         "type": "image",
@@ -150,8 +162,14 @@ export const release01Documents: DeclassifiedDocument[] = [
     "releaseLabel": "Release 01",
     "sourceUrl": "https://war.gov/UFO",
     "classification": "DECLASSIFIED",
-    "summary": "FBI case-file record 65-HS1-834228961, 62-HQ-83894 Section 8. This page preserves the public file metadata and links it into the wider FBI 65-HS1 UFO case-file group.",
-    "keyFindings": [],
+    "summary": "Folder cover for Section 8 (Serials 344 to 384) of FBI Headquarters file 62-HQ-83894, the file number under which the FBI kept its UFO records. The image shows the envelope, not the case pages: a barcode label, \"Copied for FOIPA\" stamps dated 1976 to 1979, two \"Do Not Destroy\" stamps and FOIPA number 993087.",
+    "keyFindings": [
+      "The label identifies the folder as FBI Headquarters, Class/Case 0062 83894, Section 8, covering Serials 344 to 384. A second label on the right repeats 62-HQ-83894, Serials 344-384, Section 8.",
+      "The \"Copied for FOIPA\" stamps on this cover carry dates including November 3, 1976, May 1977 and January 18, 1979, spanning the same processing period as the neighboring sections.",
+      "Two \"Do Not Destroy\" stamps appear on the front, and the handwritten FOIPA number 993087 is the same number written on the Section 7 cover. Handwritten numbers near the bottom appear to read 358 and 346.",
+      "The cover is stamped \"Transfer-Call 3421\", while Section 7 carries \"Transfer-Call 421\".",
+      "This record provides the folder cover image only. It does not reproduce the serials inside the folder."
+    ],
     "files": [
       {
         "type": "image",
@@ -986,8 +1004,14 @@ export const release01Documents: DeclassifiedDocument[] = [
       "lng": 0
     },
     "classification": "DECLASSIFIED",
-    "summary": "Official NASA Apollo 17 mission transcript from 1972, included in the declassified UAP archive. The record is a primary source for Apollo 17 UAP searches, anomalous-light references, and mission communication context.",
-    "keyFindings": [],
+    "summary": "One page of the Apollo 17 air-to-ground transcript (Tape 5/2), from about three and a half hours after launch in December 1972. Highlighted lines record the crew describing very bright particles or fragments drifting past the spacecraft during a maneuver, including a comparison to the Fourth of July and jagged, tumbling angular pieces.",
+    "keyFindings": [
+      "The page is from Tape 5/2. Its timestamps start around 00 03 25 (about 3 hours 25 minutes after launch), and Houston and the crew are coordinating a spacecraft maneuver with a start time of 03:33:27.",
+      "The yellow highlighting appears to have been added for the release rather than being part of the original typescript. It begins where the command module pilot reports a few very bright particles or fragments drifting by as the spacecraft maneuvers.",
+      "The lunar module pilot adds that there is a whole bunch of big bright ones at his window and that it looks like the Fourth of July out of the command module pilot's window. The command module pilot says some can be seen in shape, as very jagged, angular fragments that are tumbling.",
+      "By the crew's own description these are fragments seen while the spacecraft maneuvers. Read plainly, that describes debris near the spacecraft rather than a distant unidentified craft, although the transcript itself offers no explanation.",
+      "The page ends mid-exchange, so what the crew or Houston concluded next is not visible in this record."
+    ],
     "files": [
       {
         "type": "image",
@@ -1025,8 +1049,14 @@ export const release01Documents: DeclassifiedDocument[] = [
       "lng": 0
     },
     "classification": "DECLASSIFIED",
-    "summary": "Apollo 17 visual media file VM6 from the declassified NASA UAP release. It is the key Apollo 17 image record for readers comparing lunar anomaly claims with the Apollo 17 transcript and crew debriefings.",
-    "keyFindings": [],
+    "summary": "Apollo 17 lunar surface photograph (1972) from the NASA UAP release. The frame looks across a flat valley floor toward rounded hills, with a dark shadow at lower left. A yellow box added for the release enlarges a tiny cluster of three faint points in the black sky above the right-hand slope, two bluish and one orange. No explanation is given.",
+    "keyFindings": [
+      "The frame looks across a flat, pale valley floor toward low rounded hills, with a dark shadow in the lower left and the film's reseau crosses visible. Apollo 17 landed in the Taurus-Littrow valley in December 1972.",
+      "The yellow enlargement box was added for the release. It magnifies a tiny cluster of three faint points in the black sky above the right-hand slope: two bluish points and one orange one.",
+      "The points are extremely small and dim, with no visible shape, so nothing about their size or distance can be read from this image.",
+      "The release does not identify them. Faint colored points on scanned color film can also be film or scan artifacts, so treat the annotation as something to test rather than a conclusion.",
+      "The Apollo 17 transcript record in this archive describes bright particles seen from the spacecraft during a maneuver early in the flight. That is a different situation from a photograph taken on the lunar surface, and the two should not be merged into one event."
+    ],
     "files": [
       {
         "type": "image",
@@ -1064,8 +1094,14 @@ export const release01Documents: DeclassifiedDocument[] = [
       "lng": 0
     },
     "classification": "DECLASSIFIED",
-    "summary": "Official NASA transcript from the Apollo 12 mission (November 1969) containing crew communications discussing anomalous observations during the lunar mission.",
-    "keyFindings": [],
+    "summary": "One page of the official NASA Apollo 12 mission transcript (November 1969), Tape 90/3, page 742. The page shown covers Houston uplinking a state vector and the lift-off time to the lunar module Intrepid, plus a friendly exchange with the command module pilot aboard Yankee Clipper. It is routine flight-operations dialogue with no unidentified object mentioned on this page.",
+    "keyFindings": [
+      "Page 742 of Tape 90/3 runs from mission elapsed time 05 19 14 58 to 05 19 24 05 (day, hour, minute, second), about nine minutes of dialogue.",
+      "The speakers are Houston (CC), the lunar module commander (CDR-LM) and the command module pilot (CMP). The vehicles use their Apollo 12 call signs: Intrepid for the lunar module and Yankee Clipper for the command module.",
+      "Houston asks first the lunar module crew and then the command module pilot to set their computers to POO and ACCEPT so it can uplink data, including a command module state vector and an RLS (landing-site) update. It also confirms the lunar module lift-off time as 142:03:47, which the crew reads back.",
+      "Nothing on this page refers to an unidentified object. It is routine flight-operations traffic ahead of the lunar module ascent.",
+      "This record reproduces only this one page. Anyone looking for the passages behind Apollo 12 UFO claims needs the rest of the transcript, which is not shown here."
+    ],
     "files": [
       {
         "type": "image",
@@ -1142,8 +1178,14 @@ export const release01Documents: DeclassifiedDocument[] = [
       "lng": 0
     },
     "classification": "DECLASSIFIED",
-    "summary": "Six visual media files from the Apollo 12 mission (1969) showing anomalous features on or near the lunar surface captured during EVA and orbital photography.",
-    "keyFindings": [],
+    "summary": "Apollo 12 lunar surface photograph (1969) from the NASA UAP release. The frame shows the lunar horizon, long shadows across the surface and the film's reseau crosses. A yellow box added for the release enlarges a tiny vertical blue streak just above the horizon on the right. The record does not say what the streak is.",
+    "keyFindings": [
+      "The image is a full lunar surface frame with the film's reseau crosses visible across it, a strip of film edge along the left and right sides, and long shadows falling across the foreground.",
+      "The yellow enlargement box was added for the release and is not part of the original photograph. It magnifies a very small vertical streak just above the horizon on the right side of the frame. At magnification the streak is blue with a reddish point near its lower end.",
+      "The streak is tiny relative to the frame, so its size, distance and nature cannot be determined from this image alone.",
+      "The release does not say what the streak is. Small colored marks near the edge of a scanned film frame can come from film defects, scan artifacts or optical effects, so the annotation is a claim to test rather than a finding.",
+      "Compare this frame with the other Apollo 12 visual media records (VM2 to VM5) and the Apollo 12 transcript before drawing conclusions."
+    ],
     "files": [
       {
         "type": "image",
