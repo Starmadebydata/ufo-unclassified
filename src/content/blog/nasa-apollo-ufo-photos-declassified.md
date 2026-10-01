@@ -61,7 +61,7 @@ Possible anomalies that could warrant their inclusion:
 
 Without official analysis notes (which may exist in unreleased portions of the file), we can only note that NASA and the PURSUE review board determined these images met the threshold for UAP-related disclosure.
 
-[View Apollo 12 images →](/documents/nasa-uap-vm1-apollo-12-1969)
+[View Apollo 12 images →](/documents/nasa-uap-vm1-apollo-12-1969/)
 
 ### The Apollo 12 Communications Transcript (D1)
 
@@ -71,7 +71,7 @@ This document records voice communications between the Apollo 12 crew and Missio
 
 The inclusion of this particular transcript in a UAP release suggests it contains dialogue referencing unidentified objects or unexplained phenomena observed by the crew. During the Apollo era, astronauts communicated on multiple channels — some recorded and publicly available, others on private loops intended for mission-critical communications only.
 
-[Read the Apollo 12 transcript →](/documents/nasa-uap-d1-apollo-12-transcript-1969)
+[Read the Apollo 12 transcript →](/documents/nasa-uap-d1-apollo-12-transcript-1969/)
 
 ---
 
@@ -89,7 +89,7 @@ Buzz Aldrin has publicly discussed observing a light that appeared to follow the
 
 This debriefing document may contain the official, contemporaneous account of that observation — recorded days after the mission rather than decades later in interviews.
 
-[Read the Apollo 11 debriefing →](/documents/nasa-uap-d4-apollo-11-technical-crew-debriefing-1969)
+[Read the Apollo 11 debriefing →](/documents/nasa-uap-d4-apollo-11-technical-crew-debriefing-1969/)
 
 ---
 
@@ -105,7 +105,7 @@ Three documents from Apollo 17 appear in the PURSUE release:
 
 Similar to the Apollo 12 transcript, this records voice communications during the mission. Apollo 17 was notable for several unusual observations reported by the crew, including what Cernan described as "bright flashes" on the lunar surface — a phenomenon later investigated as possible cosmic ray interactions with the retina, but never fully explained for all reported instances.
 
-[Read the Apollo 17 transcript →](/documents/nasa-uap-d2-apollo-17-transcript-1972)
+[Read the Apollo 17 transcript →](/documents/nasa-uap-d2-apollo-17-transcript-1972/)
 
 ### Visual Media (VM6)
 
@@ -115,7 +115,7 @@ The sixth and final visual media file comes from Apollo 17 rather than Apollo 12
 
 Apollo 17 astronauts took over 2,200 photographs during their mission — more than any other Apollo crew. The selection of this particular image for the UAP release implies it captured something the review board considered anomalous.
 
-[View the Apollo 17 image →](/documents/nasa-uap-vm6-apollo-17-1972)
+[View the Apollo 17 image →](/documents/nasa-uap-vm6-apollo-17-1972/)
 
 ### Crew Debriefings (D5, D6)
 
@@ -128,9 +128,9 @@ The existence of both debriefings in the PURSUE release suggests that UAP-relate
 
 Harrison Schmitt, as a trained geologist, would have been particularly qualified to distinguish between known geological or optical phenomena and genuinely anomalous observations. His scientific observations carry significant weight in any analysis.
 
-[Read the science debriefing →](/documents/nasa-uap-d5-apollo-17-crew-debriefing-for-science-1973)
+[Read the science debriefing →](/documents/nasa-uap-d5-apollo-17-crew-debriefing-for-science-1973/)
 
-[Read the technical debriefing →](/documents/nasa-uap-d6-apollo-17-technical-crew-debriefing-1973)
+[Read the technical debriefing →](/documents/nasa-uap-d6-apollo-17-technical-crew-debriefing-1973/)
 
 ---
 
@@ -216,17 +216,17 @@ NASA's inclusion acknowledges, at minimum, that:
 
 All twelve NASA files are available in our archive:
 
-- [Apollo 11 Technical Crew Debriefing (1969)](/documents/nasa-uap-d4-apollo-11-technical-crew-debriefing-1969)
-- [Apollo 12 Communications Transcript (1969)](/documents/nasa-uap-d1-apollo-12-transcript-1969)
-- [Apollo 12 Visual Media (6 images)](/documents/nasa-uap-vm1-apollo-12-1969)
-- [Apollo 17 Communications Transcript (1972)](/documents/nasa-uap-d2-apollo-17-transcript-1972)
-- [Apollo 17 Visual Media](/documents/nasa-uap-vm6-apollo-17-1972)
-- [Apollo 17 Science Debriefing (1973)](/documents/nasa-uap-d5-apollo-17-crew-debriefing-for-science-1973)
-- [Apollo 17 Technical Debriefing (1973)](/documents/nasa-uap-d6-apollo-17-technical-crew-debriefing-1973)
+- [Apollo 11 Technical Crew Debriefing (1969)](/documents/nasa-uap-d4-apollo-11-technical-crew-debriefing-1969/)
+- [Apollo 12 Communications Transcript (1969)](/documents/nasa-uap-d1-apollo-12-transcript-1969/)
+- [Apollo 12 Visual Media (6 images)](/documents/nasa-uap-vm1-apollo-12-1969/)
+- [Apollo 17 Communications Transcript (1972)](/documents/nasa-uap-d2-apollo-17-transcript-1972/)
+- [Apollo 17 Visual Media](/documents/nasa-uap-vm6-apollo-17-1972/)
+- [Apollo 17 Science Debriefing (1973)](/documents/nasa-uap-d5-apollo-17-crew-debriefing-for-science-1973/)
+- [Apollo 17 Technical Debriefing (1973)](/documents/nasa-uap-d6-apollo-17-technical-crew-debriefing-1973/)
 - [Skylab Technical Debriefing (1973)](https://war.gov/UFO)
 - [Gemini Audio Recording (1965)](https://war.gov/UFO)
 
-Browse the full archive by visiting our [NASA agency page →](/agencies/nasa)
+Browse the full archive by visiting our [NASA agency page →](/agencies/nasa/)
 
 ---
 

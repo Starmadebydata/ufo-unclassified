@@ -16,7 +16,7 @@ The most interesting thing about CIA-UAP-D001 is not only the green object.
 
 It is where the object appears.
 
-[CIA-UAP-D001, "Intelligence Information Report, USSR, 1973"](/documents/release-02-file-004-cia-uap-d001-intelligence-information-report-ussr-1973) is a short three-page historical record in War.gov Release 02. At first glance, the UAP portion looks almost too brief to carry much weight: one evening in late summer 1973, a source at the Sary Shagan weapons testing range reported seeing a bright green circular object or mass in the sky. It widened, formed several green concentric circles, faded within minutes, and produced no sound or explosion.
+[CIA-UAP-D001, "Intelligence Information Report, USSR, 1973"](/documents/release-02-file-004-cia-uap-d001-intelligence-information-report-ussr-1973/) is a short three-page historical record in War.gov Release 02. At first glance, the UAP portion looks almost too brief to carry much weight: one evening in late summer 1973, a source at the Sary Shagan weapons testing range reported seeing a bright green circular object or mass in the sky. It widened, formed several green concentric circles, faded within minutes, and produced no sound or explosion.
 
 That description is memorable. It is also easy to overread.
 

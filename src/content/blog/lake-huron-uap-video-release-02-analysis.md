@@ -16,7 +16,7 @@ The Lake Huron video is one of the most important records in War.gov Release 02,
 
 It does almost the opposite. It shows why public UAP transparency cannot stop at video.
 
-The record is [DOW-UAP-PR071, "USAF ANG F-16C Shoots Down UAP over Lake Huron"](/documents/release-02-file-030-dow-uap-pr071-usaf-ang-f-16c-callsign-callsign-shoots-down-uap-over-lake-huron-with-weapon-syste), released as part of the second PURSUE tranche on May 22, 2026. The title alone is enough to make the file stand out. This is not a distant light, a historical rumor, or an ambiguous astronaut observation. It is tied to a real U.S. military engagement over North America on February 12, 2023.
+The record is [DOW-UAP-PR071, "USAF ANG F-16C Shoots Down UAP over Lake Huron"](/documents/release-02-file-030-dow-uap-pr071-usaf-ang-f-16c-callsign-callsign-shoots-down-uap-over-lake-huron-with-weapon-syste/), released as part of the second PURSUE tranche on May 22, 2026. The title alone is enough to make the file stand out. This is not a distant light, a historical rumor, or an ambiguous astronaut observation. It is tied to a real U.S. military engagement over North America on February 12, 2023.
 
 That makes the clip politically important, historically important, and easy to sensationalize.
 
@@ -73,7 +73,7 @@ First, it anchors the Lake Huron shootdown inside the PURSUE archive. That makes
 
 Second, it confirms that an official video artifact exists in releasable form. That does not guarantee that the public version is native sensor footage, complete footage, or the highest-quality available record. But it does show that the government can publish at least some visual material tied to this engagement.
 
-Third, it helps readers compare the Lake Huron case with other military videos in Release 02. Compare it with [DOW-UAP-PR051, the Syrian instant acceleration record](/documents/release-02-file-002-dow-uap-pr051-syrian-uap-instant-acceleration), [DOW-UAP-PR050, the Iran four-UAP formation record](/documents/release-02-file-001-dow-uap-pr050-4-uap-formation-iran-26-aug-2022-over-water-callsign), and [DOW-UAP-PR098, the Persian Gulf formation record](/documents/release-02-file-057-dow-uap-pr098-ufos-in-formation-over-persian-gulf). Those records have different regions, dates, sensor contexts, and public implications. Lake Huron stands out because it took place over North America and ended in a weapons engagement.
+Third, it helps readers compare the Lake Huron case with other military videos in Release 02. Compare it with [DOW-UAP-PR051, the Syrian instant acceleration record](/documents/release-02-file-002-dow-uap-pr051-syrian-uap-instant-acceleration/), [DOW-UAP-PR050, the Iran four-UAP formation record](/documents/release-02-file-001-dow-uap-pr050-4-uap-formation-iran-26-aug-2022-over-water-callsign/), and [DOW-UAP-PR098, the Persian Gulf formation record](/documents/release-02-file-057-dow-uap-pr098-ufos-in-formation-over-persian-gulf/). Those records have different regions, dates, sensor contexts, and public implications. Lake Huron stands out because it took place over North America and ended in a weapons engagement.
 
 Fourth, it sharpens the transparency standard. Once a shootdown video is public, the obvious next question is not "do we have a clip?" The question is "what else exists?"
 

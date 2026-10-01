@@ -62,7 +62,7 @@ The official government portal at war.gov/UFO organizes files into downloadable 
 - Limited search and filtering capabilities
 - No contextual analysis or cross-referencing
 
-This guide - and our [complete document database](/documents) - addresses these gaps by providing structured metadata, summaries, and cross-references for the indexed release files.
+This guide - and our [complete document database](/documents/) - addresses these gaps by providing structured metadata, summaries, and cross-references for the indexed release files.
 
 ---
 
@@ -102,7 +102,7 @@ These are standardized military reports documenting UAP encounters during operat
 
 **Notable mission reports include:**
 
-- **DOW-UAP-D55**: A P-8A maritime patrol aircraft observed an unidentified low-flying object 55 nautical miles northwest of Latakia, Syria on November 18, 2016. The object was detected via EO/IR sensor traveling at approximately 500 knots and was observed passing between Russian naval vessels. [Read full analysis →](/documents/dow-uap-d55-mission-report-syria-november-2016)
+- **DOW-UAP-D55**: A P-8A maritime patrol aircraft observed an unidentified low-flying object 55 nautical miles northwest of Latakia, Syria on November 18, 2016. The object was detected via EO/IR sensor traveling at approximately 500 knots and was observed passing between Russian naval vessels. [Read full analysis →](/documents/dow-uap-d55-mission-report-syria-november-2016/)
 
 - **DOW-UAP-D10**: A mission report from the Middle East in May 2022 documenting an unresolved UAP encounter with accompanying video evidence. [View document →](https://war.gov/UFO)
 
@@ -138,7 +138,7 @@ Perhaps the most significant portion of the DOW release: **28 video recordings**
 
 The largest file, PR42, is a 262 MB recording from a Middle East encounter in 2020. PR49, the most recent, is a 2026 Department of the Army recording — making it the newest military UAP footage ever publicly released.
 
-[Browse all DOW videos →](/agencies/dow)
+[Browse all DOW videos →](/agencies/dow/)
 
 #### Other DOW Files
 
@@ -156,13 +156,13 @@ The FBI's contribution focuses on two major evidence categories and one extensiv
 
 Eight infrared sensor images with significant redactions (black bars obscuring portions of the imagery). These appear to be forward-looking infrared (FLIR) captures, consistent with aerial surveillance equipment. The heavy redaction suggests classified sensor capabilities or operational details remain protected.
 
-[View FBI FLIR imagery →](/documents/fbi-photo-series-a)
+[View FBI FLIR imagery →](/documents/fbi-photo-series-a/)
 
 #### Physical Evidence Photographs — Series B (24 files)
 
 Twenty-four high-resolution photographs of physical evidence. These represent some of the most detailed photographic records in the release, showing objects and materials collected during FBI investigations. The resolution and detail in these images suggest professional forensic documentation.
 
-[View FBI evidence photos →](/documents/fbi-photo-series-b)
+[View FBI evidence photos →](/documents/fbi-photo-series-b/)
 
 #### Case File 62-HQ-83894
 
@@ -175,7 +175,7 @@ This is the centerpiece of the FBI's release: a multi-section case file spanning
 
 The serial numbering system indicates this case file has been active and continuously updated over many years, with each serial representing a significant addition to the investigation.
 
-[Explore FBI case files →](/agencies/fbi)
+[Explore FBI case files →](/agencies/fbi/)
 
 ---
 
@@ -203,7 +203,7 @@ The crew debriefings contain astronaut descriptions of observed phenomena during
 - **Skylab Technical Crew Debriefing (1973)**: Post-mission debriefing from America's first space station
 - **Gemini 12 Audio (December 5, 1965)**: Audio recording from low Earth orbit during the final mission of the Gemini program
 
-[Explore NASA files →](/agencies/nasa)
+[Explore NASA files →](/agencies/nasa/)
 
 ---
 
@@ -221,7 +221,7 @@ NARA's records provide crucial historical context, reaching back to the 1940s:
 
 The NARA files establish that U.S. government interest in unidentified aerial phenomena extends back to at least 1944, with systematic investigation beginning in the immediate post-war period.
 
-[Browse NARA archives →](/agencies/nara)
+[Browse NARA archives →](/topics/historical-flying-disc-records/)
 
 ---
 
@@ -234,7 +234,7 @@ Two diplomatic cables from overseas posts:
 
 These cables demonstrate that UAP reporting extended beyond military channels into diplomatic communications, suggesting the State Department maintained awareness of global UAP activity.
 
-[View State Department cables →](/agencies/dos)
+[View State Department cables →](/agencies/dos/)
 
 ---
 
@@ -242,7 +242,7 @@ These cables demonstrate that UAP reporting extended beyond military channels in
 
 Several files fall outside standard agency classifications:
 
-- **"Orbs Launching Orbs" (May 8, 2026)**: Federal law enforcement special agents independently observed orange "orbs" in the sky that launched smaller red orbs. This occurred in the Western United States at dusk on at least five occasions. [Read analysis →](/documents/western-us-event-slides-5-08-2026)
+- **"Orbs Launching Orbs" (May 8, 2026)**: Federal law enforcement special agents independently observed orange "orbs" in the sky that launched smaller red orbs. This occurred in the Western United States at dusk on at least five occasions. [Read analysis →](/documents/western-us-event-slides-5-08-2026/)
 
 - **Composite Sketch (April 30, 2024)**: An artist's rendering based on witness descriptions
 
@@ -287,17 +287,17 @@ The June 12, 2026 Release 03 publication confirms that PURSUE is operating as a 
 
 ## How to Use Our Database
 
-Our [Document Database](/documents) provides tools the official war.gov site lacks:
+Our [Document Database](/documents/) provides tools the official war.gov site lacks:
 
 - **Search**: Find any document by title, agency, location, or year
 - **Filter**: Sort by release, agency (DOW, FBI, NASA, DOE, CIA, ODNI, NARA, DOS), file type, year, or category
-- **Timeline**: View all documents chronologically on our [interactive timeline](/timeline)
+- **Timeline**: View all documents chronologically on our [interactive timeline](/timeline/)
 - **Cross-reference**: Each document page links to related files
 - **Direct media access**: View images, play videos, listen to audio, and download PDFs directly
 
 The first three PURSUE batches have been cataloged with structured metadata, making it easy to research specific topics, time periods, geographic regions, and release batches.
 
-[Start exploring the archive →](/documents)
+[Start exploring the archive →](/documents/)
 
 ---
 

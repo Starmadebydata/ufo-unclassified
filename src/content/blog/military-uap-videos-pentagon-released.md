@@ -177,13 +177,13 @@ The PURSUE initiative has committed to rolling releases, suggesting these missin
 
 All 28 videos are available through our document archive, organized by region:
 
-- [Arabian Gulf encounters (2020)](/agencies/dow)
-- [Iraq encounters (2019–2022)](/agencies/dow)
-- [Syria encounters (2016–2024)](/agencies/dow)
-- [Greece encounters (2023–2024)](/agencies/dow)
-- [UAE encounters (2023–2024)](/agencies/dow)
+- [Arabian Gulf encounters (2020)](/agencies/dow/)
+- [Iraq encounters (2019–2022)](/agencies/dow/)
+- [Syria encounters (2016–2024)](/agencies/dow/)
+- [Greece encounters (2023–2024)](/agencies/dow/)
+- [UAE encounters (2023–2024)](/agencies/dow/)
 
-Browse the complete military video collection on our [DOW agency page →](/agencies/dow)
+Browse the complete military video collection on our [DOW agency page →](/agencies/dow/)
 
 ---
 
