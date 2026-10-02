@@ -16,7 +16,7 @@
 set -uo pipefail
 
 # --- Bump these two on every re-arm ---
-CURRENT_RELEASE_NUM=5           # last confirmed release
+CURRENT_RELEASE_NUM=6           # last confirmed release
 BASELINE_UFOFILES=158           # ufofiles.fyi file count as of the last re-arm (2026-08-22)
 # ---------------------------------------
 

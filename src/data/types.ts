@@ -1,6 +1,6 @@
 // Document data types for the UFO Declassified project
 
-export type Agency = 'DOW' | 'FBI' | 'NASA' | 'DOS' | 'NARA' | 'CIA' | 'ICA' | 'ODNI' | 'DOE' | 'EOP' | 'OTHER';
+export type Agency = 'DOW' | 'FBI' | 'NASA' | 'DOS' | 'NARA' | 'CIA' | 'ICA' | 'ODNI' | 'DOE' | 'EOP' | 'LLE' | 'OTHER';
 
 export type DocumentCategory =
   | 'mission-report'
@@ -83,6 +83,7 @@ export const AGENCY_INFO: Record<Agency, { name: string; fullName: string; color
   ODNI: { name: 'ODNI', fullName: 'Office of the Director of National Intelligence', color: '#14b8a6', badgeClass: 'badge-odni' },
   DOE: { name: 'DOE', fullName: 'Department of Energy', color: '#eab308', badgeClass: 'badge-doe' },
   EOP: { name: 'EOP', fullName: 'Executive Office of the President', color: '#ec4899', badgeClass: 'badge-dos' },
+  LLE: { name: 'LLE', fullName: 'Local Law Enforcement', color: '#94a3b8', badgeClass: 'badge-lle' },
   OTHER: { name: 'Other', fullName: 'Other Sources', color: '#6b7280', badgeClass: 'badge-nara' },
 };
 

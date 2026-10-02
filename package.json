@@ -14,7 +14,8 @@
     "upload:release2": "node scripts/upload-release2-to-r2.mjs",
     "upload:release3": "node scripts/upload-release3-to-r2.mjs",
     "upload:release4": "node scripts/upload-release4-to-r2.mjs",
-    "upload:release5": "node scripts/upload-release5-to-r2.mjs"
+    "upload:release5": "node scripts/upload-release5-to-r2.mjs",
+    "upload:release6": "node scripts/upload-release6-to-r2.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.0",

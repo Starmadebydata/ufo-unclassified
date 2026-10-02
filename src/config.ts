@@ -9,7 +9,7 @@ export const R2_BASE = 'https://pub-d7148e2b49114a8ab87e9305c11533cf.r2.dev';
 export const SITE_NAME = 'UFO Declassified';
 export const ARCHIVE_DATASET_NAME = 'UFO Declassified PURSUE Document Archive';
 export const ARCHIVE_DATASET_DESCRIPTION =
-  'A searchable public archive of declassified UAP and UFO records released under the PURSUE initiative beginning May 8, 2026, including Release 01 through Release 05 source agency metadata, file formats, record dates, locations, summaries, and citation pages.';
+  'A searchable public archive of declassified UAP and UFO records released under the PURSUE initiative beginning May 8, 2026, including Release 01 through Release 06 source agency metadata, file formats, record dates, locations, summaries, and citation pages.';
 export const ARCHIVE_SOURCE_URL = 'https://war.gov/UFO';
 export const ARCHIVE_RELEASE_DATE = '2026-05-08';
 

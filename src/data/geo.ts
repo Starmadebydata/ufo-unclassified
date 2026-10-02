@@ -36,6 +36,17 @@ export const GEO_OVERLAY: Record<string, GeoPoint> = {
   'Caribbean Sea (near Puerto Rico)': { lat: 18.2, lng: -66.5, precision: 'approx' },
   'Montana & Utah, USA': { lat: 44.5, lng: -110.5, precision: 'region', note: 'Great Falls (1950) and Tremonton (1952) film locations' },
 
+  // Release 06 locations
+  'Tremonton, Utah': { lat: 41.71, lng: -111.91, precision: 'exact' },
+  'Washington, D.C.': { lat: 38.9, lng: -77.04, precision: 'exact' },
+  'Las Vegas, Nevada': { lat: 36.17, lng: -115.14, precision: 'approx', note: 'AAWSAP contracting location' },
+  'Boston, Massachusetts': { lat: 42.36, lng: -71.06, precision: 'exact' },
+  'Colorado': { lat: 39.0, lng: -105.5, precision: 'approx' },
+  'Iraq': { lat: 33.2, lng: 43.7, precision: 'approx' },
+  'Middle East': { lat: 29.5, lng: 45.0, precision: 'region' },
+  'Yellow Sea': { lat: 35.0, lng: 123.5, precision: 'approx' },
+  'East China Sea': { lat: 29.0, lng: 125.5, precision: 'approx' },
+
   // Countries / seas (centroids)
   'Djibouti': { lat: 11.6, lng: 43.1, precision: 'approx' },
   'Greece': { lat: 39.0, lng: 22.0, precision: 'approx' },
@@ -77,4 +88,5 @@ export const UNMAPPABLE_LOCATIONS = new Set([
   'Cislunar Space',
   'AARO video release',
   'DOD UAP video release',
+  'Various',
 ]);
