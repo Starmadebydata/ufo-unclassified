@@ -31,7 +31,7 @@ These files are the core of the 2020 Gulf cluster:
 
 | Record | Region | Format | Why it matters |
 |---|---|---|---|
-| [DOW-UAP-D38](/documents/dow-uap-d38-range-fouler-debrief-middle-east-may-2020) | Middle East | Range fouler debrief | Structured pilot or crew report format |
+| [DOW-UAP-D38](/documents/dow-uap-d38-range-fouler-debrief-middle-east-may-2020/) | Middle East | Range fouler debrief | Structured pilot or crew report format |
 | [DOW-UAP-D56](https://war.gov/UFO) | Arabian Sea | Range fouler debrief | Second debrief-style record in same broader theater |
 | [DOW-UAP-D60](https://war.gov/UFO) | Persian Gulf | Mission report | Operational mission context |
 | [DOW-UAP-D62](https://war.gov/UFO) | Strait of Hormuz | Mission report | Strategic chokepoint location |
@@ -139,7 +139,7 @@ That is exactly the kind of set serious researchers look for. It offers more tha
 
 Use this order:
 
-1. Start with [DOW-UAP-D38](/documents/dow-uap-d38-range-fouler-debrief-middle-east-may-2020) to understand the debrief format.
+1. Start with [DOW-UAP-D38](/documents/dow-uap-d38-range-fouler-debrief-middle-east-may-2020/) to understand the debrief format.
 2. Compare with [DOW-UAP-D56](https://war.gov/UFO) for format overlap.
 3. Move into mission reports [D60](https://war.gov/UFO), [D62](https://war.gov/UFO), and [D63](https://war.gov/UFO).
 4. Add the video pages as visual context.

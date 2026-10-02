@@ -63,17 +63,17 @@ The stack lets you ask whether the visual record, voice record, and post-mission
 
 Start with the image record:
 
-- [Apollo 12 VM1](/documents/nasa-uap-vm1-apollo-12-1969)
-- [Apollo 12 VM2](/documents/nasa-uap-vm2-apollo-12-1969)
-- [Apollo 12 VM3](/documents/nasa-uap-vm3-apollo-12-1969)
-- [Apollo 17 VM6](/documents/nasa-uap-vm6-apollo-17-1972)
+- [Apollo 12 VM1](/documents/nasa-uap-vm1-apollo-12-1969/)
+- [Apollo 12 VM2](/documents/nasa-uap-vm2-apollo-12-1969/)
+- [Apollo 12 VM3](/documents/nasa-uap-vm3-apollo-12-1969/)
+- [Apollo 17 VM6](/documents/nasa-uap-vm6-apollo-17-1972/)
 
 Then place the images beside the text record:
 
-- [Apollo 12 Communications Transcript](/documents/nasa-uap-d1-apollo-12-transcript-1969)
-- [Apollo 11 Technical Crew Debriefing](/documents/nasa-uap-d4-apollo-11-technical-crew-debriefing-1969)
-- [Apollo 17 Communications Transcript](/documents/nasa-uap-d2-apollo-17-transcript-1972)
-- [Apollo 17 Technical Crew Debriefing](/documents/nasa-uap-d6-apollo-17-technical-crew-debriefing-1973)
+- [Apollo 12 Communications Transcript](/documents/nasa-uap-d1-apollo-12-transcript-1969/)
+- [Apollo 11 Technical Crew Debriefing](/documents/nasa-uap-d4-apollo-11-technical-crew-debriefing-1969/)
+- [Apollo 17 Communications Transcript](/documents/nasa-uap-d2-apollo-17-transcript-1972/)
+- [Apollo 17 Technical Crew Debriefing](/documents/nasa-uap-d6-apollo-17-technical-crew-debriefing-1973/)
 
 ## A Practical Viewing Method
 
@@ -154,12 +154,12 @@ That last point matters most. A good anomaly note should be repeatable.
 
 | File | Use it for |
 |---|---|
-| [NASA-UAP-VM1](/documents/nasa-uap-vm1-apollo-12-1969) | Baseline Apollo 12 lunar frame |
-| [NASA-UAP-VM2](/documents/nasa-uap-vm2-apollo-12-1969) | Comparison frame for lighting and surface texture |
-| [NASA-UAP-VM3](/documents/nasa-uap-vm3-apollo-12-1969) | Secondary Apollo 12 anomaly check |
-| [NASA-UAP-VM6](/documents/nasa-uap-vm6-apollo-17-1972) | Cross-mission comparison point |
-| [Apollo 12 Transcript](/documents/nasa-uap-d1-apollo-12-transcript-1969) | Voice-record context |
-| [Apollo 17 Debriefing](/documents/nasa-uap-d6-apollo-17-technical-crew-debriefing-1973) | Post-mission technical context |
+| [NASA-UAP-VM1](/documents/nasa-uap-vm1-apollo-12-1969/) | Baseline Apollo 12 lunar frame |
+| [NASA-UAP-VM2](/documents/nasa-uap-vm2-apollo-12-1969/) | Comparison frame for lighting and surface texture |
+| [NASA-UAP-VM3](/documents/nasa-uap-vm3-apollo-12-1969/) | Secondary Apollo 12 anomaly check |
+| [NASA-UAP-VM6](/documents/nasa-uap-vm6-apollo-17-1972/) | Cross-mission comparison point |
+| [Apollo 12 Transcript](/documents/nasa-uap-d1-apollo-12-transcript-1969/) | Voice-record context |
+| [Apollo 17 Debriefing](/documents/nasa-uap-d6-apollo-17-technical-crew-debriefing-1973/) | Post-mission technical context |
 
 ## Bottom Line
 

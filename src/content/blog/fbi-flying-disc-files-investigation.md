@@ -46,7 +46,7 @@ The most immediately striking feature of these images is the **extensive redacti
 
 What remains visible appears to show thermal signatures of objects in various environments. The shapes and heat patterns visible in the unredacted portions do not conform to common explanations for infrared artifacts (such as lens flare, atmospheric distortion, or equipment malfunction).
 
-[View Series A imagery →](/documents/fbi-photo-a1)
+[View Series A imagery →](/documents/fbi-photo-series-a/)
 
 ---
 
@@ -66,7 +66,7 @@ Without accompanying case notes (which may be contained in the separately releas
 
 The file sizes range from 0.2 to 0.4 MB, indicating moderate resolution suitable for documentation purposes. The images are in JPG format.
 
-[View Series B evidence photos →](/documents/fbi-photo-b1)
+[View Series B evidence photos →](/documents/fbi-photo-series-b/)
 
 ---
 
@@ -176,12 +176,12 @@ The FBI files raise several important questions:
 
 Browse the complete FBI collection in our archive:
 
-- [FLIR/Sensor Imagery — Series A (8 files)](/documents/fbi-photo-a1)
-- [Physical Evidence Photos — Series B (24 files)](/documents/fbi-photo-b1)
-- [Case File 62-HQ-83894 — Section 2 (PDF, 112.9 MB)](/agencies/fbi)
-- [Case File 62-HQ-83894 — Section 10 (PDF, 101.2 MB)](/agencies/fbi)
+- [FLIR/Sensor Imagery — Series A (8 files)](/documents/fbi-photo-series-a/)
+- [Physical Evidence Photos — Series B (24 files)](/documents/fbi-photo-series-b/)
+- [Case File 62-HQ-83894 — Section 2 (PDF, 112.9 MB)](/agencies/fbi/)
+- [Case File 62-HQ-83894 — Section 10 (PDF, 101.2 MB)](/agencies/fbi/)
 
-View all FBI documents on our [FBI agency page →](/agencies/fbi)
+View all FBI documents on our [FBI agency page →](/agencies/fbi/)
 
 ---
 

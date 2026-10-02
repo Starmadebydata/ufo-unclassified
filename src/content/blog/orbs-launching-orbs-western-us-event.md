@@ -146,11 +146,11 @@ The PURSUE initiative's commitment to rolling releases suggests that updates to 
 
 ## Read the Original Document
 
-[View the "Orbs Launching Orbs" document →](/documents/western-us-event-slides-5-08-2026)
+[View the "Orbs Launching Orbs" document →](/documents/western-us-event-slides-5-08-2026/)
 
-Browse related military encounters on our [DOW agency page →](/agencies/dow)
+Browse related military encounters on our [DOW agency page →](/agencies/dow/)
 
-Explore the complete archive in our [Document Database →](/documents)
+Explore the complete archive in our [Document Database →](/documents/)
 
 ---
 

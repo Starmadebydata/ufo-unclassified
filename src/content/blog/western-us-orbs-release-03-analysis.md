@@ -159,4 +159,4 @@ It does not identify the objects. It does not prove extraordinary origin. It doe
 
 The strongest reading is more disciplined and more useful: Release 03 gave the public a serious case file outline, but the Western U.S. orbs still need data.
 
-Start with [DOW-UAP-D077, the AARO analysis update](/documents/release-03-file-028-dow-uap-d077-unresolved-case-analysis-update-western-united-states-event/), then compare it with the [Western U.S. notional map](/documents/release-03-file-029-dow-uap-d078-notional-map-western-united-states-event/), the [Release 03 overview](/blog/war-gov-ufo-release-03-analysis/), and the broader [PURSUE Release 03 document set](/documents?release=Release%2003).
+Start with [DOW-UAP-D077, the AARO analysis update](/documents/release-03-file-028-dow-uap-d077-unresolved-case-analysis-update-western-united-states-event/), then compare it with the [Western U.S. notional map](/documents/release-03-file-029-dow-uap-d078-notional-map-western-united-states-event/), the [Release 03 overview](/blog/war-gov-ufo-release-03-analysis/), and the broader [PURSUE Release 03 document set](/documents/?release=Release%2003).

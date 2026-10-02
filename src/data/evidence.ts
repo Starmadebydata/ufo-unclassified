@@ -123,7 +123,7 @@ export const EDITORIAL_OVERRIDES: Record<string, EditorialOverride> = {
   'release-02-file-007-doe-uap-d001-enhanced-pantex-imagery': {
     labels: ['context-gap'],
     note: 'Researchers report the public file appears as pages 5-6 of a six-page document; the gap is unacknowledged officially.',
-    articleHref: '/tools/claims#pantex-missing-pages',
+    articleHref: '/tools/claims/#pantex-missing-pages',
   },
   'release-02-file-005-odni-uap-d001-usper-narrative-senior-usic-official': {
     labels: ['witness-testimony', 'unresolved'],

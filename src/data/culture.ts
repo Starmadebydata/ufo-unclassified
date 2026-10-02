@@ -1636,7 +1636,7 @@ export const cultureRecords: CultureRecord[] = cultureItems.map(item => ({
 }));
 
 export function getCultureHref(item: Pick<CultureItem, 'id'>): string {
-  return `/culture/${item.id}`;
+  return `/culture/${item.id}/`;
 }
 
 export function getCultureRecordById(id: string): CultureRecord | undefined {

@@ -18,7 +18,7 @@ The scientists met for five days. They spent a total of 12 hours in formal sessi
 
 Then they concluded that the entire subject was not worth studying.
 
-[CIA-UAP-002, the Scientific Advisory Panel on Unidentified Flying Objects report from 1952-1953](/documents/release-03-file-001-cia-uap-002-scientific-advisory-panel-on-unidentified-flying-objects-report-1952-1953), is now in the PURSUE archive. The file is 13 megabytes of scanned documents from the CIA's Office of Scientific Intelligence. It includes the panel's formal report, the supporting case histories, the meeting minutes recorded by CIA officer Frederick Durant, and the routing slips that show how the document moved through the intelligence bureaucracy.
+[CIA-UAP-002, the Scientific Advisory Panel on Unidentified Flying Objects report from 1952-1953](/documents/release-03-file-001-cia-uap-002-scientific-advisory-panel-on-unidentified-flying-objects-report-1952-1953/), is now in the PURSUE archive. The file is 13 megabytes of scanned documents from the CIA's Office of Scientific Intelligence. It includes the panel's formal report, the supporting case histories, the meeting minutes recorded by CIA officer Frederick Durant, and the routing slips that show how the document moved through the intelligence bureaucracy.
 
 You can read it yourself. That is the point.
 
@@ -128,7 +128,7 @@ The Robertson Panel report has been available through the CIA's FOIA reading roo
 
 Two things.
 
-First, context. The PURSUE archive places CIA-UAP-002 alongside the related documents that surrounded the panel's work. [DOW-UAP-D085, the Department of War's transmission of the CIA panel report](/documents/release-03-file-036-dow-uap-d085-transmission-of-cia-scientific-advisory-panel-rept-1953), shows how the panel's conclusions were distributed to other agencies. [CIA-UAP-015, Project Blue Book Special Report No. 14](/documents/release-03-file-014-cia-uap-015-project-blue-book-special-report-no-14), shows the Battelle study that was discussed during the panel's sessions. Reading these documents together gives you a picture of the institutional machinery that processed UFO reports in the early 1950s, not just the panel's isolated conclusions.
+First, context. The PURSUE archive places CIA-UAP-002 alongside the related documents that surrounded the panel's work. [DOW-UAP-D085, the Department of War's transmission of the CIA panel report](/documents/release-03-file-036-dow-uap-d085-transmission-of-cia-scientific-advisory-panel-rept-1953/), shows how the panel's conclusions were distributed to other agencies. [CIA-UAP-015, Project Blue Book Special Report No. 14](/documents/release-03-file-014-cia-uap-015-project-blue-book-special-report-no-14/), shows the Battelle study that was discussed during the panel's sessions. Reading these documents together gives you a picture of the institutional machinery that processed UFO reports in the early 1950s, not just the panel's isolated conclusions.
 
 Second, accessibility. The PURSUE archive is a public-facing system designed for people who want to read the primary sources. The CIA's FOIA reading room requires you to know what you are looking for. The PURSUE archive lets you browse by agency, by date, and by category. That difference matters because the Robertson Panel's impact came not just from its conclusions but from the institutional system that carried those conclusions forward for decades.
 
@@ -178,4 +178,4 @@ That is the opportunity.
 
 ---
 
-*Flynn Lin is the founder and editor of UFO Declassified. You can reach him at [contact@ufo-declassified.com](mailto:contact@ufo-declassified.com) for corrections, tips, or questions about any record on this site. Read more about [the PURSUE archive](/blog/war-gov-ufo-complete-guide/) or browse [all declassified documents](/documents).*
+*Flynn Lin is the founder and editor of UFO Declassified. You can reach him at <!--email_off-->[contact@ufo-declassified.com](mailto:contact@ufo-declassified.com)<!--/email_off--> for corrections, tips, or questions about any record on this site. Read more about [the PURSUE archive](/blog/war-gov-ufo-complete-guide/) or browse [all declassified documents](/documents/).*

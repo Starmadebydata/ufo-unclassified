@@ -84,4 +84,4 @@ For now, the honest summary is this: Release 04 adds 40 records and pushes the a
 
 ---
 
-*Flynn Lin is the founder and editor of UFO Declassified. You can reach him at [contact@ufo-declassified.com](mailto:contact@ufo-declassified.com) for corrections, tips, or questions about any record on this site. Read more about [the PURSUE archive](/blog/war-gov-ufo-complete-guide/), the [Release 03 analysis](/blog/war-gov-ufo-release-03-analysis/), or browse the [Release 04 document set](/documents?release=Release%2004).*
+*Flynn Lin is the founder and editor of UFO Declassified. You can reach him at <!--email_off-->[contact@ufo-declassified.com](mailto:contact@ufo-declassified.com)<!--/email_off--> for corrections, tips, or questions about any record on this site. Read more about [the PURSUE archive](/blog/war-gov-ufo-complete-guide/), the [Release 03 analysis](/blog/war-gov-ufo-release-03-analysis/), or browse the [Release 04 document set](/documents/?release=Release%2004).*

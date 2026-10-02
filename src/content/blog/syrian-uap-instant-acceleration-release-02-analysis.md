@@ -12,7 +12,7 @@ readingTime: "11 min read"
 
 The most viral second in War.gov Release 02 may be the second where the sensor stops tracking.
 
-That is the tension inside [DOW-UAP-PR051, "Syrian UAP instant acceleration"](/documents/release-02-file-002-dow-uap-pr051-syrian-uap-instant-acceleration). The public title is built for attention. A small bright area of contrast sits near the center of an infrared-looking military video, then appears to leave the frame extremely quickly. It is short, visual, and easy to share. It also arrives with exactly the kinds of caveats that serious readers should not skip.
+That is the tension inside [DOW-UAP-PR051, "Syrian UAP instant acceleration"](/documents/release-02-file-002-dow-uap-pr051-syrian-uap-instant-acceleration/). The public title is built for attention. A small bright area of contrast sits near the center of an infrared-looking military video, then appears to leave the frame extremely quickly. It is short, visual, and easy to share. It also arrives with exactly the kinds of caveats that serious readers should not skip.
 
 The clip matters. It deserves a close reading. But it does not explain itself.
 
@@ -98,7 +98,7 @@ Third, it gives readers a concrete example of why a UAP video should not be trea
 
 Fourth, it connects Release 02 to congressional oversight pressure. The House request letter listed the Syrian acceleration video as one of the sought records. That gives the public a clearer path from political demand, to AARO collection, to public release.
 
-Finally, PR051 helps compare different kinds of Release 02 video evidence. It is not the same as [the Lake Huron shootdown-related video](/blog/lake-huron-uap-video-release-02-analysis/), where a known 2023 North American engagement defines the public stakes. It is not the same as [the Iran formation record](/documents/release-02-file-001-dow-uap-pr050-4-uap-formation-iran-26-aug-2022-over-water-callsign), where multiple objects and regional context shape the question. PR051 is a sensor-behavior test case: the public reaction depends heavily on one visually dramatic moment.
+Finally, PR051 helps compare different kinds of Release 02 video evidence. It is not the same as [the Lake Huron shootdown-related video](/blog/lake-huron-uap-video-release-02-analysis/), where a known 2023 North American engagement defines the public stakes. It is not the same as [the Iran formation record](/documents/release-02-file-001-dow-uap-pr050-4-uap-formation-iran-26-aug-2022-over-water-callsign/), where multiple objects and regional context shape the question. PR051 is a sensor-behavior test case: the public reaction depends heavily on one visually dramatic moment.
 
 That makes it useful.
 

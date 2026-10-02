@@ -16,7 +16,7 @@ The most important thing about the Sandia green fireball file is not that the ob
 
 It is that officials built a reporting system around them.
 
-[DOW-UAP-D017, "UAP Reported at Sandia Base, 1948-1950"](/documents/release-02-file-003-dow-uap-d017-uap-reported-at-sandia-base-1948-1950) is one of the most valuable documents in War.gov Release 02 because it takes a familiar UFO-era image - strange lights over New Mexico - and places it inside a serious early Cold War record environment. The file points to 209 reports of green orbs, discs, and fireballs near Sandia Base and the broader New Mexico security landscape between 1948 and 1950.
+[DOW-UAP-D017, "UAP Reported at Sandia Base, 1948-1950"](/documents/release-02-file-003-dow-uap-d017-uap-reported-at-sandia-base-1948-1950/) is one of the most valuable documents in War.gov Release 02 because it takes a familiar UFO-era image - strange lights over New Mexico - and places it inside a serious early Cold War record environment. The file points to 209 reports of green orbs, discs, and fireballs near Sandia Base and the broader New Mexico security landscape between 1948 and 1950.
 
 That number is what will travel online. It is dramatic, simple, and easy to turn into a headline.
 
@@ -166,7 +166,7 @@ It does not need exaggeration.
 
 ## Why This Historical File Belongs In Release 02
 
-At first glance, Sandia may seem out of place beside modern military videos, NASA audio, the [CIA Soviet report](/documents/release-02-file-004-cia-uap-d001-intelligence-information-report-ussr-1973), and the ODNI narrative.
+At first glance, Sandia may seem out of place beside modern military videos, NASA audio, the [CIA Soviet report](/documents/release-02-file-004-cia-uap-d001-intelligence-information-report-ussr-1973/), and the ODNI narrative.
 
 It is not out of place.
 

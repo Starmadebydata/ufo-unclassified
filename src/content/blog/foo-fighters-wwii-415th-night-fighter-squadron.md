@@ -168,4 +168,4 @@ The 415th Night Fighter Squadron was the first to write it down.
 
 ---
 
-*Flynn Lin is the founder and editor of UFO Declassified. You can reach him at [contact@ufo-declassified.com](mailto:contact@ufo-declassified.com) for corrections, tips, or questions about any record on this site. Read more about [the PURSUE archive](/blog/war-gov-ufo-complete-guide/) or browse [all declassified documents](/documents).*
+*Flynn Lin is the founder and editor of UFO Declassified. You can reach him at <!--email_off-->[contact@ufo-declassified.com](mailto:contact@ufo-declassified.com)<!--/email_off--> for corrections, tips, or questions about any record on this site. Read more about [the PURSUE archive](/blog/war-gov-ufo-complete-guide/) or browse [all declassified documents](/documents/).*

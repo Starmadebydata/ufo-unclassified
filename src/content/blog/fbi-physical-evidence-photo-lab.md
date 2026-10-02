@@ -40,7 +40,7 @@ For enthusiasts, this is the type of file that rewards patience. The details are
 
 Open the full document page first:
 
-[FBI Physical Evidence Photographs - Series B](/documents/fbi-photo-series-b)
+[FBI Physical Evidence Photographs - Series B](/documents/fbi-photo-series-b/)
 
 Then inspect the images as a sequence rather than isolated frames. A sequence can reveal whether the photographer was documenting one object from multiple angles, multiple objects under the same protocol, or a mixed evidence group.
 
@@ -103,10 +103,10 @@ That kind of note can be checked.
 
 The Series B photos should be read beside the broader FBI set:
 
-- [FBI FLIR/Sensor Imagery - Series A](/documents/fbi-photo-series-a)
-- [FBI Case File 62-HQ-83894 Section 1](/documents/65-hs1-834228961-62-hq-83894-section-1)
-- [FBI Case File 62-HQ-83894 Serial 220](/documents/65-hs1-834228961-62-hq-83894-serial-220)
-- [FBI Case File 62-HQ-83894 Sub A](/documents/65-hs1-834228961-62-hq-83894-sub-a)
+- [FBI FLIR/Sensor Imagery - Series A](/documents/fbi-photo-series-a/)
+- [FBI Case File 62-HQ-83894 Section 1](/documents/65-hs1-834228961-62-hq-83894-section-1/)
+- [FBI Case File 62-HQ-83894 Serial 220](/documents/65-hs1-834228961-62-hq-83894-serial-220/)
+- [FBI Case File 62-HQ-83894 Sub A](/documents/65-hs1-834228961-62-hq-83894-sub-a/)
 
 The reason is simple: physical evidence without case context is visually intriguing but incomplete. A case file can add the missing frame: who collected it, why it mattered, what event it was tied to, and whether the Bureau had a working explanation.
 

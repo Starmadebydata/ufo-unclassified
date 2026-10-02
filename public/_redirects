@@ -3,3 +3,14 @@
 # guessed URLs there permanently.
 /intel /blog/ 301
 /intel/ /blog/ 301
+
+# Old blog targets used single photo filenames. The pages are the series indexes.
+/documents/fbi-photo-a1 /documents/fbi-photo-series-a/ 301
+/documents/fbi-photo-a1/ /documents/fbi-photo-series-a/ 301
+/documents/fbi-photo-b1 /documents/fbi-photo-series-b/ 301
+/documents/fbi-photo-b1/ /documents/fbi-photo-series-b/ 301
+
+# There is no NARA agency page. Historical National Archives material is grouped
+# on the flying-disc topic, not under /agencies/other/.
+/agencies/nara /topics/historical-flying-disc-records/ 301
+/agencies/nara/ /topics/historical-flying-disc-records/ 301

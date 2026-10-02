@@ -16,7 +16,7 @@ The most cinematic document in War.gov Release 02 is not a video.
 
 It is a two-page narrative.
 
-The record is [ODNI-UAP-D001, "USPER Narrative, Senior USIC Official"](/documents/release-02-file-005-odni-uap-d001-usper-narrative-senior-usic-official). It describes a late-2025 helicopter search in the western United States involving a senior U.S. intelligence official, pilots, a Joint Operations Center, ground teams, radar hits, night-vision observations, FLIR reports, and repeated sightings of orange orb-like lights around mountains and aircraft.
+The record is [ODNI-UAP-D001, "USPER Narrative, Senior USIC Official"](/documents/release-02-file-005-odni-uap-d001-usper-narrative-senior-usic-official/). It describes a late-2025 helicopter search in the western United States involving a senior U.S. intelligence official, pilots, a Joint Operations Center, ground teams, radar hits, night-vision observations, FLIR reports, and repeated sightings of orange orb-like lights around mountains and aircraft.
 
 That combination explains why mainstream coverage noticed it quickly. [CBS News](https://www.cbsnews.com/amp/news/ufo-files-pentagon-videos-documents/) called it one of the most striking items in the second tranche. [ABC News](https://abcnews.com/amp/US/pentagon-releases-declassified-ufo-files-including-intelligence-officers/story?id=133209645) foregrounded the intelligence officer's account of seeing orbs. [The Guardian](https://www.theguardian.com/world/2026/may/22/pentagon-ufo-videos-testimony-documents) grouped Release 02 as videos plus first-hand testimony.
 
@@ -60,7 +60,7 @@ First, it gives researchers a timeline. The document lays out a mission sequence
 
 Second, it names the evidence channels that should exist around the event. If the narrative is accurate, there may be radio logs, radar records, FLIR observations, night-vision observations, helicopter mission records, range-control records, ground-team reports, and debrief notes. The public does not have those materials in this release, but the narrative points toward them.
 
-Third, it shows that Release 02 is not only a video dump. The public conversation has focused heavily on clips such as [DOW-UAP-PR051, the Syrian instant acceleration record](/documents/release-02-file-002-dow-uap-pr051-syrian-uap-instant-acceleration) and [DOW-UAP-PR071, the Lake Huron shootdown record](/documents/release-02-file-030-dow-uap-pr071-usaf-ang-f-16c-callsign-callsign-shoots-down-uap-over-lake-huron-with-weapon-syste). But the ODNI file shows another category: narrative material from inside the national-security system.
+Third, it shows that Release 02 is not only a video dump. The public conversation has focused heavily on clips such as [DOW-UAP-PR051, the Syrian instant acceleration record](/documents/release-02-file-002-dow-uap-pr051-syrian-uap-instant-acceleration/) and [DOW-UAP-PR071, the Lake Huron shootdown record](/documents/release-02-file-030-dow-uap-pr071-usaf-ang-f-16c-callsign-callsign-shoots-down-uap-over-lake-huron-with-weapon-syste/). But the ODNI file shows another category: narrative material from inside the national-security system.
 
 That category deserves its own method.
 
@@ -161,7 +161,7 @@ A useful label set would look like this:
 
 That list gives readers a way to respect the file without surrendering judgment.
 
-It also helps separate ODNI-UAP-D001 from other Release 02 material. Compare it with [the Sandia Base historical file](/documents/release-02-file-003-dow-uap-d017-uap-reported-at-sandia-base-1948-1950), which works as a historical sensitive-site record, or [the CIA Soviet intelligence report](/documents/release-02-file-004-cia-uap-d001-intelligence-information-report-ussr-1973), which belongs in Cold War intelligence context. Each record type needs its own standard.
+It also helps separate ODNI-UAP-D001 from other Release 02 material. Compare it with [the Sandia Base historical file](/documents/release-02-file-003-dow-uap-d017-uap-reported-at-sandia-base-1948-1950/), which works as a historical sensitive-site record, or [the CIA Soviet intelligence report](/documents/release-02-file-004-cia-uap-d001-intelligence-information-report-ussr-1973/), which belongs in Cold War intelligence context. Each record type needs its own standard.
 
 The ODNI narrative is not weak because it is testimony. It is incomplete because the corroborating case materials are not public.
 

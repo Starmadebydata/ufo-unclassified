@@ -190,4 +190,4 @@ That may be exactly what this archive needs next.
 
 ---
 
-Explore the full [Release 03 document set](/documents?release=Release%2003), read the [complete War.gov/UFO guide](/blog/war-gov-ufo-complete-guide/), or start with [DOW-UAP-D077, the Western U.S. analysis update](/documents/release-03-file-028-dow-uap-d077-unresolved-case-analysis-update-western-united-states-event/).
+Explore the full [Release 03 document set](/documents/?release=Release%2003), read the [complete War.gov/UFO guide](/blog/war-gov-ufo-complete-guide/), or start with [DOW-UAP-D077, the Western U.S. analysis update](/documents/release-03-file-028-dow-uap-d077-unresolved-case-analysis-update-western-united-states-event/).
