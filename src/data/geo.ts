@@ -43,9 +43,6 @@ export const GEO_OVERLAY: Record<string, GeoPoint> = {
   'Boston, Massachusetts': { lat: 42.36, lng: -71.06, precision: 'exact' },
   'Colorado': { lat: 39.0, lng: -105.5, precision: 'approx' },
   'Iraq': { lat: 33.2, lng: 43.7, precision: 'approx' },
-  'Middle East': { lat: 29.5, lng: 45.0, precision: 'region' },
-  'Yellow Sea': { lat: 35.0, lng: 123.5, precision: 'approx' },
-  'East China Sea': { lat: 29.0, lng: 125.5, precision: 'approx' },
 
   // Countries / seas (centroids)
   'Djibouti': { lat: 11.6, lng: 43.1, precision: 'approx' },
