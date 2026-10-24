@@ -31,7 +31,9 @@ const {
 const AD_FREE_PATHS = ['/privacy', '/terms', '/contact', '/404'];
 const pathname = Astro.url.pathname;
 const isAdFreePath = AD_FREE_PATHS.some(p => pathname === p || pathname === `${p}/` || pathname.startsWith(`${p}/`));
-const adsEnabled = showAds ?? (!noindex && !isAdFreePath);
+// Paused: AdSense limited the account for invalid traffic (2026-09-27, again 2026-10-24) and this site is not approved yet and serves no ads, so the script stays off; only the verification meta tag remains. Before re-enabling, gate it on the production hostname (see polytrackcodes src/components/AdSenseScript.tsx).
+const ADSENSE_SCRIPT_PAUSED = true;
+const adsEnabled = !ADSENSE_SCRIPT_PAUSED && (showAds ?? (!noindex && !isAdFreePath));
 
 const siteTitle = title === 'Home' ? 'UFO Declassified — Explore Government UAP Files' : `${title} | UFO Declassified`;
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
@@ -63,6 +65,7 @@ const currentPath = Astro.url.pathname;
   </script>
   <!-- Google tag (gtag.js) — loaded after consent default so it respects the state -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-X49F7XPJWB"></script>
+  <meta name="google-adsense-account" content="ca-pub-9461995056900435" />
   {adsEnabled && (
     <script
       async
