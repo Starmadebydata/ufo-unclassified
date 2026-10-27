@@ -5,6 +5,7 @@ import { release03Documents } from './release-03-documents';
 import { release04Documents } from './release-04-documents';
 import { release05Documents } from './release-05-documents';
 import { release06Documents } from './release-06-documents';
+import { release07Documents } from './release-07-documents';
 
 export const release01Documents: DeclassifiedDocument[] = [
   {
@@ -1364,7 +1365,7 @@ export const release01Documents: DeclassifiedDocument[] = [
   }
 ];
 
-export const documents: DeclassifiedDocument[] = [...release06Documents, ...release05Documents, ...release04Documents, ...release03Documents, ...release02Documents, ...release01Documents].sort((a, b) =>
+export const documents: DeclassifiedDocument[] = [...release07Documents, ...release06Documents, ...release05Documents, ...release04Documents, ...release03Documents, ...release02Documents, ...release01Documents].sort((a, b) =>
   b.dateReleased.localeCompare(a.dateReleased) || b.year - a.year || a.title.localeCompare(b.title)
 );
 

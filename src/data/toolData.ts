@@ -112,7 +112,7 @@ export function getVideoEntries(): VideoEntry[] {
   return entries;
 }
 
-export const RELEASES = ['Release 01', 'Release 02', 'Release 03', 'Release 04', 'Release 05'];
+export const RELEASES = ['Release 01', 'Release 02', 'Release 03', 'Release 04', 'Release 05', 'Release 06', 'Release 07'];
 
 // Derived so citation text and descriptions on /tools pages stay correct without
 // a manual find-and-replace every time a new release is added to RELEASES above.
@@ -124,4 +124,6 @@ export const RELEASE_COLORS: Record<string, string> = {
   'Release 03': '#00ff88', // neon-green
   'Release 04': '#a855f7', // purple
   'Release 05': '#f43f5e', // rose
+  'Release 06': '#f97316', // orange
+  'Release 07': '#38bdf8', // sky
 };

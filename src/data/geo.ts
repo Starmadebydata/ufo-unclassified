@@ -44,6 +44,18 @@ export const GEO_OVERLAY: Record<string, GeoPoint> = {
   'Colorado': { lat: 39.0, lng: -105.5, precision: 'approx' },
   'Iraq': { lat: 33.2, lng: 43.7, precision: 'approx' },
 
+  // Release 07 locations
+  'Saudi Arabia': { lat: 24.0, lng: 45.0, precision: 'approx' },
+  'Catalina Island, California': { lat: 33.39, lng: -118.42, precision: 'exact' },
+  'Guam': { lat: 13.44, lng: 144.79, precision: 'approx' },
+  'Italy': { lat: 42.8, lng: 12.6, precision: 'approx' },
+  'Canada': { lat: 56.1, lng: -106.3, precision: 'approx' },
+  'Germany': { lat: 51.2, lng: 10.4, precision: 'approx' },
+  'Morocco': { lat: 31.8, lng: -7.1, precision: 'approx' },
+  'Alaska': { lat: 64.2, lng: -149.5, precision: 'approx' },
+  'Indiana': { lat: 40.0, lng: -86.1, precision: 'approx' },
+  'San Francisco, California': { lat: 37.77, lng: -122.42, precision: 'exact' },
+
   // Countries / seas (centroids)
   'Djibouti': { lat: 11.6, lng: 43.1, precision: 'approx' },
   'Greece': { lat: 39.0, lng: 22.0, precision: 'approx' },

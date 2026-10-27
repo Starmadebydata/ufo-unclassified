@@ -35,11 +35,11 @@ const yearRange = earliestYear && latestYear ? `${earliestYear}-${latestYear}` :
 const videoDocs = documents.filter(d => d.files.some(f => f.type === 'video'));
 const audioDocs = documents.filter(d => d.files.some(f => f.type === 'audio'));
 const imageDocs = documents.filter(d => d.files.some(f => f.type === 'image'));
-const release06Docs = documents.filter(d => (d.releaseLabel || 'Release 01') === 'Release 06');
-const release06Files = release06Docs.reduce((sum, d) => sum + d.files.length, 0);
-const release06VideoDocs = release06Docs.filter(d => d.files.some(f => f.type === 'video' || f.type === 'audio')).length;
-const release06ImageDocs = release06Docs.filter(d => d.files.some(f => f.type === 'image')).length;
-const release06PdfDocs = release06Docs.filter(d => d.files.some(f => f.type === 'pdf')).length;
+const release07Docs = documents.filter(d => (d.releaseLabel || 'Release 01') === 'Release 07');
+const release07Files = release07Docs.reduce((sum, d) => sum + d.files.length, 0);
+const release07VideoDocs = release07Docs.filter(d => d.files.some(f => f.type === 'video' || f.type === 'audio')).length;
+const release07PdfDocs = release07Docs.filter(d => d.files.some(f => f.type === 'pdf')).length;
+const release07AgencyCount = new Set(release07Docs.map(d => d.agency)).size;
 const searchSuggestions = ['Apollo 12 UFO', 'Apollo 12 transcript', 'Apollo 17 UAP', '65 HS1 834228961', 'DOW UAP PR46'];
 
 function documentPreviewUrl(doc: any): string | undefined {
@@ -178,31 +178,31 @@ const trendingSearches = [
           <span class="stamp-declassified">DECLASSIFIED — MAY 2026</span>
         </div>
 
-        <a href="/documents/?release=Release%2006" class="release-alert mx-auto mb-5 md:mb-7" aria-label="Open War.gov Release 06 UFO files">
-          <span class="release-alert__marker">Release 06</span>
+        <a href="/documents/?release=Release%2007" class="release-alert mx-auto mb-5 md:mb-7" aria-label="Open War.gov Release 07 UFO files">
+          <span class="release-alert__marker">Release 07</span>
           <span class="release-alert__text">
-            <strong>War.gov published the sixth UFO file release.</strong>
-            <span>{release06Docs.length} new records are now indexed.</span>
+            <strong>War.gov published the seventh UFO file release.</strong>
+            <span>{release07Docs.length} new records are now indexed.</span>
           </span>
           <span class="release-alert__cta">Open batch →</span>
         </a>
 
-        <a href="/blog/dow-nda-waiver-pursue-whistleblower-pipeline/" class="news-alert mx-auto mb-5 md:mb-7" aria-label="Read the analysis of DOW's September 14 NDA waiver for PURSUE">
-          <span class="news-alert__marker">Sep 14</span>
+        <a href="/blog/war-gov-ufo-release-07-first-look/" class="news-alert mx-auto mb-5 md:mb-7" aria-label="Read the first look at PURSUE Release 07">
+          <span class="news-alert__marker">Oct 23</span>
           <span class="news-alert__text">
-            <strong>DOW issued a legal waiver for UAP disclosures to PURSUE.</strong>
-            <span>Here is what the NDA/SAPIA waiver actually covers — and doesn't.</span>
+            <strong>First look at Release 07: 28 records, no videos.</strong>
+            <span>A western U.S. triangle memo, the BAASS files and 1960s space-debris policy papers.</span>
           </span>
-          <span class="news-alert__cta">Read the analysis →</span>
+          <span class="news-alert__cta">Read the first look →</span>
         </a>
 
         <h1 class="font-display text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.12] mb-5 md:mb-6 tracking-wide uppercase glitch-text">
           Search the UFO Files<br class="hidden sm:block"/>
-          <span class="glow-red">Release 06 Now Indexed</span>
+          <span class="glow-red">Release 07 Now Indexed</span>
         </h1>
 
         <p class="text-base md:text-lg text-space-100 leading-relaxed mb-6 md:mb-8 max-w-2xl mx-auto font-light">
-          Search <strong class="text-white font-semibold">{totalDocs} document records</strong> and <strong class="text-white font-semibold">{totalFiles} files</strong>, including War.gov's sixth public UAP release from September 18, 2026.
+          Search <strong class="text-white font-semibold">{totalDocs} document records</strong> and <strong class="text-white font-semibold">{totalFiles} files</strong>, including War.gov's seventh public UAP release from October 23, 2026.
         </p>
 
         <div class="flex flex-wrap justify-center gap-5 md:gap-10 mb-7 md:mb-9">
@@ -225,8 +225,8 @@ const trendingSearches = [
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3 justify-center">
-          <a href="/documents/?release=Release%2005" class="release02-action inline-flex items-center justify-center gap-2 px-8 py-3 font-mono font-bold text-xs tracking-wider uppercase rounded transition-all" id="cta-release-05">
-            View Release 05 Files →
+          <a href="/documents/?release=Release%2007" class="release02-action inline-flex items-center justify-center gap-2 px-8 py-3 font-mono font-bold text-xs tracking-wider uppercase rounded transition-all" id="cta-release-07">
+            View Release 07 Files →
           </a>
           <a href="/documents/" class="primary-action inline-flex items-center justify-center gap-2 px-8 py-3 bg-cyan-glow/95 hover:bg-cyan-bright text-space-950 font-mono font-bold text-xs tracking-wider uppercase rounded transition-all hover:shadow-lg hover:shadow-cyan-glow/25" id="cta-browse">
             Browse Full Database →
@@ -239,23 +239,23 @@ const trendingSearches = [
   <section class="container-narrow pt-10 pb-4">
     <div class="release02-briefing">
       <div class="release02-copy">
-        <div class="release02-eyebrow">New public release · September 18, 2026</div>
-        <h2>War.gov Release 06 adds a sixth batch of UFO files</h2>
+        <div class="release02-eyebrow">New public release · October 23, 2026</div>
+        <h2>War.gov Release 07 adds a seventh batch of UFO files</h2>
         <p>
-          The new batch is the largest since the program opened: the 37 AAWSAP Defense Intelligence Reference Documents — warp drives, traversable wormholes, antigravity, negative mass propulsion — released with fewer redactions than the DIA FOIA versions, the Project Blue Book file and digitized 16mm film of the 1952 Tremonton, Utah sighting, Captain Edward J. Ruppelt's 1952 lecture transcript and recorded audio, 2022-2025 mission reports and Yellow Sea sensor videos, and the first local law-enforcement records in the program, four Colorado UAP transcripts paired with police-file videos.
+          This batch is PDFs only, with no videos. It pairs an AARO memorandum on a 2026 triangular-object report at a sensitive site in the western United States with a paired FBI FD-302 interview record, adds nine more Bigelow Aerospace Advanced Space Studies (BAASS) files from the AAWSAP program, including an April 2010 Utah field investigation report, and releases fourteen 1949-1957 Air Force reports, including four from Catalina Island, plus 1960s interagency papers on recovering space debris.
         </p>
         <div class="release02-links">
-          <a href="/documents/?release=Release%2006">Browse Release 06</a>
-          <a href="/documents/?agency=LLE">Open the law-enforcement records</a>
+          <a href="/documents/?release=Release%2007">Browse Release 07</a>
+          <a href="/blog/war-gov-ufo-release-07-first-look/">Read the first look</a>
         </div>
       </div>
-      <div class="release02-metrics" aria-label="Release 06 file summary">
+      <div class="release02-metrics" aria-label="Release 07 file summary">
         {[
-          { value: release06Docs.length, label: 'Records' },
-          { value: release06Files, label: 'Files' },
-          { value: release06VideoDocs, label: 'Video/Audio' },
-          { value: release06ImageDocs, label: 'Images' },
-          { value: release06PdfDocs, label: 'PDFs' },
+          { value: release07Docs.length, label: 'Records' },
+          { value: release07Files, label: 'Files' },
+          { value: release07PdfDocs, label: 'PDFs' },
+          { value: release07VideoDocs, label: 'Video/Audio' },
+          { value: release07AgencyCount, label: 'Agencies' },
         ].map(item => (
           <div class="release02-metric">
             <span>{item.value}</span>
@@ -272,7 +272,7 @@ const trendingSearches = [
         { label: 'Source', value: 'war.gov/UFO', detail: 'Public government release' },
         { label: 'Indexed', value: `${totalFiles} files`, detail: `${totalDocs} searchable records` },
         { label: 'Coverage', value: `${imageDocs.length} image sets`, detail: `${videoDocs.length} video and ${audioDocs.length} audio records` },
-        { label: 'Updated', value: 'September 18, 2026', detail: `${release06Docs.length} Release 06 records added` },
+        { label: 'Updated', value: 'October 23, 2026', detail: `${release07Docs.length} Release 07 records added` },
       ].map(item => (
         <div class="bg-space-900/95 p-5">
           <div class="text-[10px] font-mono uppercase tracking-[0.22em] text-space-300">{item.label}</div>

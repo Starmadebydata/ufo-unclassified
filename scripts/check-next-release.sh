@@ -16,8 +16,8 @@
 set -uo pipefail
 
 # --- Bump these two on every re-arm ---
-CURRENT_RELEASE_NUM=6           # last confirmed release
-BASELINE_UFOFILES=158           # ufofiles.fyi file count as of the last re-arm (2026-08-22)
+CURRENT_RELEASE_NUM=7           # last confirmed release
+BASELINE_UFOFILES=158           # ufofiles.fyi returned 404 on 2026-10-27, so signal 2 is inert until the site returns
 # ---------------------------------------
 
 UA='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)'
