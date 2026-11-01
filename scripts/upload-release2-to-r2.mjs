@@ -81,7 +81,7 @@ async function uploadFile({ s3, bucket, key, filePath, contentType }) {
 async function main() {
   const dryRun = process.argv.includes('--dry-run');
   const env = loadEnv();
-  const bucket = env.R2_BUCKET_NAME || 'ufo-declassified-media';
+  const bucket = env.R2_BUCKET_NAME || 'ufo';
   const s3 = new S3Client({
     region: 'auto',
     endpoint: env.R2_ENDPOINT,

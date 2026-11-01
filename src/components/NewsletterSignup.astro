@@ -1,0 +1,67 @@
+---
+/**
+ * "Release Alert" email signup box. Renders nothing until NEWSLETTER.action
+ * in src/config.ts is configured — see the setup notes there.
+ *
+ * Placement: homepage (under the hero) and the end of blog posts, where the
+ * next-PURSUE-release hook is strongest.
+ */
+import { NEWSLETTER } from '../config';
+
+interface Props {
+  /** Slightly different copy in article context. */
+  variant?: 'home' | 'article';
+}
+
+const { variant = 'home' } = Astro.props;
+
+const copy =
+  variant === 'home'
+    ? 'Get an email the moment war.gov publishes a new PURSUE tranche — record counts, the three files worth reading first, and direct links. No hype, no spam.'
+    : 'The next PURSUE release will land in this archive within 48 hours. Get the first look by email — highlights and direct file links, nothing else.';
+---
+
+{NEWSLETTER.action && (
+  <section class="newsletter-signup" aria-label="Release Alert newsletter signup">
+    <div class="glass-panel p-6 md:p-8 text-center max-w-2xl mx-auto">
+      <div class="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan-bright/80 mb-2">
+        // Transmission list
+      </div>
+      <h2 class="font-display text-lg md:text-xl font-bold text-white uppercase tracking-wider mb-2">
+        Release Alert
+      </h2>
+      <p class="text-space-300 text-sm mb-5 max-w-md mx-auto">
+        {copy}
+      </p>
+      <form
+        action={NEWSLETTER.action}
+        method="post"
+        target="popupwindow"
+        class="flex flex-col sm:flex-row gap-2 justify-center max-w-md mx-auto"
+        onsubmit="window.open('about:blank','popupwindow','scrollbars=yes,width=560,height=560');return true"
+      >
+        {Object.entries(NEWSLETTER.hidden).map(([name, value]) => (
+          <input type="hidden" name={name} value={value} />
+        ))}
+        <label class="sr-only" for="newsletter-email">Email address</label>
+        <input
+          id="newsletter-email"
+          type="email"
+          name="email"
+          required
+          placeholder="you@example.com"
+          class="flex-1 px-4 py-2.5 bg-space-900/80 border border-space-700 rounded font-mono text-sm text-white placeholder:text-space-500 focus:outline-none focus:border-cyan-bright/60 focus:ring-1 focus:ring-cyan-bright/40"
+        />
+        <button
+          type="submit"
+          class="px-6 py-2.5 bg-cyan-glow/95 hover:bg-cyan-bright text-space-950 font-mono font-bold text-xs tracking-wider uppercase rounded transition-all hover:shadow-lg hover:shadow-cyan-glow/25"
+        >
+          Subscribe →
+        </button>
+      </form>
+      <p class="text-space-500 text-[10px] font-mono mt-3">
+        One email per release. Unsubscribe anytime.
+      </p>
+    </div>
+  </section>
+)}

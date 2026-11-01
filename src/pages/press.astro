@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { documents } from '../data/documents';
+import { AGENCY_INFO } from '../data/types';
+import type { Agency } from '../data/types';
+import { ARCHIVE_DOI, ARCHIVE_DOI_URL } from '../config';
+
+const totalFiles = documents.reduce((sum, doc) => sum + doc.files.length, 0);
+const agencies = Object.keys(AGENCY_INFO) as Agency[];
+const agencyList = agencies.filter(a => documents.some(d => d.agency === a));
+const years = documents.map(d => d.year).filter(Boolean) as number[];
+const releases = [...new Set(documents.map(d => d.releaseLabel || 'Release 01'))];
+
+const csvUrl = 'https://raw.githubusercontent.com/Starmadebydata/ufo-unclassified/main/dataset/uap-documents.csv';
+const zenodoSearchUrl = 'https://zenodo.org/api/records?q=%22PURSUE%20UAP%20Documents%20Dataset%22&sort=newest';
+
+const citationExample =
+  'UFO Declassified. "Utah Ranch Investigation Report, April 2010." U.S. Department of War, 2010. PURSUE Release 07, released October 23, 2026. https://ufo-declassified.com/documents/. Accessed November 2, 2026.';
+
+const datasetCitation = `Starmadebydata. PURSUE UAP Documents Dataset. Zenodo. ${ARCHIVE_DOI_URL} (concept DOI, always resolves to the latest version).`;
+---
+
+<BaseLayout
+  title="For Journalists & Researchers"
+  description="Citation-ready source for reporting on declassified UAP records: how to cite the archive, download the catalog dataset, verify records against war.gov, and reuse rights for PURSUE materials."
+>
+  <section class="container-narrow py-12 max-w-3xl mx-auto">
+    <div class="section-header">
+      <div class="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan-bright/80 mb-2">// Press &amp; research desk</div>
+      <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">For Journalists &amp; Researchers</h1>
+      <p class="text-space-300 text-sm mt-3 max-w-2xl">
+        UFO Declassified is an independent archive organizing the declassified UAP records published at
+        <a href="https://war.gov/UFO" class="text-cyan-bright hover:underline" rel="noopener">war.gov/UFO</a>
+        under the PURSUE initiative. Every claim on this site links to a source record. This page explains how to cite us, get the data, and what you may reuse.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 my-8">
+      <div class="glass-panel p-4 text-center">
+        <div class="font-display text-2xl font-bold text-cyan-bright">{documents.length}</div>
+        <div class="text-space-400 text-[10px] font-mono uppercase tracking-wider mt-1">Record pages</div>
+      </div>
+      <div class="glass-panel p-4 text-center">
+        <div class="font-display text-2xl font-bold text-cyan-bright">{totalFiles}</div>
+        <div class="text-space-400 text-[10px] font-mono uppercase tracking-wider mt-1">Source files indexed</div>
+      </div>
+      <div class="glass-panel p-4 text-center">
+        <div class="font-display text-2xl font-bold text-cyan-bright">{agencyList.length}</div>
+        <div class="text-space-400 text-[10px] font-mono uppercase tracking-wider mt-1">Source agencies</div>
+      </div>
+      <div class="glass-panel p-4 text-center">
+        <div class="font-display text-2xl font-bold text-cyan-bright">{releases.length}</div>
+        <div class="text-space-400 text-[10px] font-mono uppercase tracking-wider mt-1">PURSUE releases tracked</div>
+      </div>
+    </div>
+
+    <div class="prose prose-invert max-w-none space-y-6 text-space-200 text-sm">
+
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">How to cite this archive</h2>
+      <p>Every document page carries a <strong class="text-white">How to Cite</strong> block with its canonical URL — use that text directly. The general pattern:</p>
+      <div class="glass-panel p-4 font-mono text-xs leading-relaxed text-space-100 not-prose">{citationExample}</div>
+      <p>For the full catalog in academic work, cite the versioned dataset instead:</p>
+      <div class="glass-panel p-4 font-mono text-xs leading-relaxed text-space-100 not-prose">{datasetCitation}</div>
+
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">Get the data</h2>
+      <ul class="space-y-2">
+        <li>
+          <a href={ARCHIVE_DOI_URL} class="text-cyan-bright hover:underline" rel="noopener">Zenodo dataset ({ARCHIVE_DOI})</a>
+          — versioned archive of record for the catalog; the concept DOI always points to the newest version.
+        </li>
+        <li>
+          <a href={csvUrl} class="text-cyan-bright hover:underline">Catalog CSV (raw)</a>
+          — one row per record: agency, identifiers, dates, locations, summaries, file lists.
+        </li>
+        <li>
+          <a href={zenodoSearchUrl} class="text-cyan-bright hover:underline" rel="noopener">All published versions</a>
+          — for pinning an analysis to an exact release of the data.
+        </li>
+      </ul>
+
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">Verification policy</h2>
+      <ul class="space-y-2">
+        <li><strong class="text-white">Record pages</strong> are cross-checked against the official war.gov/UFO release files at ingestion; agency, date, and identifiers are transcribed, never inferred.</li>
+        <li><strong class="text-white">First-look articles</strong> are published within roughly 48 hours of each tranche and are clearly labeled as initial reads; analysis articles state what the files show <em>and</em> what they do not.</li>
+        <li><strong class="text-white">Corrections</strong> are made in place with the article's <code class="text-cyan-bright">updated</code> date bumped; substantive changes are noted in the text. If you find an error, write to the address below and we will fix or flag it promptly.</li>
+      </ul>
+
+      <h2 class="font-display text-lg font-bold text-white uppercase tracking-wider">What you may reuse</h2>
+      <ul class="space-y-2">
+        <li><strong class="text-white">Underlying records</strong> (scans, photos, video, audio) are works of the U.S. government and are in the public domain (17 U.S.C. § 105). We serve them unmodified from the official releases.</li>
+        <li><strong class="text-white">The document catalog</strong> (metadata, summaries, structured data) is licensed <a href="https://creativecommons.org/licenses/by/4.0/" class="text-cyan-bright hover:underline" rel="noopener">CC BY 4.0</a> — reuse with attribution to the Zenodo DOI.</li>
+        <li><strong class="text-white">Article text and site copy</strong> are ours; quote excerpts with a link, and ask before longer republication.</li>
+      </ul>
+
+      <div class="glass-panel p-6 my-8 radar-sweep">
+        <h2 class="font-display text-lg font-bold text-white mb-3 uppercase tracking-wider">Working on a story or paper?</h2>
+        <p class="mb-3">We can pull source files, verify a citation, or check whether a claim traces to an actual released record. Response is usually within one business day.</p>
+        <p><a href="mailto:contact@ufo-declassified.com" class="text-cyan-bright hover:underline font-mono">contact@ufo-declassified.com</a></p>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

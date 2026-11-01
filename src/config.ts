@@ -18,6 +18,23 @@ export const ARCHIVE_RELEASE_DATE = '2026-05-08';
 export const ARCHIVE_DOI = '10.5281/zenodo.23854002';
 export const ARCHIVE_DOI_URL = `https://doi.org/${ARCHIVE_DOI}`;
 
+// Newsletter — the "Release Alert" list. The signup box renders on the
+// homepage and at the end of blog posts only when `action` is set, so the
+// site deploys safely before the list exists.
+//
+// Setup (one-time): create a hosted embed form with your provider, then fill
+// in the form's POST endpoint and any hidden fields it requires. Examples:
+//   Buttondown: action 'https://buttondown.email/api/emails/embed-subscribe/<list>'
+//               hidden { embed: '1' }
+//   Kit:        action 'https://app.kit.com/forms/<id>/subscriptions'
+//               hidden fields as given by Kit's embed snippet
+//   Mailchimp:  action 'https://<dc>.list-manage.com/subscribe/post?u=<u>&id=<id>'
+//               hidden { b_<u>_<id>: '' } per their embed code
+export const NEWSLETTER = {
+  action: '',
+  hidden: {} as Record<string, string>,
+};
+
 // Helper to build media URLs
 export function mediaUrl(type: 'image' | 'video' | 'pdf' | 'audio', filename: string): string {
   return `${R2_BASE}/${type}/${filename}`;

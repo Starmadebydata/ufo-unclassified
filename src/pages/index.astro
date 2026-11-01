@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SearchBar from '../components/SearchBar.tsx';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
 import { documents, getFeaturedDocuments, getAllYears } from '../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../data/types';
 import type { Agency } from '../data/types';
@@ -234,6 +235,10 @@ const trendingSearches = [
         </div>
       </div>
     </div>
+  </section>
+
+  <section class="container-narrow pt-6 pb-2">
+    <NewsletterSignup variant="home" />
   </section>
 
   <section class="container-narrow pt-10 pb-4">

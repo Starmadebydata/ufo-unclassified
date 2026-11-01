@@ -154,7 +154,7 @@ async function main() {
     ? new Set(onlyArg.slice('--only='.length).split(',').map((item) => item.trim()).filter(Boolean))
     : null;
   const env = loadEnv();
-  const bucket = env.R2_BUCKET_NAME || 'ufo-declassified-media';
+  const bucket = env.R2_BUCKET_NAME || 'ufo';
   const s3 = new S3Client({
     region: 'auto',
     endpoint: env.R2_ENDPOINT,

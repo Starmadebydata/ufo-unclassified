@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
+import NewsletterSignup from '../../components/NewsletterSignup.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -133,6 +134,11 @@ const jsonLd = {
         <p class="text-space-500 text-xs font-mono">Found this useful? Share it with others.</p>
         <ShareButtons url={`/blog/${post.id}/`} title={post.data.title} description={post.data.description} variant="inline" />
       </div>
+    </div>
+
+    {/* Newsletter */}
+    <div class="mt-12">
+      <NewsletterSignup variant="article" />
     </div>
 
     {/* CTA */}

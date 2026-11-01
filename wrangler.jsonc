@@ -17,7 +17,7 @@
 	"r2_buckets": [
 		{
 			"binding": "MEDIA_BUCKET",
-			"bucket_name": "ufo-declassified-media"
+			"bucket_name": "ufo"
 		}
 	]
 }

@@ -19,7 +19,7 @@ for (const line of envFile.split('\n')) {
   }
 }
 
-const BUCKET = env.R2_BUCKET_NAME || 'ufo-declassified-media';
+const BUCKET = env.R2_BUCKET_NAME || 'ufo';
 const SOURCE = path.resolve('source-files');
 
 const s3 = new S3Client({
