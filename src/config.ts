@@ -15,7 +15,7 @@ export const ARCHIVE_RELEASE_DATE = '2026-05-08';
 
 // Zenodo concept DOI for the published catalog export — always resolves to the
 // latest version, so it is the one to cite. The v1 version DOI is ...259.
-export const ARCHIVE_DOI = '10.5281/zenodo.21605258';
+export const ARCHIVE_DOI = '10.5281/zenodo.23854002';
 export const ARCHIVE_DOI_URL = `https://doi.org/${ARCHIVE_DOI}`;
 
 // Helper to build media URLs

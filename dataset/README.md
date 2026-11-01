@@ -1,6 +1,6 @@
 # PURSUE UAP Documents Dataset
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21605258.svg)](https://doi.org/10.5281/zenodo.21605258)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23854002.svg)](https://doi.org/10.5281/zenodo.23854002)
 
 A structured catalog of every U.S. government UAP record released under the **PURSUE** initiative (Presidential Unsealing and Reporting System for UAP Encounters), covering all public tranches from May 8, 2026 onward.
 
@@ -155,7 +155,7 @@ If you use this dataset, cite it. Attribution is the only thing asked in return.
 ```
 Lin, Flynn. (2026). PURSUE UAP Documents Dataset: A structured catalog of
 declassified U.S. government UAP records (2026). Zenodo.
-https://doi.org/10.5281/zenodo.21605258
+https://doi.org/10.5281/zenodo.23854002
 ```
 
 BibTeX:
@@ -167,14 +167,18 @@ BibTeX:
                declassified U.S. government UAP records},
   year      = {2026},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.21605258},
-  url       = {https://doi.org/10.5281/zenodo.21605258}
+  doi       = {10.5281/zenodo.23854002},
+  url       = {https://doi.org/10.5281/zenodo.23854002}
 }
 ```
 
-**DOIs.** `10.5281/zenodo.21605258` is the *concept* DOI — it always resolves to the
-latest version and is the one to cite. `10.5281/zenodo.21605259` identifies v1
+**DOIs.** `10.5281/zenodo.23854002` is the *concept* DOI — it always resolves to the
+latest version and is the one to cite. `10.5281/zenodo.23854053` identifies v1.3.0
 specifically; use it only when you need to pin the exact snapshot you worked from.
+From v1.3.0 onward, versions are published automatically from the GitHub
+[releases](https://github.com/Starmadebydata/ufo-unclassified/releases). Earlier
+versions (v1.0.0, v1.1.0) live under the previous concept record
+`10.5281/zenodo.21605258`, which remains valid and citable.
 
 When citing an **individual record**, prefer its `record_url` — that page carries the official source link, the full metadata, and its own citation block.
 
