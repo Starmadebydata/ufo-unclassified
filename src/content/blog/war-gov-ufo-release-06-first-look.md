@@ -57,14 +57,14 @@ The eight Colorado records are the genuinely new thing. Four law enforcement tra
 
 ## Explore This Release
 
-The full Release 06 set is browsable in the [Document Database](/documents?release=Release%2006), and every record carries a source-status label in the [Evidence Explorer](/tools/evidence) explaining what kind of evidence it is: official source, public rendition, witness testimony, or an officially unresolved case.
+The full Release 06 set is browsable in the [Document Database](/documents/?release=Release%2006), and every record carries a source-status label in the [Evidence Explorer](/tools/evidence/) explaining what kind of evidence it is: official source, public rendition, witness testimony, or an officially unresolved case.
 
 If you are trying to place this release in context rather than read it in isolation:
 
-- The [Release Comparator](/tools/compare) breaks down what changed between Release 06 and every prior tranche, agency mix and file types side by side.
-- [Archive Statistics](/tools/stats) has the full running count across all releases, now 323 records, with a citation block and a CSV download of the complete catalog.
-- The [Sighting Map](/tools/map) plots every locatable record from this batch, from Tremonton to the Yellow Sea, alongside the rest of the archive.
-- The [Video Browser](/tools/videos) has all fifteen new videos plus the Ruppelt recording in one filterable view.
+- The [Release Comparator](/tools/compare/) breaks down what changed between Release 06 and every prior tranche, agency mix and file types side by side.
+- [Archive Statistics](/tools/stats/) has the full running count across all releases, now 323 records, with a citation block and a CSV download of the complete catalog.
+- The [Sighting Map](/tools/map/) plots every locatable record from this batch, from Tremonton to the Yellow Sea, alongside the rest of the archive.
+- The [Video Browser](/tools/videos/) has all fifteen new videos plus the Ruppelt recording in one filterable view.
 
 ## Common Questions About PURSUE Release 06
 

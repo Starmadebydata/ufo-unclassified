@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useRef } from 'react';
 
 interface SearchDoc {
   slug: string;
@@ -12,7 +12,8 @@ interface SearchDoc {
 }
 
 interface Props {
-  documents: SearchDoc[];
+  documents?: SearchDoc[];
+  indexUrl?: string;
   suggestedQueries?: string[];
 }
 
@@ -20,14 +21,44 @@ const AGENCY_COLORS: Record<string, string> = {
   DOW: '#f59e0b', FBI: '#3b82f6', NASA: '#06b6d4', DOS: '#a855f7', NARA: '#10b981', CIA: '#f97316', ODNI: '#14b8a6', DOE: '#eab308', OTHER: '#6b7280',
 };
 
-export default function SearchBar({ documents, suggestedQueries = [] }: Props) {
+let cachedDocs: SearchDoc[] | null = null;
+let inflightFetch: Promise<SearchDoc[]> | null = null;
+
+export default function SearchBar({ documents, indexUrl = '/search-index.json', suggestedQueries = [] }: Props) {
+  const [loadedDocs, setLoadedDocs] = useState<SearchDoc[]>(() => documents ?? cachedDocs ?? []);
+  const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const hasRequestedRef = useRef(false);
+
+  const ensureIndexLoaded = useCallback(() => {
+    if (documents || cachedDocs || hasRequestedRef.current) return;
+    hasRequestedRef.current = true;
+    setIsLoading(true);
+    if (!inflightFetch) {
+      inflightFetch = fetch(indexUrl)
+        .then(res => (res.ok ? res.json() : []))
+        .then((data: SearchDoc[]) => {
+          cachedDocs = data;
+          return data;
+        })
+        .catch(() => {
+          inflightFetch = null;
+          return [];
+        });
+    }
+    inflightFetch.then(data => {
+      setLoadedDocs(data);
+      setIsLoading(false);
+    });
+  }, [documents, indexUrl]);
+
+  const activeDocs = documents ?? loadedDocs;
 
   const results = useMemo(() => {
     if (!query || query.length < 2) return [];
     const q = query.toLowerCase();
-    return documents
+    return activeDocs
       .filter(d =>
         d.title.toLowerCase().includes(q) ||
         d.agency.toLowerCase().includes(q) ||
@@ -38,14 +69,18 @@ export default function SearchBar({ documents, suggestedQueries = [] }: Props) {
         String(d.year).includes(q)
       )
       .slice(0, 8);
-  }, [query, documents]);
+  }, [query, activeDocs]);
 
-  const handleFocus = useCallback(() => setIsOpen(true), []);
+  const handleFocus = useCallback(() => {
+    ensureIndexLoaded();
+    setIsOpen(true);
+  }, [ensureIndexLoaded]);
   const handleBlur = useCallback(() => setTimeout(() => setIsOpen(false), 200), []);
   const handleSuggestion = useCallback((term: string) => {
+    ensureIndexLoaded();
     setQuery(term);
     setIsOpen(true);
-  }, []);
+  }, [ensureIndexLoaded]);
 
   return (
     <div className="relative w-full max-w-xl mx-auto" id="search-component">
@@ -57,7 +92,10 @@ export default function SearchBar({ documents, suggestedQueries = [] }: Props) {
         <input
           type="text"
           value={query}
-          onChange={e => setQuery(e.target.value)}
+          onChange={e => {
+            ensureIndexLoaded();
+            setQuery(e.target.value);
+          }}
           onFocus={handleFocus}
           onBlur={handleBlur}
           placeholder="Search title, agency, location, year..."
@@ -133,7 +171,15 @@ export default function SearchBar({ documents, suggestedQueries = [] }: Props) {
         </div>
       )}
 
-      {isOpen && query.length >= 2 && results.length === 0 && (
+      {isOpen && query.length >= 2 && isLoading && results.length === 0 && (
+        <div className="mt-2 w-full rounded border border-[rgba(6,182,212,0.18)] bg-[rgba(6,11,20,0.97)] backdrop-blur-2xl shadow-2xl p-5 text-center">
+          <div className="text-[#7a9fd4] text-xs font-mono">
+            Loading archive index...
+          </div>
+        </div>
+      )}
+
+      {isOpen && query.length >= 2 && !isLoading && results.length === 0 && (
         <div className="mt-2 w-full rounded border border-[rgba(6,182,212,0.18)] bg-[rgba(6,11,20,0.97)] backdrop-blur-2xl shadow-2xl p-5 text-center">
           <div className="text-[#7a9fd4] text-xs font-mono">
             <span className="text-red-500/60">ERR</span> No documents found matching "{query}"

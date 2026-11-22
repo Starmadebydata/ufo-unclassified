@@ -5,19 +5,35 @@ import NewsletterSignup from '../components/NewsletterSignup.astro';
 import { documents, getFeaturedDocuments, getAllYears } from '../data/documents';
 import { AGENCY_INFO, CATEGORY_INFO } from '../data/types';
 import type { Agency } from '../data/types';
-import { fileThumbnailUrl } from '../config';
+import { fileThumbnailUrl, makeArchiveDatasetSchema, SITE_NAME } from '../config';
 import { cultureItems } from '../data/culture';
 
-const searchDocs = documents.map(d => ({
-  slug: d.slug,
-  title: d.title,
-  agency: d.agency,
-  category: d.category,
-  year: d.year,
-  location: d.location?.name || '',
-  summary: d.summary,
-  release: d.releaseLabel || 'Release 01',
-}));
+const siteUrl = Astro.site?.href || 'https://ufo-declassified.com/';
+const homeJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      name: SITE_NAME,
+      url: siteUrl,
+      description: 'Searchable public archive of U.S. government declassified UFO and UAP documents released under the PURSUE initiative (Releases 01–07).',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${siteUrl}documents/?q={search_term_string}`,
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${siteUrl}#organization`,
+      name: SITE_NAME,
+      url: siteUrl,
+      logo: `${siteUrl}favicon.svg`,
+    },
+    makeArchiveDatasetSchema(siteUrl),
+  ],
+};
 
 const featured = getFeaturedDocuments();
 const totalDocs = documents.length;
@@ -155,11 +171,14 @@ const trendingSearches = [
 ];
 ---
 <BaseLayout title="Home">
+  <script type="application/ld+json" set:html={JSON.stringify(homeJsonLd)} slot="head" />
   <section class="landing-hero relative overflow-hidden flex items-center">
     <div class="absolute inset-0 z-0" aria-hidden="true">
       <img 
-        src="/hero-bg.png" 
+        src="/hero-bg.webp" 
         alt="" 
+        width="1024"
+        height="1024"
         class="w-full h-full object-cover object-center scale-110 blur-[2px]"
         loading="eager"
         fetchpriority="high"
@@ -222,7 +241,7 @@ const trendingSearches = [
         </div>
 
         <div class="mb-5 md:mb-7">
-          <SearchBar client:load documents={searchDocs} suggestedQueries={searchSuggestions} />
+          <SearchBar client:load indexUrl="/search-index.json" suggestedQueries={searchSuggestions} />
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3 justify-center">

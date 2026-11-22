@@ -79,10 +79,10 @@ That is a documented fact about space debris in the early 1960s, and nothing mor
 
 The full set is browsable in the [Document Database](/documents/?release=Release%2007). The PDFs link directly to the official copies on war.gov; we have not mirrored the roughly 326 MB package.
 
-- The [Release Comparator](/tools/compare) shows how this batch differs from the six before it.
-- [Archive Statistics](/tools/stats) has the running count, now 351 records across seven releases.
-- The [Sighting Map](/tools/map) plots the locatable records, from Catalina Island to Sweden.
-- The [Evidence Explorer](/tools/evidence) explains the source-status label on each record.
+- The [Release Comparator](/tools/compare/) shows how this batch differs from the six before it.
+- [Archive Statistics](/tools/stats/) has the running count, now 351 records across seven releases.
+- The [Sighting Map](/tools/map/) plots the locatable records, from Catalina Island to Sweden.
+- The [Evidence Explorer](/tools/evidence/) explains the source-status label on each record.
 
 ## Common Questions About PURSUE Release 07
 

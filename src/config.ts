@@ -3,8 +3,11 @@
  * Media files are served from Cloudflare R2
  */
 
-// R2 public URL for media files (images, videos, PDFs)
-export const R2_BASE = 'https://pub-d7148e2b49114a8ab87e9305c11533cf.r2.dev';
+// R2 public URL for media files (images, videos, PDFs).
+// Served through the bucket's custom domain (proxied, on the same Cloudflare
+// zone) instead of the rate-limited pub-*.r2.dev development subdomain.
+// HELD uncommitted until the media DNS record + certificate go live.
+export const R2_BASE = 'https://media.ufo-declassified.com';
 
 export const SITE_NAME = 'UFO Declassified';
 export const ARCHIVE_DATASET_NAME = 'UFO Declassified PURSUE Document Archive';
@@ -58,7 +61,7 @@ export function makeArchiveDatasetSchema(site: URL | string) {
     '@type': 'Dataset',
     name: ARCHIVE_DATASET_NAME,
     description: ARCHIVE_DATASET_DESCRIPTION,
-    url: new URL('/documents', baseUrl).href,
+    url: new URL('/documents/', baseUrl).href,
     sameAs: [ARCHIVE_SOURCE_URL, ARCHIVE_DOI_URL],
     isBasedOn: ARCHIVE_SOURCE_URL,
     datePublished: ARCHIVE_RELEASE_DATE,
