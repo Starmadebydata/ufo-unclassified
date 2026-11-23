@@ -67,6 +67,90 @@ const topicSpotlights: Record<string, Array<{ href: string; label: string; title
       body: 'A reader-friendly guide to the FBI photo and case-file records in the archive.',
     },
   ],
+  'triangular-uap-case-file': [
+    {
+      href: '/documents/release-07-file-003-dow-uap-d176-triangular-uap-aaro-memorandum-for-record-2026/',
+      label: 'Release 07 · AARO MFR',
+      title: 'DOW-UAP-D176 Triangular UAP Memo (2026)',
+      body: 'The flagship Release 07 AARO Memorandum for Record documenting a triangular UAP observation.',
+    },
+    {
+      href: '/documents/release-05-file-036-fbi-uap-d030-fd-302-large-triangle-with-red-lights-2023/',
+      label: 'Release 05 · FBI FD-302',
+      title: 'Large Triangle with Red Lights (2023)',
+      body: 'FBI witness interview paired with an official digital rendering (FBI-UAP-D031).',
+    },
+    {
+      href: '/documents/release-05-file-034-fbi-uap-d026-fd-302-dark-translucent-triangle-2023/',
+      label: 'Release 05 · FBI FD-302',
+      title: 'Dark Translucent Triangle (2023)',
+      body: 'Firsthand witness account paired with FBI-UAP-D027 rendering from the same Release 05 series.',
+    },
+    {
+      href: '/blog/war-gov-ufo-release-07-first-look/',
+      label: 'Deep Dive Analysis',
+      title: 'First Look at PURSUE Release 07',
+      body: 'Context on DOW-UAP-D176, how it compares to earlier batches, and what the memo leaves unanswered.',
+    },
+  ],
+  'tremonton-utah-ufo-film-1952': [
+    {
+      href: '/documents/release-06-file-007-dow-uap-pr159-historical-film-of-reported-ufos-utah-1952/',
+      label: 'Release 06 · 1952 Film',
+      title: 'DOW-UAP-PR159 Historical Utah Film',
+      body: 'The declassified 1952 Tremonton, Utah motion picture footage released in PURSUE Release 06.',
+    },
+    {
+      href: '/documents/release-06-file-001-dow-uap-d102-project-blue-book-file-on-tremonton-film-utah-1952/',
+      label: 'Project Blue Book',
+      title: 'DOW-UAP-D102 Blue Book Case File',
+      body: 'Air Force Project Blue Book investigative documentation on the Tremonton sighting.',
+    },
+    {
+      href: '/documents/release-06-file-008-dow-uap-pr160-presentation-by-captain-edward-j-ruppelt-1952/',
+      label: '1952 Audio',
+      title: 'Capt. Edward J. Ruppelt Presentation',
+      body: 'Archival audio recording (with transcript in D154) from the Project Blue Book chief.',
+    },
+    {
+      href: '/blog/war-gov-ufo-release-06-first-look/',
+      label: 'Release 06 Analysis',
+      title: 'First Look at PURSUE Release 06',
+      body: 'Breakdown of the Tremonton film package, Ruppelt audio, and local law enforcement files.',
+    },
+    {
+      href: '/blog/cia-robertson-panel-1953-ufo-report/',
+      label: 'Historical Context',
+      title: 'The 1953 CIA Robertson Panel Report',
+      body: 'How the 1953 CIA scientific panel reviewed the Tremonton film and shaped decades of UFO policy.',
+    },
+  ],
+  'green-fireballs-sandia-1948-1951': [
+    {
+      href: '/documents/release-02-file-003-dow-uap-d017-uap-reported-at-sandia-base-1948-1950/',
+      label: 'Release 02 · DOW',
+      title: 'DOW-UAP-D017 Sandia Base Reports (1948–1950)',
+      body: 'Primary Department of War record of aerial phenomena reported over Sandia Base, New Mexico.',
+    },
+    {
+      href: '/documents/release-04-file-003-doe-uap-d004-los-alamos-conference-on-aerial-phenomena-1949/',
+      label: 'Release 04 · DOE',
+      title: 'DOE-UAP-D004 Los Alamos Conference (1949)',
+      body: 'Declassified 1949 Los Alamos meeting record examining the New Mexico green fireball wave.',
+    },
+    {
+      href: '/blog/sandia-green-fireballs-release-02-analysis/',
+      label: 'Deep Dive Analysis',
+      title: 'Sandia Green Fireballs: Evidence of Attention, Not Proof of Origin',
+      body: 'Source-by-source review of what the Sandia files establish and what remains undocumented.',
+    },
+    {
+      href: '/blog/project-blue-book-special-report-14-battelle-statistics/',
+      label: 'Statistical Context',
+      title: 'Project Blue Book Special Report 14 & Battelle Statistics',
+      body: 'How early 1950s Air Force statistical studies classified unidentified aerial reports.',
+    },
+  ],
   'pentagon-uap-videos': [
     {
       href: '/documents/1006106-dow-uap-pr46-unresolved-uap-report-indopacom-2024/',
@@ -101,6 +185,9 @@ function topicMatches(slug: string, doc: any): boolean {
   if (slug === 'pursue-release-04') return (doc.releaseLabel || 'Release 01') === 'Release 04';
   if (slug === 'pursue-release-03') return (doc.releaseLabel || 'Release 01') === 'Release 03';
   if (slug === 'pursue-release-02') return (doc.releaseLabel || 'Release 01') === 'Release 02';
+  if (slug === 'triangular-uap-case-file') return title.includes('triang') || doc.slug.includes('d176');
+  if (slug === 'tremonton-utah-ufo-film-1952') return title.includes('tremonton') || title.includes('ruppelt') || doc.slug.includes('pr159') || doc.slug.includes('d105-u-s-air-force-flying-discs-file-1952');
+  if (slug === 'green-fireballs-sandia-1948-1951') return title.includes('sandia') || title.includes('los alamos') || title.includes('green fireball') || doc.agency === 'DOE';
   if (slug === 'fbi-ufo-files') return doc.agency === 'FBI';
   if (slug === 'nasa-apollo-ufo-material') return doc.agency === 'NASA' || title.includes('apollo') || tags.includes('apollo');
   if (slug === 'pentagon-uap-videos') return doc.agency === 'DOW' || doc.files.some((file: any) => file.type === 'video');

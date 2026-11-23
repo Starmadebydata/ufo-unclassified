@@ -2,14 +2,34 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import VideoBrowser from '../../components/VideoBrowser.tsx';
 import { getVideoEntries, RELEASES, RELEASE_COLORS, RELEASE_RANGE_LABEL } from '../../data/toolData';
+import { makeArchiveDatasetSchema, SITE_NAME } from '../../config';
 
 const videos = getVideoEntries();
+const siteUrl = Astro.site?.href || 'https://ufo-declassified.com/';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const videosJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebApplication',
+      name: `Declassified UAP & UFO Video Browser — ${SITE_NAME}`,
+      url: canonicalUrl,
+      applicationCategory: 'ReferenceApplication',
+      operatingSystem: 'Any',
+      isAccessibleForFree: true,
+      description: `Browse and filter all ${videos.length} declassified U.S. government UAP/UFO videos from PURSUE ${RELEASE_RANGE_LABEL}, with direct links to official source records.`,
+      publisher: { '@type': 'Organization', name: SITE_NAME, url: siteUrl },
+    },
+    makeArchiveDatasetSchema(siteUrl),
+  ],
+};
 ---
 <BaseLayout
-  title="UAP Video Browser"
-  description={`Browse all ${videos.length} declassified UAP videos from PURSUE ${RELEASE_RANGE_LABEL} in one place: Lake Huron shootdown, Syrian instant acceleration, CENTCOM encounters, and more, with links to records and official sources.`}
+  title="Declassified UAP & UFO Video Browser"
+  description={`Watch and filter all ${videos.length} declassified UAP & UFO videos from PURSUE ${RELEASE_RANGE_LABEL}: 1952 Tremonton film, Lake Huron, CENTCOM encounters, and source records.`}
   ogImage="/blog-assets/tool-og-videos.jpg"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(videosJsonLd)} slot="head" />
   <section class="container-narrow py-12">
     <div class="section-header">
       <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">UAP Video Browser</h1>
@@ -33,7 +53,9 @@ const videos = getVideoEntries();
         <li>// The most-shared clips are the most visually striking, which is not the same as the most evidentially strong.</li>
       </ul>
       <p class="text-xs text-space-400 font-mono mt-4">
-        Context for the most-discussed clips:
+        Context &amp; living case files:
+        <a href="/topics/tremonton-utah-ufo-film-1952/" class="text-cyan-bright hover:underline">1952 Tremonton film case file</a> ·
+        <a href="/topics/triangular-uap-case-file/" class="text-cyan-bright hover:underline">Triangular UAP case file</a> ·
         <a href="/blog/lake-huron-uap-video-release-02-analysis/" class="text-cyan-bright hover:underline">Lake Huron shootdown</a> ·
         <a href="/blog/syrian-uap-instant-acceleration-release-02-analysis/" class="text-cyan-bright hover:underline">Syrian instant acceleration</a> ·
         <a href="/blog/military-uap-videos-pentagon-released/" class="text-cyan-bright hover:underline">Pentagon video overview</a>

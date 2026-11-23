@@ -2,20 +2,39 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SightingMap from '../../components/SightingMap.tsx';
 import { getMapLocations, RELEASES, RELEASE_COLORS, RELEASE_RANGE_LABEL } from '../../data/toolData';
+import { makeArchiveDatasetSchema, SITE_NAME } from '../../config';
 
 const { locations, unmappableCount, unlocatedCount } = getMapLocations();
 const mappedDocs = locations.reduce((sum, l) => sum + l.docs.length, 0);
 const topLocations = locations.slice(0, 8);
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const siteUrl = Astro.site?.href || 'https://ufo-declassified.com/';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 const citationDate = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date());
 const citationText = `UFO Declassified. "UAP Sighting Map." ${mappedDocs} mapped records across PURSUE ${RELEASE_RANGE_LABEL}. ${canonicalUrl}. Accessed ${citationDate}.`;
+const mapJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebApplication',
+      name: `UAP & UFO Sightings World Map — ${SITE_NAME}`,
+      url: canonicalUrl,
+      applicationCategory: 'ReferenceApplication',
+      operatingSystem: 'Any',
+      isAccessibleForFree: true,
+      description: `Interactive world map of ${mappedDocs} declassified U.S. government UFO and UAP document locations across PURSUE ${RELEASE_RANGE_LABEL}.`,
+      publisher: { '@type': 'Organization', name: SITE_NAME, url: siteUrl },
+    },
+    makeArchiveDatasetSchema(siteUrl),
+  ],
+};
 ---
 <BaseLayout
-  title="UAP Sighting Map"
-  description={`Interactive map of ${mappedDocs} declassified UAP document locations from PURSUE ${RELEASE_RANGE_LABEL}: Western U.S. orbs, CENTCOM encounters, Cold War sites, and more.`}
+  title="UFO & UAP Sightings Map — World Map of Declassified Files"
+  description={`Explore an interactive world map of ${mappedDocs} declassified UFO sightings & UAP records from PURSUE ${RELEASE_RANGE_LABEL}, filterable by release and location precision.`}
   ogImage="/blog-assets/tool-og-map.jpg"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(mapJsonLd)} slot="head" />
   <section class="container-narrow py-12">
     <div class="section-header">
       <h1 class="font-display text-2xl md:text-3xl font-bold text-white uppercase tracking-wider">UAP Sighting Map</h1>
