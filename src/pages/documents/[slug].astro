@@ -6,15 +6,25 @@ import { AGENCY_INFO, CATEGORY_INFO } from '../../data/types';
 import { ARCHIVE_SOURCE_URL, fileThumbnailUrl, fileUrl, makeArchiveDatasetSchema } from '../../config';
 import { isThinDocument, isUndatedRecord } from '../../data/seo';
 import { getRecordEvidence, LABEL_INFO } from '../../data/evidence';
+import { getCollection } from 'astro:content';
+import { getRelatedAnalysis } from '../../data/relatedAnalysis';
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const blogSummaries = posts.map(p => ({
+    id: p.id,
+    title: p.data.title,
+    description: p.data.description,
+    category: p.data.category,
+  }));
+
   return documents.map(doc => ({
     params: { slug: doc.slug },
-    props: { doc },
+    props: { doc, relatedAnalysis: getRelatedAnalysis(doc, blogSummaries, 3) },
   }));
 }
 
-const { doc } = Astro.props;
+const { doc, relatedAnalysis } = Astro.props;
 const imageFiles = doc.files.filter((file: any) => file.type === 'image');
 const videoFiles = doc.files.filter((file: any) => file.type === 'video');
 const audioFiles = doc.files.filter((file: any) => file.type === 'audio');
@@ -365,6 +375,38 @@ const schema = {
         </section>
       </aside>
     </div>
+
+    {(relatedAnalysis.caseFile || relatedAnalysis.articles.length > 0) && (
+      <section class="mt-12">
+        <div class="section-header">
+          <h2 class="font-display text-base font-bold text-white uppercase tracking-wider">Deep-Dive Analysis &amp; Context</h2>
+        </div>
+        {relatedAnalysis.caseFile && (
+          <a
+            href={`/topics/${relatedAnalysis.caseFile.slug}/`}
+            class="doc-card p-4 mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-cyan-glow/30 group"
+          >
+            <div>
+              <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-cyan-bright">{relatedAnalysis.caseFile.label}</span>
+              <h3 class="mt-1 font-display text-sm font-bold text-white group-hover:text-cyan-bright transition-colors">{relatedAnalysis.caseFile.title}</h3>
+            </div>
+            <span class="text-xs font-mono text-cyan-bright shrink-0">Open case file →</span>
+          </a>
+        )}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {relatedAnalysis.articles.map((article: any) => (
+            <a href={`/blog/${article.id}/`} class="doc-card p-4 group cursor-pointer flex flex-col justify-between">
+              <div>
+                <span class="badge badge-cyan text-[8px] mb-3">{article.category}</span>
+                <h3 class="text-sm text-white group-hover:text-cyan-bright transition-colors line-clamp-2 font-medium">{article.title}</h3>
+                <p class="text-xs text-space-300 mt-2 line-clamp-2 leading-relaxed">{article.description}</p>
+              </div>
+              <span class="text-[10px] font-mono text-cyan-bright mt-3 inline-block">Read analysis →</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
 
     {relatedDocs.length > 0 && (
       <section class="mt-12">
