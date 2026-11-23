@@ -95,6 +95,8 @@ function topicMatches(slug: string, doc: any): boolean {
   const title = doc.title.toLowerCase();
   const tags = doc.tags.join(' ').toLowerCase();
   if (slug === 'pursue-release-2026') return doc.dateReleased.startsWith('2026-');
+  if (slug === 'pursue-release-07') return (doc.releaseLabel || 'Release 01') === 'Release 07';
+  if (slug === 'pursue-release-06') return (doc.releaseLabel || 'Release 01') === 'Release 06';
   if (slug === 'pursue-release-05') return (doc.releaseLabel || 'Release 01') === 'Release 05';
   if (slug === 'pursue-release-04') return (doc.releaseLabel || 'Release 01') === 'Release 04';
   if (slug === 'pursue-release-03') return (doc.releaseLabel || 'Release 01') === 'Release 03';
@@ -122,7 +124,7 @@ const topicSchema = {
   about: matchingDocs.slice(0, 12).map(doc => ({
     '@type': 'CreativeWork',
     name: doc.title,
-    url: new URL(`/documents/${doc.slug}`, Astro.site).href,
+    url: new URL(`/documents/${doc.slug}/`, Astro.site).href,
   })),
 };
 
