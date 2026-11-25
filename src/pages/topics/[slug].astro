@@ -15,6 +15,32 @@ export function getStaticPaths() {
 const { topic } = Astro.props;
 
 const topicSpotlights: Record<string, Array<{ href: string; label: string; title: string; body: string }>> = {
+  'pursue-release-08': [
+    {
+      href: '/documents/release-08-file-003-dow-uap-d165-unresolved-radar-detection-north-america-2023/',
+      label: 'Release 08 · AARO Radar',
+      title: 'DOW-UAP-D165 Unresolved Radar Detection (2023)',
+      body: 'AARO preliminary analysis of 8 civil radar detections over 84 seconds at 55,000–70,000 ft in the western U.S.',
+    },
+    {
+      href: '/documents/release-08-file-012-dow-uap-d183-correspondence-from-senator-harry-reid-june-2009/',
+      label: 'Release 08 · AAWSAP/AATIP',
+      title: 'Senator Harry Reid SAP Request (June 2009)',
+      body: 'Reid’s June 2009 letter requesting Special Access Program protections for AATIP/AAWSAP, paired with DIA’s rejection (D185).',
+    },
+    {
+      href: '/documents/release-08-file-001-cia-uap-d027-office-of-scientific-intelligence-briefing-on-flying-saucers-1952/',
+      label: 'Release 08 · CIA 1952',
+      title: 'CIA OSI Briefing on "Flying Saucers" (Aug 1952)',
+      body: 'August 14, 1952 CIA Office of Scientific Intelligence briefing evaluating ~1,500 Air Force sightings.',
+    },
+    {
+      href: '/blog/war-gov-ufo-release-08-first-look/',
+      label: 'First Look Analysis',
+      title: 'First Look at PURSUE Release 08',
+      body: 'Full breakdown of all 43 Release 08 files, the 3 new CENTCOM videos, and what the Reid/DIA memos establish.',
+    },
+  ],
   'nasa-apollo-ufo-material': [
     {
       href: '/documents/nasa-uap-d1-apollo-12-transcript-1969/',
@@ -179,6 +205,7 @@ function topicMatches(slug: string, doc: any): boolean {
   const title = doc.title.toLowerCase();
   const tags = doc.tags.join(' ').toLowerCase();
   if (slug === 'pursue-release-2026') return doc.dateReleased.startsWith('2026-');
+  if (slug === 'pursue-release-08') return (doc.releaseLabel || 'Release 01') === 'Release 08';
   if (slug === 'pursue-release-07') return (doc.releaseLabel || 'Release 01') === 'Release 07';
   if (slug === 'pursue-release-06') return (doc.releaseLabel || 'Release 01') === 'Release 06';
   if (slug === 'pursue-release-05') return (doc.releaseLabel || 'Release 01') === 'Release 05';

@@ -129,7 +129,8 @@ export function getRelatedAnalysis(
   }
 
   // 3. Release-level coverage fallback
-  if (rel === 'Release 07') add('war-gov-ufo-release-07-first-look');
+  if (rel === 'Release 08') add('war-gov-ufo-release-08-first-look');
+  else if (rel === 'Release 07') add('war-gov-ufo-release-07-first-look');
   else if (rel === 'Release 06') add('war-gov-ufo-release-06-first-look');
   else if (rel === 'Release 04') add('war-gov-ufo-release-04-first-look');
   else if (rel === 'Release 03') add('war-gov-ufo-release-03-analysis');

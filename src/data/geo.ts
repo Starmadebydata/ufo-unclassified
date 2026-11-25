@@ -56,6 +56,17 @@ export const GEO_OVERLAY: Record<string, GeoPoint> = {
   'Indiana': { lat: 40.0, lng: -86.1, precision: 'approx' },
   'San Francisco, California': { lat: 37.77, lng: -122.42, precision: 'exact' },
 
+  // Release 08 locations
+  'California': { lat: 36.78, lng: -119.42, precision: 'approx' },
+  'Massachusetts': { lat: 42.41, lng: -71.38, precision: 'approx' },
+  'Michigan': { lat: 44.31, lng: -85.6, precision: 'approx' },
+  'Virginia': { lat: 37.43, lng: -78.66, precision: 'approx' },
+  'Nebraska': { lat: 41.49, lng: -99.9, precision: 'approx' },
+  'Washington': { lat: 47.75, lng: -120.74, precision: 'approx' },
+  'Japan': { lat: 36.2, lng: 138.25, precision: 'approx' },
+  'Iran': { lat: 32.43, lng: 53.69, precision: 'approx' },
+  'Peru': { lat: -9.19, lng: -75.02, precision: 'approx' },
+
   // Countries / seas (centroids)
   'Djibouti': { lat: 11.6, lng: 43.1, precision: 'approx' },
   'Greece': { lat: 39.0, lng: 22.0, precision: 'approx' },

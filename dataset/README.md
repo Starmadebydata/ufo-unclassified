@@ -4,7 +4,7 @@
 
 A structured catalog of every U.S. government UAP record released under the **PURSUE** initiative (Presidential Unsealing and Reporting System for UAP Encounters), covering all public tranches from May 8, 2026 onward.
 
-**351 records · 1947–2026 · 12 source agencies · 7 releases**
+**394 records · 1947–2026 · 12 source agencies · 8 releases**
 
 This is a *finding aid*, not a document dump. Each row identifies one released record, states which agency released it, when the underlying event or document dates from, which tranche it arrived in, what file types it contains, and — the part that does not exist anywhere else — **what kind of evidence it is**.
 
@@ -41,8 +41,8 @@ The copy in this repository is a snapshot. For the live file, use the URL above.
 | `title` | string | Record title as released, lightly normalized for readability. |
 | `agency` | enum | Releasing agency code. See table below. |
 | `year` | integer | Year of the underlying document or event, **not** the release year. Range 1947–2026. |
-| `release` | enum | Which PURSUE tranche the record arrived in: `Release 01`–`Release 07`. |
-| `location` | string | Place named in the record, as released. Empty when the record names no location. 294 of 351 records carry one. Free text, not normalized to a gazetteer — see *Known limitations*. |
+| `release` | enum | Which PURSUE tranche the record arrived in: `Release 01`–`Release 08`. |
+| `location` | string | Place named in the record, as released. Empty when the record names no location. 337 of 394 records carry one. Free text, not normalized to a gazetteer — see *Known limitations*. |
 | `file_types` | string | Semicolon-delimited set of file formats in the record's package: `pdf`, `video`, `image`, `audio`. |
 | `evidence_labels` | string | Semicolon-delimited source-status labels. See *Source-status labels* below. |
 | `record_url` | URL | Canonical page for the record, carrying the full metadata, official source link, and citation block. |
@@ -51,10 +51,10 @@ The copy in this repository is a snapshot. For the live file, use the URL above.
 
 | Code | Full name | Records |
 |---|---|---|
-| `DOW` | Department of War | 220 |
+| `DOW` | Department of War | 257 |
 | `FBI` | Federal Bureau of Investigation | 52 |
 | `NASA` | National Aeronautics and Space Administration | 29 |
-| `CIA` | Central Intelligence Agency | 23 |
+| `CIA` | Central Intelligence Agency | 29 |
 | `DOE` | Department of Energy | 5 |
 | `DOS` | Department of State | 4 |
 | `LLE` | Local Law Enforcement | 8 |
@@ -75,12 +75,13 @@ The copy in this repository is a snapshot. For the live file, use the URL above.
 | Release 05 | 2026-08-07 | 41 |
 | Release 06 | 2026-09-18 | 75 |
 | Release 07 | 2026-10-23 | 28 |
+| Release 08 | 2026-11-20 | 43 |
 
 ### File type distribution
 
-pdf 182 · video 116 · image 45 · audio 8
+pdf 222 · video 119 · image 45 · audio 8
 
-(Counts exceed 351 because a record's package may contain more than one format.)
+(Counts exceed 394 because a record's package may contain more than one format.)
 
 ---
 
@@ -98,10 +99,10 @@ Computed deterministically from record metadata. Reproducible; no human judgment
 
 | Label | Meaning | Count |
 |---|---|---|
-| `official-source` | The record carries a link to its official government source page. | 351 |
-| `public-rendition` | Video files are official public renditions, not raw sensor data. Chain-of-custody caveats apply. | 116 |
-| `historical-archival` | A scanned historical record. Valuable as institutional history, not as a modern case file. | 150 |
-| `witness-testimony` | Primarily first-person account: transcript, debriefing, interview, or case file. | 85 |
+| `official-source` | The record carries a link to its official government source page. | 394 |
+| `public-rendition` | Video files are official public renditions, not raw sensor data. Chain-of-custody caveats apply. | 119 |
+| `historical-archival` | A scanned historical record. Valuable as institutional history, not as a modern case file. | 188 |
+| `witness-testimony` | Primarily first-person account: transcript, debriefing, interview, or case file. | 112 |
 
 Derivation rules:
 - `official-source` — record or any of its files has a `sourceUrl`.
@@ -120,7 +121,7 @@ Applied **only** to records researched in depth. Each editorial label carries a 
 | `unresolved` | The releasing agency itself labels the case unresolved or unidentified. |
 | `context-gap` | A specific missing piece — pages, radar data, analysis records — has been publicly documented. |
 
-Editorial labels are deliberately sparse — 17 label applications across 11 of the 351 records as of this snapshot. Sparseness is the point: a claim that a case is officially unresolved should be traceable to a specific line in a specific document, and most records have not been read that closely.
+Editorial labels are deliberately sparse — 17 label applications across 11 of the 394 records as of this snapshot. Sparseness is the point: a claim that a case is officially unresolved should be traceable to a specific line in a specific document, and most records have not been read that closely.
 
 Browse the labels interactively: <https://ufo-declassified.com/tools/evidence>
 
@@ -132,10 +133,10 @@ Stated plainly, because a dataset that hides its edges is not usable for researc
 
 1. **`location` is free text as released.** It is not geocoded, not normalized to a gazetteer, and its precision varies from an exact facility ("Pantex Plant") to a broad region ("Western United States") to a release-batch descriptor ("DOD UAP video release"). The site's map view assigns explicit precision tiers; the CSV does not carry them. Do not treat `location` as a coordinate.
 2. **`year` is the document/event year, not the release year.** Records released in 2026 about 1952 events carry `1952`. Records that are themselves 2026 artifacts carry `2026`.
-3. **56 records carry no location.** Empty string, not null.
+3. **57 records carry no location.** Empty string, not null.
 4. **Editorial labels have incomplete coverage** by design — see above. Absence of `unresolved` does not mean a case is resolved.
 5. **Titles are as released**, including inconsistent agency file-numbering conventions. They have not been rewritten for uniformity.
-6. **This dataset indexes what was released, not what exists.** The PURSUE program is ongoing and the underlying holdings are far larger than what has been made public. Counts are a snapshot of public releases through 2026-09-18.
+6. **This dataset indexes what was released, not what exists.** The PURSUE program is ongoing and the underlying holdings are far larger than what has been made public. Counts are a snapshot of public releases through 2026-11-20.
 7. **No document text.** This is metadata only. Full documents live at their official source URLs, linked from each record page.
 
 ---

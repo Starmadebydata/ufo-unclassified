@@ -12,7 +12,7 @@ export const R2_BASE = 'https://media.ufo-declassified.com';
 export const SITE_NAME = 'UFO Declassified';
 export const ARCHIVE_DATASET_NAME = 'UFO Declassified PURSUE Document Archive';
 export const ARCHIVE_DATASET_DESCRIPTION =
-  'A searchable public archive of declassified UAP and UFO records released under the PURSUE initiative beginning May 8, 2026, including Release 01 through Release 07 source agency metadata, file formats, record dates, locations, summaries, and citation pages.';
+  'A searchable public archive of declassified UAP and UFO records released under the PURSUE initiative beginning May 8, 2026, including Release 01 through Release 08 source agency metadata, file formats, record dates, locations, summaries, and citation pages.';
 export const ARCHIVE_SOURCE_URL = 'https://war.gov/UFO';
 export const ARCHIVE_RELEASE_DATE = '2026-05-08';
 
@@ -78,7 +78,7 @@ export function makeArchiveDatasetSchema(site: URL | string) {
       encodingFormat: 'text/csv',
       contentUrl: new URL('/dataset/uap-documents.csv', baseUrl).href,
     },
-    keywords: ['UAP', 'UFO', 'PURSUE', 'Release 07', 'declassified records', 'government documents'],
+    keywords: ['UAP', 'UFO', 'PURSUE', 'Release 08', 'declassified records', 'government documents'],
     creator: {
       '@type': 'Organization',
       name: SITE_NAME,

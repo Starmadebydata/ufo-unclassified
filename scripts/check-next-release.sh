@@ -16,7 +16,7 @@
 set -uo pipefail
 
 # --- Bump these two on every re-arm ---
-CURRENT_RELEASE_NUM=7           # last confirmed release
+CURRENT_RELEASE_NUM=8           # last confirmed release
 BASELINE_UFOFILES=158           # ufofiles.fyi returned 404 on 2026-10-27, so signal 2 is inert until the site returns
 # ---------------------------------------
 
